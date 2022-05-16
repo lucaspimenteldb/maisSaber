@@ -47,6 +47,9 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#630FCC'
   },
+  buttonProfile: {
+    marginRight: 16,
+  },
   crowns: {
     marginLeft: 36,
     marginRight: 36,
@@ -58,9 +61,6 @@ const styles = StyleSheet.create({
     color: '#F6970D',
     fontSize: 16,
   },
-  buttonProfile: {
-    marginRight: 16,
-  }
 })
 
 export default HomeHeader

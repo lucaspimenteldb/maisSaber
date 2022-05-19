@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 
 import BauIcon from '../../assets/BauIcon.js'
 import CoroaIcon from '../../assets/CoroaIcon.js'

@@ -10,7 +10,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen from './screens/HomeScreen.js'
+import HomeScreen from './screens/home/HomeScreen.js'
 import LoginScreen from './screens/LoginScreen.js'
 import HomeHeader from './components/header/Home.js';
 

@@ -1,8 +1,10 @@
 import React from 'react'
-import { ScrollView, View, Text, Image, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native'
 
 import Diamante from '../assets/Diamante.js'
 import CoroaJoias from '../assets/CoroaJoias'
+import TecnologiaIcon from '../assets/TecnologiaIcon.js'
+import NotebookMensagemIcon from '../assets/NotebookMensagemIcon.js'
 
 const LoginScreen = () => {
   return (
@@ -30,6 +32,32 @@ const LoginScreen = () => {
               <View style={styles.progressInner} />
             </View>
           </View>
+        </View>
+
+        {/* navigation hub */}
+        <View style={styles.navigationHub}>
+          <TouchableHighlight style={styles.navigationHubButton}>
+            <View>
+              <TecnologiaIcon></TecnologiaIcon>
+              <Text>Teste</Text>
+            </View>
+          </TouchableHighlight>
+
+          <Text style={styles.seeTooTitle}>Veja também</Text>
+          <ScrollView horizontal>
+            <TouchableHighlight style={styles.navigationHubButtonHelp}>
+              <View>
+                <NotebookMensagemIcon></NotebookMensagemIcon>
+                <Text>Preciso de ajuda</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight style={styles.navigationHubButtonShare}>
+              <View>
+                <NotebookMensagemIcon></NotebookMensagemIcon>
+                <Text>Compartilhar com amigos</Text>
+              </View>
+            </TouchableHighlight>
+          </ScrollView>
         </View>
       </ScrollView>
     </>
@@ -94,6 +122,36 @@ const styles = StyleSheet.create({
     width: '30%',
     backgroundColor: '#fff',
   },
+  // navigation hub styles
+  navigationHub: {
+    padding: 16,
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+  },
+  navigationHubButton: {
+    backgroundColor: '#630FCC',
+    borderRadius: 14,
+    borderBottom: 4,
+    borderBottomColor: '#5C23A4'
+  },
+  navigationHubButtonHelp: {
+    backgroundColor: '#1884D0',
+    borderRadius: 14,
+    borderBottom: 4,
+    borderBottomColor: '#0A65A5'
+  },
+  navigationHubButtonShare: {
+    backgroundColor: '#9E1C36',
+    borderRadius: 14,
+    borderBottom: 4,
+    borderBottomColor: '#64081A'
+  },
+  seeTooTitle: {
+    marginTop: 30,
+    marginBottom: 18,
+    fontFamily: 'Nunito-ExtraBold',
+    fontSize: 18,
+  }
 })
 
 

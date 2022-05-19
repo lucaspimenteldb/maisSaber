@@ -6,7 +6,7 @@ const HomeScreen = ({ navigation }) => {
     <>
       <ScrollView>
         <View>
-          <TouchableHighlight onPress={() => navigation.navigate('Home')}>
+          <TouchableHighlight onPress={() => navigation.navigate('HomeOne')}>
             <View style={styles.button}>
               <Text>oi</Text>
             </View>

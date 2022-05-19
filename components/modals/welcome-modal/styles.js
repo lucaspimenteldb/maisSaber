@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   overlay: {
     flex: 1,
+    justifyContent: 'flex-end',
     position: 'absolute',
     top: 0,
     left: 0,
@@ -28,7 +29,7 @@ export default StyleSheet.create({
     marginBottom: 16, 
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-end'
   },
   modalTitle: {
     fontSize: 18,
@@ -43,45 +44,52 @@ export default StyleSheet.create({
     backgroundColor: '#f00',
     borderRadius: 17,
   },
-  modalMissions: {
+  modalContent: {
     marginBottom: 16,
     paddingBottom: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    alignItems: 'center'
   },
-  modalMissionsBorder: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#777'
-  },
-  modalMissionsTitle: {
+  modalContentTitle: {
     marginVertical: 4,
     fontFamily: 'Nunito-Bold',
     fontSize: 16
   },
-  modalMissionsText: {
-    color: '#333'
+  modalContentText: {
+    paddingHorizontal: 30,
+    color: '#333',
+    textAlign: 'center'
   },
-  modalMissionsButton: {
+  modalActionButton: {
+    width: '100%',
     height: 44,
-    width: 160,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#630FCC',
-    borderRadius: 14,
+    borderRadius: 22,
     borderBottomWidth: 4,
     borderBottomColor: '#54199F'
   },
-  modalMissionsButtonText: {
+  modalActionButtonSecondary: {
+    marginTop: 12,
+    width: '100%',
+    height: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 22,
+    borderWidth: 2,
+    borderBottomWidth: 4,
+    borderColor: '#54199F'
+  },
+  modalActionButtonText: {
     color: '#fff',
     fontFamily: 'Nunito-Bold'
   },
-  flex: {
-    flex: 1,
+  modalActionButtonTextSecondary: {
+    color: '#54199F',
+    fontFamily: 'Nunito-Bold'
   },
-  modalMissionsActions: {
-    paddingLeft: 12,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  modalActions: {
+    marginVertical: 12,
   }
 })

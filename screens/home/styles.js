@@ -64,6 +64,7 @@ export default StyleSheet.create({
     marginTop: 16,
     paddingTop: 16,
     paddingBottom: 16,
+    flex: 1,
     backgroundColor: '#fff',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,

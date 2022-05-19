@@ -10,9 +10,13 @@ import LivroAbertoIcon from '../../assets/LivroAbertoIcon.js'
 import AprendizadoOnlineIcon from '../../assets/AprendizadoOnlineIcon.js'
 import PessoasConexaoIcon from '../../assets/PessoasConexaoIcon.js'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setShowShareModal } from '../../redux/actions.js'
 
-import Modal from '../../components/modal/Modal.js'
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
+import WelcomeModal from '../../components/modals/welcome-modal/Modal.js'
+import ShareModal from '../../components/modals/share-modal/Modal.js'
+
 import styles from './styles.js'
 
 const LoginScreen = ({navigation}) => {
@@ -39,7 +43,10 @@ const LoginScreen = ({navigation}) => {
     },
   ]
   // const [showMissionsModal, setShowMissionsModal] = useState(false)
+  const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { showWelcomeModal } = useSelector(state => state.showWelcomeModalReducer)
+  const { showShareModal } = useSelector(state => state.showShareModalReducer)
 
   return (
     <>
@@ -101,7 +108,10 @@ const LoginScreen = ({navigation}) => {
                 </Text>
               </View>
             </TouchableHighlight>
-            <TouchableHighlight onPress={() => navigation.navigate('A')} underlayColor="#fff">
+            <TouchableHighlight
+              onPress={() => dispatch(setShowShareModal(true))} 
+              underlayColor="#fff"
+            >
               <View style={styles.navigationHubButtonShare}>
                 <PessoasConexaoIcon/>
                 <Text style={styles.navigationHubButtonTextSecondary}>
@@ -113,7 +123,13 @@ const LoginScreen = ({navigation}) => {
         </View>
         
         {
-          showMissionsModal ? <Modal /> : null
+          showMissionsModal ? <MissionsModal /> : null
+        }
+        {
+          showWelcomeModal ? <WelcomeModal bottom/> : null
+        }
+        {
+          showShareModal ? <ShareModal bottom/> : null
         }
       </ScrollView>
     </>

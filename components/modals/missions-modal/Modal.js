@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
-import BauIcon from '../../assets/BauIcon.js'
-import FecharIcon from '../../assets/FecharIcon.js'
+import BauIcon from '../../../assets/BauIcon.js'
+import FecharIcon from '../../../assets/FecharIcon.js'
 
 import { useDispatch } from 'react-redux'
-import { setShowMissionsModal } from '../../redux/actions.js'
+import { setShowMissionsModal } from '../../../redux/actions.js'
 
 import styles from './styles.js'
 
@@ -57,7 +57,7 @@ const Modal = (props) => {
     {
       title: 'Desafio',
       text: 'Compartilhe o app com um amigo',
-      canReceiveReward: false,
+      canReceiveReward: true,
     },
   ]
   return (
@@ -98,13 +98,21 @@ const Modal = (props) => {
                 </View>
 
                 <View style={styles.modalMissionsActions}>
-                  <TouchableHighlight 
-                    underlayColor="#fff" 
-                    style={styles.modalMissionsButton}
+                  <TouchableHighlight
+                    underlayColor={'#fff'}
+                    onPress={() => 'oi'}
+                    disabled={!mission.canReceiveReward}
                   >
-                    <Text style={styles.modalMissionsButtonText}>
-                      Receber recompensa
-                    </Text>
+                    <View 
+                      style={[
+                        styles.modalMissionsButton,
+                        mission.canReceiveReward ? '' : {opacity: 0.7}
+                      ]}
+                    >
+                      <Text style={styles.modalMissionsButtonText}>
+                        Receber recompensa
+                      </Text>
+                    </View>
                   </TouchableHighlight>
                 </View>
               </View>

@@ -10,7 +10,7 @@ import { setShowMissionsModal } from '../../redux/actions.js'
 
 const HomeHeader = ({ navigation }) => {
   const dispatch = useDispatch();
-  
+
   return (
     <>
         <View style={styles.header}>
@@ -44,6 +44,7 @@ const HomeHeader = ({ navigation }) => {
 const styles = StyleSheet.create({
   header: {
     flex: 1,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
@@ -54,9 +55,6 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#630FCC'
-  },
-  buttonProfile: {
-    marginRight: 16,
   },
   crowns: {
     marginLeft: 36,

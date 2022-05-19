@@ -6,6 +6,7 @@ export default StyleSheet.create({
     backgroundColor: '#630FCC',
   },
   userInformation: {
+    marginTop: 28,
     margin: 12,
     flexDirection: 'row'
   },

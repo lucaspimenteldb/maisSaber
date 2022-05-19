@@ -5,7 +5,12 @@ import BauIcon from '../../assets/BauIcon.js'
 import CoroaIcon from '../../assets/CoroaIcon.js'
 import UsuarioIcon from '../../assets/UsuarioIcon.js'
 
+import { useDispatch } from 'react-redux'
+import { setShowMissionsModal } from '../../redux/actions.js'
+
 const HomeHeader = ({ navigation }) => {
+  const dispatch = useDispatch();
+  
   return (
     <>
         <View style={styles.header}>
@@ -13,7 +18,10 @@ const HomeHeader = ({ navigation }) => {
 
           {/* menu items */}
           <View style={styles.menuItems}>
-            <TouchableOpacity onPress={() => 'openMissions'} style={styles.buttonBau}>
+            <TouchableOpacity 
+              onPress={() => dispatch(setShowMissionsModal(true))} 
+              style={styles.buttonBau}
+            >
               <View>
                 <BauIcon></BauIcon>
               </View>

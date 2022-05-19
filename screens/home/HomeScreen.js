@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView, View, Text, Image, TouchableHighlight } from 'react-native'
 
 import Diamante from '../../assets/Diamante.js'
@@ -9,6 +9,8 @@ import FogueteIcon from '../../assets/FogueteIcon.js'
 import LivroAbertoIcon from '../../assets/LivroAbertoIcon.js'
 import AprendizadoOnlineIcon from '../../assets/AprendizadoOnlineIcon.js'
 import PessoasConexaoIcon from '../../assets/PessoasConexaoIcon.js'
+
+import { useSelector } from 'react-redux'
 
 import Modal from '../../components/modal/Modal.js'
 import styles from './styles.js'
@@ -36,6 +38,8 @@ const LoginScreen = ({navigation}) => {
       route: 'a'
     },
   ]
+  // const [showMissionsModal, setShowMissionsModal] = useState(false)
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
 
   return (
     <>
@@ -107,8 +111,10 @@ const LoginScreen = ({navigation}) => {
             </TouchableHighlight>
           </ScrollView>
         </View>
-
-        <Modal />
+        
+        {
+          showMissionsModal ? <Modal /> : null
+        }
       </ScrollView>
     </>
   )

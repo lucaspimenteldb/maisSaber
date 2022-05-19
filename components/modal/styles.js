@@ -35,13 +35,13 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-ExtraBold'
   },
   closeButton: {
-    width: 40,
-    height: 40,
+    width: 34,
+    height: 34,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f00',
-    borderRadius: 20,
+    borderRadius: 17,
   },
   modalMissions: {
     marginBottom: 16,

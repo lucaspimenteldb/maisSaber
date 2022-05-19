@@ -4,11 +4,16 @@ import { View, Text, TouchableHighlight, Animated } from 'react-native'
 import BauIcon from '../../assets/BauIcon.js'
 import FecharIcon from '../../assets/FecharIcon.js'
 
+import { useDispatch } from 'react-redux'
+import { setShowMissionsModal } from '../../redux/actions.js'
+
 import styles from './styles.js'
 
 const Modal = (props) => {
-  const fadeOverlay = useRef(new Animated.Value(0)).current
-  const translateModal = useRef(new Animated.Value(-350)).current
+  const dispatch = useDispatch();
+
+  const fadeOverlay = useRef(new Animated.Value(0)).current;
+  const translateModal = useRef(new Animated.Value(-350)).current;
   useEffect(() => {
     Animated.timing(
       fadeOverlay, {
@@ -25,6 +30,23 @@ const Modal = (props) => {
       },
     ).start();
   }, [fadeOverlay, translateModal])
+  const closeMissionsModal = () => {
+    Animated.timing(
+      fadeOverlay, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true
+      },
+    ).start();
+    Animated.timing(
+      translateModal, {
+        toValue: -350,
+        duration: 350,
+        useNativeDriver: true
+      },
+    ).start();
+    setTimeout(() => dispatch(setShowMissionsModal(false)), 350)
+  }
 
   const missions = [
     {
@@ -49,7 +71,11 @@ const Modal = (props) => {
         >
           <View style={styles.modalHeader}>
             <Text style={styles.modalTitle}>Missões Diárias</Text>
-            <TouchableHighlight underlayColor="#fff" style={styles.closeButton}>
+            <TouchableHighlight
+              onPress={closeMissionsModal}
+              underlayColor="#fff" 
+              style={styles.closeButton}
+            >
               <FecharIcon/>
             </TouchableHighlight>
           </View>

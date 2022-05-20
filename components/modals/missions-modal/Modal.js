@@ -73,7 +73,7 @@ const Modal = (props) => {
             <Text style={styles.modalTitle}>Missões Diárias</Text>
             <TouchableHighlight
               onPress={closeMissionsModal}
-              underlayColor="#fff" 
+              underlayColor="#f00" 
               style={styles.closeButton}
             >
               <FecharIcon/>

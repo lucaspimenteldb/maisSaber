@@ -85,6 +85,7 @@ const LoginScreen = ({navigation}) => {
                   key={button.title} 
                   onPress={() => navigation.navigate(button.route)}
                   underlayColor='#fff'
+                  style={styles.navigationHubTouchable}
                 >
                   <View style={styles.navigationHubButton}>
                     {button.icon}
@@ -100,7 +101,11 @@ const LoginScreen = ({navigation}) => {
           {/* secondary hub */}
           <Text style={styles.seeTooTitle}>Veja também</Text>
           <ScrollView horizontal>
-            <TouchableHighlight onPress={() => navigation.navigate('A')} underlayColor="#fff">
+            <TouchableHighlight 
+              onPress={() => navigation.navigate('A')}
+              underlayColor="#fff"
+              style={styles.navigationHubTouchableHelp}
+            >
               <View style={styles.navigationHubButtonHelp}>
                 <NotebookMensagemIcon/>
                 <Text style={styles.navigationHubButtonTextSecondary}>
@@ -111,6 +116,7 @@ const LoginScreen = ({navigation}) => {
             <TouchableHighlight
               onPress={() => dispatch(setShowShareModal(true))} 
               underlayColor="#fff"
+              style={styles.navigationHubTouchableShare}
             >
               <View style={styles.navigationHubButtonShare}>
                 <PessoasConexaoIcon/>

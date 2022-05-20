@@ -63,7 +63,7 @@ const Modal = (props) => {
             <Text style={styles.modalTitle}>Compartilhar com o amigo</Text>
             <TouchableHighlight
               onPress={closeShareModal}
-              underlayColor="#fff"
+              underlayColor="#f00"
               style={styles.closeButton}
             >
               <FecharIcon />

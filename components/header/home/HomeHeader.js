@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 
-import BauIcon from '../../assets/BauIcon.js'
-import CoroaIcon from '../../assets/CoroaIcon.js'
-import UsuarioIcon from '../../assets/UsuarioIcon.js'
+import BauIcon from '../../../assets/BauIcon.js'
+import CoroaIcon from '../../../assets/CoroaIcon.js'
+import UsuarioIcon from '../../../assets/UsuarioIcon.js'
+
+import styles from './styles.js'
 
 import { useDispatch } from 'react-redux'
-import { setShowMissionsModal } from '../../redux/actions.js'
+import { setShowMissionsModal } from '../../../redux/actions.js'
 
 const HomeHeader = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -14,7 +16,7 @@ const HomeHeader = ({ navigation }) => {
   return (
     <>
         <View style={styles.header}>
-          <Image source={require('../../assets/logo.png')} style={{width: 61, height: 26}}></Image>
+          <Image source={require('../../../assets/logo.png')} style={{width: 61, height: 26}}></Image>
 
           {/* menu items */}
           <View style={styles.menuItems}>
@@ -41,32 +43,5 @@ const HomeHeader = ({ navigation }) => {
   )
 }
 
-const styles = StyleSheet.create({
-  header: {
-    flex: 1,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  menuItems: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  button: {
-    backgroundColor: '#630FCC'
-  },
-  crowns: {
-    marginLeft: 36,
-    marginRight: 36,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  crownsText: {
-    fontFamily: 'Nunito-ExtraBold',
-    color: '#F6970D',
-    fontSize: 16,
-  },
-})
 
 export default HomeHeader

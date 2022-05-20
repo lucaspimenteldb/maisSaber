@@ -60,7 +60,7 @@ const Modal = (props) => {
           <View style={styles.modalHeader}>
             <TouchableHighlight
               onPress={closeWelcomeModal}
-              underlayColor="#fff"
+              underlayColor="#f00"
               style={styles.closeButton}
             >
               <FecharIcon />
@@ -78,14 +78,22 @@ const Modal = (props) => {
             </Text>
           </View>
           <View style={styles.modalActions}>
-            <TouchableHighlight underlayColor="#fff" onPress={() => 'oi'}>
+            <TouchableHighlight 
+              underlayColor="#fff" 
+              onPress={() => 'oi'}
+              style={styles.buttonWrapper}
+            >
               <View style={styles.modalActionButton}>
                 <Text style={styles.modalActionButtonText}>
                   Ir para trilhas
                 </Text>
               </View>
             </TouchableHighlight>
-            <TouchableHighlight underlayColor="#fff" onPress={closeWelcomeModal}>
+            <TouchableHighlight 
+              underlayColor="#fff" 
+              onPress={closeWelcomeModal}
+              style={styles.buttonWrapperSecondary}
+            >
               <View style={styles.modalActionButtonSecondary}>
                 <Text style={styles.modalActionButtonTextSecondary}>
                   Agora não

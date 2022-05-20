@@ -59,27 +59,34 @@ export default StyleSheet.create({
     color: '#333',
     textAlign: 'center'
   },
-  modalActionButton: {
+  buttonWrapper: {
     width: '100%',
     height: 44,
+    borderRadius: 22,
+  },
+  buttonWrapperSecondary: {
+    marginTop: 12,
+    height: 44,
+    borderRadius: 22,
+  },
+  modalActionButton: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#630FCC',
-    borderRadius: 22,
     borderBottomWidth: 4,
-    borderBottomColor: '#54199F'
+    borderBottomColor: '#54199F',
+    borderRadius: 22,
   },
   modalActionButtonSecondary: {
-    marginTop: 12,
-    width: '100%',
-    height: 44,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderRadius: 22,
     borderWidth: 2,
     borderBottomWidth: 4,
-    borderColor: '#54199F'
+    borderColor: '#54199F',
+    borderRadius: 22,
   },
   modalActionButtonText: {
     color: '#fff',

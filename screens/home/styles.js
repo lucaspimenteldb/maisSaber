@@ -74,8 +74,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     flexWrap: 'wrap'
   },
-  navigationHubButton: {
+  navigationHubTouchable: {
     margin: 10,
+  },
+  navigationHubButton: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -97,9 +99,11 @@ export default StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Nunito-ExtraBold'
   },
-  navigationHubButtonHelp: {
+  navigationHubTouchableHelp: {
     marginLeft: 16,
     marginRight: 20,
+  },
+  navigationHubButtonHelp: {
     paddingLeft: 14,
     paddingRight: 14,
     height: 100,
@@ -110,8 +114,10 @@ export default StyleSheet.create({
     borderBottomWidth: 8,
     borderBottomColor: '#0A65A5'
   },
-  navigationHubButtonShare: {
+  navigationHubTouchableShare: {
     marginRight: 16,
+  },
+  navigationHubButtonShare: {
     paddingLeft: 14,
     paddingRight: 14,
     height: 100,

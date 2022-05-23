@@ -34,7 +34,7 @@ const Modal = (props) => {
       Animated.timing(
         crownMovement, {
         toValue: 2,
-        duration: 1000,
+        duration: 1500,
         useNativeDriver: true
       },
       )

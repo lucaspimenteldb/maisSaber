@@ -2,6 +2,7 @@ export const SHOW_MISSIONS_MODAL = 'SHOW_MISSIONS_MODAL'
 export const SHOW_WELCOME_MODAL = 'SHOW_WELCOME_MODAL'
 export const SHOW_SHARE_MODAL = 'SHOW_SHARE_MODAL'
 export const SHOW_FEEDBACK_MODAL = 'SHOW_FEEDBACK_MODAL'
+export const SHOW_GAIN_POINTS_MODAL = 'SHOW_GAIN_POINTS_MODAL'
 
 export const setShowMissionsModal = showMissionsModal => dispatch => {
   dispatch({
@@ -25,5 +26,11 @@ export const setShowFeedbackModal = showFeedbackModal => dispatch => {
   dispatch({
     type: SHOW_FEEDBACK_MODAL,
     payload: showFeedbackModal
+  })
+}
+export const setShowGainPointsModal = showGainPointsModal => dispatch => {
+  dispatch({
+    type: SHOW_GAIN_POINTS_MODAL,
+    payload: showGainPointsModal
   })
 }

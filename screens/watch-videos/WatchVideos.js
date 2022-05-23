@@ -1,6 +1,7 @@
 import React from 'react'
 import { ScrollView, TouchableHighlight, Text, View, Image, Dimensions } from 'react-native'
 import FeedbackModal from '../../components/modals/feedback-modal/Modal.js'
+import GainPointsModal from '../../components/modals/gain-points-modal/Modal.js'
 import CalculadoraMaoIcon from '../../assets/CalculadoraMaoIcon.js'
 import OperacoesIcon from '../../assets/OperacoesIcon.js'
 import CoroaJoias32Icon from '../../assets/CoroaJoias32Icon.js'
@@ -15,12 +16,15 @@ import PlayIcon from '../../assets/PlayIcon.js'
 import styles from './styles.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setShowFeedbackModal } from '../../redux/actions.js'
+import { setShowFeedbackModal, setShowGainPointsModal } from '../../redux/actions.js'
 
 const VideosScreen = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const {showFeedbackModal} = useSelector(state => state.showFeedbackModalReducer);
+  const {showGainPointsModal} = useSelector(state => state.showGainPointsModalReducer);
+
   const windowWidth = Dimensions.get('window').width;
+
   const actionButtons = (
     <>
     <TouchableHighlight underlayColor="#fff" onPress={() => 'oi'}>
@@ -93,7 +97,10 @@ const VideosScreen = ({ route, navigation }) => {
             style={{margin: 16, width: windowWidth - 32, height: 250, borderRadius: 10, }} 
             source={{uri: 'https://learnenglish.britishcouncil.org/sites/podcasts/files/RS8096_GettyImages-170036776-hig.jpg'}} 
           />
-          <TouchableHighlight underlayColor="#fff" onPress={() => 'oi'}>
+          <TouchableHighlight 
+            underlayColor="#fff"
+            onPress={() => dispatch(setShowGainPointsModal(true))}
+          >
             <View style={[styles.playButton, {left: windowWidth/2 - 30}]}>
               <PlayIcon />
             </View>
@@ -144,9 +151,8 @@ const VideosScreen = ({ route, navigation }) => {
         </View>
 
       </ScrollView>
-      {
-        showFeedbackModal ? <FeedbackModal bottom/> : null
-      }
+      { showFeedbackModal ? <FeedbackModal bottom/> : null }
+      { showGainPointsModal ? <GainPointsModal points={23}/> : null }
     </>
   )
 }

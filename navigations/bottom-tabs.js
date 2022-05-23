@@ -28,7 +28,11 @@ export default BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Videos"
-        options={{headerShown: false}}
+        options={{
+          headerShown: false,
+          tabBarStyle: {backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20},
+          tabBarActiveTintColor: '#fff',
+        }}
         component={VideosNavigator}        
       />
     </Tab.Navigator>

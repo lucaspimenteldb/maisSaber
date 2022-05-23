@@ -1,47 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
 import FecharIcon from '../../../assets/FecharIcon.js'
-import EstrelaDoudaraIcon from '../../../assets/EstrelaDouradaIcon.js'
-import EstrelaBrancaIcon from '../../../assets/EstrelaBrancaIcon.js'
-
+import CoroaJoiasGrandeIcon from '../../../assets/CoroaJoiasGrandeIcon.js'
 
 import { useDispatch } from 'react-redux'
-import { setShowFeedbackModal } from '../../../redux/actions.js'
+import { setShowGainPointsModal } from '../../../redux/actions.js'
 
 import styles from './styles.js'
 
 const Modal = (props) => {
-  const [stars, setStars] = useState([
-    { note: 1, selected: true },
-    { note: 2, selected: false },
-    { note: 3, selected: false },
-    { note: 4, selected: false },
-    { note: 5, selected: false },
-  ])
-  const giveFeedback = (note) => {
-    stars.map(
-      (star, currentIndex) => {
-        if (star.note <= note) {
-          setStars(stars => {
-            const newStars = [...stars]
-            newStars[currentIndex].selected = true
-            return newStars
-          })
-        } else {
-          setStars(stars => {
-            const newStars = [...stars]
-            newStars[currentIndex].selected = false
-            return newStars
-          })
-        }
-      }
-    )
-  }
   const dispatch = useDispatch();
 
   const fadeOverlay = useRef(new Animated.Value(0)).current;
   const translateModal = useRef(new Animated.Value(350)).current;
+  const crownMovement = useRef(new Animated.Value(0)).current
   useEffect(() => {
     Animated.timing(
       fadeOverlay, {
@@ -57,8 +30,17 @@ const Modal = (props) => {
       useNativeDriver: true
     },
     ).start();
-  }, [fadeOverlay, translateModal])
-  const closeFeedbackModal = () => {
+    Animated.loop(
+      Animated.timing(
+        crownMovement, {
+        toValue: 2,
+        duration: 1000,
+        useNativeDriver: true
+      },
+      )
+    ).start()
+  }, [fadeOverlay, translateModal, crownMovement])
+  const closeGainPointsModal = () => {
     Animated.timing(
       fadeOverlay, {
       toValue: 0,
@@ -73,22 +55,24 @@ const Modal = (props) => {
       useNativeDriver: true
     },
     ).start();
-    setTimeout(() => dispatch(setShowFeedbackModal(false)), 350)
+    setTimeout(() => dispatch(setShowGainPointsModal(false)), 350)
   }
+  const spin = crownMovement.interpolate({
+    inputRange: [0, 1, 2],
+    outputRange: ['-10deg', '10deg', '-10deg']
+  })
 
   return (
     <>
       <Animated.View style={[styles.overlay, { opacity: fadeOverlay }]}>
         <Animated.View style={[
           styles.modalWrapper,
-          props.bottom ? styles.modalWrapperBottom : styles.modalWrapperTop,
           { transform: [{ translateY: translateModal }] }
         ]}
         >
           <View style={styles.modalHeader}>
-            <Text style={styles.modalTitle}>Avalie o vídeo</Text>
             <TouchableHighlight
-              onPress={closeFeedbackModal}
+              onPress={closeGainPointsModal}
               underlayColor="#f00"
               style={styles.closeButton}
             >
@@ -97,27 +81,25 @@ const Modal = (props) => {
           </View>
 
           <View style={styles.modalContent}>
-            {
-              stars.map(star => (
-                <TouchableHighlight 
-                  key={'star-'+star.note}
-                  onPress={() => giveFeedback(star.note)}
-                  underlayColor='#fff'
-                  style={styles.starsButton}
-                >
-                  {star.selected ? <EstrelaDoudaraIcon /> : <EstrelaBrancaIcon />}
-                </TouchableHighlight>
-              ))
-            }
+            <Animated.View style={{transform: [{rotateZ: spin}]}}>
+              <CoroaJoiasGrandeIcon />
+            </Animated.View>
+
+            <Text style={styles.modalTitle}>
+              +{props.points} COROAS
+            </Text>
+            <Text style={styles.modalDescription}>
+              Parabéns, você ganhou uma coroa por assistir, continue assistindo para ganhar mais
+            </Text>
           </View>
           <View style={styles.modalActions}>
             <TouchableHighlight
               underlayColor="#fff"
-              onPress={closeFeedbackModal}
+              onPress={closeGainPointsModal}
             >
               <View style={styles.modalActionButton}>
                 <Text style={styles.modalActionButtonText}>
-                  Avaliar
+                  Continuar estudando
                 </Text>
               </View>
             </TouchableHighlight>

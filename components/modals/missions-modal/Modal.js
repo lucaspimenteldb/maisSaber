@@ -3,14 +3,16 @@ import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
 import BauIcon from '../../../assets/BauIcon.js'
 import FecharIcon from '../../../assets/FecharIcon.js'
+import GainPointsModal from '../gain-points-modal/Modal.js'
 
-import { useDispatch } from 'react-redux'
-import { setShowMissionsModal } from '../../../redux/actions.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { setShowMissionsModal, setShowGainPointsModal } from '../../../redux/actions.js'
 
 import styles from './styles.js'
 
 const Modal = (props) => {
   const dispatch = useDispatch();
+  const {showGainPointsModal} = useSelector(state => state.showGainPointsModalReducer)
 
   const fadeOverlay = useRef(new Animated.Value(0)).current;
   const translateModal = useRef(new Animated.Value(-350)).current;
@@ -99,8 +101,8 @@ const Modal = (props) => {
 
                 <View style={styles.modalMissionsActions}>
                   <TouchableHighlight
-                    underlayColor={'#fff'}
-                    onPress={() => 'oi'}
+                    underlayColor='#fff'
+                    onPress={() => dispatch(setShowGainPointsModal(true))}
                     disabled={!mission.canReceiveReward}
                   >
                     <View 
@@ -120,6 +122,7 @@ const Modal = (props) => {
           }
         </Animated.View>
       </Animated.View>
+      { showGainPointsModal ? <GainPointsModal points={6}/> : null }
     </>
   )
 }

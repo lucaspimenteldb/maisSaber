@@ -1,9 +1,10 @@
-import {SHOW_MISSIONS_MODAL, SHOW_WELCOME_MODAL, SHOW_SHARE_MODAL} from './actions.js'
+import {SHOW_MISSIONS_MODAL, SHOW_FEEDBACK_MODAL, SHOW_WELCOME_MODAL, SHOW_SHARE_MODAL} from './actions.js'
 
 const initalState = {
   showMissionsModal: false,
   showWelcomeModal: true,
   showShareModal: false,
+  showFeedbackModal: false,
 }
 
 function showMissionsModalReducer(state = initalState, action) {
@@ -24,5 +25,11 @@ function showShareModalReducer(state = initalState, action) {
   }
   return state;
 }
+function showFeedbackModalReducer(state = initalState, action) {
+  if (action.type === SHOW_FEEDBACK_MODAL) {
+    return {...state, showFeedbackModal: action.payload}
+  }
+  return state;
+}
 
-export {showMissionsModalReducer, showWelcomeModalReducer, showShareModalReducer}
+export {showMissionsModalReducer, showWelcomeModalReducer, showShareModalReducer, showFeedbackModalReducer}

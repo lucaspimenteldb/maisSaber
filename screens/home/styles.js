@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native'
 
 export default StyleSheet.create({
   pageWrapper: {
-    flex: 1,
+    minHeight: '100%',
     backgroundColor: '#630FCC',
   },
   userInformation: {

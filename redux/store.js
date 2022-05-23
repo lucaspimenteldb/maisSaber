@@ -1,13 +1,12 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
-import {showMissionsModalReducer} from './reducers'
-import {showWelcomeModalReducer} from './reducers'
-import {showShareModalReducer} from './reducers'
+import {showMissionsModalReducer, showShareModalReducer, showFeedbackModalReducer, showWelcomeModalReducer} from './reducers'
 
 const rootReducer = combineReducers({
   showMissionsModalReducer,
   showWelcomeModalReducer,
-  showShareModalReducer
+  showShareModalReducer,
+  showFeedbackModalReducer
 })
 
 export const Store = createStore(rootReducer, applyMiddleware(thunk))

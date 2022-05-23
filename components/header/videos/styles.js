@@ -8,6 +8,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+  headerStacks: {
+    marginRight: 24,
+  },
   headerItemsTitle: {
     fontFamily: 'Nunito-ExtraBold',
     fontSize: 18

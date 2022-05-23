@@ -1,6 +1,7 @@
 export const SHOW_MISSIONS_MODAL = 'SHOW_MISSIONS_MODAL'
 export const SHOW_WELCOME_MODAL = 'SHOW_WELCOME_MODAL'
 export const SHOW_SHARE_MODAL = 'SHOW_SHARE_MODAL'
+export const SHOW_FEEDBACK_MODAL = 'SHOW_FEEDBACK_MODAL'
 
 export const setShowMissionsModal = showMissionsModal => dispatch => {
   dispatch({
@@ -18,5 +19,11 @@ export const setShowShareModal = showShareModal => dispatch => {
   dispatch({
     type: SHOW_SHARE_MODAL,
     payload: showShareModal
+  })
+}
+export const setShowFeedbackModal = showFeedbackModal => dispatch => {
+  dispatch({
+    type: SHOW_FEEDBACK_MODAL,
+    payload: showFeedbackModal
   })
 }

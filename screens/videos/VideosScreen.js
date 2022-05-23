@@ -1,5 +1,7 @@
 import React from 'react'
 import { ScrollView, TouchableHighlight, Text, View } from 'react-native'
+import LivroIcon from '../../assets/LivroIcon.js'
+import OperacoesIcon from '../../assets/OperacoesIcon.js'
 
 import styles from './styles.js'
 
@@ -18,26 +20,37 @@ const VideosScreen = ({ navigation }) => {
         </TouchableHighlight>
 
         <View style={styles.disciplines}>
-          <TouchableHighlight
-            underlayColor='#fff'
-            onPress={() => navigation.navigate('oi')}
-            style={styles.disciplineTouchable}
-          >
-            <View style={[styles.disciplineButtonPortuguese, styles.disciplineButton]}>
-              <Text>oi</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight
-            underlayColor='#fff'
-            onPress={() => navigation.navigate('oi')}
-            style={styles.disciplineTouchable}
-          >
-            <View style={[styles.disciplineButtonMath, styles.disciplineButton]}>
-              <View style={styles.progressIndicator}></View>
-              <View style={styles.offsetLayer}></View>
-              <Text>oi</Text>
-            </View>
-          </TouchableHighlight>
+          <View style={styles.buttonsWrapper}>
+            <TouchableHighlight
+              underlayColor='#fff'
+              onPress={() => navigation.navigate('Subjects', {discipline: 'Portuguese'})}
+              style={styles.disciplineTouchable}
+              >
+              <View style={[styles.disciplineButtonPortuguese, styles.disciplineButton]}>
+                <LivroIcon />
+              </View>
+            </TouchableHighlight>
+            <Text style={styles.disciplineButtonLabel}>
+              Português
+            </Text>
+          </View>
+
+          <View style={styles.buttonsWrapper}>
+            <TouchableHighlight
+              underlayColor='#fff'
+              onPress={() => navigation.navigate('Subjects', {discipline: 'Math'})}
+              style={styles.disciplineTouchable}
+            >
+              <View style={[styles.disciplineButtonMath, styles.disciplineButton]}>
+                <View style={styles.progressIndicator}></View>
+                <View style={styles.offsetLayer}></View>
+                <OperacoesIcon />
+              </View>
+            </TouchableHighlight>
+            <Text style={styles.disciplineButtonLabel}>
+              Matemática
+            </Text>
+          </View>
 
         </View>
       </ScrollView>

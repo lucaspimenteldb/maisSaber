@@ -23,22 +23,35 @@ export default StyleSheet.create({
     color: '#fff',
     fontFamily: 'Nunito-Bold'
   },
-  disciplines: {
+  subjects: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexWrap: 'wrap'
   },
   buttonsWrapper: {
+    margin: 0,
+    marginBottom: 20,
     alignItems: 'center',
   },
-  disciplineTouchable: {
-    marginVertical: 10,
+  subjectsTouchable: {
+    marginBottom: 10,
     marginHorizontal: 15,
     width: 120,
     height: 120,
     borderWidth: 6,
     borderColor: '#ddd',
     borderRadius: 60,
+  },
+  subjectCompleteCrown: {
+    position: 'absolute',
+    bottom: 60,
+    right: 0
+  },
+  subjectCompleteCheck: {
+    position: 'absolute',
+    top: -10,
+    right: 0
   },
   disciplineButton: {
     margin: 5,
@@ -48,8 +61,10 @@ export default StyleSheet.create({
     borderRadius: 50,
   },
   disciplineButtonLabel: {
-    fontSize: 18,
-    fontFamily: 'Nunito-ExtraBold'
+    maxWidth: 150,
+    fontSize: 14,
+    fontFamily: 'Nunito-ExtraBold',
+    textAlign: 'center'
   },
   progressIndicator: {
     width: 120,

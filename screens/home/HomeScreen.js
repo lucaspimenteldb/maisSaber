@@ -19,7 +19,7 @@ import ShareModal from '../../components/modals/share-modal/Modal.js'
 
 import styles from './styles.js'
 
-const LoginScreen = ({navigation}) => {
+const HomeScreen = ({navigation}) => {
   const hub = [
     {
       icon: <TecnologiaIcon />,
@@ -142,4 +142,4 @@ const LoginScreen = ({navigation}) => {
   )
 }
 
-export default LoginScreen
+export default HomeScreen

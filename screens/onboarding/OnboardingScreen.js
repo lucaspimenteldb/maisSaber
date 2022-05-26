@@ -39,7 +39,7 @@ const OnboardingScreen = ({navigation}) => {
     if (indicators[0].active) return
     setIndicators(handleActiveIndicator(0))
   }
-  const scrollToSlide = (slide) => {
+  const carouselSlideTo = (slide) => {
     switch(slide) {
       case 1:
         carouselScroll.current.scrollTo({x: 356});
@@ -48,7 +48,7 @@ const OnboardingScreen = ({navigation}) => {
         carouselScroll.current.scrollTo({x: 712});
         break;
       default:
-        carouselScroll.current.scrollTo({});
+        carouselScroll.current.scrollTo({x: 0});
     }
   }
 
@@ -107,7 +107,7 @@ const OnboardingScreen = ({navigation}) => {
             indicators.map((indicator, currentIndex) => (
               <TouchableHighlight
                 key={indicator.carousel + '-indicator'}
-                onPress={() => scrollToSlide(currentIndex)} 
+                onPress={() => carouselSlideTo(currentIndex)} 
                 underlayColor="#fff"
               >
                 <View style={[
@@ -129,7 +129,7 @@ const OnboardingScreen = ({navigation}) => {
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          onPress={() => 'oi'}
+          onPress={() => navigation.navigate('Login')}
           underlayColor="#fff"
         >
           <View style={styles.buttonSignIn}>

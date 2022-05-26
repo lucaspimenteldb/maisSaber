@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { ScrollView, Text, View , Image, TouchableHighlight } from 'react-native'
 
 import styles from './styles.js'
@@ -39,6 +39,18 @@ const OnboardingScreen = ({navigation}) => {
     if (indicators[0].active) return
     setIndicators(handleActiveIndicator(0))
   }
+  const scrollToSlide = (slide) => {
+    switch(slide) {
+      case 1:
+        carouselScroll.current.scrollTo({x: 356});
+        break;
+      case 2:
+        carouselScroll.current.scrollTo({x: 712});
+        break;
+      default:
+        carouselScroll.current.scrollTo({});
+    }
+  }
 
   const carouselContent = [
     {
@@ -58,6 +70,8 @@ const OnboardingScreen = ({navigation}) => {
     },
   ]
 
+  const carouselScroll = useRef()
+
   return (
     <>
       <ScrollView style={styles.pageWrapper}>
@@ -66,7 +80,8 @@ const OnboardingScreen = ({navigation}) => {
         <ScrollView
           horizontal
           onScroll={handleCarouselScroll}
-          scrollEventThrottle={64}
+          scrollEventThrottle={100}
+          ref={carouselScroll}
         >
           {
             carouselContent.map((content, currentIndex) => 
@@ -89,10 +104,10 @@ const OnboardingScreen = ({navigation}) => {
 
         <View style={styles.carouselIndicatorsWrapper}>
           {
-            indicators.map(indicator => (
+            indicators.map((indicator, currentIndex) => (
               <TouchableHighlight
                 key={indicator.carousel + '-indicator'}
-                onPress={() => 'oi'} 
+                onPress={() => scrollToSlide(currentIndex)} 
                 underlayColor="#fff"
               >
                 <View style={[

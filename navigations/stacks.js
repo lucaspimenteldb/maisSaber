@@ -1,9 +1,7 @@
 import React from 'react'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BottomTabNavigator from './bottom-tabs.js'
 
-import LoginScreen from '../screens/LoginScreen.js'
 import SubjectsScreen from '../screens/subjects/SubjectsScreen.js'
 import WatchVideos from '../screens/watch-videos/WatchVideos.js'
 import VideosScreen from '../screens/videos/VideosScreen.js'

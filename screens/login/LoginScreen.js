@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { ScrollView, View, Text, TouchableHighlight, Image, TextInput } from 'react-native'
+import { useDispatch } from 'react-redux'
 
+import ChevronIcon from '../../assets/ChevronIcon.js'
+import { setIsLoggedIn } from '../../redux/actions.js'
 import styles from './styles.js'
 
 const HomeScreen = ({ navigation }) => {
@@ -8,6 +11,8 @@ const HomeScreen = ({ navigation }) => {
   const [password, setPassword] = useState('')
   const [registrationActive, setRegistrationActive] = useState(false)
   const [passwordActive, setPasswordActive] = useState(false)
+
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -20,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
               style={styles.backButtonWrapper}
             >
               <View style={styles.backButton}>
-                <Text style={styles.backButtonText}>v</Text>
+                <ChevronIcon />
               </View>
             </TouchableHighlight>
             <Image source={require('../../assets/logo.png')} />
@@ -41,7 +46,6 @@ const HomeScreen = ({ navigation }) => {
             placeholder="Digite sua senha"
             onChangeText={setPassword}
             value={password}
-            style={styles.input}
             style={[styles.input, passwordActive ? styles.inputActive : '']}
             onPressIn={() => setPasswordActive(true)}
             onBlur={() => password ? null : setPasswordActive(false)}
@@ -52,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
 
         <View>
           <TouchableHighlight
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => dispatch(setIsLoggedIn(true))}
             underlayColor="#fff"
           >
             <View style={styles.buttonSignIn}>

@@ -10,6 +10,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
   backButton: {
+    paddingRight: 2,
+    paddingTop: 4,
     height: 44,
     width: 44,
     justifyContent: 'center',

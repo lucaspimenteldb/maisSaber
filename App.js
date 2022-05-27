@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { Store } from './redux/store.js'
 import RNBootSplash from 'react-native-bootsplash'
 
@@ -15,29 +15,34 @@ const App = () => {
     }, 1500)
   }, [])
 
-  const isAuthenticated = false;
+  const { isLoggedIn } = useSelector(state => state.setIsLoggedInReducer);
 
   return (
-    <>
+    <Provider store={Store}>
       {
-        isAuthenticated ? 
+        isLoggedIn ?
           (
-            <Provider store={Store}>
-              <NavigationContainer>
-                <BottomTabNavigator />
-              </NavigationContainer>
-            </Provider>
+            <NavigationContainer>
+              <BottomTabNavigator />
+            </NavigationContainer>
           ) :
           (
-            <Provider store={Store}>
-              <NavigationContainer>
-                <UnauthenticatedNavigator />
-              </NavigationContainer>
-            </Provider>
+
+            <NavigationContainer>
+              <UnauthenticatedNavigator />
+            </NavigationContainer>
           )
       }
-    </>
+    </Provider>
   )
 }
 
-export default App;
+const AppWrapper = () => {
+  return (
+    <Provider store={Store}>
+      <App></App>
+    </Provider>  
+  )
+}
+
+export default AppWrapper;

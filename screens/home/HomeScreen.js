@@ -24,7 +24,7 @@ const HomeScreen = ({navigation}) => {
     {
       icon: <TecnologiaIcon />,
       title: 'VÍDEOS',
-      route: 'a'
+      route: 'Videos'
     },
     {
       icon: <AprendizadoOnlineIcon />,
@@ -55,7 +55,7 @@ const HomeScreen = ({navigation}) => {
           <Image
             source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
             style={styles.userInformationAvatar}
-          ></Image>
+          />
 
           <View style={styles.nameProgressWrapper}>
             <Text style={styles.userInformationName}>Anderson Moura</Text>

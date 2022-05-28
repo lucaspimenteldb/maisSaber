@@ -2,9 +2,10 @@ import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from '../screens/home/HomeScreen.js'
-
 import HomeHeader from '../components/header/home/HomeHeader.js';
-import {VideosNavigator} from './stacks.js'
+import {ProfileNavigator, VideosNavigator} from './stacks.js'
+
+import { useNavigation } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,7 @@ export default BottomTabNavigator = () => {
         name="Home"
         options={{
           headerTitle: () => (
-            <HomeHeader />
+            <HomeHeader navigation={useNavigation()}/>
           ),
           headerStyle: {backgroundColor: '#fff'},
           headerShadowVisible: false,
@@ -34,6 +35,18 @@ export default BottomTabNavigator = () => {
           tabBarActiveTintColor: '#fff',
         }}
         component={VideosNavigator}        
+      />
+      <Tab.Screen
+        name="Profile"
+        options={{
+          tabBarButton: () => null,
+          headerTitle: () => (
+            <HomeHeader navigation={useNavigation()}/>
+          ),
+          tabBarStyle: {backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20},
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={ProfileNavigator}        
       />
     </Tab.Navigator>
   );

@@ -11,7 +11,7 @@ const ChevronIcon = (props) => (
   >
     <Path
       d="M8 2 2 7l6 5"
-      stroke="#fff"
+      stroke={props.color ? props.color : "#fff"}
       strokeWidth={3}
       strokeLinecap="round"
       strokeLinejoin="round"

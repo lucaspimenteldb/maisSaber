@@ -12,7 +12,7 @@ import { setShowMissionsModal } from '../../../redux/actions.js'
 
 const HomeHeader = ({ navigation }) => {
   const dispatch = useDispatch();
-
+  
   return (
     <>
         <View style={styles.header}>
@@ -34,7 +34,10 @@ const HomeHeader = ({ navigation }) => {
               <CoroaIcon></CoroaIcon>
             </View>
 
-            <TouchableOpacity style={styles.buttonProfile} onPress={() => 'seeProfile'}>
+            <TouchableOpacity 
+              style={styles.buttonProfile} 
+              onPress={() => navigation.navigate('Profile')}
+            >
               <UsuarioIcon></UsuarioIcon>
             </TouchableOpacity>
           </View>

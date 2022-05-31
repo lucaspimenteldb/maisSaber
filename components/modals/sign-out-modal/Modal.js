@@ -1,17 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
-import AlunoIcon from '../../../assets/icons/AlunoIcon.js'
+import AlunoTristeIcon from '../../../assets/icons/AlunoTristeIcon.js'
 import FecharIcon from '../../../assets/icons/FecharIcon.js'
-
-import { useDispatch } from 'react-redux'
-import { setShowWelcomeModal } from '../../../redux/actions.js'
 
 import styles from './styles.js'
 
 const Modal = (props) => {
-  const dispatch = useDispatch();
-
   const fadeOverlay = useRef(new Animated.Value(0)).current;
   const translateModal = useRef(new Animated.Value(350)).current;
   useEffect(() => {
@@ -45,7 +40,7 @@ const Modal = (props) => {
       useNativeDriver: true
     },
     ).start();
-    setTimeout(() => dispatch(setShowWelcomeModal(false)), 350)
+    setTimeout(() => props.close(), 350)
   }
 
   return (
@@ -68,35 +63,35 @@ const Modal = (props) => {
           </View>
 
           <View style={styles.modalContent}>
-            <AlunoIcon />
+            <AlunoTristeIcon />
 
             <Text style={styles.modalContentTitle}>
-              Olá, Anderson!
+              Sair
             </Text>
             <Text style={styles.modalContentText}>
-              Que bom ter você por aqui! Continue suas trilhas para aprender novos conteúdos e ganhar recompensas.
+              Você realmente quer sair do aplicativo?
             </Text>
           </View>
           <View style={styles.modalActions}>
             <TouchableHighlight 
               underlayColor="#fff" 
-              onPress={() => 'oi'}
+              onPress={closeWelcomeModal}
               style={styles.buttonWrapper}
             >
               <View style={styles.modalActionButton}>
                 <Text style={styles.modalActionButtonText}>
-                  Ir para trilhas
+                  Não
                 </Text>
               </View>
             </TouchableHighlight>
             <TouchableHighlight 
               underlayColor="#fff" 
-              onPress={closeWelcomeModal}
+              onPress={props.signOut}
               style={styles.buttonWrapperSecondary}
             >
               <View style={styles.modalActionButtonSecondary}>
                 <Text style={styles.modalActionButtonTextSecondary}>
-                  Agora não
+                  Sim
                 </Text>
               </View>
             </TouchableHighlight>

@@ -76,4 +76,9 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-Bold',
     fontSize: 18,
   },
+  icon: {
+    position: 'absolute',
+    right: 16,
+    top: 14,
+  }
 })

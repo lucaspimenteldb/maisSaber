@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
-import FecharIcon from '../../../assets/FecharIcon.js'
-import EstrelaDoudaraIcon from '../../../assets/EstrelaDouradaIcon.js'
-import EstrelaBrancaIcon from '../../../assets/EstrelaBrancaIcon.js'
+import FecharIcon from '../../../assets/icons/FecharIcon.js'
+import EstrelaDoudaraIcon from '../../../assets/icons/EstrelaDouradaIcon.js'
+import EstrelaBrancaIcon from '../../../assets/icons/EstrelaBrancaIcon.js'
 
 
 import { useDispatch } from 'react-redux'

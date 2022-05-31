@@ -3,11 +3,13 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SubjectsScreen from '../screens/subjects/SubjectsScreen.js'
-import WatchVideos from '../screens/watch-videos/WatchVideos.js'
+import WatchVideosScreen from '../screens/watch-videos/WatchVideos.js'
 import VideosScreen from '../screens/videos/VideosScreen.js'
 import VideosHeader from '../components/header/videos/VideosHeader.js'
-import HomeHeader from '../components/header/home/HomeHeader.js'
 import ProfileScreen from '../screens/profile/ProfileScreen.js'
+import ChangePasswordScreen from '../screens/profile-password/ChangePasswordScreen.js'
+import PersonalDataScreen from '../screens/profile-personal-data/PersonalDataScreen.js'
+import SchoolDataScreen from '../screens/profile-school-data/SchoolDataScreen.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -57,7 +59,7 @@ export const VideosNavigator = () => {
           tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
           tabBarActiveTintColor: '#fff',
         }}
-        component={WatchVideos}
+        component={WatchVideosScreen}
       />
     </Stack.Navigator>
   )
@@ -77,6 +79,45 @@ export const ProfileNavigator = () => {
           tabBarActiveTintColor: '#fff',
         }}
         component={ProfileScreen}
+      />
+      <Stack.Screen
+        name="PersonalData"
+        options={{
+          headerShown: false,
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={PersonalDataScreen}
+      />
+      <Stack.Screen
+        name="SchoolData"
+        options={{
+          headerShown: false,
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={SchoolDataScreen}
+      />
+      <Stack.Screen
+        name="ChangePassword"
+        options={{
+          headerShown: false,
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={ChangePasswordScreen}
       />
     </Stack.Navigator>
   )

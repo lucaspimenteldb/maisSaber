@@ -16,23 +16,21 @@ const App = () => {
   }, [])
 
   const { isLoggedIn } = useSelector(state => state.setIsLoggedInReducer);
+  const chooseNavigator = isLoggedIn ?
+    (
+      <NavigationContainer>
+        <BottomTabNavigator />
+      </NavigationContainer>
+    ) :
+    (
+      <NavigationContainer>
+        <UnauthenticatedNavigator />
+      </NavigationContainer>
+    )
 
   return (
     <Provider store={Store}>
-      {
-        isLoggedIn ?
-          (
-            <NavigationContainer>
-              <BottomTabNavigator />
-            </NavigationContainer>
-          ) :
-          (
-
-            <NavigationContainer>
-              <UnauthenticatedNavigator />
-            </NavigationContainer>
-          )
-      }
+      { chooseNavigator }
     </Provider>
   )
 }

@@ -81,26 +81,45 @@ export default StyleSheet.create({
   profileHub: {
     marginTop: 24,
     padding: 16,
+    paddingTop: 24,
     height: '100%',
     backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
-  profileHubIcon: {
-    transform: [{rotate: ('180deg')}]
-  },
-  profileHubButton: {
+  input: {
     marginBottom: 12,
-    paddingVertical: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderBottomColor: '#ddd',
-    borderBottomWidth: 3,
-    borderRadius: 3,
+    padding: 16,
+    fontFamily: 'Nunito',
+    borderWidth: 1,
+    borderColor: '#aaa',
+    borderBottomWidth: 6,
+    borderRadius: 6,
   },
-  profileHubButtonText: {
+  inputActive: {
+    borderColor: '#630FCC'
+  },
+  inputLabel: {
     fontFamily: 'Nunito-Bold',
-    fontSize: 16
+  },
+  buttonSave: {
+    marginTop: 16,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#630FCC',
+    borderRadius: 25,
+    borderBottomWidth: 4,
+    borderBottomColor: '#54199F'
+  },
+  buttonText: {
+    color: '#fff',
+    fontFamily: 'Nunito-Bold',
+    fontSize: 18,
+  },
+  icon: {
+    position: 'absolute',
+    right: 16,
+    top: 14,
   }
 })

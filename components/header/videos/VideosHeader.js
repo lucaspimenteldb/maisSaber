@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 
-import CoroaIcon from '../../../assets/CoroaIcon.js'
+import CoroaIcon from '../../../assets/icons/CoroaIcon.js'
 
 import styles from './styles.js'
 

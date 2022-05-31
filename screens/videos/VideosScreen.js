@@ -1,7 +1,7 @@
 import React from 'react'
 import { ScrollView, TouchableHighlight, Text, View } from 'react-native'
-import LivroIcon from '../../assets/LivroIcon.js'
-import OperacoesIcon from '../../assets/OperacoesIcon.js'
+import LivroIcon from '../../assets/icons/LivroIcon.js'
+import OperacoesIcon from '../../assets/icons/OperacoesIcon.js'
 
 import styles from './styles.js'
 

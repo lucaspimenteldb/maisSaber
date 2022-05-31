@@ -9,7 +9,7 @@ import Svg, {
   ClipPath,
 } from "react-native-svg"
 
-const Diamante = (props) => (
+const DiamanteIcon = (props) => (
   <Svg
     width={22}
     height={22}
@@ -331,4 +331,4 @@ const Diamante = (props) => (
   </Svg>
 )
 
-export default Diamante
+export default DiamanteIcon

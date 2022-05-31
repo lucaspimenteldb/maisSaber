@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { ScrollView, View, Text, Image, TouchableHighlight } from 'react-native'
 
-import Diamante from '../../assets/Diamante.js'
-import CoroaJoias from '../../assets/CoroaJoias'
-import TecnologiaIcon from '../../assets/TecnologiaIcon.js'
-import NotebookMensagemIcon from '../../assets/NotebookMensagemIcon.js'
-import FogueteIcon from '../../assets/FogueteIcon.js'
-import LivroAbertoIcon from '../../assets/LivroAbertoIcon.js'
-import AprendizadoOnlineIcon from '../../assets/AprendizadoOnlineIcon.js'
-import PessoasConexaoIcon from '../../assets/PessoasConexaoIcon.js'
+import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
+import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
+import TecnologiaIcon from '../../assets/icons/TecnologiaIcon.js'
+import NotebookMensagemIcon from '../../assets/icons/NotebookMensagemIcon.js'
+import FogueteIcon from '../../assets/icons/FogueteIcon.js'
+import LivroAbertoIcon from '../../assets/icons/LivroAbertoIcon.js'
+import AprendizadoOnlineIcon from '../../assets/icons/AprendizadoOnlineIcon.js'
+import PessoasConexaoIcon from '../../assets/icons/PessoasConexaoIcon.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowShareModal } from '../../redux/actions.js'
@@ -62,13 +62,13 @@ const HomeScreen = ({navigation}) => {
 
             <View style={styles.userInformationLevel}>
               <Text style={styles.userInformationLevelText}>Nível 1</Text>
-              <Diamante></Diamante>
+              <DiamanteIcon />
             </View>
 
             <View style={styles.progressBar}>
               <View style={styles.progressNumber}>
                 <Text style={styles.progressNumberText}>6/20</Text>
-                <CoroaJoias></CoroaJoias>
+                <CoroaJoiasIcon />
               </View>
               <View style={styles.progressInner} />
             </View>

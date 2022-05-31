@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
-import BauIcon from '../../../assets/BauIcon.js'
-import FecharIcon from '../../../assets/FecharIcon.js'
+import BauIcon from '../../../assets/icons/BauIcon.js'
+import FecharIcon from '../../../assets/icons/FecharIcon.js'
 import GainPointsModal from '../gain-points-modal/Modal.js'
 
 import { useDispatch, useSelector } from 'react-redux'

@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg"
 
-const CoroaJoias = (props) => (
+const CoroaJoiasIcon = (props) => (
   <Svg
     width={22}
     height={22}
@@ -255,4 +255,4 @@ const CoroaJoias = (props) => (
   </Svg>
 )
 
-export default CoroaJoias
+export default CoroaJoiasIcon

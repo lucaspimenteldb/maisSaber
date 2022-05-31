@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 
-import BauIcon from '../../../assets/BauIcon.js'
-import CoroaIcon from '../../../assets/CoroaIcon.js'
-import UsuarioIcon from '../../../assets/UsuarioIcon.js'
+import BauIcon from '../../../assets/icons/BauIcon.js'
+import CoroaIcon from '../../../assets/icons/CoroaIcon.js'
+import UsuarioIcon from '../../../assets/icons/UsuarioIcon.js'
 
 import styles from './styles.js'
 

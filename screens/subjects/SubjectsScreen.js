@@ -1,11 +1,11 @@
 import React from 'react'
 import { ScrollView, TouchableHighlight, Text, View } from 'react-native'
-import GeometriaIcon from '../../assets/GeometriaIcon.js'
-import CalculadoraMaoIcon from '../../assets/CalculadoraMaoIcon.js'
-import OperacoesIcon from '../../assets/OperacoesIcon.js'
-import CoroaJoias32Icon from '../../assets/CoroaJoias32Icon.js'
-import CoroaCinza32Icon from '../../assets/CoroaCinza32Icon.js'
-import CheckIcon from '../../assets/CheckIcon.js'
+import GeometriaIcon from '../../assets/icons/GeometriaIcon.js'
+import CalculadoraMaoIcon from '../../assets/icons/CalculadoraMaoIcon.js'
+import OperacoesIcon from '../../assets/icons/OperacoesIcon.js'
+import CoroaJoias32Icon from '../../assets/icons/CoroaJoias32Icon.js'
+import CoroaCinza32Icon from '../../assets/icons/CoroaCinza32Icon.js'
+import CheckIcon from '../../assets/icons/CheckIcon.js'
 
 import styles from './styles.js'
 

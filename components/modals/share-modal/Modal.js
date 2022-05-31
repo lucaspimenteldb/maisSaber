@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
-import CopiarIcon from '../../../assets/CopiarIcon.js'
-import FecharIcon from '../../../assets/FecharIcon.js'
-import WhatsappIcon from '../../../assets/WhatsappIcon.js'
-import FacebookIcon from '../../../assets/FacebookIcon.js'
+import CopiarIcon from '../../../assets/icons/CopiarIcon.js'
+import FecharIcon from '../../../assets/icons/FecharIcon.js'
+import WhatsappIcon from '../../../assets/icons/WhatsappIcon.js'
+import FacebookIcon from '../../../assets/icons/FacebookIcon.js'
 
 import { useDispatch } from 'react-redux'
 import { setShowShareModal } from '../../../redux/actions.js'

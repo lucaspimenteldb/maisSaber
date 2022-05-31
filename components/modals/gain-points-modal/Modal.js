@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
-import FecharIcon from '../../../assets/FecharIcon.js'
-import CoroaJoiasGrandeIcon from '../../../assets/CoroaJoiasGrandeIcon.js'
+import FecharIcon from '../../../assets/icons/FecharIcon.js'
+import CoroaJoiasGrandeIcon from '../../../assets/icons/CoroaJoiasGrandeIcon.js'
 
 import { useDispatch } from 'react-redux'
 import { setShowGainPointsModal } from '../../../redux/actions.js'

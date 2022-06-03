@@ -10,6 +10,7 @@ import ProfileScreen from '../screens/profile/ProfileScreen.js'
 import ChangePasswordScreen from '../screens/profile-password/ChangePasswordScreen.js'
 import PersonalDataScreen from '../screens/profile-personal-data/PersonalDataScreen.js'
 import SchoolDataScreen from '../screens/profile-school-data/SchoolDataScreen.js'
+import AgendaScreen from '../screens/agenda/AgendaScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -118,6 +119,27 @@ export const ProfileNavigator = () => {
           tabBarActiveTintColor: '#fff',
         }}
         component={ChangePasswordScreen}
+      />
+    </Stack.Navigator>
+  )
+}
+export const AgendaNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="AgendaStacks"
+        options={{
+          headerTitle: () => (
+            <VideosHeader stacks title={'Agenda'} />
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={AgendaScreen}
       />
     </Stack.Navigator>
   )

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { ScrollView, View, Text, Image, TouchableHighlight } from 'react-native'
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
 
 import BalaoAgendaIcon from '../../assets/icons/BalaoAgendaIcon.js'
 import ChevronIcon from '../../assets/icons/ChevronIcon.js'

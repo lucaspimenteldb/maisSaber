@@ -46,8 +46,8 @@ export default StyleSheet.create({
     borderColor: '#54199F',
     borderRadius: 22,
   },
-  buttonSizeUp: {
-    marginLeft: 12,
+  buttonSizeDown: {
+    marginRight: 12,
   },
   buttonText: {
     color: '#54199F',
@@ -76,7 +76,7 @@ export default StyleSheet.create({
     fontFamily: 'Nunito'
   },
   buttonAnswerTouchable: {
-    marginTop: 24,
+    marginTop: 16,
     height: 50,
     flex: 1,
     borderRadius: 25,
@@ -91,6 +91,26 @@ export default StyleSheet.create({
     borderBottomWidth: 4,
   },
   buttonAnswerText: {
+    color: '#fff',
+    fontFamily: 'Nunito-ExtraBold',
+    fontSize: 16,
+  },
+  buttonRewardTouchable: {
+    marginTop: 16,
+    height: 50,
+    flex: 1,
+    borderRadius: 25,
+  },
+  buttonReward: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8E50DC',
+    borderRadius: 25,
+    borderColor: '#4B089F',
+    borderBottomWidth: 4,
+  },
+  buttonRewardText: {
     color: '#fff',
     fontFamily: 'Nunito-ExtraBold',
     fontSize: 16,

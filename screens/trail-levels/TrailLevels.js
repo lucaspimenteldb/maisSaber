@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView, Text, View, TouchableHighlight } from 'react-native'
 
 import styles from './styles.js'
@@ -8,8 +8,10 @@ import CoroaJoias32Icon from '../../assets/icons/CoroaJoias32Icon.js'
 import CoroaCinza32Icon from '../../assets/icons/CoroaCinza32Icon.js'
 import CadeadoTrilhasIcon from '../../assets/icons/CadeadoTrilhasIcon.js'
 
-const TrailLevelsScreen = ({ navigation }) => {
+import TrailLevelsLockedModal from '../../components/modals/trail-level-locked/Modal.js'
 
+const TrailLevelsScreen = ({ navigation }) => {
+  const [modal, setModal] = useState(false)
   const levels = [
     {
       level: 1,
@@ -93,7 +95,7 @@ const TrailLevelsScreen = ({ navigation }) => {
                 {renderCronws(level.crowns)}
 
                 <TouchableHighlight
-                  onPress={() => navigation.navigate('TrailQuestions')}
+                  onPress={level.disabled ? () => setModal(true) : () => navigation.navigate('TrailQuestions')}
                   underlayColor="#fff"
                   style={[styles.buttonTouchable, level.disabled ? styles.buttonTouchableDisabled : '']}
                 >
@@ -109,6 +111,8 @@ const TrailLevelsScreen = ({ navigation }) => {
           }
         </View>
       </ScrollView>
+
+      {modal ? <TrailLevelsLockedModal close={() => setModal(false)} bottom/> : null}
     </>
   )
 }

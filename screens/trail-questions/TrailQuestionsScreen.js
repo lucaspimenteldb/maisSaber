@@ -5,7 +5,10 @@ import styles from './styles.js'
 import FoguetePequenoIcon from '../../assets/icons/FoguetePequenoIcon.js'
 import FecharIcon from '../../assets/icons/FecharIcon.js'
 
+import TrailQuestionReward from '../../components/modals/trail-question-reward/Modal.js'
+
 const TrailQuestionsScreen = ({ navigation }) => {
+  const [modal, setModal] = useState(false)
   const [question, setQuestion] = useState({
     title: 'Qual o resultado da adição: 3 + 2?',
     alternatives: [
@@ -69,7 +72,7 @@ const TrailQuestionsScreen = ({ navigation }) => {
           <TouchableHighlight
             underlayColor="#fff"
             onPress={'a'}
-            style={[styles.buttonWrapper, styles.buttonSizeUp]}
+            style={[styles.buttonWrapper, styles.buttonSizeDown]}
           >
             <View style={styles.button}>
               <Text style={styles.buttonText}>
@@ -119,6 +122,17 @@ const TrailQuestionsScreen = ({ navigation }) => {
 
           <TouchableHighlight
             underlayColor="#fff"
+            onPress={() => setModal(true)}
+            style={styles.buttonRewardTouchable}
+          >
+            <View style={styles.buttonReward}>
+              <Text style={styles.buttonRewardText}>
+                Ver recompensas
+                </Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            underlayColor="#fff"
             onPress={'a'}
             style={styles.buttonAnswerTouchable}
           >
@@ -131,6 +145,7 @@ const TrailQuestionsScreen = ({ navigation }) => {
         </View>
 
       </ScrollView>
+      {modal ? <TrailQuestionReward bottom close={() => setModal(false)}/> : null}
     </>
   )
 }

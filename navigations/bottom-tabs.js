@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from '../screens/home/HomeScreen.js'
 import HomeHeader from '../components/header/home/HomeHeader.js';
-import {AgendaNavigator, ProfileNavigator, VideosNavigator} from './stacks.js'
+import {AgendaNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -35,6 +35,15 @@ export default BottomTabNavigator = () => {
           tabBarActiveTintColor: '#fff',
         }}
         component={VideosNavigator}        
+      />
+      <Tab.Screen
+        name="Trilhas"
+        options={{
+          headerShown: false,
+          tabBarStyle: {backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20},
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={TrailsNavigator}        
       />
       <Tab.Screen
         name="Profile"

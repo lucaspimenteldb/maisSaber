@@ -11,6 +11,12 @@ import ChangePasswordScreen from '../screens/profile-password/ChangePasswordScre
 import PersonalDataScreen from '../screens/profile-personal-data/PersonalDataScreen.js'
 import SchoolDataScreen from '../screens/profile-school-data/SchoolDataScreen.js'
 import AgendaScreen from '../screens/agenda/AgendaScreen.js';
+import TrailsScreen from '../screens/trails/TrailsScreen.js';
+import TrailsHeader from '../components/header/trails/TrailsHeader.js';
+import TrailLevelsScreen from '../screens/trail-levels/TrailLevels.js';
+
+import { useNavigation } from '@react-navigation/core';
+import TrailQuestionsScreen from '../screens/trail-questions/TrailQuestionsScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +71,7 @@ export const VideosNavigator = () => {
     </Stack.Navigator>
   )
 }
+
 export const ProfileNavigator = () => {
   return (
     <Stack.Navigator>
@@ -123,6 +130,57 @@ export const ProfileNavigator = () => {
     </Stack.Navigator>
   )
 }
+
+export const TrailsNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="TrailsStack"
+        options={{
+          headerTitle: () => (
+            <TrailsHeader navigation={useNavigation()}/>
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={TrailsScreen}
+      />
+      <Stack.Screen
+        name="TrailLevels"
+        options={{
+          headerTitle: () => (
+            <TrailsHeader navigation={useNavigation()}/>
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={TrailLevelsScreen}
+      />
+      <Stack.Screen
+        name="TrailQuestions"
+        options={{
+          headerShown: false,
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={TrailQuestionsScreen}
+      />
+    </Stack.Navigator>
+  )
+}
+
 export const AgendaNavigator = () => {
   return (
     <Stack.Navigator>

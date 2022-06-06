@@ -9,7 +9,7 @@ const FecharIcon = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <Path d="m5 5 6 6m6 6-6-6m0 0 6-6L5 17" stroke="#fff" strokeWidth={2} />
+    <Path d="m5 5 6 6m6 6-6-6m0 0 6-6L5 17" stroke={props.color ? props.color : "#fff"} strokeWidth={2} />
   </Svg>
 )
 

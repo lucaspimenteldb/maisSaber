@@ -40,15 +40,15 @@ export default StyleSheet.create({
     backgroundColor: '#f00',
     borderRadius: 17,
   },
-  modalContent: {
+  modalTitle: {
     marginBottom: 16,
-    paddingBottom: 12,
-  },
-  modalContentTitle: {
-    marginVertical: 4,
     fontFamily: 'Nunito-Bold',
     fontSize: 16,
     color: '#630FCC'
+  },
+  modalContent: {
+    marginBottom: 16,
+    paddingBottom: 12,
   },
   rewardIcon: {
     marginRight: 8,

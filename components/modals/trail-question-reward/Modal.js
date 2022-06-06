@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { View, Text, TouchableHighlight, Animated } from 'react-native'
 
-import AlunoTristeIcon from '../../../assets/icons/AlunoTristeIcon.js'
 import CoroaIcon from '../../../assets/icons/CoroaIcon.js'
 import FecharIcon from '../../../assets/icons/FecharIcon.js'
 
@@ -63,10 +62,11 @@ const Modal = (props) => {
             </TouchableHighlight>
           </View>
 
+          <Text style={styles.modalTitle}>
+            Recompensas
+          </Text>
+
           <View style={styles.modalContent}>
-            <Text style={styles.modalContentTitle}>
-              Recompensas
-            </Text>
             <View style={styles.rewardWrapper}>
               <View style={styles.rewardIcon}>
                 <CoroaIcon/>

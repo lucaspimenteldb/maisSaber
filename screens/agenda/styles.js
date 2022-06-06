@@ -47,10 +47,18 @@ export default StyleSheet.create({
     marginRight: 16,
     padding: 12,
     paddingTop: 8,
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
     height: 100,
     backgroundColor: '#F2F8FF',
     borderRadius: 6,
+  },
+  agendaButton: {
+    height: '100%',
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   agendaItemTitle: {
     marginTop: 0,

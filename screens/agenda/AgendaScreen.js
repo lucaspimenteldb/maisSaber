@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ScrollView, View, Text, Image, TouchableHighlight } from 'react-native'
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
 
+import ChevronIcon from '../../assets/icons/ChevronIcon.js'
 import styles from './styles.js'
 import { LocaleConfig } from 'react-native-calendars';
 
@@ -18,26 +19,30 @@ const AgendaScreen = ({ navigation }) => {
   const agendaComponentItem = (item) => {
     return (
       <View style={styles.agendaItem}>
-        <Text style={styles.agendaItemText}>
-          {item.hour}
-        </Text>
-        <Text style={styles.agendaItemTitle}>
-          {item.name}
-        </Text>
-        <Text style={styles.agendaItemText}>
-          {item.action}
-        </Text>
+        <View>
+          <Text style={styles.agendaItemText}>
+            {item.hour}
+          </Text>
+          <Text style={styles.agendaItemTitle}>
+            {item.name}
+          </Text>
+          <Text style={styles.agendaItemText}>
+            {item.action}
+          </Text>
+        </View>
+        <TouchableHighlight 
+          underlayColor='#F2F8FF'
+          style={styles.agendaButton}
+          onPress={() => navigation.navigate('AgendaNotification')}
+        >
+          <ChevronIcon color='#00f' style={{transform: [{rotateZ: '180deg' }]}}/>
+        </TouchableHighlight>
       </View>
     )
   }
 
   const [activeTab, setActiveTab] = useState(1);
   const agendaItems = {
-    '2022-05-27': [],
-    '2022-05-28': [],
-    '2022-05-29': [],
-    '2022-05-30': [],
-    '2022-05-31': [],
     '2022-06-01': [],
     '2022-06-02': [],
     '2022-06-03': [],
@@ -57,6 +62,8 @@ const AgendaScreen = ({ navigation }) => {
     '2022-06-06': [],
     '2022-06-07': [],
     '2022-06-08': [],
+    '2022-06-09': [],
+    '2022-06-10': [],
   }
   return (
     <>

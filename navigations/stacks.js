@@ -11,6 +11,7 @@ import ChangePasswordScreen from '../screens/profile-password/ChangePasswordScre
 import PersonalDataScreen from '../screens/profile-personal-data/PersonalDataScreen.js'
 import SchoolDataScreen from '../screens/profile-school-data/SchoolDataScreen.js'
 import AgendaScreen from '../screens/agenda/AgendaScreen.js';
+import AgendaNotificationScreen from '../screens/agenda-notification/AgendaNotificationScreen.js';
 import TrailsScreen from '../screens/trails/TrailsScreen.js';
 import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 import TrailLevelsScreen from '../screens/trail-levels/TrailLevels.js';
@@ -198,6 +199,21 @@ export const AgendaNavigator = () => {
           tabBarActiveTintColor: '#fff',
         }}
         component={AgendaScreen}
+      />
+      <Stack.Screen
+        name="AgendaNotification"
+        options={{
+          headerTitle: () => (
+            <VideosHeader stacks title={'Agenda'} />
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={AgendaNotificationScreen}
       />
     </Stack.Navigator>
   )

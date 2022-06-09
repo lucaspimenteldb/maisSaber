@@ -38,7 +38,7 @@ const HomeScreen = ({navigation}) => {
     {
       icon: <FogueteIcon />,
       title: 'NÍVEL',
-      route: 'a'
+      route: 'UserLevel'
     },
     {
       icon: <LivroAbertoIcon />,

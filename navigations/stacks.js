@@ -15,6 +15,8 @@ import AgendaNotificationScreen from '../screens/agenda-notification/AgendaNotif
 import TrailsScreen from '../screens/trails/TrailsScreen.js';
 import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 import TrailLevelsScreen from '../screens/trail-levels/TrailLevels.js';
+import UserLevelScreen from '../screens/user-level/UserLevelScreen.js';
+import UserRewardsScreen from '../screens/user-rewards/UserRewardsScreen.js';
 
 import { useNavigation } from '@react-navigation/core';
 import TrailQuestionsScreen from '../screens/trail-questions/TrailQuestionsScreen.js';
@@ -214,6 +216,43 @@ export const AgendaNavigator = () => {
           tabBarActiveTintColor: '#fff',
         }}
         component={AgendaNotificationScreen}
+      />
+    </Stack.Navigator>
+  )
+}
+
+export const LevelNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="UserLevelScreen"
+        options={{
+          headerTitle: () => (
+            <VideosHeader stacks title={'Níveis'} />
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={UserLevelScreen}
+      />
+      <Stack.Screen
+        name="UserRewards"
+        options={{
+          headerTitle: () => (
+            <VideosHeader stacks title={'Níveis'} />
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={UserRewardsScreen}
       />
     </Stack.Navigator>
   )

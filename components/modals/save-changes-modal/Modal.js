@@ -68,7 +68,7 @@ const Modal = (props) => {
             <CheckSalvarIcon />
 
             <Text style={styles.modalContentTitle}>
-              Suas alterações foram salvas com sucesso!
+              {props.title ? props.title : 'Suas alterações foram salvas com sucesso!'}
             </Text>
           </View>
           <View style={styles.modalActions}>

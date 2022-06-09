@@ -5,8 +5,10 @@ import BalaoAgendaIcon from '../../assets/icons/BalaoAgendaIcon.js'
 import ChevronIcon from '../../assets/icons/ChevronIcon.js'
 import styles from './styles.js'
 
+import Modal from '../../components/modals/save-changes-modal/Modal.js'
 
 const AgendaScreen = ({ navigation }) => {
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -36,7 +38,7 @@ const AgendaScreen = ({ navigation }) => {
           <TouchableHighlight
             style={styles.button}
             underlayColor='#5BBBFF'
-            onPress={'o'}
+            onPress={() => setShowModal(true)}
           >
             <Text style={styles.buttonText}>
               Quero participar
@@ -51,6 +53,15 @@ const AgendaScreen = ({ navigation }) => {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur cumque non praesentium in, labore nemo quos, aliquam quibusdam at suscipit quam hic quas. Eum nihil dicta quasi, nostrum fugit sint?
         </Text>
       </ScrollView>
+      { 
+        showModal ? 
+          <Modal 
+            close={() => setShowModal(false)}
+            title='Sua atividade foi concluída com sucesso!' 
+            bottom
+          /> : 
+          null 
+        }
     </>
   )
 }

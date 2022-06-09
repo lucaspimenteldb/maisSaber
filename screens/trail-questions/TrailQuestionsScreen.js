@@ -6,8 +6,10 @@ import FoguetePequenoIcon from '../../assets/icons/FoguetePequenoIcon.js'
 import FecharIcon from '../../assets/icons/FecharIcon.js'
 
 import TrailQuestionReward from '../../components/modals/trail-question-reward/Modal.js'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 const TrailQuestionsScreen = ({ navigation }) => {
+  const tabBarHeight = useBottomTabBarHeight()
   const [modal, setModal] = useState(false)
   const [question, setQuestion] = useState({
     title: 'Qual o resultado da adição: 3 + 2?',
@@ -51,7 +53,7 @@ const TrailQuestionsScreen = ({ navigation }) => {
   }
   return (
     <>
-      <ScrollView contentContainerStyle={styles.pageWrapper}>
+      <ScrollView contentContainerStyle={[styles.pageWrapper, {paddingBottom: tabBarHeight}]}>
         <View style={styles.header}>
           <TouchableHighlight
             onPress={() => navigation.navigate('TrailLevels')}

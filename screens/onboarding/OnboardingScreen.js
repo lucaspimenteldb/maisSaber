@@ -74,7 +74,7 @@ const OnboardingScreen = ({navigation}) => {
 
   return (
     <>
-      <ScrollView style={styles.pageWrapper}>
+      <ScrollView contentContainerStyle={styles.pageWrapper}>
         <Image source={require('../../assets/logo.png')} style={styles.logo}/>
 
         <ScrollView

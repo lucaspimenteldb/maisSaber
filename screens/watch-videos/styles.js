@@ -26,7 +26,6 @@ export default StyleSheet.create({
   pageInformation: {
     marginTop: -40,
     paddingTop: 60,
-    paddingBottom: 40,
     backgroundColor: '#fff',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,

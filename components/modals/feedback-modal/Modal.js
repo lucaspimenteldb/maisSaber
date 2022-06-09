@@ -8,10 +8,12 @@ import EstrelaBrancaIcon from '../../../assets/icons/EstrelaBrancaIcon.js'
 
 import { useDispatch } from 'react-redux'
 import { setShowFeedbackModal } from '../../../redux/actions.js'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 import styles from './styles.js'
 
 const Modal = (props) => {
+  const tabBarHeight = useBottomTabBarHeight();
   const [stars, setStars] = useState([
     { note: 1, selected: true },
     { note: 2, selected: false },
@@ -81,7 +83,7 @@ const Modal = (props) => {
       <Animated.View style={[styles.overlay, { opacity: fadeOverlay }]}>
         <Animated.View style={[
           styles.modalWrapper,
-          props.bottom ? styles.modalWrapperBottom : styles.modalWrapperTop,
+          props.bottom ? [{paddingBottom: tabBarHeight}, styles.modalWrapperBottom] : styles.modalWrapperTop,
           { transform: [{ translateY: translateModal }] }
         ]}
         >

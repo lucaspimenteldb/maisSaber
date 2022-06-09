@@ -6,11 +6,12 @@ import CoroaJoiasGrandeIcon from '../../../assets/icons/CoroaJoiasGrandeIcon.js'
 
 import { useDispatch } from 'react-redux'
 import { setShowGainPointsModal } from '../../../redux/actions.js'
-
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import styles from './styles.js'
 
 const Modal = (props) => {
   const dispatch = useDispatch();
+  const tabBarHeight = useBottomTabBarHeight();
 
   const fadeOverlay = useRef(new Animated.Value(0)).current;
   const translateModal = useRef(new Animated.Value(350)).current;
@@ -67,6 +68,7 @@ const Modal = (props) => {
       <Animated.View style={[styles.overlay, { opacity: fadeOverlay }]}>
         <Animated.View style={[
           styles.modalWrapper,
+          props.bottom ? [{paddingBottom: tabBarHeight}, styles.modalWrapperBottom] : styles.modalWrapperTop,
           { transform: [{ translateY: translateModal }] }
         ]}
         >

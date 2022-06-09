@@ -17,8 +17,10 @@ import styles from './styles.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowFeedbackModal, setShowGainPointsModal } from '../../redux/actions.js'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 const VideosScreen = ({ route, navigation }) => {
+  const tabBarHeight = useBottomTabBarHeight();
   const dispatch = useDispatch();
   const {showFeedbackModal} = useSelector(state => state.showFeedbackModalReducer);
   const {showGainPointsModal} = useSelector(state => state.showGainPointsModalReducer);
@@ -71,88 +73,90 @@ const VideosScreen = ({ route, navigation }) => {
   ]
   return (
     <>
-      <ScrollView contentContainerStyle={styles.pageWrapper}>
-        <View style={styles.headerButtons}>
-          <TouchableHighlight
-            underlayColor='#fff'
-            onPress={() => navigation.goBack()}
-            style={styles.backButtonWrapper}
-          >
-            <View style={styles.backButton}>
-              <Text style={styles.backButtonText}>Voltar</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight 
-            underlayColor="#300567" 
-            onPress={() => dispatch(setShowFeedbackModal(true))}
-          >
-            <View style={styles.modalActionButtonSecondary}>
-              <StarOutlineIcon />
-            </View>
-          </TouchableHighlight>
-        </View>
-
-        <View style={{elevation: 100, zIndex: 100, position: 'relative'}}>
-          <Image 
-            style={{margin: 16, width: windowWidth - 32, height: 250, borderRadius: 10, }} 
-            source={{uri: 'https://learnenglish.britishcouncil.org/sites/podcasts/files/RS8096_GettyImages-170036776-hig.jpg'}} 
-          />
-          <TouchableHighlight 
-            underlayColor="#fff"
-            onPress={() => dispatch(setShowGainPointsModal(true))}
-          >
-            <View style={[styles.playButton, {left: windowWidth/2 - 30}]}>
-              <PlayIcon />
-            </View>
-          </TouchableHighlight>
-        </View>
-
-        <View style={styles.pageInformation}>
-          <Text style={styles.pageTitle}>
-            Adição e subtração com frações
-          </Text>
-          <Text style={styles.pageDescription}>
-            A adição pode ser entendida como a soma de um Numero positivo com outro numero.
-          </Text>
-
-          <View style={styles.pageActionsButtons}>
-            {actionButtons}
+      <View style={{flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#fff'}}>
+        <ScrollView contentContainerStyle={[styles.pageWrapper]}>
+          <View style={styles.headerButtons}>
+            <TouchableHighlight
+              underlayColor='#fff'
+              onPress={() => navigation.goBack()}
+              style={styles.backButtonWrapper}
+            >
+              <View style={styles.backButton}>
+                <Text style={styles.backButtonText}>Voltar</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight 
+              underlayColor="#300567" 
+              onPress={() => dispatch(setShowFeedbackModal(true))}
+            >
+              <View style={styles.modalActionButtonSecondary}>
+                <StarOutlineIcon />
+              </View>
+            </TouchableHighlight>
           </View>
 
-          <Text style={styles.pageTitle}>
-            Assista também:
-          </Text>
-          <View style={styles.subjects}>
-            {
-              subjects.map(subject => (
-                <View style={styles.buttonsWrapper} key={subject.title}>
-                  <TouchableHighlight
-                    underlayColor='#fff'
-                    onPress={() => navigation.navigate(subject.route)}
-                    style={styles.subjectsTouchable}
-                    >
-                    <View style={[
-                      selectDisciplineStyle,
-                      styles.disciplineButton]}
-                    >
-                      {subject.complete ? <View style={styles.progressIndicator}/> : null}
-                      {subject.complete ? null : <View style={styles.offsetLayer} />}
-                      {subject.icon}
-                    </View>
-                  </TouchableHighlight>
-                  <Text style={styles.disciplineButtonLabel}>
-                    {subject.title}
-                  </Text>
-                  {isSubjectComplete(subject.complete)}
-                </View>
-              ))
-            }
+          <View style={{elevation: 100, zIndex: 100, position: 'relative'}}>
+            <Image 
+              style={{margin: 16, width: windowWidth - 32, height: 250, borderRadius: 10, }} 
+              source={{uri: 'https://learnenglish.britishcouncil.org/sites/podcasts/files/RS8096_GettyImages-170036776-hig.jpg'}} 
+            />
+            <TouchableHighlight 
+              underlayColor="#fff"
+              onPress={() => dispatch(setShowGainPointsModal(true))}
+            >
+              <View style={[styles.playButton, {left: windowWidth/2 - 30}]}>
+                <PlayIcon />
+              </View>
+            </TouchableHighlight>
           </View>
-        </View>
 
-      </ScrollView>
+          <View style={styles.pageInformation}>
+            <Text style={styles.pageTitle}>
+              Adição e subtração com frações
+            </Text>
+            <Text style={styles.pageDescription}>
+              A adição pode ser entendida como a soma de um Numero positivo com outro numero.
+            </Text>
+
+            <View style={styles.pageActionsButtons}>
+              {actionButtons}
+            </View>
+
+            <Text style={styles.pageTitle}>
+              Assista também:
+            </Text>
+            <View style={styles.subjects}>
+              {
+                subjects.map(subject => (
+                  <View style={styles.buttonsWrapper} key={subject.title}>
+                    <TouchableHighlight
+                      underlayColor='#fff'
+                      onPress={() => navigation.navigate(subject.route)}
+                      style={styles.subjectsTouchable}
+                      >
+                      <View style={[
+                        selectDisciplineStyle,
+                        styles.disciplineButton]}
+                      >
+                        {subject.complete ? <View style={styles.progressIndicator}/> : null}
+                        {subject.complete ? null : <View style={styles.offsetLayer} />}
+                        {subject.icon}
+                      </View>
+                    </TouchableHighlight>
+                    <Text style={styles.disciplineButtonLabel}>
+                      {subject.title}
+                    </Text>
+                    {isSubjectComplete(subject.complete)}
+                  </View>
+                ))
+              }
+            </View>
+          </View>
+        </ScrollView>
+
+        { showGainPointsModal ? <GainPointsModal points={23}/> : null }
+      </View>
       { showFeedbackModal ? <FeedbackModal bottom/> : null }
-      { showGainPointsModal ? <GainPointsModal points={23}/> : null }
     </>
   )
 }

@@ -6,10 +6,12 @@ import OperacoesIcon from '../../assets/icons/OperacoesIcon.js'
 import CoroaJoias32Icon from '../../assets/icons/CoroaJoias32Icon.js'
 import CoroaCinza32Icon from '../../assets/icons/CoroaCinza32Icon.js'
 import CheckIcon from '../../assets/icons/CheckIcon.js'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 import styles from './styles.js'
 
 const VideosScreen = ({ route, navigation }) => {
+  const tabBarHeight = useBottomTabBarHeight();
   const isSubjectComplete = (isComplete) => (
     isComplete ? 
       <>
@@ -40,10 +42,49 @@ const VideosScreen = ({ route, navigation }) => {
       icon: <OperacoesIcon />,
       complete: false
     },
+    {
+      title: 'Princípio multiplicativo1',
+      route: 'WatchVideos',
+      icon: <OperacoesIcon />,
+      complete: false
+    },
+    {
+      title: 'Princípio multiplicativo2',
+      route: 'WatchVideos',
+      icon: <OperacoesIcon />,
+      complete: false
+    },
+    {
+      title: 'Princípio multiplicativo3',
+      route: 'WatchVideos',
+      icon: <OperacoesIcon />,
+      complete: false
+    },
+    {
+      title: 'Princípio multiplicativo5',
+      route: 'WatchVideos',
+      icon: <OperacoesIcon />,
+      complete: false
+    },
+    {
+      title: 'Princípio multiplicativo4',
+      route: 'WatchVideos',
+      icon: <OperacoesIcon />,
+      complete: false
+    },
+    {
+      title: 'Princípio multiplicativo6',
+      route: 'WatchVideos',
+      icon: <OperacoesIcon />,
+      complete: false
+    },
   ]
   return (
     <>
-      <ScrollView contentContainerStyle={styles.pageWrapper}>
+      <ScrollView contentContainerStyle={[
+        styles.pageWrapper, 
+        {paddingBottom: tabBarHeight}
+      ]}>
         <TouchableHighlight
           underlayColor='#fff'
           onPress={() => navigation.goBack()}

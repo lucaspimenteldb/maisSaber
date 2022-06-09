@@ -8,12 +8,13 @@ import FacebookIcon from '../../../assets/icons/FacebookIcon.js'
 
 import { useDispatch } from 'react-redux'
 import { setShowShareModal } from '../../../redux/actions.js'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 import styles from './styles.js'
 
 const Modal = (props) => {
   const dispatch = useDispatch();
-
+  const tabBarHeight = useBottomTabBarHeight();
   const fadeOverlay = useRef(new Animated.Value(0)).current;
   const translateModal = useRef(new Animated.Value(350)).current;
   useEffect(() => {
@@ -55,7 +56,7 @@ const Modal = (props) => {
       <Animated.View style={[styles.overlay, { opacity: fadeOverlay }]}>
         <Animated.View style={[
           styles.modalWrapper,
-          props.bottom ? styles.modalWrapperBottom : styles.modalWrapperTop,
+          props.bottom ? [{paddingBottom: tabBarHeight}, styles.modalWrapperBottom] : styles.modalWrapperTop,
           { transform: [{ translateY: translateModal }] }
         ]}
         >

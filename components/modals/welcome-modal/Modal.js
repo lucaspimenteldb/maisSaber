@@ -8,10 +8,11 @@ import { useDispatch } from 'react-redux'
 import { setShowWelcomeModal } from '../../../redux/actions.js'
 
 import styles from './styles.js'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 const Modal = (props) => {
   const dispatch = useDispatch();
-
+  const tabBarHeight = useBottomTabBarHeight();
   const fadeOverlay = useRef(new Animated.Value(0)).current;
   const translateModal = useRef(new Animated.Value(350)).current;
   useEffect(() => {
@@ -53,7 +54,7 @@ const Modal = (props) => {
       <Animated.View style={[styles.overlay, { opacity: fadeOverlay }]}>
         <Animated.View style={[
           styles.modalWrapper,
-          props.bottom ? styles.modalWrapperBottom : styles.modalWrapperTop,
+          props.bottom ? [{paddingBottom: tabBarHeight}, styles.modalWrapperBottom] : styles.modalWrapperTop,
           { transform: [{ translateY: translateModal }] }
         ]}
         >

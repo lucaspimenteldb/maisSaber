@@ -7,10 +7,12 @@ import GainPointsModal from '../gain-points-modal/Modal.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowMissionsModal, setShowGainPointsModal } from '../../../redux/actions.js'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 import styles from './styles.js'
 
 const Modal = (props) => {
+  const tabBarHeight = useBottomTabBarHeight();
   const dispatch = useDispatch();
   const {showGainPointsModal} = useSelector(state => state.showGainPointsModalReducer)
 
@@ -67,7 +69,7 @@ const Modal = (props) => {
       <Animated.View style={[styles.overlay, {opacity: fadeOverlay}]}>
         <Animated.View style={[
             styles.modalWrapper,
-            props.bottom ? styles.modalWrapperBottom : styles.modalWrapperTop,
+            props.bottom ? [{paddingBottom: tabBarHeight}, styles.modalWrapperBottom] : styles.modalWrapperTop,
             {transform: [{translateY: translateModal}]}
           ]}
         >

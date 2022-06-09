@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   pageWrapper: {
-    flex: 1,
+    minHeight: '100%',
+    backgroundColor: '#fff'
   },
   backButtonWrapper: {
     height: 44,

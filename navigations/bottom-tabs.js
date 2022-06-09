@@ -22,7 +22,12 @@ export default BottomTabNavigator = () => {
           headerShadowVisible: false,
           headerBackTitle: '',
           headerBackVisible: false,
-          tabBarStyle: {backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20},
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          },
           tabBarActiveTintColor: '#fff',
         }}
         component={HomeScreen}        
@@ -31,7 +36,12 @@ export default BottomTabNavigator = () => {
         name="Videos"
         options={{
           headerShown: false,
-          tabBarStyle: {backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20},
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC', 
+            borderTopLeftRadius: 20, 
+            borderTopRightRadius: 20
+          },
           tabBarActiveTintColor: '#fff',
         }}
         component={VideosNavigator}        
@@ -40,7 +50,12 @@ export default BottomTabNavigator = () => {
         name="Trilhas"
         options={{
           headerShown: false,
-          tabBarStyle: {backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20},
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC', 
+            borderTopLeftRadius: 20, 
+            borderTopRightRadius: 20
+          },
           tabBarActiveTintColor: '#fff',
         }}
         component={TrailsNavigator}        
@@ -52,7 +67,12 @@ export default BottomTabNavigator = () => {
           headerTitle: () => (
             <HomeHeader navigation={useNavigation()}/>
           ),
-          tabBarStyle: {backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20},
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC', 
+            borderTopLeftRadius: 20, 
+            borderTopRightRadius: 20
+          },
           tabBarActiveTintColor: '#fff',
         }}
         component={ProfileNavigator}        
@@ -61,7 +81,12 @@ export default BottomTabNavigator = () => {
         name="Agenda"
         options={{
           headerShown: false,
-          tabBarStyle: {backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20},
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20
+          },
           tabBarActiveTintColor: '#fff',
         }}
         component={AgendaNavigator}

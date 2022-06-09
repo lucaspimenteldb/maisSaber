@@ -10,8 +10,10 @@ import LivroAbertoIcon from '../../assets/icons/LivroAbertoIcon.js'
 import AprendizadoOnlineIcon from '../../assets/icons/AprendizadoOnlineIcon.js'
 import PessoasConexaoIcon from '../../assets/icons/PessoasConexaoIcon.js'
 
+
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowShareModal } from '../../redux/actions.js'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import WelcomeModal from '../../components/modals/welcome-modal/Modal.js'
@@ -20,6 +22,8 @@ import ShareModal from '../../components/modals/share-modal/Modal.js'
 import styles from './styles.js'
 
 const HomeScreen = ({navigation}) => {
+  const tabBarHeight = useBottomTabBarHeight();
+
   const hub = [
     {
       icon: <TecnologiaIcon />,
@@ -50,94 +54,90 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <>
-      <ScrollView contentContainerStyle={styles.pageWrapper}>        
-        <View style={styles.userInformation}>
-          <Image
-            source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
-            style={styles.userInformationAvatar}
-          />
+      <View style={{flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#fff'}}>
+        <ScrollView contentContainerStyle={styles.pageWrapper}>        
+          <View style={styles.userInformation}>
+            <Image
+              source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+              style={styles.userInformationAvatar}
+            />
 
-          <View style={styles.nameProgressWrapper}>
-            <Text style={styles.userInformationName}>Anderson Moura</Text>
+            <View style={styles.nameProgressWrapper}>
+              <Text style={styles.userInformationName}>Anderson Moura</Text>
 
-            <View style={styles.userInformationLevel}>
-              <Text style={styles.userInformationLevelText}>Nível 1</Text>
-              <DiamanteIcon />
-            </View>
-
-            <View style={styles.progressBar}>
-              <View style={styles.progressNumber}>
-                <Text style={styles.progressNumberText}>6/20</Text>
-                <CoroaJoiasIcon />
+              <View style={styles.userInformationLevel}>
+                <Text style={styles.userInformationLevelText}>Nível 1</Text>
+                <DiamanteIcon />
               </View>
-              <View style={styles.progressInner} />
+
+              <View style={styles.progressBar}>
+                <View style={styles.progressNumber}>
+                  <Text style={styles.progressNumberText}>6/20</Text>
+                  <CoroaJoiasIcon />
+                </View>
+                <View style={styles.progressInner} />
+              </View>
             </View>
           </View>
-        </View>
 
-        {/* navigation hub */}
-        <View style={styles.navigationHub}>
-          {/* main hub */}
-          <View style={styles.navigationHubContainer}>
-            {
-              hub.map(button => (
-                <TouchableHighlight 
-                  key={button.title} 
-                  onPress={() => navigation.navigate(button.route)}
-                  underlayColor='#fff'
-                  style={styles.navigationHubTouchable}
-                >
-                  <View style={styles.navigationHubButton}>
-                    {button.icon}
-                    <Text style={styles.navigationHubButtonText}>
-                      {button.title}
-                    </Text>
-                  </View>
-                </TouchableHighlight>
-              ))
-            }
+          {/* navigation hub */}
+          <View style={styles.navigationHub}>
+            {/* main hub */}
+            <View style={styles.navigationHubContainer}>
+              {
+                hub.map(button => (
+                  <TouchableHighlight 
+                    key={button.title} 
+                    onPress={() => navigation.navigate(button.route)}
+                    underlayColor='#fff'
+                    style={styles.navigationHubTouchable}
+                  >
+                    <View style={styles.navigationHubButton}>
+                      {button.icon}
+                      <Text style={styles.navigationHubButtonText}>
+                        {button.title}
+                      </Text>
+                    </View>
+                  </TouchableHighlight>
+                ))
+              }
+            </View>
+
+            {/* secondary hub */}
+            <Text style={styles.seeTooTitle}>Veja também</Text>
+            <ScrollView horizontal>
+              <TouchableHighlight 
+                onPress={() => navigation.navigate('A')}
+                underlayColor="#fff"
+                style={styles.navigationHubTouchableHelp}
+              >
+                <View style={styles.navigationHubButtonHelp}>
+                  <NotebookMensagemIcon/>
+                  <Text style={styles.navigationHubButtonTextSecondary}>
+                    Preciso de ajuda
+                  </Text>
+                </View>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => dispatch(setShowShareModal(true))} 
+                underlayColor="#fff"
+                style={styles.navigationHubTouchableShare}
+              >
+                <View style={styles.navigationHubButtonShare}>
+                  <PessoasConexaoIcon/>
+                  <Text style={styles.navigationHubButtonTextSecondary}>
+                    Compartilhar com amigos
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </ScrollView>
           </View>
-
-          {/* secondary hub */}
-          <Text style={styles.seeTooTitle}>Veja também</Text>
-          <ScrollView horizontal>
-            <TouchableHighlight 
-              onPress={() => navigation.navigate('A')}
-              underlayColor="#fff"
-              style={styles.navigationHubTouchableHelp}
-            >
-              <View style={styles.navigationHubButtonHelp}>
-                <NotebookMensagemIcon/>
-                <Text style={styles.navigationHubButtonTextSecondary}>
-                  Preciso de ajuda
-                </Text>
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={() => dispatch(setShowShareModal(true))} 
-              underlayColor="#fff"
-              style={styles.navigationHubTouchableShare}
-            >
-              <View style={styles.navigationHubButtonShare}>
-                <PessoasConexaoIcon/>
-                <Text style={styles.navigationHubButtonTextSecondary}>
-                  Compartilhar com amigos
-                </Text>
-              </View>
-            </TouchableHighlight>
-          </ScrollView>
-        </View>
+        </ScrollView>
         
-        {
-          showMissionsModal ? <MissionsModal /> : null
-        }
-        {
-          showWelcomeModal ? <WelcomeModal bottom/> : null
-        }
-        {
-          showShareModal ? <ShareModal bottom/> : null
-        }
-      </ScrollView>
+        {showMissionsModal ? <MissionsModal /> : null}
+        {showWelcomeModal ? <WelcomeModal bottom/> : null}
+        {showShareModal ? <ShareModal bottom/> : null}
+      </View>
     </>
   )
 }

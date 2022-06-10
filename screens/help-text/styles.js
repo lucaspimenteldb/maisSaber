@@ -50,7 +50,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: 26,
-    backgroundColor: '#630FCC'
+    backgroundColor: '#630FCC',
+    borderBottomColor: '4B089F',
+    borderBottomWidth: 4,
   },
   menuText: {
     fontFamily: 'Nunito-Bold',

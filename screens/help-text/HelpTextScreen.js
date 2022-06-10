@@ -48,6 +48,17 @@ const HelpTextScreen = ({ navigation, route }) => {
               </Text>
             </View>
           </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.menuTouchable}
+            onPress={() => navigation.navigate('a')}
+            underlayColor='#fff'
+          >
+            <View style={styles.menuWrapper}>
+              <Text style={styles.menuText}>
+                Suporte por whatsapp
+              </Text>
+            </View>
+          </TouchableHighlight>
         </ScrollView>
       </View>
     </>

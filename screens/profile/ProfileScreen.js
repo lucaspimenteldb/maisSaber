@@ -5,14 +5,16 @@ import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
 import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
 import ChevronIcon from '../../assets/icons/ChevronIcon.js'
 import SignOutModal from '../../components/modals/sign-out-modal/Modal.js'
-
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import styles from './styles';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setIsLoggedIn } from '../../redux/actions.js'
 
 const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch()
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const [showSignOutModal, setShowSignOutModal] = useState(false)
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
   options = [
     {
@@ -97,6 +99,7 @@ const ProfileScreen = ({ navigation }) => {
         </View>
 
         {signOutModal}
+        {missionsModal}
       </ScrollView>
     </>
   )

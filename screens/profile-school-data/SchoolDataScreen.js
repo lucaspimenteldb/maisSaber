@@ -5,14 +5,17 @@ import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
 import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
 import BolsaIcon from '../../assets/icons/BolsaIcon.js'
 import ChapeuEducacaoIcon from '../../assets/icons/ChapeuEducacaoIcon.js'
-
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import styles from './styles';
+import { useSelector } from 'react-redux'
 
 const SchoolDataScreen = ({navigation}) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [nameActive, setNameActive] = useState(false)
   const [emailActive, setEmailActive] = useState(false)
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
   return (
     <>
@@ -87,6 +90,7 @@ const SchoolDataScreen = ({navigation}) => {
           </TouchableHighlight>
         </View>
       </ScrollView>
+      {missionsModal}
     </>
   )
 }

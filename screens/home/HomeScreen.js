@@ -52,6 +52,10 @@ const HomeScreen = ({navigation}) => {
   const { showWelcomeModal } = useSelector(state => state.showWelcomeModalReducer)
   const { showShareModal } = useSelector(state => state.showShareModalReducer)
 
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null
+  const welcomeModal = showWelcomeModal ? <WelcomeModal bottom/> : null
+  const shareModal = showShareModal ? <ShareModal bottom/> : null
+
   return (
     <>
       <View style={{flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#fff'}}>
@@ -134,9 +138,9 @@ const HomeScreen = ({navigation}) => {
           </View>
         </ScrollView>
         
-        {showMissionsModal ? <MissionsModal /> : null}
-        {showWelcomeModal ? <WelcomeModal bottom/> : null}
-        {showShareModal ? <ShareModal bottom/> : null}
+        { missionsModal }
+        { welcomeModal }
+        { shareModal }
       </View>
     </>
   )

@@ -51,9 +51,10 @@ const TrailQuestionsScreen = ({ navigation }) => {
       return newQuestion;
     })
   }
+  const modalReward = modal ? <TrailQuestionReward bottom close={() => setModal(false)} /> : null
   return (
     <>
-      <ScrollView contentContainerStyle={[styles.pageWrapper, {paddingBottom: tabBarHeight}]}>
+      <ScrollView contentContainerStyle={[styles.pageWrapper, { paddingBottom: tabBarHeight }]}>
         <View style={styles.header}>
           <TouchableHighlight
             onPress={() => navigation.navigate('TrailLevels')}
@@ -130,7 +131,7 @@ const TrailQuestionsScreen = ({ navigation }) => {
             <View style={styles.buttonReward}>
               <Text style={styles.buttonRewardText}>
                 Ver recompensas
-                </Text>
+              </Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
@@ -147,7 +148,7 @@ const TrailQuestionsScreen = ({ navigation }) => {
         </View>
 
       </ScrollView>
-      {modal ? <TrailQuestionReward bottom close={() => setModal(false)}/> : null}
+      { modalReward}
     </>
   )
 }

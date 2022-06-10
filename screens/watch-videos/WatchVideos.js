@@ -73,6 +73,9 @@ const VideosScreen = ({ route, navigation }) => {
       complete: false
     },
   ]
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null;
+  const feedbackModal = showFeedbackModal ? <FeedbackModal bottom/> : null;
+  const gainPointsModal = showGainPointsModal ? <GainPointsModal points={23}/> : null;
   return (
     <>
       <View style={{flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#fff'}}>
@@ -147,10 +150,10 @@ const VideosScreen = ({ route, navigation }) => {
           </View>
         </ScrollView>
 
-        { showGainPointsModal ? <GainPointsModal points={23}/> : null }
+        { gainPointsModal }
       </View>
-      { showFeedbackModal ? <FeedbackModal bottom/> : null }
-      { showMissionsModal ? <MissionsModal /> : null }
+      { feedbackModal }
+      { missionsModal }
     </>
   )
 }

@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux'
 
 const TrailsScreen = ({ navigation }) => {
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
@@ -62,7 +63,7 @@ const TrailsScreen = ({ navigation }) => {
           </TouchableHighlight>
         </View>
       </ScrollView>
-      {showMissionsModal ? <MissionsModal /> : null}
+      {missionsModal}
     </>
   )
 }

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { ScrollView, View, Text, Image, TouchableHighlight } from 'react-native'
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
+import React, { useState } from 'react'
+import { View, Text, TouchableHighlight } from 'react-native'
+import { Agenda } from 'react-native-calendars'
 
 import ChevronIcon from '../../assets/icons/ChevronIcon.js'
 import styles from './styles.js'
@@ -43,14 +43,14 @@ const AgendaScreen = ({ navigation }) => {
       </View>
     )
   }
-
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null;
   const [activeTab, setActiveTab] = useState(1);
   const agendaItems = {
-    '2022-06-01': [],
-    '2022-06-02': [],
-    '2022-06-03': [],
-    '2022-06-04': [],
-    '2022-06-05': [
+    '2022-06-06': [],
+    '2022-06-07': [],
+    '2022-06-08': [],
+    '2022-06-09': [],
+    '2022-06-10': [
       {
         name: 'Atividade de português',
         action: 'Clique para morrer',
@@ -62,12 +62,14 @@ const AgendaScreen = ({ navigation }) => {
         hour: '09:00 am',
       }
     ],
-    '2022-06-06': [],
-    '2022-06-07': [],
-    '2022-06-08': [],
-    '2022-06-09': [],
-    '2022-06-10': [],
+    '2022-06-11': [],
+    '2022-06-12': [],
+    '2022-06-13': [],
+    '2022-06-14': [],
+    '2022-06-15': [],
   }
+  const isPortuguese = activeTab === 1
+  
   return (
     <>
       <View style={styles.pageWrapper}>
@@ -75,18 +77,18 @@ const AgendaScreen = ({ navigation }) => {
           <TouchableHighlight
             style={[
               styles.disciplineTabsTouchable,
-              activeTab === 1 ? styles.disciplineTabsTouchableActive : ''
+              isPortuguese ? styles.disciplineTabsTouchableActive : ''
             ]}
             onPress={() => setActiveTab(1)}
             underlayColor="#B88DEE"
           >
             <View style={[
               styles.disciplineTabsButton,
-              activeTab === 1 ? styles.disciplineTabsButtonActive : ''
+              isPortuguese ? styles.disciplineTabsButtonActive : ''
             ]}>
               <Text style={[
                 styles.disciplineTabsButtonText,
-                activeTab === 1 ? styles.disciplineTabsButtonTextActive : ''
+                isPortuguese ? styles.disciplineTabsButtonTextActive : ''
               ]}>
                 Português
               </Text>
@@ -96,18 +98,18 @@ const AgendaScreen = ({ navigation }) => {
             style={[
               styles.disciplineTabsTouchable,
               styles.disciplineTabsTouchableMath,
-              activeTab === 2 ? styles.disciplineTabsTouchableActive : ''
+              !isPortuguese ? styles.disciplineTabsTouchableActive : ''
             ]}
             onPress={() => setActiveTab(2)}
             underlayColor="#B88DEE"
           >
             <View style={[
               styles.disciplineTabsButton,
-              activeTab === 2 ? styles.disciplineTabsButtonActive : ''
+              !isPortuguese ? styles.disciplineTabsButtonActive : ''
             ]}>
               <Text style={[
                 styles.disciplineTabsButtonText,
-                activeTab === 2 ? styles.disciplineTabsButtonTextActive : ''
+                !isPortuguese ? styles.disciplineTabsButtonTextActive : ''
               ]}>
                 Matemática
               </Text>
@@ -142,7 +144,7 @@ const AgendaScreen = ({ navigation }) => {
           }}
         />
       </View>
-      {showMissionsModal ? <MissionsModal /> : null}
+      {missionsModal}
     </>
   )
 }

@@ -74,6 +74,8 @@ const TrailLevelsScreen = ({ navigation }) => {
     }
   }
   const renderLock = (disabled) => disabled ? <CadeadoTrilhasIcon style={styles.buttonLock} /> : null
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null
+  const modalTrailLocked = modal ? <TrailLevelsLockedModal close={() => setModal(false)} bottom/> : null
 
   return (
     <>
@@ -115,8 +117,8 @@ const TrailLevelsScreen = ({ navigation }) => {
         </View>
       </ScrollView>
 
-      {modal ? <TrailLevelsLockedModal close={() => setModal(false)} bottom/> : null}
-      { showMissionsModal ? <MissionsModal /> : null }
+      { modalTrailLocked }
+      { missionsModal }
     </>
   )
 }

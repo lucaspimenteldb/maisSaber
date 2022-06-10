@@ -5,8 +5,9 @@ import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
 import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
 import CadeadoIcon from '../../assets/icons/CadeadoIcon.js'
 import ChangesModal from '../../components/modals/save-changes-modal/Modal.js'
-
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import styles from './styles';
+import { useSelector } from 'react-redux'
 
 const ChangePasswordScreen = ({ navigation }) => {
   const [name, setName] = useState('')
@@ -15,6 +16,8 @@ const ChangePasswordScreen = ({ navigation }) => {
   const [emailActive, setEmailActive] = useState(false)
   const [showChangesModal, setShowChangesModal] = useState(false)
   const changesModal = showChangesModal ? <ChangesModal bottom close={() => setShowChangesModal(false)} /> : null
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null  
 
   return (
     <>
@@ -91,8 +94,9 @@ const ChangePasswordScreen = ({ navigation }) => {
           </TouchableHighlight>
         </View>
 
-        {changesModal}
       </ScrollView>
+      {changesModal}
+      {missionsModal}
     </>
   )
 }

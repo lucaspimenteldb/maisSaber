@@ -9,6 +9,7 @@ import Modal from '../../components/modals/save-changes-modal/Modal.js'
 import { useSelector } from 'react-redux'
 
 const AgendaScreen = ({ navigation }) => {
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null
   const [showModal, setShowModal] = useState(false);
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   return (
@@ -54,7 +55,7 @@ const AgendaScreen = ({ navigation }) => {
           /> : 
           null 
         }
-        {showMissionsModal ? <MissionsModal /> : null}
+        {missionsModal}
     </>
   )
 }

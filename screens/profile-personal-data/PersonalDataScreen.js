@@ -5,8 +5,9 @@ import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
 import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
 import ContaIcon from '../../assets/icons/ContaIcon.js'
 import ChangesModal from '../../components/modals/save-changes-modal/Modal.js'
-
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import styles from './styles';
+import { useSelector } from 'react-redux'
 
 const PersonalDataScreen = ({ navigation }) => {
   const [name, setName] = useState('')
@@ -14,7 +15,9 @@ const PersonalDataScreen = ({ navigation }) => {
   const [nameActive, setNameActive] = useState(false)
   const [emailActive, setEmailActive] = useState(false)
   const [showChangesModal, setShowChangesModal] = useState(false)
-
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null
+  const changesModal =  showChangesModal ? <ChangesModal bottom close={() => setShowChangesModal(false)} /> : null
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
@@ -87,13 +90,9 @@ const PersonalDataScreen = ({ navigation }) => {
             </View>
           </TouchableHighlight>
         </View>
-
-        {
-          showChangesModal ? 
-          <ChangesModal bottom close={() => setShowChangesModal(false)} /> : 
-          null
-        }
       </ScrollView>
+        {changesModal}
+        {missionsModal}
     </>
   )
 }

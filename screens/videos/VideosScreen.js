@@ -9,6 +9,7 @@ import styles from './styles.js'
 
 const VideosScreen = ({ navigation }) => {
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const missionsModal = showMissionsModal ? <MissionsModal/> : null
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
@@ -46,7 +47,7 @@ const VideosScreen = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-      {showMissionsModal ? <MissionsModal/> : null}
+      {missionsModal}
     </>
   )
 }

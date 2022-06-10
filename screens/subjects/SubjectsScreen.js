@@ -16,16 +16,17 @@ const VideosScreen = ({ route, navigation }) => {
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const tabBarHeight = useBottomTabBarHeight();
   const isSubjectComplete = (isComplete) => (
-    isComplete ? 
+    isComplete ?
       <>
-        <CoroaJoias32Icon style={styles.subjectCompleteCrown}/>
-        <CheckIcon style={styles.subjectCompleteCheck}/>
+        <CoroaJoias32Icon style={styles.subjectCompleteCrown} />
+        <CheckIcon style={styles.subjectCompleteCheck} />
       </> :
-      <CoroaCinza32Icon style={styles.subjectCompleteCrown}/>
+      <CoroaCinza32Icon style={styles.subjectCompleteCrown} />
   )
   const selectDisciplineStyle = route.params.discipline === 'Math' ?
     styles.disciplineButtonMath :
-    styles.disciplineButtonPortuguese
+    styles.disciplineButtonPortuguese;
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null;
   const subjects = [
     {
       title: 'Adição e subtração com frações',
@@ -85,8 +86,8 @@ const VideosScreen = ({ route, navigation }) => {
   return (
     <>
       <ScrollView contentContainerStyle={[
-        styles.pageWrapper, 
-        {paddingBottom: tabBarHeight}
+        styles.pageWrapper,
+        { paddingBottom: tabBarHeight }
       ]}>
         <View style={styles.subjects}>
           {
@@ -94,14 +95,14 @@ const VideosScreen = ({ route, navigation }) => {
               <View style={styles.buttonsWrapper} key={subject.title}>
                 <TouchableHighlight
                   underlayColor='#fff'
-                  onPress={() => navigation.navigate(subject.route, {discipline: route.params.discipline})}
+                  onPress={() => navigation.navigate(subject.route, { discipline: route.params.discipline })}
                   style={styles.subjectsTouchable}
-                  >
+                >
                   <View style={[
                     selectDisciplineStyle,
                     styles.disciplineButton]}
                   >
-                    {subject.complete ? <View style={styles.progressIndicator}/> : null}
+                    {subject.complete ? <View style={styles.progressIndicator} /> : null}
                     {subject.complete ? null : <View style={styles.offsetLayer} />}
                     {subject.icon}
                   </View>
@@ -115,7 +116,7 @@ const VideosScreen = ({ route, navigation }) => {
           }
         </View>
       </ScrollView>
-      {showMissionsModal ? <MissionsModal /> : null}
+      {missionsModal}
     </>
   )
 }

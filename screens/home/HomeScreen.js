@@ -111,7 +111,7 @@ const HomeScreen = ({navigation}) => {
             <Text style={styles.seeTooTitle}>Veja também</Text>
             <ScrollView horizontal>
               <TouchableHighlight 
-                onPress={() => navigation.navigate('A')}
+                onPress={() => navigation.navigate('Ajuda')}
                 underlayColor="#fff"
                 style={styles.navigationHubTouchableHelp}
               >

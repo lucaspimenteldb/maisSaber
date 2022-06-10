@@ -19,6 +19,9 @@ import UserRewardsScreen from '../screens/user-rewards/UserRewardsScreen.js';
 
 import { useNavigation } from '@react-navigation/core';
 import TrailQuestionsScreen from '../screens/trail-questions/TrailQuestionsScreen.js';
+import HelpScreen from '../screens/help/HelpScreen.js';
+import HelpCategoryScreen from '../screens/help-category/HelpCategoryScreen.js';
+import HelpTextScreen from '../screens/help-text/HelpTextScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -252,6 +255,40 @@ export const LevelNavigator = () => {
           tabBarActiveTintColor: '#fff',
         }}
         component={UserRewardsScreen}
+      />
+    </Stack.Navigator>
+  )
+}
+
+export const HelpNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Help"
+        options={{
+          headerShown: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={HelpScreen}
+      />
+      <Stack.Screen
+        name="HelpCategory"
+        options={{
+          headerShown: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={HelpCategoryScreen}
+      />
+      <Stack.Screen
+        name="HelpText"
+        options={{
+          headerShown: false,
+          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={HelpTextScreen}
       />
     </Stack.Navigator>
   )

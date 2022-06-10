@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from '../screens/home/HomeScreen.js'
 import HomeHeader from '../components/header/home/HomeHeader.js';
-import {AgendaNavigator, LevelNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
+import {AgendaNavigator, HelpNavigator, LevelNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
 import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 
 import { useNavigation } from '@react-navigation/native';
@@ -33,6 +33,29 @@ export default BottomTabNavigator = () => {
         }}
         component={HomeScreen}        
       />
+
+      <Tab.Screen
+        name="Ajuda"
+        options={{
+          tabBarButton: () => null,
+          headerTitle: () => (
+            <HomeHeader navigation={useNavigation()}/>
+          ),
+          headerStyle: {backgroundColor: '#fff'},
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC', 
+            borderTopLeftRadius: 20, 
+            borderTopRightRadius: 20
+          },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={HelpNavigator}        
+      />
+
       <Tab.Screen
         name="Videos"
         options={{

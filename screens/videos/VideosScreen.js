@@ -9,16 +9,6 @@ const VideosScreen = ({ navigation }) => {
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
-        <TouchableHighlight
-          underlayColor='#fff'
-          onPress={() => navigation.goBack()}
-          style={styles.backButtonWrapper}
-        >
-          <View style={styles.backButton}>
-            <Text style={styles.backButtonText}>Voltar</Text>
-          </View>
-        </TouchableHighlight>
-
         <View style={styles.disciplines}>
           <View style={styles.buttonsWrapper}>
             <TouchableHighlight

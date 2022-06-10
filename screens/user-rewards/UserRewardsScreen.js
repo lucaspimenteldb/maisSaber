@@ -15,16 +15,6 @@ const UserLevelScreen = ({ route, navigation }) => {
         styles.pageWrapper,
         { paddingBottom: tabBarHeight }
       ]}>
-        <TouchableHighlight
-          underlayColor='#fff'
-          onPress={() => navigation.goBack()}
-          style={styles.backButtonWrapper}
-        >
-          <View style={styles.backButton}>
-            <Text style={styles.backButtonText}>Voltar</Text>
-          </View>
-        </TouchableHighlight>
-
         <View style={styles.levels}>
           <View style={styles.buttonsWrapper}>
             <Text style={styles.buttonLevel}>Level {route.params.level.level}</Text>

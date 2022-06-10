@@ -76,15 +76,6 @@ const VideosScreen = ({ route, navigation }) => {
       <View style={{flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#fff'}}>
         <ScrollView contentContainerStyle={[styles.pageWrapper]}>
           <View style={styles.headerButtons}>
-            <TouchableHighlight
-              underlayColor='#fff'
-              onPress={() => navigation.goBack()}
-              style={styles.backButtonWrapper}
-            >
-              <View style={styles.backButton}>
-                <Text style={styles.backButtonText}>Voltar</Text>
-              </View>
-            </TouchableHighlight>
             <TouchableHighlight 
               underlayColor="#300567" 
               onPress={() => dispatch(setShowFeedbackModal(true))}

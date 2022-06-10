@@ -5,7 +5,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SubjectsScreen from '../screens/subjects/SubjectsScreen.js'
 import WatchVideosScreen from '../screens/watch-videos/WatchVideos.js'
 import VideosScreen from '../screens/videos/VideosScreen.js'
-import VideosHeader from '../components/header/videos/VideosHeader.js'
 import ProfileScreen from '../screens/profile/ProfileScreen.js'
 import ChangePasswordScreen from '../screens/profile-password/ChangePasswordScreen.js'
 import PersonalDataScreen from '../screens/profile-personal-data/PersonalDataScreen.js'
@@ -30,7 +29,7 @@ export const VideosNavigator = () => {
         name="VideosStack"
         options={{
           headerTitle: () => (
-            <VideosHeader stacks title={'Videos'} />
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -45,7 +44,7 @@ export const VideosNavigator = () => {
         name="Subjects"
         options={{
           headerTitle: () => (
-            <VideosHeader stacks title={'Assuntos'} />
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -60,7 +59,7 @@ export const VideosNavigator = () => {
         name="WatchVideos"
         options={{
           headerTitle: () => (
-            <VideosHeader stacks title={'Ver vídeo'} />
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -141,7 +140,7 @@ export const TrailsNavigator = () => {
         name="TrailsStack"
         options={{
           headerTitle: () => (
-            <TrailsHeader navigation={useNavigation()}/>
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -156,7 +155,7 @@ export const TrailsNavigator = () => {
         name="TrailLevels"
         options={{
           headerTitle: () => (
-            <TrailsHeader navigation={useNavigation()}/>
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -191,7 +190,7 @@ export const AgendaNavigator = () => {
         name="AgendaStacks"
         options={{
           headerTitle: () => (
-            <VideosHeader stacks title={'Agenda'} />
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -206,7 +205,7 @@ export const AgendaNavigator = () => {
         name="AgendaNotification"
         options={{
           headerTitle: () => (
-            <VideosHeader stacks title={'Agenda'} />
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -228,7 +227,7 @@ export const LevelNavigator = () => {
         name="UserLevelScreen"
         options={{
           headerTitle: () => (
-            <VideosHeader stacks title={'Níveis'} />
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -243,7 +242,7 @@ export const LevelNavigator = () => {
         name="UserRewards"
         options={{
           headerTitle: () => (
-            <VideosHeader stacks title={'Níveis'} />
+            <TrailsHeader stacks navigation={useNavigation()}/>
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,

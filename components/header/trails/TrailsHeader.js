@@ -11,12 +11,12 @@ import styles from './styles.js'
 import { useDispatch } from 'react-redux'
 import { setShowMissionsModal } from '../../../redux/actions.js'
 
-const TrailsHeader = ({ navigation }) => {
+const TrailsHeader = ({stacks, navigation }) => {
   const dispatch = useDispatch();
 
   return (
     <>
-      <View style={styles.header}>
+      <View style={[styles.header, stacks ? {marginLeft: 8, marginRight: 24} : '']}>
         <TouchableHighlight
           underlayColor='#fff'
           onPress={() => navigation.goBack()}

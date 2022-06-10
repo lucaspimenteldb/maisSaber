@@ -5,24 +5,6 @@ export default StyleSheet.create({
     minHeight: '100%',
     backgroundColor: '#300567'
   },
-  backButtonWrapper: {
-    height: 44,
-    width: 96,
-    borderRadius: 22,
-  },
-  backButton: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#630FCC',
-    borderRadius: 22,
-    borderBottomWidth: 4,
-    borderBottomColor: '#54199F'
-  },
-  backButtonText: {
-    color: '#fff',
-    fontFamily: 'Nunito-Bold'
-  },
   pageInformation: {
     marginTop: -40,
     paddingTop: 60,
@@ -142,7 +124,7 @@ export default StyleSheet.create({
   headerButtons: {
     margin: 16,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-end'
   },
   playButton: {
     paddingTop: 2,

@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from '../screens/home/HomeScreen.js'
 import HomeHeader from '../components/header/home/HomeHeader.js';
 import {AgendaNavigator, LevelNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
+import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -65,7 +66,7 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarButton: () => null,
           headerTitle: () => (
-            <HomeHeader navigation={useNavigation()}/>
+            <TrailsHeader navigation={useNavigation()}/>
           ),
           tabBarStyle: {
             position: 'absolute',

@@ -5,25 +5,6 @@ export default StyleSheet.create({
     minHeight: '100%',
     backgroundColor: '#fff'
   },
-  backButtonWrapper: {
-    height: 44,
-    width: 96,
-    margin: 16,
-    borderRadius: 22,
-  },
-  backButton: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#630FCC',
-    borderRadius: 22,
-    borderBottomWidth: 4,
-    borderBottomColor: '#54199F'
-  },
-  backButtonText: {
-    color: '#fff',
-    fontFamily: 'Nunito-Bold'
-  },
   subjects: {
     flexDirection: 'row',
     alignItems: 'center',

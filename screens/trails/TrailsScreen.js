@@ -5,8 +5,11 @@ import styles from './styles.js'
 import LampadaIcon from '../../assets/icons/LampadaIcon.js'
 import LivroMatematicaIcon from '../../assets/icons/LivroMatematicaIcon.js'
 import LivroPortuguesIcon from '../../assets/icons/LivroPortuguesIcon.js'
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
+import { useSelector } from 'react-redux'
 
 const TrailsScreen = ({ navigation }) => {
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
@@ -59,6 +62,7 @@ const TrailsScreen = ({ navigation }) => {
           </TouchableHighlight>
         </View>
       </ScrollView>
+      {showMissionsModal ? <MissionsModal /> : null}
     </>
   )
 }

@@ -1,11 +1,14 @@
 import React from 'react'
 import { ScrollView, TouchableHighlight, Text, View } from 'react-native'
+import { useSelector } from 'react-redux'
 import LivroIcon from '../../assets/icons/LivroIcon.js'
 import OperacoesIcon from '../../assets/icons/OperacoesIcon.js'
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
 
 const VideosScreen = ({ navigation }) => {
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
@@ -41,9 +44,9 @@ const VideosScreen = ({ navigation }) => {
               Matemática
             </Text>
           </View>
-
         </View>
       </ScrollView>
+      {showMissionsModal ? <MissionsModal/> : null}
     </>
   )
 }

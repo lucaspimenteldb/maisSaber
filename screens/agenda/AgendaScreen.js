@@ -5,11 +5,14 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
 import ChevronIcon from '../../assets/icons/ChevronIcon.js'
 import styles from './styles.js'
 import { LocaleConfig } from 'react-native-calendars';
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import local from './locale.js'
+import { useSelector } from 'react-redux'
 LocaleConfig.defaultLocale = 'pt-br';
 
 const AgendaScreen = ({ navigation }) => {
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const dateOffset = 24 * 60 * 60 * 1000 * 5; //5 days in miliseconds
   const minDate = new Date();
   const maxDate = new Date();
@@ -139,6 +142,7 @@ const AgendaScreen = ({ navigation }) => {
           }}
         />
       </View>
+      {showMissionsModal ? <MissionsModal /> : null}
     </>
   )
 }

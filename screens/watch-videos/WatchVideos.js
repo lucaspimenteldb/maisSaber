@@ -12,6 +12,7 @@ import LikeIcon from '../../assets/icons/LikeIcon.js'
 import ProximoIcon from '../../assets/icons/ProximoIcon.js'
 import AnteriorIcon from '../../assets/icons/AnteriorIcon.js'
 import PlayIcon from '../../assets/icons/PlayIcon.js'
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
 
@@ -20,6 +21,7 @@ import { setShowFeedbackModal, setShowGainPointsModal } from '../../redux/action
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 const VideosScreen = ({ route, navigation }) => {
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const tabBarHeight = useBottomTabBarHeight();
   const dispatch = useDispatch();
   const {showFeedbackModal} = useSelector(state => state.showFeedbackModalReducer);
@@ -148,6 +150,7 @@ const VideosScreen = ({ route, navigation }) => {
         { showGainPointsModal ? <GainPointsModal points={23}/> : null }
       </View>
       { showFeedbackModal ? <FeedbackModal bottom/> : null }
+      { showMissionsModal ? <MissionsModal /> : null }
     </>
   )
 }

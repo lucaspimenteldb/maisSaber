@@ -7,10 +7,13 @@ import FogueteIcon from '../../assets/icons/FogueteIcon.js'
 import CoroaJoias32Icon from '../../assets/icons/CoroaJoias32Icon.js'
 import CoroaCinza32Icon from '../../assets/icons/CoroaCinza32Icon.js'
 import CadeadoTrilhasIcon from '../../assets/icons/CadeadoTrilhasIcon.js'
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import TrailLevelsLockedModal from '../../components/modals/trail-level-locked/Modal.js'
+import { useSelector } from 'react-redux'
 
 const TrailLevelsScreen = ({ navigation }) => {
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const [modal, setModal] = useState(false)
   const levels = [
     {
@@ -113,6 +116,7 @@ const TrailLevelsScreen = ({ navigation }) => {
       </ScrollView>
 
       {modal ? <TrailLevelsLockedModal close={() => setModal(false)} bottom/> : null}
+      { showMissionsModal ? <MissionsModal /> : null }
     </>
   )
 }

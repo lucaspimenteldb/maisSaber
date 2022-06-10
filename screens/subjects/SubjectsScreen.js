@@ -7,10 +7,13 @@ import CoroaJoias32Icon from '../../assets/icons/CoroaJoias32Icon.js'
 import CoroaCinza32Icon from '../../assets/icons/CoroaCinza32Icon.js'
 import CheckIcon from '../../assets/icons/CheckIcon.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
+import { useSelector } from 'react-redux'
 
 const VideosScreen = ({ route, navigation }) => {
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const tabBarHeight = useBottomTabBarHeight();
   const isSubjectComplete = (isComplete) => (
     isComplete ? 
@@ -112,6 +115,7 @@ const VideosScreen = ({ route, navigation }) => {
           }
         </View>
       </ScrollView>
+      {showMissionsModal ? <MissionsModal /> : null}
     </>
   )
 }

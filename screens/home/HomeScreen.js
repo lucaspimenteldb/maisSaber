@@ -33,7 +33,7 @@ const HomeScreen = ({navigation}) => {
     {
       icon: <AprendizadoOnlineIcon />,
       title: 'TRILHAS',
-      route: 'a'
+      route: 'Trilhas'
     },
     {
       icon: <FogueteIcon />,
@@ -43,7 +43,7 @@ const HomeScreen = ({navigation}) => {
     {
       icon: <LivroAbertoIcon />,
       title: 'AGENDA',
-      route: 'a'
+      route: 'Agenda'
     },
   ]
   // const [showMissionsModal, setShowMissionsModal] = useState(false)

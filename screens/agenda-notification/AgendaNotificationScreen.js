@@ -2,26 +2,18 @@ import React, { useState } from 'react'
 import { ScrollView, View, Text, Image, TouchableHighlight } from 'react-native'
 
 import BalaoAgendaIcon from '../../assets/icons/BalaoAgendaIcon.js'
-import ChevronIcon from '../../assets/icons/ChevronIcon.js'
 import styles from './styles.js'
-
+import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import Modal from '../../components/modals/save-changes-modal/Modal.js'
+
+import { useSelector } from 'react-redux'
 
 const AgendaScreen = ({ navigation }) => {
   const [showModal, setShowModal] = useState(false);
-
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
-        <TouchableHighlight
-          underlayColor='#fff'
-          onPress={() => navigation.goBack()}
-        >
-          <View style={styles.backButton}>
-            <ChevronIcon />
-          </View>
-        </TouchableHighlight>
-
         <Text style={styles.title}>Pais e mestres</Text>
 
         <View style={styles.infoSection}>
@@ -62,6 +54,7 @@ const AgendaScreen = ({ navigation }) => {
           /> : 
           null 
         }
+        {showMissionsModal ? <MissionsModal /> : null}
     </>
   )
 }

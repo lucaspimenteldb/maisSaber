@@ -4,6 +4,7 @@ export const SHOW_SHARE_MODAL = 'SHOW_SHARE_MODAL'
 export const SHOW_FEEDBACK_MODAL = 'SHOW_FEEDBACK_MODAL'
 export const SHOW_GAIN_POINTS_MODAL = 'SHOW_GAIN_POINTS_MODAL'
 export const SET_IS_LOGGED_IN = 'SET_IS_LOGGED_IN'
+export const SET_USER = 'SET_USER'
 
 export const setShowMissionsModal = showMissionsModal => dispatch => {
   dispatch({
@@ -39,5 +40,11 @@ export const setIsLoggedIn = isLoggedIn => dispatch => {
   dispatch({
     type: SET_IS_LOGGED_IN,
     payload: isLoggedIn
+  })
+}
+export const setUserReduce = user => dispatch => {
+  dispatch({
+    type: SET_USER,
+    payload: user
   })
 }

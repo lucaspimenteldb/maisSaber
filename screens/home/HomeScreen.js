@@ -51,9 +51,11 @@ const HomeScreen = ({navigation}) => {
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const { showWelcomeModal } = useSelector(state => state.showWelcomeModalReducer)
   const { showShareModal } = useSelector(state => state.showShareModalReducer)
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
 
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
-  const welcomeModal = showWelcomeModal ? <WelcomeModal bottom/> : null
+  const welcomeModal = showWelcomeModal ? <WelcomeModal bottom data={userLogger}/> : null
   const shareModal = showShareModal ? <ShareModal bottom/> : null
 
   return (
@@ -67,7 +69,7 @@ const HomeScreen = ({navigation}) => {
             />
 
             <View style={styles.nameProgressWrapper}>
-              <Text style={styles.userInformationName}>Anderson Moura</Text>
+              <Text style={styles.userInformationName}>{userLogger.nome}</Text>
 
               <View style={styles.userInformationLevel}>
                 <Text style={styles.userInformationLevelText}>Nível 1</Text>

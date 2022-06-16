@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, TouchableHighlight, Text, View } from 'react-native'
 import GeometriaIcon from '../../assets/icons/GeometriaIcon.js'
 import CalculadoraMaoIcon from '../../assets/icons/CalculadoraMaoIcon.js'
@@ -7,12 +7,22 @@ import CoroaJoias32Icon from '../../assets/icons/CoroaJoias32Icon.js'
 import CoroaCinza32Icon from '../../assets/icons/CoroaCinza32Icon.js'
 import CheckIcon from '../../assets/icons/CheckIcon.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { useIsFocused } from "@react-navigation/native"
+import Spinner from 'react-native-loading-spinner-overlay';
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
+import Service from './services/service';
 import { useSelector } from 'react-redux'
 
 const VideosScreen = ({ route, navigation }) => {
+  const { discipline } = route.params;
+  const isFocused = useIsFocused();
+
+  const [spinner, setSpinner] = useState(false);
+  const [assuntos, setAssuntos] = useState([]);
+  const [count, setCount] = useState(0)
+
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const tabBarHeight = useBottomTabBarHeight();
   const isSubjectComplete = (isComplete) => (
@@ -83,6 +93,28 @@ const VideosScreen = ({ route, navigation }) => {
       complete: false
     },
   ]
+
+  useEffect(() => {
+    if (discipline) {
+      async function begin () {
+        try {
+          setSpinner(true);
+          await Service.getSubjects(discipline.id).then(api => {
+            let videos = api.videos;
+            videos ? setAssuntos(videos) : null
+            setSpinner(false);
+
+            setCount(count + 1);
+          });
+        } catch (error) {
+          setSpinner(false);
+          console.log(error)
+        }
+      }
+      begin();
+    }
+
+  }, [isFocused, assuntos, count])
   return (
     <>
       <ScrollView contentContainerStyle={[
@@ -91,11 +123,11 @@ const VideosScreen = ({ route, navigation }) => {
       ]}>
         <View style={styles.subjects}>
           {
-            subjects.map(subject => (
-              <View style={styles.buttonsWrapper} key={subject.title}>
+            assuntos.map((subject, i) => (
+              <View style={styles.buttonsWrapper} key={i}>
                 <TouchableHighlight
                   underlayColor='#fff'
-                  onPress={() => navigation.navigate(subject.route, { discipline: route.params.discipline })}
+                  onPress={() => navigation.navigate('WatchVideos', { discipline: route.params.discipline })}
                   style={styles.subjectsTouchable}
                 >
                   <View style={[
@@ -104,11 +136,12 @@ const VideosScreen = ({ route, navigation }) => {
                   >
                     {subject.complete ? <View style={styles.progressIndicator} /> : null}
                     {subject.complete ? null : <View style={styles.offsetLayer} />}
-                    {subject.icon}
+                    {/* {subject.icon} */}
+                    <CalculadoraMaoIcon />
                   </View>
                 </TouchableHighlight>
                 <Text style={styles.disciplineButtonLabel}>
-                  {subject.title}
+                  {subject.titulo}
                 </Text>
                 {isSubjectComplete(subject.complete)}
               </View>
@@ -117,6 +150,9 @@ const VideosScreen = ({ route, navigation }) => {
         </View>
       </ScrollView>
       {missionsModal}
+      <Spinner
+        visible={spinner}
+      />
     </>
   )
 }

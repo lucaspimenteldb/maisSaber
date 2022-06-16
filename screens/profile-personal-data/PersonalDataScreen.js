@@ -6,18 +6,37 @@ import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
 import ContaIcon from '../../assets/icons/ContaIcon.js'
 import ChangesModal from '../../components/modals/save-changes-modal/Modal.js'
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
+
 import styles from './styles';
+import Service from './services/service'
 import { useSelector } from 'react-redux'
 
 const PersonalDataScreen = ({ navigation }) => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
+
+  const [name, setName] = useState(userLogger.nome)
+  const [email, setEmail] = useState(userLogger.email)
   const [nameActive, setNameActive] = useState(false)
   const [emailActive, setEmailActive] = useState(false)
   const [showChangesModal, setShowChangesModal] = useState(false)
-  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
   const changesModal =  showChangesModal ? <ChangesModal bottom close={() => setShowChangesModal(false)} /> : null
+
+  const handleUpdate = async () => {
+    try {
+      await Service.update(name, email, userLogger.id)
+        .then(item => {
+          setShowChangesModal(true)
+        })
+    } catch (err) {
+      console.log(err)
+      setShowChangesModal(false)
+    }
+  }
+
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
@@ -37,7 +56,7 @@ const PersonalDataScreen = ({ navigation }) => {
           />
 
           <View style={styles.nameProgressWrapper}>
-            <Text style={styles.userInformationName}>Anderson Moura</Text>
+            <Text style={styles.userInformationName}>{userLogger.nome}</Text>
 
             <View style={styles.userInformationLevel}>
               <Text style={styles.userInformationLevelText}>Nível 1</Text>
@@ -82,7 +101,7 @@ const PersonalDataScreen = ({ navigation }) => {
           </View>
 
           <TouchableHighlight
-            onPress={() => setShowChangesModal(true)}
+            onPress={handleUpdate}
             underlayColor="#fff"
           >
             <View style={styles.buttonSave}>

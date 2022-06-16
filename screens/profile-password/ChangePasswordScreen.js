@@ -1,23 +1,45 @@
 import React, { useState } from 'react'
-import { ScrollView, Text, Image, View, TouchableHighlight, TextInput } from 'react-native'
+import { ScrollView, Text, Image, View, TouchableHighlight, TextInput, Alert } from 'react-native'
 
 import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
 import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
 import CadeadoIcon from '../../assets/icons/CadeadoIcon.js'
 import ChangesModal from '../../components/modals/save-changes-modal/Modal.js'
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
+
 import styles from './styles';
+import Service from './services/service'
 import { useSelector } from 'react-redux'
 
 const ChangePasswordScreen = ({ navigation }) => {
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [nameActive, setNameActive] = useState(false)
   const [emailActive, setEmailActive] = useState(false)
   const [showChangesModal, setShowChangesModal] = useState(false)
+
   const changesModal = showChangesModal ? <ChangesModal bottom close={() => setShowChangesModal(false)} /> : null
-  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
-  const missionsModal = showMissionsModal ? <MissionsModal /> : null  
+  const missionsModal = showMissionsModal ? <MissionsModal /> : null
+
+  const handleChangePassword = async () => {
+    try {
+      if (name === email) {
+        await Service.update(name, userLogger.id)
+          .then(response => {
+            setShowChangesModal(true)
+          })
+      } else {
+        Alert.alert('Aviso', 'Senhas não estão iguais, tente novamente.')
+      }
+    } catch (error) {
+      console.log(error)
+      setShowChangesModal(false)
+    }
+  }
 
   return (
     <>
@@ -38,7 +60,7 @@ const ChangePasswordScreen = ({ navigation }) => {
           />
 
           <View style={styles.nameProgressWrapper}>
-            <Text style={styles.userInformationName}>Anderson Moura</Text>
+            <Text style={styles.userInformationName}>{userLogger.nome}</Text>
 
             <View style={styles.userInformationLevel}>
               <Text style={styles.userInformationLevelText}>Nível 1</Text>
@@ -85,7 +107,7 @@ const ChangePasswordScreen = ({ navigation }) => {
           </View>
 
           <TouchableHighlight
-            onPress={() => setShowChangesModal(true)}
+            onPress={handleChangePassword}
             underlayColor="#fff"
           >
             <View style={styles.buttonSave}>

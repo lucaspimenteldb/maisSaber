@@ -28,8 +28,8 @@ const HomeScreen = ({ navigation }) => {
         await Service.login(registration, password)
         .then(response => {
             if (response.token) {
-              dispatch(setIsLoggedIn(true))
               dispatch(setUserReduce(response))
+              dispatch(setIsLoggedIn(true))
             } else {
               Alert.alert('Aviso!', 'Dados incorretos, tente novamente.'), setSpinner(false)
               setSpinner(false)

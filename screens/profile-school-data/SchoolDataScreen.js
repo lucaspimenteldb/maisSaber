@@ -10,11 +10,14 @@ import styles from './styles';
 import { useSelector } from 'react-redux'
 
 const SchoolDataScreen = ({navigation}) => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
+
+  const [name, setName] = useState(user.escola[0].nome)
+  const [email, setEmail] = useState(user.turma[0].descricao)
   const [nameActive, setNameActive] = useState(false)
   const [emailActive, setEmailActive] = useState(false)
-  const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
   return (
@@ -36,7 +39,7 @@ const SchoolDataScreen = ({navigation}) => {
           />
 
           <View style={styles.nameProgressWrapper}>
-            <Text style={styles.userInformationName}>Anderson Moura</Text>
+            <Text style={styles.userInformationName}>{user.user.nome}</Text>
 
             <View style={styles.userInformationLevel}>
               <Text style={styles.userInformationLevelText}>Nível 1</Text>

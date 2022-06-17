@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, TouchableHighlight, Text, View } from 'react-native'
+import { ScrollView, TouchableHighlight, Text, View, ActivityIndicator } from 'react-native'
 import GeometriaIcon from '../../assets/icons/GeometriaIcon.js'
 import CalculadoraMaoIcon from '../../assets/icons/CalculadoraMaoIcon.js'
 import OperacoesIcon from '../../assets/icons/OperacoesIcon.js'
@@ -7,7 +7,7 @@ import CoroaJoias32Icon from '../../assets/icons/CoroaJoias32Icon.js'
 import CoroaCinza32Icon from '../../assets/icons/CoroaCinza32Icon.js'
 import CheckIcon from '../../assets/icons/CheckIcon.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-import { useIsFocused } from "@react-navigation/native"
+import { useFocusEffect } from "@react-navigation/native"
 import Spinner from 'react-native-loading-spinner-overlay';
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
@@ -17,7 +17,6 @@ import { useSelector } from 'react-redux'
 
 const VideosScreen = ({ route, navigation }) => {
   const { discipline } = route.params;
-  const isFocused = useIsFocused();
 
   const [spinner, setSpinner] = useState(false);
   const [assuntos, setAssuntos] = useState([]);
@@ -37,93 +36,36 @@ const VideosScreen = ({ route, navigation }) => {
     styles.disciplineButtonMath :
     styles.disciplineButtonPortuguese;
   const missionsModal = showMissionsModal ? <MissionsModal /> : null;
-  const subjects = [
-    {
-      title: 'Adição e subtração com frações',
-      route: 'WatchVideos',
-      icon: <CalculadoraMaoIcon />,
-      complete: false
-    },
-    {
-      title: 'Figuras geométricas planas',
-      route: 'WatchVideos',
-      icon: <GeometriaIcon />,
-      complete: true
-    },
-    {
-      title: 'Princípio multiplicativo',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo1',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo2',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo3',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo5',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo4',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo6',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-  ]
 
-  useEffect(() => {
-    if (discipline) {
-      async function begin () {
-        try {
+  useFocusEffect(
+    React.useCallback(() => {
+      try {
+        async function begin() {
           setSpinner(true);
-          await Service.getSubjects(discipline.id).then(api => {
-            let videos = api.videos;
-            videos ? setAssuntos(videos) : null
-            setSpinner(false);
-
-            setCount(count + 1);
-          });
-        } catch (error) {
-          setSpinner(false);
-          console.log(error)
+          const response = await Service.getSubjects(discipline.id);
+          setAssuntos(response.videos);
+          setSpinner(false)
         }
+  
+        begin()
+      } catch (error) {
+        setSpinner(false);
+        console.log(error)
       }
-      begin();
-    }
+    }, []),
+  );
 
-  }, [isFocused, assuntos, count])
   return (
-    <>
       <ScrollView contentContainerStyle={[
         styles.pageWrapper,
         { paddingBottom: tabBarHeight }
       ]}>
+        <Spinner
+          visible={spinner}
+        />
         <View style={styles.subjects}>
           {
-            assuntos.map((subject, i) => (
+            assuntos?.map((subject, i) => (
               <View style={styles.buttonsWrapper} key={i}>
                 <TouchableHighlight
                   underlayColor='#fff'
@@ -148,12 +90,8 @@ const VideosScreen = ({ route, navigation }) => {
             ))
           }
         </View>
+        {missionsModal}
       </ScrollView>
-      {missionsModal}
-      <Spinner
-        visible={spinner}
-      />
-    </>
   )
 }
 

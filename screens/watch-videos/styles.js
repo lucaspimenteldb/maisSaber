@@ -138,5 +138,53 @@ export default StyleSheet.create({
     borderRadius: 30,
     borderBottomWidth: 4,
     borderBottomColor: '#54199F'
-  }
+  },
+
+  alternativesButton: {
+    width: '90%',
+    alignSelf: 'center',
+    marginBottom: 12,
+    padding: 12,
+    flex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 22,
+    borderWidth: 2,
+    borderBottomWidth: 4,
+    borderColor: '#8D8D8DCC',
+  },
+  selectedAlternativeText: {
+    fontFamily: 'Nunito-Bold'
+  },
+  alternativeText: {
+    fontFamily: 'Nunito-Bold'
+  },
+  selectedAlternativesButton: {
+    borderColor: '#630FCC'
+  },
+
+  buttonAnswerTouchable: {
+    width: '90%',
+    alignSelf: 'center',
+    marginBottom: 42,
+    marginTop: 34,
+    height: 57,
+    flex: 1,
+    borderRadius: 25,
+  },
+  buttonAnswer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#620ECC',
+    borderRadius: 22,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderBottomWidth: 8,
+    borderColor: '#54199F',
+  },
+  buttonAnswerText: {
+    color: '#fff',
+    fontFamily: 'Nunito-ExtraBold',
+    fontSize: 16,
+  },
 })

@@ -35,7 +35,7 @@ const VideosScreen = ({ navigation }) => {
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
         <View style={styles.disciplines}>
-          {disciplines.length > 0 ? 
+          {disciplines?.length > 0 ? 
             disciplines.map((discipline, i) => (
               <View style={styles.buttonsWrapper} key={i}>
                 <TouchableHighlight

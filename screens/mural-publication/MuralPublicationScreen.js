@@ -1,22 +1,33 @@
 import React, { useState } from 'react'
-import { ScrollView, View, Text, TouchableHighlight, Image } from 'react-native'
+import { ScrollView, View, Text, TextInput, TouchableHighlight, Image } from 'react-native'
 import MuralIcon from '../../assets/icons/MuralIcon.js'
 import HatEducationMiniIcon from '../../assets/icons/HatEducationMiniIcon.js'
 import CalendarMiniIcon from '../../assets/icons/CalendarMiniIcon.js'
-import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowIcon.js'
+import DownloadIcon from '../../assets/icons/DownloadIcon.js'
+import CoracaoIcon from '../../assets/icons/CoracaoIcon.js'
+import ComentarIcon from '../../assets/icons/ComentarIcon.js'
+import UsuariosIcon from '../../assets/icons/UsuariosIcon.js'
+import EnviarIcon from '../../assets/icons/EnviarIcon.js'
+import CheckIcon from '../../assets/icons/CheckMiniIcon.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
+import ReportModal from '../../components/modals/report-modal/Modal.js'
 
 import styles from './styles.js'
+import Comments from '../../components/comments/Comments.js'
 
-const HomeScreen = ({ navigation }) => {
+const MuralPublicationScreen = ({ navigation }) => {
+  const [showReportModal, setShowReportModal] = useState(false)
   const tabBarHeight = useBottomTabBarHeight();
-
+  const [comment, setComment] = useState('')
+  const [read, setRead] = useState(false)
+  const [liked, setLiked] = useState(false)
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
-
+  
+  const reportModal = showReportModal ? <ReportModal bottom close={() => setShowReportModal(false)} /> : null
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
   return (
@@ -65,11 +76,15 @@ const HomeScreen = ({ navigation }) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ipsum consequuntur recusandae doloribus autem ducimus?...
               </Text>
 
-              <TouchableHighlight style={styles.publicationMaterialsTouchable}>
+              {/* materials */}
+              <TouchableHighlight
+                underlayColor='#fff'
+                style={styles.publicationMaterialsTouchable}
+              >
                 <View style={styles.publicationMaterialsButton}>
-                  <Image 
-                    source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }} 
-                    style={styles.publicationMaterialsImage} 
+                  <Image
+                    source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+                    style={styles.publicationMaterialsImage}
                   />
                   <View>
                     <Text style={styles.publicationMaterialsTitle}>
@@ -78,31 +93,105 @@ const HomeScreen = ({ navigation }) => {
                     <Text style={styles.publicationMaterialsText}>
                       PDF
                     </Text>
+                    <DownloadIcon style={styles.publicationMaterialDownload} />
                   </View>
                 </View>
               </TouchableHighlight>
 
+              {/* actions like, comment and mark as red */}
               <View style={styles.publicationActions}>
-                <TouchableHighlight style={styles.publicationActionsButtons}>
-                  <View>
+                <TouchableHighlight 
+                  underlayColor='#fff' 
+                  style={styles.publicationActionsButtons}
+                  onPress={() => setLiked(oldValue => !oldValue)}
+                >
+                  <View style={styles.publicationActionsButtonsIcon}>
+                    <CoracaoIcon 
+                      fill={ liked ? '#4B089F' : null } 
+                      color={liked ? '#4B089F' : null }
+                    />
                     <Text style={styles.publicationActionsButtonsText}>
                       Curtir
                     </Text>
                   </View>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.publicationActionsButtons}>
-                  <View>
+                <TouchableHighlight 
+                  underlayColor='#fff' 
+                  style={styles.publicationActionsButtons}
+                  onPress={() => 'as'}
+                >
+                  <View style={styles.publicationActionsButtonsIcon}>
+                    <ComentarIcon />
                     <Text style={styles.publicationActionsButtonsText}>
                       Comentar
                     </Text>
                   </View>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.publicationActionsButtons}>
-                  <View>
-                    <Text style={styles.publicationActionsButtonsText}>
-                      Marcar como visto
+                <TouchableHighlight
+                  onPress={() => setRead(true)}
+                  underlayColor='#fff'
+                  style={[
+                    styles.publicationActionsButtons,
+                    styles.publicationActionsButtonsOutlined,
+                    read ? styles.publicationActionsButtonsRead : null
+                  ]}
+                >
+                  <View style={read ? styles.readText : null}>
+                    <Text style={[
+                      styles.publicationActionsButtonsText,
+                      styles.publicationActionsButtonsTextPurple,
+                      read ? styles.publicationActionsButtonsTextGreen : null
+                    ]}
+                    >
+                     { read ? 'Visto' : 'Marcar como visto' }
                     </Text>
+                    { read ? <CheckIcon color='#307E00'/> : null }
                   </View>
+                </TouchableHighlight>
+              </View>
+            </View>
+
+            <View style={styles.publicationComments}>
+              <View style={styles.horizontalLine}></View>
+              <View style={styles.publicationCommentsTitle}>
+                <UsuariosIcon />
+                <Text style={styles.publicationCommentsText}>2 comentários para a turma</Text>
+              </View>
+
+              {/* all comments */}
+              <Comments 
+                name='Rã pequena' 
+                year='3˚ ano' 
+                comment='Oi, cara. Como você está neste dia de hoje? A vida é bela que nem um lixão!' 
+                date='25 de maio'
+                owner
+              />
+              <Comments 
+                name='Carambola' 
+                year='3˚ ano' 
+                comment='Oi, cara. Como você está neste dia de hoje? A vida é bela que nem um lixão!' 
+                date='25 de maio'
+                reportModal={() => setShowReportModal(true)}
+              />
+
+              {/* add comment */}
+              <View style={styles.addComments}>
+                <Image
+                  source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+                  style={styles.addCommentsAvatar}
+                />
+                <TextInput 
+                  placeholder='Adicionar comentário'
+                  style={styles.addCommentsTextInput}
+                  value={comment}
+                  onChangeText={value => setComment(value)}
+                />
+                <TouchableHighlight
+                  style={styles.addCommentsSendButton}
+                  underlayColor='#fff'
+                  onPress={() => 'a'}
+                >
+                  <EnviarIcon />
                 </TouchableHighlight>
               </View>
             </View>
@@ -110,9 +199,10 @@ const HomeScreen = ({ navigation }) => {
         </ScrollView>
 
         {missionsModal}
+        {reportModal}
       </View>
     </>
   )
 }
 
-export default HomeScreen
+export default MuralPublicationScreen

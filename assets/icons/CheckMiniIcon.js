@@ -1,22 +1,22 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-const CheckIcon = (props) => (
+const SvgComponent = (props) => (
   <Svg
-    width={32}
-    height={32}
+    width={16}
+    height={16}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <Path
-      d="m5 17.222 6.706 6.795L27.08 8"
+      d="M4 8.455 6.43 11 12 5"
       stroke={props.color ? props.color : "#00E633"}
-      strokeWidth={6}
+      strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
   </Svg>
 )
 
-export default CheckIcon
+export default SvgComponent

@@ -104,25 +104,105 @@ export default StyleSheet.create({
     fontSize: 18,
     color: '#888'
   },
+  publicationMaterialDownload: {
+    position: 'absolute',
+    bottom: 6,
+    right: 6,
+  },
   publicationActions: {
     marginTop: 12,
     flexDirection: 'row',
     flexWrap: 'wrap'
   },
   publicationActionsButtons: {
-    marginRight: 12,
+    marginRight: 0,
     marginBottom: 12,
     padding: 8,
     paddingHorizontal: 16,
-    borderWidth: 1,
     borderRadius: 10,
     borderColor: '#777',
   },
+  publicationActionsButtonsOutlined: {
+    borderWidth: 2,
+    borderBottomWidth: 4,
+    borderColor: '#4B089F'
+  },
+  publicationActionsButtonsRead: {
+    borderColor: '#307E00'
+  },
+  publicationActionsButtonsIcon: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   publicationActionsButtonsText: {
+    marginLeft: 10,
     fontFamily: 'Nunito-Bold',
     color: '#777',
     fontSize: 18,
   },
+  readText: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  publicationActionsButtonsTextPurple: {
+    marginLeft: 0,
+    color: '#4B089F'
+  },
+  publicationActionsButtonsTextGreen: {
+    marginRight: 10,
+    color: '#307E00'
+  },
+  publicationComments: {
+    marginVertical: 24,
+    marginHorizontal: 12
+  },
+  horizontalLine: {
+    marginBottom: 30,
+    height: 1,
+    backgroundColor: '#ccc'
+  },
+  publicationCommentsTitle: {
+    marginBottom: 12,
+    flexDirection: 'row'
+  },
+  publicationCommentsText: {
+    marginLeft: 10,
+    fontFamily: 'Nunito-Bold',
+    fontSize: 16,
+    color: '#777'
+  },
+  addComments: {
+    marginTop: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  addCommentsAvatar: {
+    marginRight: 12,
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    borderWidth: 4,
+    borderColor: '#4B089F'
+  },
+  addCommentsTextInput: {
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    flex: 1
+  },
+  addCommentsSendButton: {
+    width: 42,
+    height: 42,
+    position: 'absolute',
+    top: 4,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+    elevation: 10
+  },
+  
   // navigation hub styles
   publicationHub: {
     marginTop: 16,

@@ -1,5 +1,5 @@
-import React from 'react'
-import { ScrollView, TouchableHighlight, Text, View } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { ScrollView, TouchableHighlight, Text, View, ActivityIndicator } from 'react-native'
 import GeometriaIcon from '../../assets/icons/GeometriaIcon.js'
 import CalculadoraMaoIcon from '../../assets/icons/CalculadoraMaoIcon.js'
 import OperacoesIcon from '../../assets/icons/OperacoesIcon.js'
@@ -7,12 +7,21 @@ import CoroaJoias32Icon from '../../assets/icons/CoroaJoias32Icon.js'
 import CoroaCinza32Icon from '../../assets/icons/CoroaCinza32Icon.js'
 import CheckIcon from '../../assets/icons/CheckIcon.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { useFocusEffect } from "@react-navigation/native"
+import Spinner from 'react-native-loading-spinner-overlay';
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
+import Service from './services/service';
 import { useSelector } from 'react-redux'
 
 const VideosScreen = ({ route, navigation }) => {
+  const { discipline } = route.params;
+
+  const [spinner, setSpinner] = useState(false);
+  const [assuntos, setAssuntos] = useState([]);
+  const [count, setCount] = useState(0)
+
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const tabBarHeight = useBottomTabBarHeight();
   const isSubjectComplete = (isComplete) => (
@@ -27,75 +36,42 @@ const VideosScreen = ({ route, navigation }) => {
     styles.disciplineButtonMath :
     styles.disciplineButtonPortuguese;
   const missionsModal = showMissionsModal ? <MissionsModal /> : null;
-  const subjects = [
-    {
-      title: 'Adição e subtração com frações',
-      route: 'WatchVideos',
-      icon: <CalculadoraMaoIcon />,
-      complete: false
-    },
-    {
-      title: 'Figuras geométricas planas',
-      route: 'WatchVideos',
-      icon: <GeometriaIcon />,
-      complete: true
-    },
-    {
-      title: 'Princípio multiplicativo',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo1',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo2',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo3',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo5',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo4',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-    {
-      title: 'Princípio multiplicativo6',
-      route: 'WatchVideos',
-      icon: <OperacoesIcon />,
-      complete: false
-    },
-  ]
+
+  useFocusEffect(
+    React.useCallback(() => {
+      try {
+        async function begin() {
+          setSpinner(true);
+          const response = await Service.getSubjects(discipline.id);
+          setAssuntos(response.videos);
+          setSpinner(false)
+        }
+  
+        assuntos ? begin() : null
+
+        begin()
+      } catch (error) {
+        setSpinner(false);
+        console.log(error)
+      }
+    }, []),
+  );
+
   return (
-    <>
       <ScrollView contentContainerStyle={[
         styles.pageWrapper,
         { paddingBottom: tabBarHeight }
       ]}>
+        <Spinner
+          visible={spinner}
+        />
         <View style={styles.subjects}>
           {
-            subjects.map(subject => (
-              <View style={styles.buttonsWrapper} key={subject.title}>
+            assuntos?.map((subject, i) => (
+              <View style={styles.buttonsWrapper} key={i}>
                 <TouchableHighlight
                   underlayColor='#fff'
-                  onPress={() => navigation.navigate(subject.route, { discipline: route.params.discipline })}
+                  onPress={() => navigation.navigate('WatchVideos', { discipline: discipline, subject })}
                   style={styles.subjectsTouchable}
                 >
                   <View style={[
@@ -104,20 +80,20 @@ const VideosScreen = ({ route, navigation }) => {
                   >
                     {subject.complete ? <View style={styles.progressIndicator} /> : null}
                     {subject.complete ? null : <View style={styles.offsetLayer} />}
-                    {subject.icon}
+                    {/* {subject.icon} */}
+                    <CalculadoraMaoIcon />
                   </View>
                 </TouchableHighlight>
                 <Text style={styles.disciplineButtonLabel}>
-                  {subject.title}
+                  {subject.titulo}
                 </Text>
                 {isSubjectComplete(subject.complete)}
               </View>
             ))
           }
         </View>
+        {missionsModal}
       </ScrollView>
-      {missionsModal}
-    </>
   )
 }
 

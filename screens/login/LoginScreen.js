@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { ScrollView, View, Text, TouchableHighlight, Image, TextInput } from 'react-native'
+import { ScrollView, View, Text, TouchableHighlight, Image, TextInput, Alert, ActivityIndicator } from 'react-native'
 import { useDispatch } from 'react-redux'
 
 import CadeadoIcon from '../../assets/icons/CadeadoIcon.js'
 import ChevronIcon from '../../assets/icons/ChevronIcon.js'
 import ContaIcon from '../../assets/icons/ContaIcon.js'
 
-import { setIsLoggedIn } from '../../redux/actions.js'
+import { setIsLoggedIn, setUserReduce } from '../../redux/actions.js'
+import Service from './services/service';
 import styles from './styles.js'
 
 const HomeScreen = ({ navigation }) => {
@@ -14,8 +15,35 @@ const HomeScreen = ({ navigation }) => {
   const [password, setPassword] = useState('')
   const [registrationActive, setRegistrationActive] = useState(false)
   const [passwordActive, setPasswordActive] = useState(false)
+  const [spinner, setSpinner] = useState(false)
 
   const dispatch = useDispatch()
+
+  const loading = <ActivityIndicator color={"#fff"} />
+
+  const handleLogin = async () => {
+    setSpinner(true)
+    if (registration !== '' && password !== '') {
+      try {
+        await Service.login(registration, password)
+        .then(response => {
+            if (response.token) {
+              dispatch(setUserReduce(response))
+              dispatch(setIsLoggedIn(true))
+            } else {
+              Alert.alert('Aviso!', 'Dados incorretos, tente novamente.'), setSpinner(false)
+              setSpinner(false)
+            }
+          })
+      } catch (error) {
+        setSpinner(false)
+        Alert.alert('Aviso!', 'Não foi possível fazer login no Mais Saber.');
+        console.log(error.message)
+      }
+    } else {
+      Alert.alert('Aviso!', 'Preencha os campos corretamente.')
+    }
+  }
 
   return (
     <>
@@ -66,11 +94,11 @@ const HomeScreen = ({ navigation }) => {
 
         <View>
           <TouchableHighlight
-            onPress={() => dispatch(setIsLoggedIn(true))}
+            onPress={handleLogin}
             underlayColor="#fff"
           >
             <View style={styles.buttonSignIn}>
-              <Text style={styles.buttonText}>Entrar</Text>
+              {spinner ? loading : <Text style={styles.buttonText}>Entrar</Text>}
             </View>
           </TouchableHighlight>
 

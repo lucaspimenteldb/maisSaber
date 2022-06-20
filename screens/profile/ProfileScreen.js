@@ -13,6 +13,9 @@ import { setIsLoggedIn } from '../../redux/actions.js'
 const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
+
   const [showSignOutModal, setShowSignOutModal] = useState(false)
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
@@ -62,7 +65,7 @@ const ProfileScreen = ({ navigation }) => {
           />
 
           <View style={styles.nameProgressWrapper}>
-            <Text style={styles.userInformationName}>Anderson Moura</Text>
+            <Text style={styles.userInformationName}>{userLogger.nome}</Text>
 
             <View style={styles.userInformationLevel}>
               <Text style={styles.userInformationLevelText}>Nível 1</Text>

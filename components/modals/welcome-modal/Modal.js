@@ -72,7 +72,7 @@ const Modal = (props) => {
             <AlunoIcon />
 
             <Text style={styles.modalContentTitle}>
-              Olá, Anderson!
+              Olá, {props.data.nome}!
             </Text>
             <Text style={styles.modalContentText}>
               Que bom ter você por aqui! Continue suas trilhas para aprender novos conteúdos e ganhar recompensas.

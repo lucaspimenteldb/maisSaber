@@ -13,7 +13,6 @@ export default StyleSheet.create({
     borderTopRightRadius: 40,
   },
   pageActionsButtons: {
-    marginTop: 16,
     marginBottom: 30,
     flexDirection: 'row'
   },
@@ -24,7 +23,6 @@ export default StyleSheet.create({
   },
   pageDescription: {
     marginTop: 8,
-    marginBottom: 16,
     marginHorizontal: 16,
     fontSize: 16,
     fontFamily: 'Nunito'
@@ -138,5 +136,72 @@ export default StyleSheet.create({
     borderRadius: 30,
     borderBottomWidth: 4,
     borderBottomColor: '#54199F'
+  },
+
+  alternativesButton: {
+    width: '90%',
+    alignSelf: 'center',
+    marginBottom: 12,
+    padding: 12,
+    flex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 22,
+    borderWidth: 2,
+    borderBottomWidth: 4,
+    borderColor: '#8D8D8DCC',
+  },
+  selectedAlternativeText: {
+    fontFamily: 'Nunito-Bold'
+  },
+  alternativeText: {
+    fontFamily: 'Nunito-Bold'
+  },
+  selectedAlternativesButton: {
+    borderColor: '#630FCC'
+  },
+
+  buttonAnswerTouchable: {
+    alignSelf: 'center',
+    marginBottom: 42,
+    marginTop: 34,
+    height: 57,
+    borderRadius: 25,
+  },
+  buttonAnswer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#620ECC',
+    borderRadius: 27,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderBottomWidth: 8,
+    borderColor: '#54199F',
+  },
+  buttonAnswerText: {
+    color: '#fff',
+    fontFamily: 'Nunito-ExtraBold',
+    fontSize: 16,
+  },
+
+  buttonAnswerRequest: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    borderRadius: 27,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderBottomWidth: 8,
+    borderTopWidth: 1,
+    borderColor: '#54199F',
+  },
+
+  likeAndFinishArea: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    margin: -15
   }
 })

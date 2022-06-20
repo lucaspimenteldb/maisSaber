@@ -1,4 +1,4 @@
-import { SHOW_MISSIONS_MODAL, SHOW_FEEDBACK_MODAL, SHOW_WELCOME_MODAL, SHOW_SHARE_MODAL, SHOW_GAIN_POINTS_MODAL, SET_IS_LOGGED_IN } from './actions.js'
+import { SHOW_MISSIONS_MODAL, SHOW_FEEDBACK_MODAL, SHOW_WELCOME_MODAL, SHOW_SHARE_MODAL, SHOW_GAIN_POINTS_MODAL, SET_IS_LOGGED_IN, SET_USER } from './actions.js'
 
 const initialState = {
   showMissionsModal: false,
@@ -7,6 +7,7 @@ const initialState = {
   showFeedbackModal: false,
   showGainPointsModal: false,
   isLoggedIn: false,
+  user: {}
 }
 
 function showMissionsModalReducer(state = initialState, action) {
@@ -45,5 +46,11 @@ function setIsLoggedInReducer(state = initialState, action) {
   }
   return state;
 }
+function userReducer(state = initialState, action) {
+  if (action.type === SET_USER) {
+    return { ...state, user: action.payload}
+  }
+  return state;
+}
 
-export { showMissionsModalReducer, showWelcomeModalReducer, showShareModalReducer, showFeedbackModalReducer, showGainPointsModalReducer, setIsLoggedInReducer }
+export { showMissionsModalReducer, showWelcomeModalReducer, showShareModalReducer, showFeedbackModalReducer, showGainPointsModalReducer, setIsLoggedInReducer, userReducer }

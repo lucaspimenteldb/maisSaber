@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ScrollView, TouchableHighlight, Text, View, Image, Dimensions, Alert } from 'react-native'
 import FeedbackModal from '../../components/modals/feedback-modal/Modal.js'
 import GainPointsModal from '../../components/modals/gain-points-modal/Modal.js'
@@ -25,14 +25,17 @@ import RenderHtml from 'react-native-render-html';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 const VideosScreen = ({ route, navigation }) => {
-  const { discipline } = route.params;
+  const { subject, discipline } = route.params;
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const tabBarHeight = useBottomTabBarHeight();
   const dispatch = useDispatch();
   const {showFeedbackModal} = useSelector(state => state.showFeedbackModalReducer);
   const {showGainPointsModal} = useSelector(state => state.showGainPointsModalReducer);
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
 
   const windowWidth = Dimensions.get('window').width;
+  const widthButtonsPrimary = 160;
 
   const [questionDescription, setQuestionDescription] = useState('')
   const [ra, setRa] = useState('')
@@ -42,8 +45,10 @@ const VideosScreen = ({ route, navigation }) => {
   const [rgabarito, setRgabarito] = useState('')
   const [selectedAlternative, setSelectedAlternative] = useState('');
   const [spinner, setSpinner] = useState(false);
+  const [finished, setFinished] = useState(false);
 
   const [fontSize, setFontSize] = useState(16);
+  const whiteColor = '#fff';
   const classStyle  = {
     'descricao-questao':{
       fontSize,
@@ -80,25 +85,61 @@ const VideosScreen = ({ route, navigation }) => {
   const ignoreStyles = ['fontSize', 'fontFamily', 'margin', 'marginTop', 'marginBottom', 'textAlign', 'maxWidth',
     'width', 'padding', 'marginRight', 'marginLeft'];
 
-  const actionButtons = (
+  const actionButtonsPrimary = (
     <>
-    <TouchableHighlight underlayColor="#fff" onPress={() => 'oi'}>
-      <View style={styles.modalActionButton}>
-        <LikeIcon />
-      </View>
-    </TouchableHighlight>
-    <TouchableHighlight underlayColor="#fff" onPress={() => 'oi'}>
-      <View style={styles.modalActionButton}>
-        <AnteriorIcon />
-      </View>
-    </TouchableHighlight>
-    <TouchableHighlight underlayColor="#fff" onPress={() => 'oi'}>
-      <View style={styles.modalActionButton}>
-        <ProximoIcon />
-      </View>
-    </TouchableHighlight>
+      <TouchableHighlight underlayColor="#fff" onPress={() => console.log('teste')}>
+        <View style={styles.modalActionButton}>
+          <AnteriorIcon />
+        </View>
+      </TouchableHighlight>
+      <TouchableHighlight underlayColor="#fff" onPress={() => console.log('teste')}>
+        <View style={styles.modalActionButton}>
+          <ProximoIcon />
+        </View>
+      </TouchableHighlight>
     </>
   )
+  const actionButtonsSecondary = (
+    <>
+      <TouchableHighlight
+        underlayColor="#fff"
+        onPress={() => handleFinishVideo('testes')}
+        style={[styles.buttonAnswerTouchable, { width: widthButtonsPrimary }]}
+      >
+        <View style={finished ? styles.buttonAnswerRequest : styles.buttonAnswer}>
+          <Text style={[styles.alternativeText, { color: finished ? '#7F3FCF' : '#fff' }]}>{finished ? 'Vídeo finalizado' : 'Finalizar vídeo'}</Text>
+        </View>
+      </TouchableHighlight>
+
+      <TouchableHighlight
+        underlayColor="#fff"
+        onPress={() => console.log('teste')}
+        style={[styles.buttonAnswerTouchable, { width: widthButtonsPrimary }]}
+      >
+        <View style={styles.buttonAnswer}>
+          <Text style={[styles.alternativeText, { color: '#fff' }]}>Curtir</Text>
+          <LikeIcon />
+        </View>
+      </TouchableHighlight>
+    </>
+  )
+
+  const handleFinishVideo = async (obj) => {
+    try {
+      const response = await Service.finishVideoaula(userLogger.id, subject.id)
+      if (response.success) {
+        Alert.alert('Concluído!', 'Aula finalizada com sucesso.');
+        setFinished(true);
+      } else {
+        setFinished(true);
+        Alert.alert('Aula já finalizada!', 'Esta aula já foi finalizada.')
+      }
+    } catch (error) {
+      Alert.alert('Aviso!', 'Não foi possível finalizar a aula.')
+      console.log(error.message)
+    }
+  }
+  
   const isSubjectComplete = (isComplete) => (
     isComplete ? 
       <>
@@ -139,8 +180,7 @@ const VideosScreen = ({ route, navigation }) => {
           setSpinner(true)
           const response = await Service.getQuestion(discipline.id)
           const { questoes } = response;
-          console.log(discipline)
-          questoes.map(item => {
+          questoes?.map(item => {
             setQuestionDescription(item.descricao)
             setRa(item.ra)
             setRb(item.rb)
@@ -148,6 +188,13 @@ const VideosScreen = ({ route, navigation }) => {
             setRd(item.rd)
             setRgabarito(item.rgabarito)
           })
+
+          const videoData = await Service.getDataVideo(userLogger.id, subject.id);
+          const { dados } = videoData;
+          dados?.map(item => {
+            item.situacao === 'finalizado' ? setFinished(true) : setFinished(false)
+          })
+
           setSpinner(false)
         }
   
@@ -159,30 +206,6 @@ const VideosScreen = ({ route, navigation }) => {
     }, []),
   );
 
-  // useEffect(() => {
-  //   async function begin() {
-  //     try {
-  //       setSpinner(true)
-  //       await Service.getQuestion(discipline.id)
-  //         .then(response => {
-  //           const { questoes } = response;
-  //           questoes.map(item => {
-  //             setQuestionDescription(item.descricao)
-  //             setRa(item.ra)
-  //             setRb(item.rb)
-  //             setRc(item.rc)
-  //             setRd(item.rd)
-  //             setRgabarito(item.rgabarito)
-  //           })
-  //         })
-  //       setSpinner(false)
-  //     } catch (e) {
-  //       console.log(e)
-  //     }
-  //   }
-
-  //   begin()
-  // }, [])
   return (
     <>
       <Spinner
@@ -218,14 +241,17 @@ const VideosScreen = ({ route, navigation }) => {
 
           <View style={styles.pageInformation}>
             <Text style={styles.pageTitle}>
-              {discipline.titulo || discipline?.nome}
+              {subject.titulo}
             </Text>
             <Text style={styles.pageDescription}>
-              {discipline.descricao || discipline?.slug}
+              {subject.descricao}
             </Text>
 
+            <View style={styles.likeAndFinishArea}>
+              {actionButtonsSecondary}
+            </View>
             <View style={styles.pageActionsButtons}>
-              {actionButtons}
+              {actionButtonsPrimary}
             </View>
 
             
@@ -310,7 +336,7 @@ const VideosScreen = ({ route, navigation }) => {
             <TouchableHighlight
               underlayColor="#fff"
               onPress={handleAnswerQuestion}
-              style={styles.buttonAnswerTouchable}
+              style={[styles.buttonAnswerTouchable, { width: '90%' }]}
             >
               <View style={styles.buttonAnswer}>
                 <Text style={styles.buttonAnswerText}>

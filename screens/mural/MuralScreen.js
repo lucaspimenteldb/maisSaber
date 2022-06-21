@@ -6,21 +6,49 @@ import CalendarMiniIcon from '../../assets/icons/CalendarMiniIcon.js'
 import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowIcon.js'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { useFocusEffect } from "@react-navigation/native"
+import Spinner from 'react-native-loading-spinner-overlay';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
+import Service from './services/service'
 
-const HomeScreen = ({ navigation }) => {
+const MuralScreen = ({ navigation }) => {
+  const [spinner, setSpinner] = useState(false);
+  const [posts, setPosts] = useState([]);
   const tabBarHeight = useBottomTabBarHeight();
 
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
 
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
+  useFocusEffect(
+    React.useCallback(() => {
+      try {
+        async function begin() {
+          setSpinner(true)
+          await Service.getPostsMural(user.turma[0].id).then(response => setPosts(response.mural))
+          setSpinner(false)
+        }
+  
+        begin()
+
+        !posts ? null : begin()
+      } catch (error) {
+        setSpinner(false);
+        console.log(error)
+      }
+    }, []),
+  );
+
   return (
     <>
+      <Spinner
+        visible={spinner}
+      />
       <View style={{ flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#4B089F' }}>
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
@@ -35,50 +63,52 @@ const HomeScreen = ({ navigation }) => {
           {/* navigation hub */}
           <View style={styles.publicationHub}>
             {/* main hub */}
-            <View style={styles.publicationHubContainer}>
-              <TouchableHighlight
-                onPress={() => navigation.navigate('MuralPublication')}
-                underlayColor='#fff'
-                style={styles.publicationTouchable}
-              >
-                <View style={styles.publicationButton}>
-                  <View style={styles.publicationHeader}>
-                    <Image
-                      source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
-                      style={styles.publicationAvatar}
-                    />
-                    <View>
-                      <Text style={styles.publicationOwner}>
-                        Prof. Kassandra
-                      </Text>
-                      <View style={styles.publicationSubtitle}>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                          <HatEducationMiniIcon style={styles.publicationSubtitleIcon}/>
-                          <Text style={styles.publicationSubtitleText}>
-                            Geografia 
-                          </Text>
-                        </View>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                          <CalendarMiniIcon style={styles.publicationSubtitleIcon}/>
-                          <Text style={styles.publicationSubtitle}>
-                            26 de marc 
-                          </Text>
+            {posts?.map(post => (
+              <View style={styles.publicationHubContainer} key={post.id}>
+                <TouchableHighlight
+                  onPress={() => navigation.navigate('MuralPublication', { post })}
+                  underlayColor='#fff'
+                  style={styles.publicationTouchable}
+                >
+                  <View style={styles.publicationButton}>
+                    <View style={styles.publicationHeader}>
+                      <Image
+                        source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+                        style={styles.publicationAvatar}
+                      />
+                      <View>
+                        <Text style={styles.publicationOwner}>
+                          {post.professor}
+                        </Text>
+                        <View style={styles.publicationSubtitle}>
+                          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <HatEducationMiniIcon style={styles.publicationSubtitleIcon}/>
+                            <Text style={styles.publicationSubtitleText}>
+                              {post.disciplina} 
+                            </Text>
+                          </View>
+                          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <CalendarMiniIcon style={styles.publicationSubtitleIcon}/>
+                            <Text style={styles.publicationSubtitle}>
+                              26 de marc 
+                            </Text>
+                          </View>
                         </View>
                       </View>
                     </View>
+                    <View style={styles.publicationBody}>
+                      <Text style={styles.publicationDescription}>
+                        {post.descricao}
+                      </Text>
+                    </View>
+                    <View style={styles.publicationFooter}>
+                      <Text style={styles.publicationFooterText}>Ver publicação</Text>
+                      <MuralPublicationArrowIcon />
+                    </View>
                   </View>
-                  <View style={styles.publicationBody}>
-                    <Text style={styles.publicationDescription}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ipsum consequuntur recusandae doloribus autem ducimus?...
-                    </Text>
-                  </View>
-                  <View style={styles.publicationFooter}>
-                    <Text style={styles.publicationFooterText}>Ver publicação</Text>
-                    <MuralPublicationArrowIcon />
-                  </View>
-                </View>
-              </TouchableHighlight>
-            </View>
+                </TouchableHighlight>
+              </View>
+            ))}
           </View>
         </ScrollView>
 
@@ -88,4 +118,4 @@ const HomeScreen = ({ navigation }) => {
   )
 }
 
-export default HomeScreen
+export default MuralScreen

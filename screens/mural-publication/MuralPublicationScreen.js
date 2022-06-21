@@ -18,7 +18,8 @@ import ReportModal from '../../components/modals/report-modal/Modal.js'
 import styles from './styles.js'
 import Comments from '../../components/comments/Comments.js'
 
-const MuralPublicationScreen = ({ navigation }) => {
+const MuralPublicationScreen = ({ route, navigation }) => {
+  const { post } = route.params;
   const [showReportModal, setShowReportModal] = useState(false)
   const tabBarHeight = useBottomTabBarHeight();
   const [comment, setComment] = useState('')
@@ -52,13 +53,13 @@ const MuralPublicationScreen = ({ navigation }) => {
               />
               <View>
                 <Text style={styles.publicationOwner}>
-                  Prof. Kassandra
+                  {post.professor}
                 </Text>
                 <View style={styles.publicationSubtitle}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <HatEducationMiniIcon style={styles.publicationSubtitleIcon} />
                     <Text style={styles.publicationSubtitleText}>
-                      Geografia
+                      {post.disciplina}
                     </Text>
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -73,30 +74,32 @@ const MuralPublicationScreen = ({ navigation }) => {
             <View style={styles.publicationBody}>
               <Image source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }} style={styles.publicationImage} />
               <Text style={styles.publicationDescription}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ipsum consequuntur recusandae doloribus autem ducimus?...
+                {post.descricao}
               </Text>
 
               {/* materials */}
-              <TouchableHighlight
-                underlayColor='#fff'
-                style={styles.publicationMaterialsTouchable}
-              >
-                <View style={styles.publicationMaterialsButton}>
-                  <Image
-                    source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
-                    style={styles.publicationMaterialsImage}
-                  />
-                  <View>
-                    <Text style={styles.publicationMaterialsTitle}>
-                      Material askdhfkas
-                    </Text>
-                    <Text style={styles.publicationMaterialsText}>
-                      PDF
-                    </Text>
-                    <DownloadIcon style={styles.publicationMaterialDownload} />
+              {post.anexo ?
+                <TouchableHighlight
+                  underlayColor='#fff'
+                  style={styles.publicationMaterialsTouchable}
+                >
+                  <View style={styles.publicationMaterialsButton}>
+                    <Image
+                      source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+                      style={styles.publicationMaterialsImage}
+                    />
+                    <View>
+                      <Text style={styles.publicationMaterialsTitle}>
+                        {post.anexo}
+                      </Text>
+                      <Text style={styles.publicationMaterialsText}>
+                        PDF
+                      </Text>
+                      <DownloadIcon style={styles.publicationMaterialDownload} />
+                    </View>
                   </View>
-                </View>
-              </TouchableHighlight>
+                </TouchableHighlight> : null
+              }
 
               {/* actions like, comment and mark as red */}
               <View style={styles.publicationActions}>

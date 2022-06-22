@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { ScrollView, View, Text, TextInput, TouchableHighlight, Image } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { ScrollView, View, Text, TextInput, TouchableHighlight, Image, Alert } from 'react-native'
 import MuralIcon from '../../assets/icons/MuralIcon.js'
 import HatEducationMiniIcon from '../../assets/icons/HatEducationMiniIcon.js'
 import CalendarMiniIcon from '../../assets/icons/CalendarMiniIcon.js'
@@ -12,27 +12,82 @@ import CheckIcon from '../../assets/icons/CheckMiniIcon.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useFocusEffect, useIsFocused } from "@react-navigation/native"
+import Spinner from 'react-native-loading-spinner-overlay'
+import moment from 'moment'
+import 'moment/locale/pt-br'
+
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import ReportModal from '../../components/modals/report-modal/Modal.js'
+import Comments from '../../components/comments/Comments.js'
 
 import styles from './styles.js'
-import Comments from '../../components/comments/Comments.js'
+import Service from './services/service'
 
 const MuralPublicationScreen = ({ route, navigation }) => {
   const { post } = route.params;
+  const [spinner, setSpinner] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false)
   const tabBarHeight = useBottomTabBarHeight();
-  const [comment, setComment] = useState('')
+  const [comment, setComment] = useState([])
+  const [addComment, setAddComment] = useState('')
   const [read, setRead] = useState(false)
   const [liked, setLiked] = useState(false)
+  const [totalLike, setTotalLike] = useState(Number(post.curtidas))
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
+
+  const isFocused = useIsFocused();
   
   const reportModal = showReportModal ? <ReportModal bottom close={() => setShowReportModal(false)} /> : null
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
+  const handleLike = async () => {
+    let newLike = totalLike + 1;
+    const response = await Service.curtir(post.id, newLike)
+    liked ? null : setTotalLike(response.curtidas)
+
+    setLiked(oldValue => !oldValue)
+  }
+
+  const handleComment = async () => {
+    try {
+      await Service.comentar(post.id, userLogger.nome, addComment, user.turma[0].descricao);
+      const comments = await Service.buscarComentarios(post.id)
+      setComment(comments.comentarios)
+      setAddComment('')
+    } catch (err) {
+      Alert.alert('Aviso!', 'Ocorreu um erro ao comentar na publicação.')
+      console.log(err)
+    }
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      try {
+        async function begin() {
+          setSpinner(true)
+          const response = await Service.buscarComentarios(post.id)
+          setComment(response.comentarios)
+
+          setSpinner(false)
+        }
+    
+        begin();
+      } catch (error) {
+        setSpinner(false);
+        console.log(error)
+      }
+    }, [isFocused, liked])
+  );
+
   return (
     <>
+      <Spinner
+        visible={spinner}
+      />
       <View style={{ flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#4B089F' }}>
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
@@ -106,15 +161,15 @@ const MuralPublicationScreen = ({ route, navigation }) => {
                 <TouchableHighlight 
                   underlayColor='#fff' 
                   style={styles.publicationActionsButtons}
-                  onPress={() => setLiked(oldValue => !oldValue)}
+                  onPress={handleLike}
                 >
                   <View style={styles.publicationActionsButtonsIcon}>
                     <CoracaoIcon 
-                      fill={ liked ? '#4B089F' : null } 
-                      color={liked ? '#4B089F' : null }
+                      fill={ liked ? '#FB3542' : null } 
+                      color={liked ? '#FB3542' : null }
                     />
                     <Text style={styles.publicationActionsButtonsText}>
-                      Curtir
+                      {totalLike}
                     </Text>
                   </View>
                 </TouchableHighlight>
@@ -162,20 +217,16 @@ const MuralPublicationScreen = ({ route, navigation }) => {
               </View>
 
               {/* all comments */}
-              <Comments 
-                name='Rã pequena' 
-                year='3˚ ano' 
-                comment='Oi, cara. Como você está neste dia de hoje? A vida é bela que nem um lixão!' 
-                date='25 de maio'
-                owner
-              />
-              <Comments 
-                name='Carambola' 
-                year='3˚ ano' 
-                comment='Oi, cara. Como você está neste dia de hoje? A vida é bela que nem um lixão!' 
-                date='25 de maio'
-                reportModal={() => setShowReportModal(true)}
-              />
+              {comment?.map(comentario => (
+                <Comments
+                  key={comentario.id} 
+                  name={comentario.nome}
+                  year={comentario.turma}
+                  comment={comentario.comentario}
+                  date={moment(comentario.created_at).locale('pt-br').format('ll')}
+                  owner
+                />
+              ))}
 
               {/* add comment */}
               <View style={styles.addComments}>
@@ -186,13 +237,13 @@ const MuralPublicationScreen = ({ route, navigation }) => {
                 <TextInput 
                   placeholder='Adicionar comentário'
                   style={styles.addCommentsTextInput}
-                  value={comment}
-                  onChangeText={value => setComment(value)}
+                  value={addComment}
+                  onChangeText={value => setAddComment(value)}
                 />
                 <TouchableHighlight
                   style={styles.addCommentsSendButton}
                   underlayColor='#fff'
-                  onPress={() => 'a'}
+                  onPress={handleComment}
                 >
                   <EnviarIcon />
                 </TouchableHighlight>

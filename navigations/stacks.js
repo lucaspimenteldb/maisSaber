@@ -22,6 +22,12 @@ import TrailQuestionsScreen from '../screens/trail-questions/TrailQuestionsScree
 import HelpScreen from '../screens/help/HelpScreen.js';
 import HelpCategoryScreen from '../screens/help-category/HelpCategoryScreen.js';
 import HelpTextScreen from '../screens/help-text/HelpTextScreen.js';
+import MuralScreen from '../screens/mural/MuralScreen.js'
+import MuralPublicationScreen from '../screens/mural-publication/MuralPublicationScreen.js'
+import MomentosTela from '../screens/momentos/MomentosTela.js'
+import MomentosPublicacaoTela from '../screens/momentos-publicacao/MomentosPublicacaoTela.js';
+import MensagensTela from '../screens/mensagens/MensagensTela.js';
+import MensagensAbertasTela from '../screens/mensagens-abertas/MensagensAbertasTela.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -290,6 +296,71 @@ export const HelpNavigator = () => {
         }}
         component={HelpTextScreen}
       />
+    </Stack.Navigator>
+  )
+}
+
+export const MuralNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Murals"
+        options={{
+          headerShown: false,
+        }}
+        component={MuralScreen}        
+      />
+      <Stack.Screen
+        name="MuralPublication"
+        options={{
+          headerShown: false,
+        }}
+        component={MuralPublicationScreen}
+      />
+    </Stack.Navigator>
+  )
+}
+
+export const MomentosNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Moments"
+        options={{
+          headerShown: false,
+        }}
+        component={MomentosTela}        
+      />
+      <Stack.Screen
+        name="MomentosPublicacao"
+        options={{
+          headerShown: false,
+        }}
+        component={MomentosPublicacaoTela}        
+      />
+      
+    </Stack.Navigator>
+  )
+}
+
+export const MMensagensNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Mensagens1"
+        options={{
+          headerShown: false,
+        }}
+        component={MensagensTela}        
+      />
+      <Stack.Screen
+        name="MensagensAbertas"
+        options={{
+          headerShown: false,
+        }}
+        component={MensagensAbertasTela}        
+      />
+      
     </Stack.Navigator>
   )
 }

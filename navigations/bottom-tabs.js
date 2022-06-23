@@ -2,20 +2,60 @@ import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from '../screens/home/HomeScreen.js'
-import MuralScreen from '../screens/mural/MuralScreen.js'
-import MuralPublicationScreen from '../screens/mural-publication/MuralPublicationScreen.js'
 import NotificacoesTela from '../screens/notificacoes/NotificacoesTela.js'
 import HomeHeader from '../components/header/home/HomeHeader.js';
-import {AgendaNavigator, HelpNavigator, LevelNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
+import {AgendaNavigator, HelpNavigator, LevelNavigator, MMensagensNavigator, MomentosNavigator, MuralNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
 import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 
 import { useNavigation } from '@react-navigation/native';
+import MensagensTela from '../screens/mensagens/MensagensTela.js';
 
 const Tab = createBottomTabNavigator();
 
 export default BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
+      <Tab.Screen
+        name="Momentos"
+        options={{
+          headerTitle: () => (
+            <HomeHeader navigation={useNavigation()}/>
+          ),
+          headerStyle: {backgroundColor: '#fff'},
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={MomentosNavigator}        
+      />
+      <Tab.Screen
+        name="Mensagens"
+        options={{
+          headerTitle: () => (
+            <HomeHeader navigation={useNavigation()}/>
+          ),
+          headerStyle: {backgroundColor: '#fff'},
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={MMensagensNavigator}        
+      />
+
       <Tab.Screen
         name="Mural"
         options={{
@@ -34,28 +74,9 @@ export default BottomTabNavigator = () => {
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={MuralScreen}        
+        component={MuralNavigator}        
       />
-      <Tab.Screen
-        name="MuralPublication"
-        options={{
-          headerTitle: () => (
-            <HomeHeader navigation={useNavigation()}/>
-          ),
-          headerStyle: {backgroundColor: '#fff'},
-          headerShadowVisible: false,
-          headerBackTitle: '',
-          headerBackVisible: false,
-          tabBarStyle: {
-            position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-          },
-          tabBarActiveTintColor: '#fff',
-        }}
-        component={MuralPublicationScreen}        
-      />
+
       <Tab.Screen
         name="Notificacoes"
         options={{

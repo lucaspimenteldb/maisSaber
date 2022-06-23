@@ -25,59 +25,53 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
-  publicationTouchable: {
+  notificationTouchable: {
     margin: 12,
     marginBottom: 6,
-    padding: 12,
+    paddingBottom: 12,
     flex: 1,
-    borderColor: '#ddd',
-    borderBottomWidth: 6,
-    borderWidth: 2,
-    borderRadius: 10,
+    borderBottomColor: '#ddd',
+    borderBottomWidth: 2,
   },
-  publicationHeader: {
+  notificationButton: {
     flexDirection: 'row',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    maxWidth: '90%'
   },
-  publicationAvatar: {
+  notificationAvatar: {
     marginRight: 12,
     height: 50,
     width: 50,
     borderRadius: 25,
   },
-  publicationOwner: {
+  notificationOwner: {
     fontFamily: 'Nunito-Bold',
     fontSize: 16
   },
-  publicationSubtitle: {
-    flexDirection: 'row'
-  },
-  publicationSubtitleText: {
-    marginRight: 8,
-    fontFamily: 'Nunito',
-  },
-  publicationSubtitleIcon: {
-    marginRight: 4,
-  },
-  publicationBody: {
-    marginLeft: 62
-  },
-  publicationDescription: {
-    fontFamily: 'Nunito'
-  },
-  publicationFooter: {
-    marginTop: 12,
+  notificationBody: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end'
+    width: '90%'
   },
-  publicationFooterText: {
-    marginRight: 8,
-    fontFamily: 'Nunito-ExtraBold',
-    color: '#4B089F'
+  notificationTexts: {
+    width: '90%'
+  },
+  notificationInfos: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    alignItems: 'center'
+  },
+  notificationDescription: {
+    fontFamily: 'Nunito',
+    width: '90%',
+  },
+  notificationTime: {
+    marginBottom: 24,
+    fontFamily: 'Nunito',
+    color: '#888'
   },
   // navigation hub styles
-  publicationHub: {
+  notificationHub: {
     marginTop: 16,
     paddingTop: 16,
     paddingBottom: 16,

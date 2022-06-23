@@ -80,7 +80,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <>
-      <View style={{ flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#4B089F' }}>
+      <View style={{ flex: 1, backgroundColor: '#4B089F' }}>
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
             <SinoIcon />
@@ -92,7 +92,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
 
           {/* navigation hub */}
-          <View style={styles.notificationHub}>
+          <View style={[styles.notificationHub, {paddingBottom: tabBarHeight}]}>
             {/* main hub */}
             <View style={styles.notificationHubContainer}>
               {renderNotificacoes}

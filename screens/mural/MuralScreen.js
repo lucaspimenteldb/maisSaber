@@ -21,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <>
-      <View style={{ flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#4B089F' }}>
+      <View style={{ flex: 1, backgroundColor: '#4B089F' }}>
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
             <MuralIcon />
@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
 
           {/* navigation hub */}
-          <View style={styles.publicationHub}>
+          <View style={[styles.publicationHub, {paddingBottom: tabBarHeight,}]}>
             {/* main hub */}
             <View style={styles.publicationHubContainer}>
               <TouchableHighlight

@@ -25,7 +25,7 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
-  publicationTouchable: {
+ momentsTouchable: {
     margin: 12,
     marginBottom: 6,
     padding: 12,
@@ -35,49 +35,83 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
   },
-  publicationHeader: {
+ momentsHeader: {
+    marginHorizontal: 12,
     flexDirection: 'row',
     alignItems: 'flex-start'
   },
-  publicationAvatar: {
+ momentsAvatar: {
     marginRight: 12,
     height: 50,
     width: 50,
     borderRadius: 25,
   },
-  publicationOwner: {
+ momentsSchool: {
     fontFamily: 'Nunito-Bold',
     fontSize: 16
   },
-  publicationSubtitle: {
+ momentsSubtitle: {
     flexDirection: 'row'
   },
-  publicationSubtitleText: {
-    marginRight: 8,
+ momentsSubtitleText: {
+    marginRight: 4,
     fontFamily: 'Nunito',
   },
-  publicationSubtitleIcon: {
+ momentsSubtitleIcon: {
     marginRight: 4,
   },
-  publicationBody: {
+ momentsBody: {
     marginLeft: 62
   },
-  publicationDescription: {
+ momentsDescription: {
     fontFamily: 'Nunito'
   },
-  publicationFooter: {
+ momentsFooter: {
     marginTop: 12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end'
   },
-  publicationFooterText: {
+ momentsFooterText: {
     marginRight: 8,
     fontFamily: 'Nunito-ExtraBold',
     color: '#4B089F'
   },
+  filterButtons: {
+    margin: 12,
+    marginTop: 18,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  filterWrapper: {
+    alignItems: 'center',
+  },
+  filterImage: {
+    height: 36,
+    width: 36,
+    borderRadius: 18,
+  },
+  filterText: {
+    fontFamily: 'Nunito',
+    fontSize: 12,
+  },
+  photosGallery: {
+    marginTop: 24,
+    marginLeft: 12,
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+  photo: {
+    width: '100%',
+    height: '100%',
+  },
+  photoWrapper: {
+    marginHorizontal: 6,
+    marginBottom: 12,
+    width: '29%',
+  },
   // navigation hub styles
-  publicationHub: {
+ momentsHub: {
     marginTop: 16,
     paddingTop: 16,
     paddingBottom: 16,

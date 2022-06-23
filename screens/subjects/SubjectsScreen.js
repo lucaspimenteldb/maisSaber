@@ -47,6 +47,8 @@ const VideosScreen = ({ route, navigation }) => {
           setSpinner(false)
         }
   
+        assuntos ? begin() : null
+
         begin()
       } catch (error) {
         setSpinner(false);
@@ -69,7 +71,7 @@ const VideosScreen = ({ route, navigation }) => {
               <View style={styles.buttonsWrapper} key={i}>
                 <TouchableHighlight
                   underlayColor='#fff'
-                  onPress={() => navigation.navigate('WatchVideos', { discipline: route.params.discipline })}
+                  onPress={() => navigation.navigate('WatchVideos', { discipline: discipline, subject })}
                   style={styles.subjectsTouchable}
                 >
                   <View style={[

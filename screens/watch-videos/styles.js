@@ -13,7 +13,6 @@ export default StyleSheet.create({
     borderTopRightRadius: 40,
   },
   pageActionsButtons: {
-    marginTop: 16,
     marginBottom: 30,
     flexDirection: 'row'
   },
@@ -24,7 +23,6 @@ export default StyleSheet.create({
   },
   pageDescription: {
     marginTop: 8,
-    marginBottom: 16,
     marginHorizontal: 16,
     fontSize: 16,
     fontFamily: 'Nunito'
@@ -163,20 +161,19 @@ export default StyleSheet.create({
   },
 
   buttonAnswerTouchable: {
-    width: '90%',
     alignSelf: 'center',
     marginBottom: 42,
     marginTop: 34,
     height: 57,
-    flex: 1,
     borderRadius: 25,
   },
   buttonAnswer: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#620ECC',
-    borderRadius: 22,
+    borderRadius: 27,
     borderLeftWidth: 2,
     borderRightWidth: 2,
     borderBottomWidth: 8,
@@ -187,4 +184,24 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-ExtraBold',
     fontSize: 16,
   },
+
+  buttonAnswerRequest: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    borderRadius: 27,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderBottomWidth: 8,
+    borderTopWidth: 1,
+    borderColor: '#54199F',
+  },
+
+  likeAndFinishArea: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    margin: -15
+  }
 })

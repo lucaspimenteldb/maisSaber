@@ -343,7 +343,7 @@ export const MomentosNavigator = () => {
   )
 }
 
-export const MMensagensNavigator = () => {
+export const MensagensNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen

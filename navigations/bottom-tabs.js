@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from '../screens/home/HomeScreen.js'
 import NotificacoesTela from '../screens/notificacoes/NotificacoesTela.js'
 import HomeHeader from '../components/header/home/HomeHeader.js';
-import {AgendaNavigator, HelpNavigator, LevelNavigator, MMensagensNavigator, MomentosNavigator, MuralNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
+import {AgendaNavigator, HelpNavigator, LevelNavigator, MensagensNavigator, MomentosNavigator, MuralNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
 import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 
 import { useNavigation } from '@react-navigation/native';
@@ -18,6 +18,7 @@ export default BottomTabNavigator = () => {
       <Tab.Screen
         name="Momentos"
         options={{
+          tabBarButton: () => null,
           headerTitle: () => (
             <HomeHeader navigation={useNavigation()}/>
           ),
@@ -38,6 +39,7 @@ export default BottomTabNavigator = () => {
       <Tab.Screen
         name="Mensagens"
         options={{
+          tabBarButton: () => null,
           headerTitle: () => (
             <HomeHeader navigation={useNavigation()}/>
           ),
@@ -53,12 +55,13 @@ export default BottomTabNavigator = () => {
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={MMensagensNavigator}        
+        component={MensagensNavigator}        
       />
 
       <Tab.Screen
         name="Mural"
         options={{
+          tabBarButton: () => null,
           headerTitle: () => (
             <HomeHeader navigation={useNavigation()}/>
           ),
@@ -80,6 +83,7 @@ export default BottomTabNavigator = () => {
       <Tab.Screen
         name="Notificacoes"
         options={{
+          tabBarButton: () => null,
           headerTitle: () => (
             <HomeHeader navigation={useNavigation()}/>
           ),

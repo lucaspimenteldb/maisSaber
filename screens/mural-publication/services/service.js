@@ -6,19 +6,20 @@ export default {
         return dados.data;
     },
 
-    curtir: async (id, curtir) => {
-        let dados = await api.post('/curtir-post', {
-            id_mural: id,
+    curtir: async (idMural, idUser, curtir) => {
+        let dados = await api.post('/marcar-curtir', {
+            id_mural: idMural,
+            id_user: idUser,
             curtidas: curtir
         });
 
         return dados.data;
     },
 
-    visualizar: async (id, visto) => {
-        let dados = await api.post('/vaisualizar-post', {
+    visualizar: async (id, id_user) => {
+        let dados = await api.post('/marcar-visto', {
             id_mural: id,
-            vistos: visto
+            id_user: id_user
         });
 
         return dados.data;
@@ -34,5 +35,18 @@ export default {
         });
 
         return dados.data;
+    },
+
+    getAcoes: async (id, id_user) => {
+        let dadosCurtidas = await api.get('/get-curtida/' + id_user + '/' + id);
+
+        let dadosVistos = await api.get('/get-visto/' + id_user + '/' + id);
+
+        let objAcao = {
+            visto: dadosVistos.data.success,
+            curtido: dadosCurtidas.data.success,
+        }
+
+        return objAcao; 
     }
 }

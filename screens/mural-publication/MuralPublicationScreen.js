@@ -46,8 +46,9 @@ const MuralPublicationScreen = ({ route, navigation }) => {
 
   const handleLike = async () => {
     let newLike = totalLike + 1;
-    const response = await Service.curtir(post.id, newLike)
+    const response = await Service.curtir(post.id,userLogger.id, newLike)
     liked ? null : setTotalLike(response.curtidas)
+    console.log(response)
 
     setLiked(oldValue => !oldValue)
   }
@@ -64,6 +65,21 @@ const MuralPublicationScreen = ({ route, navigation }) => {
     }
   }
 
+  const handleCheckPost = async () => {
+    try {
+      const response = await Service.visualizar(post.id, userLogger.id)
+      if (response.success) {
+        Alert.alert('Visto com sucesso!', 'Obrigado pelo feedback!') 
+        setRead(true)
+      } else {
+        Alert.alert('Aviso!', 'Publicação já foi vista.')
+        setRead(true)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   useFocusEffect(
     React.useCallback(() => {
       try {
@@ -71,6 +87,12 @@ const MuralPublicationScreen = ({ route, navigation }) => {
           setSpinner(true)
           const response = await Service.buscarComentarios(post.id)
           setComment(response.comentarios)
+
+          const getAcao = await Service.getAcoes(post.id, userLogger.id)
+          const { visto, curtido } = getAcao;
+
+          visto ? setRead(true) : null;
+          curtido ? setLiked(true) : null;
 
           setSpinner(false)
         }
@@ -186,7 +208,7 @@ const MuralPublicationScreen = ({ route, navigation }) => {
                   </View>
                 </TouchableHighlight>
                 <TouchableHighlight
-                  onPress={() => setRead(true)}
+                  onPress={handleCheckPost}
                   underlayColor='#fff'
                   style={[
                     styles.publicationActionsButtons,

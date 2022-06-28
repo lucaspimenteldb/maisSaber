@@ -94,7 +94,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
 
           {/* navigation hub */}
-          <View style={styles.notificationHub}>
+          <View style={[styles.notificationHub, {paddingBottom: tabBarHeight}]}>
             {/* main hub */}
             <View style={styles.notificationHubContainer}>
               {renderNotificacoes}

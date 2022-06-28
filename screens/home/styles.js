@@ -5,6 +5,64 @@ export default StyleSheet.create({
     minHeight: '100%',
     backgroundColor: '#630FCC',
   },
+  //carousel
+  carousel: {
+    flexDirection: 'row'
+  },
+  lastCarousel: {
+    marginRight: 16,
+  },
+  carouselImage: {
+    marginVertical: 16,
+    marginLeft: 16,
+    width: 340,
+    height: 240,
+    borderRadius: 10,
+  },
+  carouselImageFilter: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+    bottom: 16,
+    right: 0,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0, 0, 0, .4)'
+  },
+  carouselTitle: {
+    position: 'absolute',
+    top: 170,
+    left: 32,
+    width: 340,
+    fontFamily: 'Nunito-ExtraBold',
+    fontSize: 18,
+    color: '#fff'
+  },
+  carouselDescription: {
+    position: 'absolute',
+    top: 192,
+    left: 32,
+    width: 340,
+    fontFamily: 'Nunito',
+    fontSize: 16,
+    color: '#fff'
+  },
+  carouselIndicatorsWrapper: {
+    marginTop: 16,
+    marginLeft: 12,
+    flexDirection: 'row',
+  },
+  buttonCarouselIndicator: {
+    margin: 4,
+    width: 10,
+    height: 10,
+    backgroundColor: '#bbb',
+    borderRadius: 5,
+  },
+  buttonCarouselIndicatorActive: {
+    width: 50,
+    backgroundColor: '#fff',
+  },
+  // end carousel
   userInformation: {
     marginTop: 28,
     margin: 12,
@@ -75,14 +133,14 @@ export default StyleSheet.create({
     flexWrap: 'wrap'
   },
   navigationHubTouchable: {
-    margin: 10,
+    margin: 6,
   },
   navigationHubButton: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 155,
-    height: 150,
+    width: 105,
+    height: 100,
     backgroundColor: '#630FCC',
     borderRadius: 14,
     borderBottomWidth: 10,
@@ -91,7 +149,7 @@ export default StyleSheet.create({
   navigationHubButtonText: {
     marginTop: 12,
     color: '#fff',
-    fontSize: 18,
+    fontSize: 12,
     fontFamily: 'Nunito-ExtraBold'
   },
   navigationHubButtonTextSecondary: {

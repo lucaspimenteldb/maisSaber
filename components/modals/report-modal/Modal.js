@@ -66,7 +66,7 @@ const Modal = (props) => {
 
           <View style={styles.modalContent}>
             <Text style={styles.modalContentTitle}>
-              Deseja reportar este comentário?
+              Deseja { props.deleteModal ? 'deletar' : 'reportar'} este comentário?
             </Text>
           </View>
           <View style={styles.modalActions}>

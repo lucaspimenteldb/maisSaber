@@ -61,7 +61,7 @@ const MuralScreen = ({ navigation }) => {
           </View>
 
           {/* navigation hub */}
-          <View style={styles.publicationHub}>
+          <View style={[styles.publicationHub, {paddingBottom: tabBarHeight,}]}>
             {/* main hub */}
             {posts?.map(post => (
               <View style={styles.publicationHubContainer} key={post.id}>

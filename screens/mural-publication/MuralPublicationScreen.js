@@ -28,6 +28,7 @@ const MuralPublicationScreen = ({ route, navigation }) => {
   const { post } = route.params;
   const [spinner, setSpinner] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
   const tabBarHeight = useBottomTabBarHeight();
   const [comment, setComment] = useState([])
   const [addComment, setAddComment] = useState('')
@@ -42,6 +43,7 @@ const MuralPublicationScreen = ({ route, navigation }) => {
   const isFocused = useIsFocused();
   
   const reportModal = showReportModal ? <ReportModal bottom close={() => setShowReportModal(false)} /> : null
+  const deleteModal = showDeleteModal ? <ReportModal bottom deleteModal close={() => setShowDeleteModal(false)} /> : null
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
   const handleLike = async () => {
@@ -121,7 +123,7 @@ const MuralPublicationScreen = ({ route, navigation }) => {
             </View>
           </View>
 
-          <View style={styles.publicationHub}>
+          <View style={[styles.publicationHub, {paddingBottom: tabBarHeight}]}>
             {/* main hub */}
             <View style={styles.publicationHeader}>
               <Image
@@ -276,6 +278,7 @@ const MuralPublicationScreen = ({ route, navigation }) => {
 
         {missionsModal}
         {reportModal}
+        {deleteModal}
       </View>
     </>
   )

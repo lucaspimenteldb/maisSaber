@@ -41,12 +41,19 @@ const VideosScreen = ({ route, navigation }) => {
     React.useCallback(() => {
       try {
         async function begin() {
-          setSpinner(true);
-          const response = await Service.getSubjects(discipline.id);
-          setAssuntos(response.videos);
-          setSpinner(false)
+            try{
+                setSpinner(true);
+                const response = await Service.getSubjects(discipline.id);
+                console.log(response);
+                setAssuntos(response.videos);
+                setSpinner(false)
+            }
+            catch (e){
+                setSpinner(false);
+                console.log(e)
+            }
         }
-  
+
         assuntos ? begin() : null
 
         begin()

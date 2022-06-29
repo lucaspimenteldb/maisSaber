@@ -11,59 +11,39 @@ import NotificacaoRecomendacaoIcon from '../../assets/icons/NotificacaoRecomenda
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useFocusEffect } from "@react-navigation/native"
+import Spinner from 'react-native-loading-spinner-overlay';
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
+import Service from './services/service'
 
 const HomeScreen = ({ navigation }) => {
+  const [spinner, setSpinner] = useState(false);
+  const [notificacoes, setNotificacoes] = useState([]);
+
   const tabBarHeight = useBottomTabBarHeight();
-  const notificacoes = [
-    {
-      texto: 'Seu professor postou uma nova atividade',
-      professor: 'Profa. Kassandra',
-      icon: <NotificacaoAtividadeIcon />
-    },
-    {
-      texto: 'Seu professor postou uma nova avaliacao',
-      professor: 'Profa. Kassandra',
-      icon: <NotificacaoAvaliacaoIcon />
-    },
-    {
-      texto: 'Seu professor postou um novo lembrete',
-      professor: 'Profa. Kassandra',
-      icon: <NotificacaoEventoIcon />
-    },
-    {
-      texto: 'Seu professor postou uma nova recomendacao de aula',
-      professor: 'Profa. Kassandra',
-      icon: <NotificacaoLembreteIcon />
-    },
-    {
-      texto: 'Seu professor postou uma nova publicacao',
-      professor: 'Profa. Kassandra',
-      icon: <NotificacaoPublicacaoIcon />
-    },
-    {
-      texto: 'Seu professor postou um novo evento',
-      professor: 'Profa. Kassandra',
-      icon: <NotificacaoRecomendacaoIcon />
-    },
-  ]
-  const renderNotificacoes = notificacoes.map((notificacao, indexAtual) => (
+
+  const renderNotificacoes = notificacoes?.map((notificacao) => (
     <TouchableHighlight
-      key={notificacao.professor + indexAtual}
+      key={notificacao.id}
       onPress={() => navigation.navigate('MuralPublication')}
       underlayColor='#fff'
       style={styles.notificationTouchable}
     >
       <View style={styles.notificationButton}>
-        { notificacao.icon }
+        {notificacao.icone === 'atividade' && <NotificacaoAtividadeIcon /> }
+        {notificacao.icone === 'avaliação' && <NotificacaoAvaliacaoIcon /> }
+        {notificacao.icone === 'evento' && <NotificacaoEventoIcon /> }
+        {notificacao.icone === 'lembrete' && <NotificacaoLembreteIcon /> }
+        {notificacao.icone === 'publicacao' && <NotificacaoPublicacaoIcon /> }
+        {notificacao.icone === 'recomendacao' && <NotificacaoRecomendacaoIcon /> }
         <View style={styles.notificationBody}>
           <Text style={styles.notificationOwner}>
-            {notificacao.professor}
+            {notificacao.titulo}
           </Text>
           <Text style={styles.notificationDescription}>
-            {notificacao.texto}
+            {notificacao.descricao}
           </Text>
           <View style={styles.notificationFooter}>
             <MuralPublicationArrowIcon />
@@ -75,12 +55,34 @@ const HomeScreen = ({ navigation }) => {
 
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
 
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
+  useFocusEffect(
+    React.useCallback(() => {
+      try {
+        async function begin() {
+          setSpinner(true)
+          const response = await Service.getNotifications(user.turma[0].id)
+          setNotificacoes(response.notificacao)
+          setSpinner(false)
+        }
+  
+        begin()
+      } catch (error) {
+        setSpinner(false);
+        console.log(error)
+      }
+    }, []),
+  );
+
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: '#4B089F' }}>
+      <Spinner
+        visible={spinner}
+      />
+      <View style={{ flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#4B089F' }}>
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
             <SinoIcon />

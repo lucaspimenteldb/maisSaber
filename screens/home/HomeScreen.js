@@ -111,7 +111,8 @@ const HomeScreen = ({ navigation }) => {
     {
       icon: <AtividadesHomeIcon />,
       title: 'ATIVIDADES',
-      route: 'UserLevel'
+      route: 'SelecionarDisciplina',
+      pronoum: 'suas'
     },
     {
       icon: <MensagensHomeIcon />,
@@ -225,7 +226,10 @@ const HomeScreen = ({ navigation }) => {
                 hub.map(button => (
                   <TouchableHighlight
                     key={button.title}
-                    onPress={() => navigation.navigate(button.route)}
+                    onPress={() => navigation.navigate(button.route, {
+                      screen: 'SelecionarDisciplinaStack',
+                      params: { menu: button.title, pronoum: button.pronoum }
+                    })}
                     underlayColor='#fff'
                     style={styles.navigationHubTouchable}
                   >

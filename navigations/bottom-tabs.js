@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from '../screens/home/HomeScreen.js'
 import NotificacoesTela from '../screens/notificacoes/NotificacoesTela.js'
 import HomeHeader from '../components/header/home/HomeHeader.js';
-import {AgendaNavigator, HelpNavigator, LevelNavigator, MensagensNavigator, MomentosNavigator, MuralNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator} from './stacks.js'
+import { AgendaNavigator, HelpNavigator, LevelNavigator, MensagensNavigator, MomentosNavigator, MuralNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator, SelecionarDisciplinaNavigator } from './stacks.js'
 import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 
 import { useNavigation } from '@react-navigation/native';
@@ -20,9 +20,9 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarButton: () => null,
           headerTitle: () => (
-            <HomeHeader navigation={useNavigation()}/>
+            <HomeHeader navigation={useNavigation()} />
           ),
-          headerStyle: {backgroundColor: '#fff'},
+          headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
           headerBackTitle: '',
           headerBackVisible: false,
@@ -34,16 +34,39 @@ export default BottomTabNavigator = () => {
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={MomentosNavigator}        
+        component={MomentosNavigator}
       />
+
+      <Tab.Screen
+        name="SelecionarDisciplina"
+        options={{
+          tabBarButton: () => null,
+          headerTitle: () => (
+            <HomeHeader navigation={useNavigation()} />
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={SelecionarDisciplinaNavigator}
+      />
+
       <Tab.Screen
         name="Mensagens"
         options={{
           tabBarButton: () => null,
           headerTitle: () => (
-            <HomeHeader navigation={useNavigation()}/>
+            <HomeHeader navigation={useNavigation()} />
           ),
-          headerStyle: {backgroundColor: '#fff'},
+          headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
           headerBackTitle: '',
           headerBackVisible: false,
@@ -55,7 +78,7 @@ export default BottomTabNavigator = () => {
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={MensagensNavigator}        
+        component={MensagensNavigator}
       />
 
       <Tab.Screen
@@ -63,9 +86,9 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarButton: () => null,
           headerTitle: () => (
-            <HomeHeader navigation={useNavigation()}/>
+            <HomeHeader navigation={useNavigation()} />
           ),
-          headerStyle: {backgroundColor: '#fff'},
+          headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
           headerBackTitle: '',
           headerBackVisible: false,
@@ -77,7 +100,7 @@ export default BottomTabNavigator = () => {
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={MuralNavigator}        
+        component={MuralNavigator}
       />
 
       <Tab.Screen
@@ -85,9 +108,9 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarButton: () => null,
           headerTitle: () => (
-            <HomeHeader navigation={useNavigation()}/>
+            <HomeHeader navigation={useNavigation()} />
           ),
-          headerStyle: {backgroundColor: '#fff'},
+          headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
           headerBackTitle: '',
           headerBackVisible: false,
@@ -99,16 +122,16 @@ export default BottomTabNavigator = () => {
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={NotificacoesTela}        
+        component={NotificacoesTela}
       />
 
       <Tab.Screen
         name="Home"
         options={{
           headerTitle: () => (
-            <HomeHeader navigation={useNavigation()}/>
+            <HomeHeader navigation={useNavigation()} />
           ),
-          headerStyle: {backgroundColor: '#fff'},
+          headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
           headerBackTitle: '',
           headerBackVisible: false,
@@ -120,7 +143,7 @@ export default BottomTabNavigator = () => {
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={HomeScreen}        
+        component={HomeScreen}
       />
 
       <Tab.Screen
@@ -128,21 +151,21 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarButton: () => null,
           headerTitle: () => (
-            <HomeHeader navigation={useNavigation()}/>
+            <HomeHeader navigation={useNavigation()} />
           ),
-          headerStyle: {backgroundColor: '#fff'},
+          headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
           headerBackTitle: '',
           headerBackVisible: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC', 
-            borderTopLeftRadius: 20, 
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
             borderTopRightRadius: 20
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={HelpNavigator}        
+        component={HelpNavigator}
       />
 
       <Tab.Screen
@@ -151,13 +174,13 @@ export default BottomTabNavigator = () => {
           headerShown: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC', 
-            borderTopLeftRadius: 20, 
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
             borderTopRightRadius: 20
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={VideosNavigator}        
+        component={VideosNavigator}
       />
       <Tab.Screen
         name="Trilhas"
@@ -165,30 +188,30 @@ export default BottomTabNavigator = () => {
           headerShown: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC', 
-            borderTopLeftRadius: 20, 
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
             borderTopRightRadius: 20
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={TrailsNavigator}        
+        component={TrailsNavigator}
       />
       <Tab.Screen
         name="Profile"
         options={{
           tabBarButton: () => null,
           headerTitle: () => (
-            <TrailsHeader navigation={useNavigation()}/>
+            <TrailsHeader navigation={useNavigation()} />
           ),
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC', 
-            borderTopLeftRadius: 20, 
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
             borderTopRightRadius: 20
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={ProfileNavigator}        
+        component={ProfileNavigator}
       />
       <Tab.Screen
         name="UserLevel"
@@ -197,13 +220,13 @@ export default BottomTabNavigator = () => {
           headerShown: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC', 
-            borderTopLeftRadius: 20, 
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
             borderTopRightRadius: 20
           },
           tabBarActiveTintColor: '#fff',
         }}
-        component={LevelNavigator}        
+        component={LevelNavigator}
       />
       <Tab.Screen
         name="Agenda"

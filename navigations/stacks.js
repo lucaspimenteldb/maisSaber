@@ -30,6 +30,7 @@ import MensagensTela from '../screens/mensagens/MensagensTela.js';
 import MensagensAbertasTela from '../screens/mensagens-abertas/MensagensAbertasTela.js';
 import SelecionarDisciplinaTela from '../screens/selecionar-disciplina/SelecionarDisciplinaTela.js';
 import DisciplinaSelecionadaTela from '../screens/disciplina-selecionada/DisciplinaSelecionadaTela.js';
+import FazerAtividadeTela from '../screens/fazer-atividade/FazerAtividadeTela.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -383,6 +384,13 @@ export const SelecionarDisciplinaNavigator = () => {
           headerShown: false,
         }}
         component={DisciplinaSelecionadaTela}
+      />
+      <Stack.Screen
+        name="FazerAtividade"
+        options={{
+          headerShown: false,
+        }}
+        component={FazerAtividadeTela}
       />
     </Stack.Navigator>
   )

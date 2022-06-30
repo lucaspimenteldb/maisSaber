@@ -16,6 +16,27 @@ export default BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
+        name="Home"
+        options={{
+          headerTitle: () => (
+            <HomeHeader navigation={useNavigation()} />
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#630FCC',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          },
+          tabBarActiveTintColor: '#fff',
+        }}
+        component={HomeScreen}
+      />
+
+      <Tab.Screen
         name="Momentos"
         options={{
           tabBarButton: () => null,
@@ -123,27 +144,6 @@ export default BottomTabNavigator = () => {
           tabBarActiveTintColor: '#fff',
         }}
         component={NotificacoesTela}
-      />
-
-      <Tab.Screen
-        name="Home"
-        options={{
-          headerTitle: () => (
-            <HomeHeader navigation={useNavigation()} />
-          ),
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
-          headerBackVisible: false,
-          tabBarStyle: {
-            position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-          },
-          tabBarActiveTintColor: '#fff',
-        }}
-        component={HomeScreen}
       />
 
       <Tab.Screen

@@ -38,7 +38,52 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
     return (
       <TouchableHighlight
         underlayColor='#fff'
-        onPress={() => navigation.navigate('EnviarAtividade')}
+        onPress={() => navigation.navigate('FazerAtividade', {
+          quantidadeQuestoes: 4,
+          questoes: [
+            {
+              questao: 1,
+              tipo: 'questao',
+              titulo: 'Qual o resultado da soma 2 + 2?',
+              alternativas: [
+                {
+                  alternativa: 'A',
+                  texto: '3',
+                },
+                {
+                  alternativa: 'B',
+                  texto: '3',
+                },
+                {
+                  alternativa: 'C',
+                  texto: '3',
+                },
+                {
+                  alternativa: 'D',
+                  texto: '3',
+                },
+              ]
+            },
+            {
+              questao: 2,
+              tipo: 'enviar',
+              texto: 'Explicabo nam possimus aspernatur adipisci saepe, perspiciatis fugit assumenda rem, repudiandae aut maxime deserunt voluptate esse consequatur ea doloremque id vitae non!'
+            },
+            {
+              questao: 3,
+              tipo: 'video',
+              titulo: 'Adição',
+              texto: 'Tempora voluptatum provident soluta? Quas nihil laborum, quaerat minus, magni iste nemo natus repudiandae consequatur unde, perferendis beatae alias eveniet dolorum dolor.',
+              video: 'url'
+            },
+            {
+              questao: 4,
+              tipo: 'arquivo',
+              titulo: 'Matemática',
+              texto: 'Explicabo nam possimus aspernatur adipisci saepe, perspiciatis fugit assumenda rem, repudiandae aut maxime deserunt voluptate esse consequatur ea doloremque id vitae non!'
+            },
+          ]
+        })}
         style={styles.atividadesTouchable}
         key={atividade.id}
       >

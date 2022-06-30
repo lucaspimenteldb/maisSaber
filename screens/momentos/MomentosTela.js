@@ -4,9 +4,12 @@ import MomentosIcon from '../../assets/icons/MomentosIcon.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useFocusEffect } from "@react-navigation/native"
+import Spinner from 'react-native-loading-spinner-overlay'
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
+import Service from './services/service'
 
 const MomentosTela = ({ navigation }) => {
   const tabBarHeight = useBottomTabBarHeight();
@@ -20,6 +23,8 @@ const MomentosTela = ({ navigation }) => {
   }
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
   const filters = [
     {
       title: 'Alunos',
@@ -42,24 +47,12 @@ const MomentosTela = ({ navigation }) => {
       image: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png'
     },
   ]
-  const photos = [
-    {
-      image: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png',
-      route: 'MomentosPublicacao'
-    },
-    {
-      image: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png',
-      route: 'MomentosPublicacao'
-    },
-    {
-      image: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png',
-      route: 'MomentosPublicacao'
-    },
-    {
-      image: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png',
-      route: 'MomentosPublicacao'
-    },
-  ]
+  const [spinner, setSpinner] = useState(false);
+
+  const [schoolName, setSchoolName] = useState('');
+  const [totalAlunos, setTotalAlunos] = useState('');
+  const [totalTeachers, setTotalTeachers] = useState('');
+  const [moments, setMoments] = useState([]);
   
   const renderFilters = filters.map(filter => (
     <TouchableHighlight onPress={() => 'a'} underlayColor="#fff" key={filter.title}>
@@ -72,16 +65,16 @@ const MomentosTela = ({ navigation }) => {
       </View>
     </TouchableHighlight>
   ))
-  const renderPhotos = photos.map((photo, currentIndex) => (
+  const renderPhotos = moments.map((photo) => (
     <TouchableHighlight 
-      onPress={() => navigation.navigate(photo.route)}
+      onPress={() => navigation.navigate('MomentosPublicacao', {photo, schoolName})}
       underlayColor="#fff"
       style={[styles.photoWrapper, {height: width}]}
       onLayout={findWidth}
-      key={'photo-' + currentIndex}
+      key={photo.id}
     >
       <Image
-        source={{ uri: photo.image }}
+        source={{ uri: photo.image_momento }}
         style={styles.photo}
       />
     </TouchableHighlight>
@@ -89,8 +82,35 @@ const MomentosTela = ({ navigation }) => {
 
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
+  useFocusEffect(
+    React.useCallback(() => {
+      try {
+        async function begin() {
+          setSpinner(true);
+
+          const response = await Service.getEscolaMomento(user.escola[0].id);
+          const { momentos } = response;
+          setSchoolName(momentos.escola[0].nome);
+          setTotalAlunos(momentos.total_alunos);
+          setTotalTeachers(momentos.total_professores);
+          setMoments(momentos.momentos);
+
+          setSpinner(false);
+        }
+    
+        begin();
+      } catch (error) {
+        setSpinner(false);
+        console.log(error)
+      }
+    }, [])
+  );
+
   return (
     <>
+      <Spinner
+        visible={spinner}
+      />
       <View style={{ flex: 1, backgroundColor: '#4B089F' }}>
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
@@ -113,12 +133,12 @@ const MomentosTela = ({ navigation }) => {
                 />
                 <View>
                   <Text style={styles.momentsSchool}>
-                    Prof. Kassandra
+                    {schoolName}
                   </Text>
                   <View style={styles.momentsSubtitle}>
                     <View style={{ marginRight: 8, flexDirection: 'row', alignItems: 'center' }}>
                       <Text style={styles.momentsSubtitleText}>
-                        200
+                        {totalAlunos}
                       </Text>
                       <Text style={styles.momentsSubtitleText}>
                         alunos
@@ -127,7 +147,7 @@ const MomentosTela = ({ navigation }) => {
 
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                       <Text style={styles.momentsSubtitleText}>
-                        20
+                        {totalTeachers}
                       </Text>
                       <Text style={styles.momentsSubtitleText}>
                         professores

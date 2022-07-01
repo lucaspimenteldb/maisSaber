@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
-import {showMissionsModalReducer, showShareModalReducer, showFeedbackModalReducer, showWelcomeModalReducer, showGainPointsModalReducer, setIsLoggedInReducer, userReducer} from './reducers'
+import {showMissionsModalReducer, showShareModalReducer, showFeedbackModalReducer, showWelcomeModalReducer, showGainPointsModalReducer, showBookModalReducer, setIsLoggedInReducer, userReducer} from './reducers'
 
 const rootReducer = combineReducers({
   showMissionsModalReducer,
@@ -8,6 +8,7 @@ const rootReducer = combineReducers({
   showShareModalReducer,
   showFeedbackModalReducer,
   showGainPointsModalReducer,
+  showBookModalReducer,
   setIsLoggedInReducer,
   userReducer
 })

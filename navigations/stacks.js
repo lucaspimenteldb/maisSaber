@@ -364,3 +364,17 @@ export const MensagensNavigator = () => {
     </Stack.Navigator>
   )
 }
+
+export const LivrosDigitais = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="LivrosDigitais"
+        options={{
+          headerShown: false,
+        }}
+        component={LivrosDigitais}        
+      />      
+    </Stack.Navigator>
+  )
+}

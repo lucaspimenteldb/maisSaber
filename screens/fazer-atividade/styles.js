@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   barraProgressoInterior: {
     height: 8,
-    backgroundColor: '#30f7a4',
+    backgroundColor: '#00D33B',
     borderRadius: 4,
   },
   questaoContainer: {
@@ -107,4 +107,47 @@ export default StyleSheet.create({
     borderBottomWidth: 6,
     borderRadius: 6,
   },
+  finalizarAtividade: {
+    backgroundColor: '#088B05',
+    borderBottomColor: '#0C650A'
+  },
+  videoWrapper: {
+    position: 'relative'
+  },
+  video: {
+    borderRadius: 10,
+    height: 250,
+  },
+  playBotao: {
+    paddingLeft: 2,
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 95,
+    left: '42%',
+    backgroundColor: '#480898',
+    borderRadius: 30,
+  },
+  seta: {
+    marginLeft: 12,
+    transform: [{rotate: ('180deg')}]
+  },
+  containerConcluido: {
+    alignItems: 'center'
+  },
+  finalizarFlex: {
+    flexDirection: 'row', 
+    alignItems: 'center'
+  },
+  imagemConclusao: {
+    marginBottom: 24,
+    width: 318,
+    height: 203
+  },
+  textosConcluida: {
+    marginBottom: 6,
+    textAlign: 'center'
+  }
 })

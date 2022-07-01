@@ -30,6 +30,7 @@ export default StyleSheet.create({
     marginBottom: 6,
     flex: 1,
     elevation: 3,
+    backgroundColor: '#fff',
     borderColor: '#ddd',
     borderWidth: 1,
     borderRadius: 10,

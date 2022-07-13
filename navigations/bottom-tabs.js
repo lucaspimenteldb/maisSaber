@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from '../screens/home/HomeScreen.js'
 import NotificacoesTela from '../screens/notificacoes/NotificacoesTela.js'
+import LivrosDigitais from '../screens/LivrosDigitais/LivrosDigitais'
 import HomeHeader from '../components/header/home/HomeHeader.js';
 import { AgendaNavigator, HelpNavigator, LevelNavigator, MensagensNavigator, MomentosNavigator, MuralNavigator, ProfileNavigator, TrailsNavigator, VideosNavigator, SelecionarDisciplinaNavigator } from './stacks.js'
 import TrailsHeader from '../components/header/trails/TrailsHeader.js';
@@ -35,8 +36,28 @@ export default BottomTabNavigator = () => {
         }}
         component={HomeScreen}
       />
+    <Tab.Screen  name="LivrosDigitais"
+                 options={{
+                 tabBarButton: () => null,
+                 headerTitle: () => (
+                     <HomeHeader navigation={useNavigation()}/>
+                 ),
+                 headerStyle: {backgroundColor: '#fff'},
+                 headerShadowVisible: false,
+                 headerBackTitle: '',
+                 headerBackVisible: false,
+                 tabBarStyle: {
+                   position: 'absolute',
+                   backgroundColor: '#630FCC',
+                   borderTopLeftRadius: 20,
+                   borderTopRightRadius: 20,
+                 },
+                 tabBarActiveTintColor: '#fff',
+        }}
+               component={LivrosDigitais}
+               />
 
-      <Tab.Screen
+  <Tab.Screen
         name="Momentos"
         options={{
           tabBarButton: () => null,

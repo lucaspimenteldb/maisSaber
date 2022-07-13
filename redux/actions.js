@@ -3,6 +3,7 @@ export const SHOW_WELCOME_MODAL = 'SHOW_WELCOME_MODAL'
 export const SHOW_SHARE_MODAL = 'SHOW_SHARE_MODAL'
 export const SHOW_FEEDBACK_MODAL = 'SHOW_FEEDBACK_MODAL'
 export const SHOW_GAIN_POINTS_MODAL = 'SHOW_GAIN_POINTS_MODAL'
+export const SHOW_BOOK_MODAL = 'SHOW_BOOK_MODAL'
 export const SET_IS_LOGGED_IN = 'SET_IS_LOGGED_IN'
 export const SET_USER = 'SET_USER'
 
@@ -34,6 +35,12 @@ export const setShowGainPointsModal = showGainPointsModal => dispatch => {
   dispatch({
     type: SHOW_GAIN_POINTS_MODAL,
     payload: showGainPointsModal
+  })
+}
+export const setShowBookModal = showBookModal => dispatch => {
+  dispatch({
+    type: SHOW_BOOK_MODAL,
+    payload: showBookModal
   })
 }
 export const setIsLoggedIn = isLoggedIn => dispatch => {

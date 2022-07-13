@@ -368,6 +368,7 @@ export const MensagensNavigator = () => {
   )
 }
 
+
 export const SelecionarDisciplinaNavigator = () => {
   return (
     <Stack.Navigator>
@@ -396,3 +397,17 @@ export const SelecionarDisciplinaNavigator = () => {
   )
 }
 
+
+export const LivrosDigitais = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="LivrosDigitais"
+        options={{
+          headerShown: false,
+        }}
+        component={LivrosDigitais}        
+      />      
+    </Stack.Navigator>
+  )
+}

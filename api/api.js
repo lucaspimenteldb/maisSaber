@@ -1,7 +1,8 @@
 import axios from 'axios';
+import {API_URL} from '@env';
 
 const object = axios.create({
-  baseURL: 'http://10.0.2.2:8000/api/',
+  baseURL: API_URL,
 });
 
 const requestHandler = async request => {

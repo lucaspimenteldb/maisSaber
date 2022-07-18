@@ -60,9 +60,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#630FCC',
+    borderBottomColor: '#54199F',
     borderRadius: 25,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
     borderBottomWidth: 4,
-    borderBottomColor: '#54199F'
   },
   buttonSignIn: {
     margin: 16,
@@ -70,9 +72,11 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#6344FF',
     borderRadius: 25,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
     borderBottomWidth: 4,
+    backgroundColor: '#6344FF',
     borderBottomColor: '#54199F'
   },
   buttonText: {

@@ -74,9 +74,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#630FCC',
-    borderBottomWidth: 4,
     borderBottomColor: '#54199F',
     borderRadius: 22,
+    borderLeftWidth: 0.1,
+    borderRightWidth: 0.1,
+    borderBottomWidth: 4,
   },
   modalActionButtonSecondary: {
     flex: 1,

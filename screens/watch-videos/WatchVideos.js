@@ -23,6 +23,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useFocusEffect } from "@react-navigation/native"
 import RenderHtml from 'react-native-render-html';
 import Spinner from 'react-native-loading-spinner-overlay';
+import YoutubePlayer from "react-native-youtube-iframe";
 
 const VideosScreen = ({ route, navigation }) => {
   const { subject, discipline } = route.params;
@@ -84,6 +85,7 @@ const VideosScreen = ({ route, navigation }) => {
   const ignoreClass = ['MsoNormal'];
   const ignoreStyles = ['fontSize', 'fontFamily', 'margin', 'marginTop', 'marginBottom', 'textAlign', 'maxWidth',
     'width', 'padding', 'marginRight', 'marginLeft'];
+  const [playing, setPlaying] = useState(false);
 
   const actionButtonsPrimary = (
     <>
@@ -206,6 +208,8 @@ const VideosScreen = ({ route, navigation }) => {
     }, []),
   );
 
+  console.log(subject)
+
   return (
     <>
       <Spinner
@@ -224,19 +228,13 @@ const VideosScreen = ({ route, navigation }) => {
             </TouchableHighlight>
           </View>
 
-          <View style={{elevation: 100, zIndex: 100, position: 'relative'}}>
-            <Image 
-              style={{margin: 16, width: windowWidth - 32, height: 250, borderRadius: 10, }} 
-              source={{uri: 'https://learnenglish.britishcouncil.org/sites/podcasts/files/RS8096_GettyImages-170036776-hig.jpg'}} 
+          <View style={{elevation: 100, zIndex: 100, position: 'relative', alignItems: 'center'}}>
+            <YoutubePlayer
+              play={playing}
+              height={230}
+              width={"97%"}
+              videoId={subject.url.slice(32, 43)}
             />
-            <TouchableHighlight 
-              underlayColor="#fff"
-              onPress={() => dispatch(setShowGainPointsModal(true))}
-            >
-              <View style={[styles.playButton, {left: windowWidth/2 - 30}]}>
-                <PlayIcon />
-              </View>
-            </TouchableHighlight>
           </View>
 
           <View style={styles.pageInformation}>

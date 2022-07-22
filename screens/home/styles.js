@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#630FCC',
+    backgroundColor: '#F6A3A5',
   },
   //carousel
   carousel: {

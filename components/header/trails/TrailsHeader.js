@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, TouchableHighlight } from 'react-n
 
 import BauIcon from '../../../assets/icons/BauIcon.js'
 import CoroaIcon from '../../../assets/icons/CoroaIcon.js'
-import UsuarioIcon from '../../../assets/icons/UsuarioIcon.js'
+import LogoPequena from '../../../assets/icons/LogoPequena.js'
 import ChevronIcon from '../../../assets/icons/ChevronIcon.js'
 
 import styles from './styles.js'
@@ -31,24 +31,10 @@ const TrailsHeader = ({stacks, navigation }) => {
         {/* menu items */}
         <View style={styles.menuItems}>
           <TouchableOpacity
-            onPress={() => dispatch(setShowMissionsModal(true))}
-            style={styles.buttonBau}
-          >
-            <View>
-              <BauIcon></BauIcon>
-            </View>
-          </TouchableOpacity>
-
-          <View style={styles.crowns}>
-            <Text style={styles.crownsText}>6</Text>
-            <CoroaIcon></CoroaIcon>
-          </View>
-
-          <TouchableOpacity
             style={styles.buttonProfile}
             onPress={() => navigation.navigate('Profile')}
           >
-            <UsuarioIcon></UsuarioIcon>
+            <LogoPequena></LogoPequena>
           </TouchableOpacity>
         </View>
       </View>

@@ -5,6 +5,8 @@ import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowI
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import LinearGradient from 'react-native-linear-gradient'
+
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
@@ -107,28 +109,28 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
       title: 'Vídeos',
       component: 'a',
       iconAtivo: <PlayIcon />,
-      icon: <PlayIcon color='#111'/>,
+      icon: <PlayIcon color='#fff'/>,
       ativa: true,
     },
     {
       title: 'Mural',
       component: 'a',
       iconAtivo: <PlayIcon />,
-      icon: <PlayIcon color='#111'/>,
+      icon: <PlayIcon color='#fff'/>,
       ativa: false,
     },
     {
       title: 'Atividades',
       component: 'a',
       iconAtivo: <PlayIcon />,
-      icon: <PlayIcon color='#111'/>,
+      icon: <PlayIcon color='#fff'/>,
       ativa: false,
     },
     {
       title: 'Avaliações',
       component: 'a',
       iconAtivo: <PlayIcon />,
-      icon: <PlayIcon color='#111'/>,
+      icon: <PlayIcon color='#fff'/>,
       ativa: false,
     },
   ])
@@ -143,20 +145,25 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
   }
 
   const renderTabs = tabs.map(tab => {
-      return <TouchableHighlight 
+    return (
+      <TouchableHighlight 
         underlayColor={tab.ativa ? '#480898' : '#fff'}
         onPress={() => ativarTab(tab.title)} 
         style={[styles.tabTouchable, tab.ativa ? styles.tabTouchableAtiva : null]}
         key={tab.title}
       >
-        <View style={styles.tabButton}>
+        <LinearGradient 
+          style={styles.tabButton}
+          colors={['#E9404F', '#ED5E30' ]}
+        >
           {tab.ativa ? tab.iconAtivo : tab.icon}
           <Text style={[styles.tabText, tab.ativa ? styles.tabTextAtiva : null]}>
             {tab.title}
           </Text>
-        </View>
+        </LinearGradient>
       </TouchableHighlight>
-    })
+    )
+  })
 
   return (
     <>

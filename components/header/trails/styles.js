@@ -14,7 +14,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   button: {
-    backgroundColor: '#630FCC'
+    backgroundColor: '#ED484B'
   },
   crowns: {
     marginLeft: 36,
@@ -34,9 +34,9 @@ export default StyleSheet.create({
     width: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#630FCC',
+    backgroundColor: '#ED484B',
     borderRadius: 20,
-    borderBottomColor: '#54199F',
+    borderBottomColor: '#EE3737',
 
     borderLeftWidth: 0.1,
     borderRightWidth: 0.1,

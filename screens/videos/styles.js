@@ -8,7 +8,8 @@ export default StyleSheet.create({
   disciplines: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexWrap: 'wrap'
   },
   buttonsWrapper: {
     alignItems: 'center',

@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#630FCC',
   },
   header: {
     marginTop: 28,
@@ -36,25 +35,25 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     borderBottomWidth: 2,
-    borderBottomColor: '#9140F8'
+    borderBottomColor: '#E14319'
   },
   buttonText: {
-    color: '#4B089F',
+    color: '#ED4A48',
     fontFamily: 'Nunito-Bold',
   },
   title: {
     marginLeft: 12,
     fontSize: 18,
     fontFamily: 'Nunito-ExtraBold',
-    color: '#4B089F'
+    color: '#1C1C1C'
   },
   message: {
     margin: 12,
     marginBottom: 0,
     padding: 12,
-    backgroundColor: '#812DEA',
+    backgroundColor: '#E14319',
     borderBottomWidth: 4,
-    borderBottomColor: '#4B089F',
+    borderBottomColor: '#E14319',
     borderRadius: 20,
   },
   messageText: {

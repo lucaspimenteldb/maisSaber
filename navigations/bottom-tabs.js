@@ -11,6 +11,11 @@ import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 import { useNavigation } from '@react-navigation/native';
 import MensagensTela from '../screens/mensagens/MensagensTela.js';
 
+import HomeTabIcon from '../assets/icons/HomeTabIcon'
+import VideoTabIcon from '../assets/icons/VideoTabIcon.js'
+import MensagensTabIcon from '../assets/icons/MensagensTabIcon'
+import AgendaTabIcon from '../assets/icons/AgendaTabIcon'
+
 const Tab = createBottomTabNavigator();
 
 export default BottomTabNavigator = () => {
@@ -23,16 +28,20 @@ export default BottomTabNavigator = () => {
             <HomeHeader navigation={useNavigation()} />
           ),
           headerStyle: { backgroundColor: '#fff' },
+          tabBarLabelStyle: {
+            fontFamily: 'Nunito-Bold'
+          },
           headerShadowVisible: false,
           headerBackTitle: '',
           headerBackVisible: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarIcon: (tabInfo) => {
+            return <HomeTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+          },
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={HomeScreen}
       />
@@ -62,7 +71,7 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarButton: () => null,
           headerTitle: () => (
-            <HomeHeader navigation={useNavigation()} />
+            <TrailsHeader navigation={useNavigation()} />
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -70,11 +79,9 @@ export default BottomTabNavigator = () => {
           headerBackVisible: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={MomentosNavigator}
       />
@@ -92,35 +99,11 @@ export default BottomTabNavigator = () => {
           headerBackVisible: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            backgroundColor: '#fff',
           },
           tabBarActiveTintColor: '#fff',
         }}
         component={SelecionarDisciplinaNavigator}
-      />
-
-      <Tab.Screen
-        name="Mensagens"
-        options={{
-          tabBarButton: () => null,
-          headerTitle: () => (
-            <HomeHeader navigation={useNavigation()} />
-          ),
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
-          headerBackVisible: false,
-          tabBarStyle: {
-            position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-          },
-          tabBarActiveTintColor: '#fff',
-        }}
-        component={MensagensNavigator}
       />
 
       <Tab.Screen
@@ -136,11 +119,9 @@ export default BottomTabNavigator = () => {
           headerBackVisible: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={MuralNavigator}
       />
@@ -158,11 +139,9 @@ export default BottomTabNavigator = () => {
           headerBackVisible: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={NotificacoesTela}
       />
@@ -180,11 +159,9 @@ export default BottomTabNavigator = () => {
           headerBackVisible: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={HelpNavigator}
       />
@@ -195,25 +172,54 @@ export default BottomTabNavigator = () => {
           headerShown: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarLabelStyle: {
+            fontFamily: 'Nunito-Bold'
+          },
+          tabBarIcon: (tabInfo) => {
+            return <VideoTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+          },
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={VideosNavigator}
       />
+
+      <Tab.Screen
+        name="Mensagens"
+        options={{
+          headerTitle: () => (
+            <HomeHeader navigation={useNavigation()} />
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          tabBarLabelStyle: {
+            fontFamily: 'Nunito-Bold'
+          },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#fff',
+          },
+          tabBarIcon: (tabInfo) => {
+            return <MensagensTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+          },
+          tabBarActiveTintColor: '#ED484B',
+        }}
+        component={MensagensNavigator}
+      />
+
       <Tab.Screen
         name="Trilhas"
         options={{
+          tabBarButton: () => null,
           headerShown: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={TrailsNavigator}
       />
@@ -226,11 +232,9 @@ export default BottomTabNavigator = () => {
           ),
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={ProfileNavigator}
       />
@@ -241,11 +245,9 @@ export default BottomTabNavigator = () => {
           headerShown: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={LevelNavigator}
       />
@@ -255,11 +257,15 @@ export default BottomTabNavigator = () => {
           headerShown: false,
           tabBarStyle: {
             position: 'absolute',
-            backgroundColor: '#630FCC',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20
+            backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#fff',
+          tabBarLabelStyle: {
+            fontFamily: 'Nunito-Bold'
+          },
+          tabBarIcon: (tabInfo) => {
+            return <AgendaTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+          },
+          tabBarActiveTintColor: '#ED484B',
         }}
         component={AgendaNavigator}
       />

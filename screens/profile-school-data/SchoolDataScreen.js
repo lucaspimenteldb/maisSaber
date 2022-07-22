@@ -66,6 +66,7 @@ const SchoolDataScreen = ({navigation}) => {
               style={[styles.input, nameActive ? styles.inputActive : '']}
               onPressIn={() => setNameActive(true)}
               onBlur={() => name ? null : setNameActive(false)}
+              editable={false}
             />
             <ChapeuEducacaoIcon style={styles.icon}/>
           </View>
@@ -79,18 +80,10 @@ const SchoolDataScreen = ({navigation}) => {
               style={[styles.input, emailActive ? styles.inputActive : '']}
               onPressIn={() => setEmailActive(true)}
               onBlur={() => email ? null : setEmailActive(false)}
+              editable={false}
             />
             <BolsaIcon style={styles.icon}/>
           </View>
-
-          <TouchableHighlight
-            onPress={() => 'oi'}
-            underlayColor="#fff"
-          >
-            <View style={styles.buttonSave}>
-              <Text style={styles.buttonText}>Salvar alterações</Text>
-            </View>
-          </TouchableHighlight>
         </View>
       </ScrollView>
       {missionsModal}

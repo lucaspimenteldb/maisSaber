@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#630FCC',
   },
   header: {
     marginTop: 28,
@@ -81,28 +80,29 @@ export default StyleSheet.create({
   tabTouchable: {
     marginLeft: 12,
     marginBottom: 32,
-    padding: 12,
     width: 150,
     height: 60,
-    borderRadius: 10,
-    backgroundColor: '#fff',
-    borderBottomColor: '#2F0565',
-    borderBottomWidth: 2
+    backgroundColor: 'transparent'
   },
   tabTouchableAtiva: {
-    backgroundColor: '#480898'
+    backgroundColor: 'transparent'
   },
   tabButton: {
-    flex: 1,
-    width: '100%',
-    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'row',
+    backgroundColor: '#E14319',
+    borderRadius: 15,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderBottomWidth: 4,
+    borderColor: '#E14319',
+    height: '100%'
   },
   tabText: {
     marginLeft: 12,
     fontFamily: 'Nunito-Bold',
-    color: '#111',
+    color: '#fff',
     fontSize: 18
   },
   tabTextAtiva: {

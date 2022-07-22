@@ -17,7 +17,7 @@ const SvgComponent = (props) => (
     {...props}
   >
     <G clipPath="url(#a)">
-      <Path fill="#630FCC" d="M0 0h38v38H0z" />
+      <Path fill={props.color ? props.color : "transparent"} d="M0 0h38v38H0z" />
       <Path d="M32.656 7.125H5.344v20.188h27.312V7.125Z" fill="#D7F1FF" />
       <Path
         d="M33.25 27.906H4.75V7.72A1.188 1.188 0 0 1 5.938 6.53h26.125A1.188 1.188 0 0 1 33.25 7.72v20.187ZM5.937 26.72h26.125v-19H5.939v19Z"

@@ -34,26 +34,28 @@ const VideosScreen = ({ navigation }) => {
   return (
     <>
       <ScrollView contentContainerStyle={styles.pageWrapper}>
-        <View style={styles.disciplines}>
-          {disciplines?.length > 0 ? 
-            disciplines.map((discipline, i) => (
-              <View style={styles.buttonsWrapper} key={i}>
-                <TouchableHighlight
-                  underlayColor='#fff'
-                  onPress={() => navigation.navigate('Subjects', {discipline})}
-                  style={styles.disciplineTouchable}
-                >
-                  <View style={[styles.disciplineButton, { backgroundColor: discipline.cor_h }]}>
-                    <LivroIcon />
-                  </View>
-                </TouchableHighlight>
-                <Text style={styles.disciplineButtonLabel}>
-                  {discipline.nome}
-                </Text>
-              </View>
-            )) : <Spinner visible={spinner} />
-          }
-        </View>
+        <ScrollView>
+          <View style={styles.disciplines}>
+            {disciplines?.length > 0 ? 
+              disciplines.map((discipline, i) => (
+                <View style={styles.buttonsWrapper} key={i}>
+                  <TouchableHighlight
+                    underlayColor='#fff'
+                    onPress={() => navigation.navigate('Subjects', {discipline})}
+                    style={styles.disciplineTouchable}
+                  >
+                    <View style={[styles.disciplineButton, { backgroundColor: discipline.cor_h }]}>
+                      <LivroIcon />
+                    </View>
+                  </TouchableHighlight>
+                  <Text style={styles.disciplineButtonLabel}>
+                    {discipline.nome}
+                  </Text>
+                </View>
+              )) : <Spinner visible={spinner} />
+            }
+          </View>
+        </ScrollView>
       </ScrollView>
       {missionsModal}
     </>

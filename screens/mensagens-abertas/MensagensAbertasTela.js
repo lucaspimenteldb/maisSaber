@@ -7,6 +7,8 @@ import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowI
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import LinearGradient from 'react-native-linear-gradient'
+
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
@@ -21,7 +23,11 @@ const MensagensAbertasTela = ({ navigation }) => {
 
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: '#4B089F' }}>
+      <LinearGradient 
+        style={{ flex: 1, paddingBottom: tabBarHeight }}
+        colors={['#E53952', '#EE4949', '#E17C1E']}
+        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+      >
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
             <Image
@@ -51,28 +57,36 @@ const MensagensAbertasTela = ({ navigation }) => {
                 Chat de mensagens
               </Text>
 
-              <View style={styles.message}>
+              <LinearGradient 
+                style={styles.message}
+                colors={['#E9404F', '#ED5E30' ]}
+                start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+              >
                 <Text style={styles.messageText}>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusamus qui minus, harum voluptatum perferendis quibusdam?
                 </Text>
                 <Text style={styles.messageDate}>
                   12/09/2022
                 </Text>
-              </View>
-              <View style={styles.message}>
+              </LinearGradient>
+              <LinearGradient 
+                style={styles.message}
+                colors={['#E9404F', '#ED5E30' ]}
+                start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+              >
                 <Text style={styles.messageText}>
                   Consectetur unde, non tenetur labore quasi quam doloremque quod amet accusantium ducimus, repudiandae vel?
                 </Text>
                 <Text style={styles.messageDate}>
                   12/09/2022
                 </Text>
-              </View>
+              </LinearGradient>
             </View>
           </View>
         </ScrollView>
 
         {missionsModal}
-      </View>
+      </LinearGradient>
     </>
   )
 }

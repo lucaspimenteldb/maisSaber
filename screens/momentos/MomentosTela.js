@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useFocusEffect } from "@react-navigation/native"
 import Spinner from 'react-native-loading-spinner-overlay'
+import LinearGradient from 'react-native-linear-gradient'
+
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
@@ -111,7 +113,11 @@ const MomentosTela = ({ navigation }) => {
       <Spinner
         visible={spinner}
       />
-      <View style={{ flex: 1, backgroundColor: '#4B089F' }}>
+      <LinearGradient 
+        style={{ flex: 1, paddingBottom: tabBarHeight }}
+        colors={['#E53952', '#EE4949', '#E17C1E']}
+        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+      >
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
             <MomentosIcon />
@@ -170,7 +176,7 @@ const MomentosTela = ({ navigation }) => {
         </ScrollView>
 
         {missionsModal}
-      </View>
+      </LinearGradient>
     </>
   )
 }

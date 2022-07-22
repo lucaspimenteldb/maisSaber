@@ -376,6 +376,16 @@ export const SelecionarDisciplinaNavigator = () => {
         name="SelecionarDisciplinaStack"
         options={{
           headerShown: false,
+          headerTitle: () => (
+            <TrailsHeader navigation={useNavigation()} />
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          tabBarLabelStyle: {
+            fontFamily: 'Nunito-Bold'
+          },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
         }}
         component={SelecionarDisciplinaTela}        
       />

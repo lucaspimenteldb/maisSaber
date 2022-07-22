@@ -42,6 +42,7 @@ const HomeScreen = ({ navigation }) => {
       }
     } else {
       Alert.alert('Aviso!', 'Preencha os campos corretamente.')
+      setSpinner(false)
     }
   }
 

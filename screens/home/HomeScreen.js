@@ -24,6 +24,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import WelcomeModal from '../../components/modals/welcome-modal/Modal.js'
 import ShareModal from '../../components/modals/share-modal/Modal.js'
+import Button from '../../components/button/Button'
 
 import styles from './styles.js'
 
@@ -224,22 +225,17 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.navigationHubContainer}>
               {
                 hub.map(button => (
-                  <TouchableHighlight
+                  <Button
                     key={button.title}
+                    width={106}
+                    height={97}
+                    title={button.title}
+                    icon={button.icon}
                     onPress={() => navigation.navigate(button.route, {
-                      screen: 'SelecionarDisciplinaStack',
-                      params: { menu: button.title, pronoum: button.pronoum }
-                    })}
-                    underlayColor='#fff'
-                    style={styles.navigationHubTouchable}
-                  >
-                    <View style={styles.navigationHubButton}>
-                      {button.icon}
-                      <Text style={styles.navigationHubButtonText}>
-                        {button.title}
-                      </Text>
-                    </View>
-                  </TouchableHighlight>
+                        screen: 'SelecionarDisciplinaStack',
+                        params: { menu: button.title, pronoum: button.pronoum }
+                      })}
+                    />
                 ))
               }
             </View>

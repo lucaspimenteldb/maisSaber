@@ -17,6 +17,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 22,
+    borderLeftWidth: 0.1,
+    borderRightWidth: 0.1,
     borderBottomWidth: 4,
     borderBottomColor: '#ddd'
   },
@@ -108,9 +110,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#630FCC',
+    borderBottomColor: '#54199F',
     borderRadius: 25,
+    borderLeftWidth: 0.1,
+    borderRightWidth: 0.1,
     borderBottomWidth: 4,
-    borderBottomColor: '#54199F'
   },
   buttonText: {
     color: '#fff',

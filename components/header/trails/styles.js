@@ -36,7 +36,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#630FCC',
     borderRadius: 20,
+    borderBottomColor: '#54199F',
+
+    borderLeftWidth: 0.1,
+    borderRightWidth: 0.1,
     borderBottomWidth: 4,
-    borderBottomColor: '#54199F'
   },
 })

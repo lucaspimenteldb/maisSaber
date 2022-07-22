@@ -135,16 +135,17 @@ export default StyleSheet.create({
   navigationHubTouchable: {
     margin: 6,
   },
-  navigationHubButton: {
-    display: 'flex',
-    alignItems: 'center',
+  navigationHubBack: {
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#620ECC',
+    borderRadius: 15,
+    borderLeftWidth: 0.1,
+    borderRightWidth: 0.1,
+    borderBottomWidth: 10,
+    borderColor: '#54199F',
     width: 105,
     height: 100,
-    backgroundColor: '#630FCC',
-    borderRadius: 14,
-    borderBottomWidth: 10,
-    borderBottomColor: '#54199F'
   },
   navigationHubButtonText: {
     marginTop: 12,

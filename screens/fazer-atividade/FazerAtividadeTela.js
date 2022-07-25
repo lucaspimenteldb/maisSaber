@@ -163,7 +163,7 @@ const FazerAtividadeTela = ({ route, navigation }) => {
             styles.botaoTouchable,
             questaoAtual === questoes.length - 1 ? styles.finalizarAtividade : null
           ]}
-          underlayColor={questaoAtual === questoes.length - 1 ? "#0C650A" : "#6344FF"}
+          underlayColor={questaoAtual === questoes.length - 1 ? "#0C650A" : "#EE4C4B"}
         >
           <View style={styles.finalizarFlex}>
             <Text style={styles.proximaQuestaoTexto}>

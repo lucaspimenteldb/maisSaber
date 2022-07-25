@@ -35,22 +35,24 @@ export default StyleSheet.create({
   identificadorTexto: {
     fontFamily: 'Nunito',
     fontSize: 14,
-    color: '#620ECC'
+    color: '#D42A29'
   },
   alternativasTouchable: {
     marginTop: 12,
     padding: 12,
     borderRadius: 24,
     borderWidth: 2,
-    borderColor: '#480898',
-    backgroundColor: '#fff'
+    borderColor: '#8D8D8D',
+    backgroundColor: '#fff',
+    borderBottomWidth: 4,
+    borderBottomColor: '#8D8D8D'
   },
   alternativasTexto: {
     fontFamily: 'Nunito',
     fontSize: 16,
   },
   alternativasTouchableSelecionada: {
-    backgroundColor: '#6344FF'
+    backgroundColor: '#EE4C4B'
   },
   alternativasTextoSelecionada: {
     fontFamily: 'Nunito-Bold',
@@ -61,10 +63,12 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#6344FF',
-    borderRadius: 25,
+    backgroundColor: '#EE4C4B',
+    borderRadius: 27,
     borderBottomWidth: 4,
-    borderBottomColor: '#54199F'
+    borderLeftWidth: 0.5,
+    borderRightWidth: 0.5,
+    borderBottomColor: '#D42A29'
   },
   baixarArquivoTouchable: {
     marginTop: 12,
@@ -95,17 +99,20 @@ export default StyleSheet.create({
   },
   enviarArquivoTexto: {
     marginLeft: 12,
-    color: '#480898'
+    color: '#EE4C4B'
   }, 
   input: {
-    paddingTop: 16,
     padding: 16,
     height: 120,
-    fontFamily: 'Nunito',
-    borderWidth: 1,
-    borderColor: '#54199F',
-    borderBottomWidth: 6,
-    borderRadius: 6,
+    fontFamily: 'Nunito-Medium',
+    backgroundColor: '#fff',
+    borderBottomWidth: 3,
+    borderLeftWidth: 0.5,
+    borderRightWidth: 0.5,
+    borderLeftColor: '#fff',
+    borderRightColor: '#fff',
+    borderBottomColor: '#EE4C4B',
+    borderRadius: 21,
   },
   finalizarAtividade: {
     backgroundColor: '#088B05',

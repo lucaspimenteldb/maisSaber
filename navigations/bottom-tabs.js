@@ -24,9 +24,7 @@ export default BottomTabNavigator = () => {
       <Tab.Screen
         name="Home"
         options={{
-          headerTitle: () => (
-            <HomeHeader navigation={useNavigation()} />
-          ),
+          headerShown: false,
           headerStyle: { backgroundColor: '#fff' },
           tabBarLabelStyle: {
             fontFamily: 'Nunito-Bold'

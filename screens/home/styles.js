@@ -1,9 +1,12 @@
 import {StyleSheet} from 'react-native'
 
 export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F6A3A5'
+  },
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#F6A3A5',
   },
   //carousel
   carousel: {
@@ -47,9 +50,9 @@ export default StyleSheet.create({
     color: '#fff'
   },
   carouselIndicatorsWrapper: {
-    marginTop: 16,
-    marginLeft: 12,
     flexDirection: 'row',
+    alignSelf: 'center',
+    top: -100
   },
   buttonCarouselIndicator: {
     margin: 4,
@@ -59,8 +62,8 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
   buttonCarouselIndicatorActive: {
-    width: 50,
-    backgroundColor: '#fff',
+    width: 10,
+    backgroundColor: '#ED474B',
   },
   // end carousel
   userInformation: {
@@ -130,7 +133,8 @@ export default StyleSheet.create({
   navigationHubContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    top: -80
   },
   navigationHubTouchable: {
     margin: 6,
@@ -193,5 +197,19 @@ export default StyleSheet.create({
     marginBottom: 18,
     fontFamily: 'Nunito-ExtraBold',
     fontSize: 18,
+  },
+  buttonProfile: {
+    position: 'absolute',
+    right: 0,
+    margin: 25
+  },
+  fakeContainer: {
+    backgroundColor: 'transparent',
+    height: 110
+  },
+  headerArea: {
+    top: -50,
+    left: -13,
+    marginBottom: -80
   }
 })

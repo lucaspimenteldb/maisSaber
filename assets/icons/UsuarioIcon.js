@@ -26,8 +26,8 @@ const UsuarioIcon = (props) => (
         y2={14.829}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#75DAFF" />
-        <Stop offset={1} stopColor="#1EA2E4" />
+        <Stop stopColor={props.color ? props.color : "#75DAFF"} />
+        <Stop offset={1} stopColor={props.color ? props.color : "#1EA2E4"} />
       </LinearGradient>
       <LinearGradient
         id="b"
@@ -37,8 +37,8 @@ const UsuarioIcon = (props) => (
         y2={34.053}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#00ADED" />
-        <Stop offset={1} stopColor="#1EA2E4" />
+        <Stop stopColor={props.color ? props.color : "#00ADED"} />
+        <Stop offset={1} stopColor={props.color ? props.color : "#1EA2E4"} />
       </LinearGradient>
     </Defs>
   </Svg>

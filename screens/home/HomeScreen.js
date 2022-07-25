@@ -15,7 +15,9 @@ import AvaliacoesHomeIcon from '../../assets/icons/AvaliacoesHomeIcon.js'
 import MomentosHomeIcon from '../../assets/icons/MomentosHomeIcon.js'
 import CalendarioHomeIcon from '../../assets/icons/CalendarioHomeIcon.js'
 import MuralHomeIcon from '../../assets/icons/MuralHomeIcon.js'
-
+import UsuarioIcon from '../../assets/icons/UsuarioIcon.js'
+import LogoGrande from '../../assets/LogoGrande.js'
+import BackgroundHeader from '../../assets/background-header.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowShareModal } from '../../redux/actions.js'
@@ -150,8 +152,17 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <>
-      <View style={{ flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#fff' }}>
+      <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.pageWrapper}>
+          <View style={styles.headerArea}>
+            <BackgroundHeader />
+          </View>
+          <TouchableHighlight 
+            style={styles.buttonProfile} 
+            onPress={() => navigation.navigate('Profile')}
+          >
+            <UsuarioIcon color="#fff" />
+          </TouchableHighlight>
           {/* <View style={styles.userInformation}>
             <Image
               source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
@@ -175,52 +186,55 @@ const HomeScreen = ({ navigation }) => {
               </View>
             </View>
           </View> */}
-          <ScrollView
-            horizontal
-            onScroll={handleCarouselScroll}
-            scrollEventThrottle={100}
-            ref={carouselScroll}
-          >
-            {
-              carouselContent.map((content, currentIndex) =>
-                <View
-                  key={content.title}
-                  style={currentIndex === (carouselContent.length - 1) ? styles.lastCarousel : ''}
-                >
-                  <Image
-                    source={content.image}
-                    style={styles.carouselImage}
-                  />
-                  <View style={styles.carouselImageFilter}></View>
-                  <Text style={styles.carouselTitle}>{content.title}</Text>
-                  <Text style={styles.carouselDescription}>
-                    {content.description}
-                  </Text>
-                </View>
-              )
-            }
-          </ScrollView>
 
-          <View style={styles.carouselIndicatorsWrapper}>
-            {
-              indicators.map((indicator, currentIndex) => (
-                <TouchableHighlight
-                  key={indicator.carousel + '-indicator'}
-                  onPress={() => carouselSlideTo(currentIndex)}
-                  underlayColor="#fff"
-                >
-                  <View style={[
-                    styles.buttonCarouselIndicator,
-                    indicator.active ? styles.buttonCarouselIndicatorActive : ''
-                  ]}
-                  />
-                </TouchableHighlight>
-              ))
-            }
-          </View>
+          <View style={styles.fakeContainer} />
 
           {/* navigation hub */}
           <View style={styles.navigationHub}>
+            <ScrollView
+              horizontal
+              onScroll={handleCarouselScroll}
+              scrollEventThrottle={100}
+              ref={carouselScroll}
+              style={{ top: -100 }}
+            >
+              {
+                carouselContent.map((content, currentIndex) =>
+                  <View
+                    key={content.title}
+                    style={currentIndex === (carouselContent.length - 1) ? styles.lastCarousel : ''}
+                  >
+                    <Image
+                      source={content.image}
+                      style={styles.carouselImage}
+                    />
+                    <View style={styles.carouselImageFilter}></View>
+                    <Text style={styles.carouselTitle}>{content.title}</Text>
+                    <Text style={styles.carouselDescription}>
+                      {content.description}
+                    </Text>
+                  </View>
+                )
+              }
+            </ScrollView>
+
+            <View style={styles.carouselIndicatorsWrapper}>
+              {
+                indicators.map((indicator, currentIndex) => (
+                  <TouchableHighlight
+                    key={indicator.carousel + '-indicator'}
+                    onPress={() => carouselSlideTo(currentIndex)}
+                    underlayColor="#fff"
+                  >
+                    <View style={[
+                      styles.buttonCarouselIndicator,
+                      indicator.active ? styles.buttonCarouselIndicatorActive : ''
+                    ]}
+                    />
+                  </TouchableHighlight>
+                ))
+              }
+            </View>
             {/* main hub */}
             <View style={styles.navigationHubContainer}>
               {

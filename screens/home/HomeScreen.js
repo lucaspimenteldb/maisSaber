@@ -18,6 +18,7 @@ import MuralHomeIcon from '../../assets/icons/MuralHomeIcon.js'
 import UsuarioIcon from '../../assets/icons/UsuarioIcon.js'
 import LogoGrande from '../../assets/LogoGrande.js'
 import BackgroundHeader from '../../assets/background-header.js'
+import LivroHomeIcon from '../../assets/icons/LivroHomeIcon.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowShareModal } from '../../redux/actions.js'
@@ -130,12 +131,17 @@ const HomeScreen = ({ navigation }) => {
     {
       icon: <CalendarioHomeIcon />,
       title: 'CALENDARIO',
-      route: 'UserLevel'
+      route: 'Calendario'
     },
     {
       icon: <MuralHomeIcon />,
       title: 'MURAL',
       route: 'Mural'
+    },
+    {
+      icon: <LivroHomeIcon />,
+      title: 'LIVRO',
+      route: 'LivrosDigitais'
     },
   ]
   // const [showMissionsModal, setShowMissionsModal] = useState(false)

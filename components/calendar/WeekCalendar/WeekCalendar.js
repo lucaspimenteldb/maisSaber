@@ -39,7 +39,7 @@ const CalendarioSemanal = ({ props }) => {
 
                     arrowColor: 'gray',
 
-                    selectedDayBackgroundColor: '#4B089F',
+                    selectedDayBackgroundColor: '#ED4B49',
                     selectedDayTextColor: '#fff',
 
                 }}
@@ -49,10 +49,10 @@ const CalendarioSemanal = ({ props }) => {
 
             <View style={{ flexDirection: 'row', alignSelf: 'flex-end', padding: 20}}>
                 <TouchableOpacity style={styles.buttonChevronWeek}>
-                    <ChevronIconLeft color="#4B089F" />
+                    <ChevronIconLeft color="#ED4B49" />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonChevronWeek}>
-                    <ChevronIconRight color="#4B089F" />
+                    <ChevronIconRight color="#ED4B49" />
                 </TouchableOpacity>
             </View>
         </View>
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     buttonChevronWeek: {
         borderRadius: 99,
         borderWidth: 1.5,
-        borderColor: '#4B089F',
+        borderColor: '#ED4B49',
         width: 25,
         height: 25,
         justifyContent: 'center',

@@ -58,11 +58,11 @@ export default StyleSheet.create({
     width: 120,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#36007A',
+    backgroundColor: '#ED484A',
     borderRadius: 8
   },
   modalActionButtonBorderBottom: {
-    backgroundColor: '#4B089F',
+    backgroundColor: '#E12224',
     width: '100%',
     height: 20,
     borderRadius: 20,

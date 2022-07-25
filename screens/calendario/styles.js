@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#630FCC',
   },
   header: {
     marginTop: 28,
@@ -100,7 +99,7 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-Bold'
   },
   tabBarIndicator: {
-    backgroundColor: '#4B089F', 
+    backgroundColor: '#ED4B49', 
     height: 3
   }
 })

@@ -7,6 +7,7 @@ import { useFocusEffect } from "@react-navigation/native"
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { Picker } from '@react-native-picker/picker'
+import LinearGradient from 'react-native-linear-gradient'
 
 import BookModal from '../../components/modals/book-modal/Modal.js'
 import { setShowBookModal } from '../../redux/actions.js'
@@ -38,7 +39,6 @@ const LivrosDigitais = ({ navigation }) => {
         async function begin() {
           const response = await Service.getBooks();
           setLivros(response.livro)
-          console.log(livros)
         }
   
         begin()
@@ -74,7 +74,11 @@ const LivrosDigitais = ({ navigation }) => {
       <Spinner
         visible={spinner}
       />
-      <View style={{ flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#4B089F' }}>
+      <LinearGradient 
+        style={{ flex: 1, paddingBottom: tabBarHeight }}
+        colors={['#E53952', '#EE4949', '#E17C1E']}
+        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+      >
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
             <LivroAberto />
@@ -98,7 +102,7 @@ const LivrosDigitais = ({ navigation }) => {
                   underlayColor='#fff'
                   key={livro.id}
                 >
-                  <ImageBackground source={{ uri: livro.imagem }} style={styles.backgroundBooks}>
+                  <ImageBackground source={{ uri: `https://admin.sistemamaissaber.com.br/${livro.imagem}` }} style={styles.backgroundBooks}>
                     <Text style={styles.titleBook}>{livro.titulo}</Text>
                   </ImageBackground>
                 </TouchableHighlight>
@@ -108,7 +112,7 @@ const LivrosDigitais = ({ navigation }) => {
         </ScrollView>
 
         {bookModal}
-      </View>
+      </LinearGradient>
     </>
   )
 }

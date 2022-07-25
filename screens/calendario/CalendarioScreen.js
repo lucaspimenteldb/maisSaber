@@ -7,6 +7,7 @@ import { useFocusEffect } from "@react-navigation/native"
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import LinearGradient from 'react-native-linear-gradient'
 
 import styles from './styles'
 import Service from './services/service'
@@ -99,7 +100,11 @@ const Calendario = ({ navigation }) => {
       <Spinner
         visible={spinner}
       />
-      <View style={{ flex: 1, paddingBottom: tabBarHeight, backgroundColor: '#4B089F' }}>
+      <LinearGradient 
+        style={{ flex: 1, paddingBottom: tabBarHeight }}
+        colors={['#E53952', '#EE4949', '#E17C1E']}
+        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+      >
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
             <CalendarioIcon />
@@ -117,7 +122,7 @@ const Calendario = ({ navigation }) => {
                 <TabBar
                   {...props} 
                   style={styles.tabBar}
-                  activeColor="#4B089F"
+                  activeColor="#ED4B49"
                   labelStyle={styles.tabBarLabel}
                   inactiveColor={"gray"}
                   indicatorStyle={styles.tabBarIndicator}
@@ -130,7 +135,7 @@ const Calendario = ({ navigation }) => {
             />
           </View>
         </ScrollView>
-      </View>
+      </LinearGradient>
     </>
   )
 }

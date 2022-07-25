@@ -36,7 +36,7 @@ const MonthCalendar = ({ }) => {
 
                     arrowColor: 'gray',
 
-                    selectedDayBackgroundColor: '#4B089F',
+                    selectedDayBackgroundColor: '#ED4B49',
                     selectedDayTextColor: '#fff',
 
                 }}
@@ -44,7 +44,7 @@ const MonthCalendar = ({ }) => {
                 markedDates={{
                     [selectedDay]: {
                         selected: true,
-                        selectedColor: '#4B089F',
+                        selectedColor: '#ED4B49',
                         disableTouchEvent: true,
                     },
                 }}

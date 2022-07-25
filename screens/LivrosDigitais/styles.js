@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#630FCC',
   },
   header: {
     marginTop: 28,
@@ -64,6 +63,7 @@ export default StyleSheet.create({
     bottom: 0,
     width: '100%',
     padding: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 
   filterSelect: {

@@ -10,6 +10,7 @@ import TrailsHeader from '../components/header/trails/TrailsHeader.js';
 
 import { useNavigation } from '@react-navigation/native';
 import MensagensTela from '../screens/mensagens/MensagensTela.js';
+import Calendario from '../screens/calendario/CalendarioScreen.js';
 
 import HomeTabIcon from '../assets/icons/HomeTabIcon'
 import VideoTabIcon from '../assets/icons/VideoTabIcon.js'
@@ -44,25 +45,26 @@ export default BottomTabNavigator = () => {
         component={HomeScreen}
       />
     <Tab.Screen  name="LivrosDigitais"
-                 options={{
-                 tabBarButton: () => null,
-                 headerTitle: () => (
-                     <HomeHeader navigation={useNavigation()}/>
-                 ),
-                 headerStyle: {backgroundColor: '#fff'},
-                 headerShadowVisible: false,
-                 headerBackTitle: '',
-                 headerBackVisible: false,
-                 tabBarStyle: {
-                   position: 'absolute',
-                   backgroundColor: '#630FCC',
-                   borderTopLeftRadius: 20,
-                   borderTopRightRadius: 20,
-                 },
-                 tabBarActiveTintColor: '#fff',
-        }}
-               component={LivrosDigitais}
-               />
+      options={{
+        tabBarButton: () => null,
+        headerTitle: () => (
+          <TrailsHeader navigation={useNavigation()} />
+        ),
+        headerStyle: {backgroundColor: '#fff'},
+        headerShadowVisible: false,
+        headerBackTitle: '',
+        headerBackVisible: false,
+        tabBarStyle: {
+          position: 'absolute',
+          backgroundColor: '#fff',
+        },
+        tabBarIcon: (tabInfo) => {
+          return <HomeTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+        },
+        tabBarActiveTintColor: '#fff',
+      }}
+      component={LivrosDigitais}
+    />
 
   <Tab.Screen
         name="Momentos"
@@ -142,6 +144,26 @@ export default BottomTabNavigator = () => {
           tabBarActiveTintColor: '#ED484B',
         }}
         component={NotificacoesTela}
+      />
+
+      <Tab.Screen
+        name="Calendario"
+        options={{
+          tabBarButton: () => null,
+          headerTitle: () => (
+            <TrailsHeader stacks navigation={useNavigation()}/>
+          ),
+          headerStyle: { backgroundColor: '#fff' },
+          headerShadowVisible: false,
+          headerBackTitle: '',
+          headerBackVisible: false,
+          tabBarStyle: {
+            position: 'absolute',
+            backgroundColor: '#fff',
+          },
+          tabBarActiveTintColor: '#ED484B',
+        }}
+        component={Calendario}
       />
 
       <Tab.Screen

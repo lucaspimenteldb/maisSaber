@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#630FCC',
   },
   backButtonWrapper: {
     height: 44,
@@ -28,14 +27,14 @@ export default StyleSheet.create({
   },
   userInformation: {
     marginTop: 16,
-    margin: 12,
-    flexDirection: 'row'
+    marginLeft: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   userInformationAvatar: {
     height: 70,
     width: 70,
     borderRadius: 35,
-    borderColor: '#fff',
     borderWidth: 4,
   },
   nameProgressWrapper: {
@@ -51,8 +50,8 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   userInformationLevelText: {
-    color: '#eee',
-    fontSize: 16,
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: 14,
     fontFamily: 'Nunito-Bold'
   },
   progressBar: {
@@ -93,12 +92,12 @@ export default StyleSheet.create({
     padding: 16,
     fontFamily: 'Nunito',
     borderWidth: 1,
-    borderColor: '#aaa',
+    borderColor: '#EC494A',
     borderBottomWidth: 6,
     borderRadius: 6,
   },
   inputActive: {
-    borderColor: '#630FCC'
+    borderColor: '#EC494A'
   },
   inputLabel: {
     fontFamily: 'Nunito-Bold',
@@ -108,8 +107,8 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#630FCC',
-    borderBottomColor: '#54199F',
+    backgroundColor: '#EC494A',
+    borderBottomColor: '#EC494A',
     borderRadius: 25,
     borderLeftWidth: 0.1,
     borderRightWidth: 0.1,

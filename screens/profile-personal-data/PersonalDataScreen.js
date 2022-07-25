@@ -10,6 +10,7 @@ import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import styles from './styles';
 import Service from './services/service'
 import { useSelector } from 'react-redux'
+import LinearGradient from 'react-native-linear-gradient'
 
 const PersonalDataScreen = ({ navigation }) => {
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
@@ -39,77 +40,65 @@ const PersonalDataScreen = ({ navigation }) => {
 
   return (
     <>
-      <ScrollView contentContainerStyle={styles.pageWrapper}>
-        <TouchableHighlight
-          underlayColor='#630FCC'
-          onPress={() => navigation.goBack()}
-          style={styles.backButtonWrapper}
-        >
-          <View style={styles.backButton}>
-            <Text style={styles.backButtonText}>Voltar</Text>
-          </View>
-        </TouchableHighlight>
-        <View style={styles.userInformation}>
-          <Image
-            source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
-            style={styles.userInformationAvatar}
-          />
+      <LinearGradient 
+        style={{ flex: 1 }}
+        colors={['#E53952', '#EE4949', '#E17C1E']}
+        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+      >
+        <ScrollView contentContainerStyle={styles.pageWrapper}>
+          <View style={styles.userInformation}>
+            <Image
+              source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+              style={styles.userInformationAvatar}
+            />
 
-          <View style={styles.nameProgressWrapper}>
-            <Text style={styles.userInformationName}>{userLogger.nome}</Text>
+            <View style={styles.nameProgressWrapper}>
+              <Text style={styles.userInformationName}>{userLogger.nome}</Text>
 
-            <View style={styles.userInformationLevel}>
-              <Text style={styles.userInformationLevelText}>Nível 1</Text>
-              <DiamanteIcon />
-            </View>
-
-            <View style={styles.progressBar}>
-              <View style={styles.progressNumber}>
-                <Text style={styles.progressNumberText}>6/20</Text>
-                <CoroaJoiasIcon />
+              <View style={styles.userInformationLevel}>
+                <Text style={styles.userInformationLevelText}>{userLogger.email}</Text>
               </View>
-              <View style={styles.progressInner} />
             </View>
           </View>
-        </View>
 
-        <View style={styles.profileHub}>
-          <Text style={styles.inputLabel}>Nome</Text>
-          <View>
-            <TextInput
-              placeholder="Digite seu nome"
-              onChangeText={setName}
-              value={name}
-              style={[styles.input, nameActive ? styles.inputActive : '']}
-              onPressIn={() => setNameActive(true)}
-              onBlur={() => name ? null : setNameActive(false)}
-            />
-            <ContaIcon style={styles.icon}/>
-          </View>
-
-          <Text style={styles.inputLabel}>Email</Text>
-          <View>
-            <TextInput
-              placeholder="Digite seu email"
-              onChangeText={setEmail}
-              value={email}
-              style={[styles.input, emailActive ? styles.inputActive : '']}
-              onPressIn={() => setEmailActive(true)}
-              onBlur={() => email ? null : setEmailActive(false)}
-            />
-            <ContaIcon style={styles.icon}/>
-          </View>
-
-          <TouchableHighlight
-            onPress={handleUpdate}
-            underlayColor="#fff"
-          >
-            <View style={styles.buttonSave}>
-              <Text style={styles.buttonText}>Salvar alterações</Text>
+          <View style={styles.profileHub}>
+            <Text style={styles.inputLabel}>Nome</Text>
+            <View>
+              <TextInput
+                placeholder="Digite seu nome"
+                onChangeText={setName}
+                value={name}
+                style={[styles.input, nameActive ? styles.inputActive : '']}
+                onPressIn={() => setNameActive(true)}
+                onBlur={() => name ? null : setNameActive(false)}
+              />
+              <ContaIcon style={styles.icon}/>
             </View>
-          </TouchableHighlight>
-        </View>
-      </ScrollView>
+
+            <Text style={styles.inputLabel}>Email</Text>
+            <View>
+              <TextInput
+                placeholder="Digite seu email"
+                onChangeText={setEmail}
+                value={email}
+                style={[styles.input, emailActive ? styles.inputActive : '']}
+                onPressIn={() => setEmailActive(true)}
+                onBlur={() => email ? null : setEmailActive(false)}
+              />
+              <ContaIcon style={styles.icon}/>
+            </View>
+
+            <TouchableHighlight
+              onPress={handleUpdate}
+              underlayColor="#fff"
+            >
+              <View style={styles.buttonSave}>
+                <Text style={styles.buttonText}>Salvar alterações</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </ScrollView>
+      </LinearGradient>
         {changesModal}
         {missionsModal}
     </>

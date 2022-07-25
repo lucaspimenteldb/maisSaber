@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#630FCC',
   },
   backButtonWrapper: {
     height: 44,
@@ -28,19 +27,17 @@ export default StyleSheet.create({
   },
   userInformation: {
     marginTop: 16,
-    margin: 12,
-    flexDirection: 'row'
+    marginLeft: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   userInformationAvatar: {
     height: 70,
     width: 70,
     borderRadius: 35,
-    borderColor: '#fff',
-    borderWidth: 4,
   },
   nameProgressWrapper: {
     marginLeft: 24,
-    flex: 1,
   },
   userInformationName: {
     color: '#fff',
@@ -51,9 +48,9 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   userInformationLevelText: {
-    color: '#eee',
-    fontSize: 16,
-    fontFamily: 'Nunito-Bold'
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: 12,
+    fontFamily: 'Nunito-SemiBold'
   },
   progressBar: {
     marginTop: 12,
@@ -97,12 +94,18 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomColor: '#ddd',
-    borderBottomWidth: 3,
-    borderRadius: 3,
+    borderBottomColor: '#EC494A',
+    borderColor: '#CDCDCD',
+    borderBottomWidth: 4,
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderRadius: 8,
+    padding: 20
   },
   profileHubButtonText: {
     fontFamily: 'Nunito-Bold',
-    fontSize: 16
+    fontSize: 16,
+    color: '#2B2B2B'
   }
 })

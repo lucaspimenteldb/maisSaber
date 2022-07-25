@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
-    backgroundColor: '#630FCC',
   },
   backButtonWrapper: {
     height: 44,
@@ -28,14 +27,14 @@ export default StyleSheet.create({
   },
   userInformation: {
     marginTop: 16,
-    margin: 12,
-    flexDirection: 'row'
+    marginLeft: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   userInformationAvatar: {
     height: 70,
     width: 70,
     borderRadius: 35,
-    borderColor: '#fff',
     borderWidth: 4,
   },
   nameProgressWrapper: {
@@ -98,7 +97,7 @@ export default StyleSheet.create({
     borderRadius: 6,
   },
   inputActive: {
-    borderColor: '#630FCC'
+    borderColor: '#EC494A'
   },
   inputLabel: {
     fontFamily: 'Nunito-Bold',
@@ -108,9 +107,9 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#630FCC',
-    borderBottomColor: '#54199F',
-    borderRadius: 25,
+    backgroundColor: '#EC494A',
+    borderBottomColor: '#AC270A',
+    borderRadius: 8,
     borderLeftWidth: 0.1,
     borderRightWidth: 0.1,
     borderBottomWidth: 4,

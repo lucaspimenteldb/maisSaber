@@ -8,6 +8,7 @@ import SignOutModal from '../../components/modals/sign-out-modal/Modal.js'
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux'
+import LinearGradient from 'react-native-linear-gradient'
 import { setIsLoggedIn } from '../../redux/actions.js'
 
 const ProfileScreen = ({ navigation }) => {
@@ -48,62 +49,50 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <>
-      <ScrollView contentContainerStyle={styles.pageWrapper}>
-        <TouchableHighlight
-          underlayColor='#630FCC'
-          onPress={() => navigation.goBack()}
-          style={styles.backButtonWrapper}
-        >
-          <View style={styles.backButton}>
-            <Text style={styles.backButtonText}>Voltar</Text>
-          </View>
-        </TouchableHighlight>
-        <View style={styles.userInformation}>
-          <Image
-            source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
-            style={styles.userInformationAvatar}
-          />
+      <LinearGradient 
+        style={{ flex: 1 }}
+        colors={['#E53952', '#EE4949', '#E17C1E']}
+        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+      >
+        <ScrollView contentContainerStyle={styles.pageWrapper}>
+          <View style={styles.userInformation}>
+            <Image
+              source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+              style={styles.userInformationAvatar}
+            />
 
-          <View style={styles.nameProgressWrapper}>
-            <Text style={styles.userInformationName}>{userLogger.nome}</Text>
+            <View style={styles.nameProgressWrapper}>
+              <Text style={styles.userInformationName}>{userLogger.nome}</Text>
 
-            <View style={styles.userInformationLevel}>
-              <Text style={styles.userInformationLevelText}>Nível 1</Text>
-              <DiamanteIcon />
-            </View>
-
-            <View style={styles.progressBar}>
-              <View style={styles.progressNumber}>
-                <Text style={styles.progressNumberText}>6/20</Text>
-                <CoroaJoiasIcon />
+              <View style={styles.userInformationLevel}>
+                <Text style={styles.userInformationLevelText}>{userLogger.email}</Text>
               </View>
-              <View style={styles.progressInner} />
             </View>
           </View>
-        </View>
 
-        <View style={styles.profileHub}>
-          {
-            options.map(option => (
-              <TouchableHighlight
-                key={option.title}
-                onPress={option.route}
-                underlayColor={'#fff'}
-              >
-                <View style={styles.profileHubButton}>
-                  <Text style={styles.profileHubButtonText}>
-                    {option.title}
-                  </Text>
-                  <ChevronIcon style={styles.profileHubIcon} color="#630FCC" />
-                </View>
-              </TouchableHighlight>
-            ))
-          }
-        </View>
+          <View style={styles.profileHub}>
+            {
+              options.map(option => (
+                <TouchableHighlight
+                  key={option.title}
+                  onPress={option.route}
+                  underlayColor={'#fff'}
+                >
+                  <View style={styles.profileHubButton}>
+                    <Text style={styles.profileHubButtonText}>
+                      {option.title}
+                    </Text>
+                    <ChevronIcon style={styles.profileHubIcon} color="#EC494A" />
+                  </View>
+                </TouchableHighlight>
+              ))
+            }
+          </View>
 
-        {signOutModal}
-        {missionsModal}
-      </ScrollView>
+          {signOutModal}
+          {missionsModal}
+        </ScrollView>
+      </LinearGradient>
     </>
   )
 }

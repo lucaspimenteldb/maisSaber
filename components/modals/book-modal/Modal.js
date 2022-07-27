@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { setShowBookModal } from '../../../redux/actions.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { WebView } from 'react-native-webview';
+import LinearGradient from 'react-native-linear-gradient'
 
 import styles from './styles.js'
 
@@ -55,7 +56,7 @@ const Modal = (props) => {
     }}>
       <TouchableHighlight
         onPress={closeModalWebView}
-        underlayColor="#f00"
+        underlayColor="transparent"
         style={styles.closeButton}
       >
         <FecharIcon />
@@ -107,18 +108,22 @@ const Modal = (props) => {
                   >
                     <>
                       <View style={styles.modalActionButtonBorderBottom} />
-                      <View style={styles.modalActionButton}>
+                      <LinearGradient 
+                        style={styles.modalActionButton}
+                        colors={['#3C368C', '#D02F60']}
+                        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+                      >
                         <Text style={styles.modalActionButtonText}>
                           Visualizar
                         </Text>
-                      </View>
+                      </LinearGradient>
                     </>
                   </TouchableHighlight>
                 </View>
               </View>
               <TouchableHighlight
                 onPress={closeFeedbackModal}
-                underlayColor="#f00"
+                underlayColor="transparent"
                 style={styles.closeButton}
               >
                 <FecharIcon />

@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F6A3A5'
   },
   pageWrapper: {
     minHeight: '100%',
@@ -51,7 +50,7 @@ export default StyleSheet.create({
   },
   carouselIndicatorsWrapper: {
     flexDirection: 'row',
-    alignSelf: 'center',
+    paddingHorizontal: 19,
     top: -100
   },
   buttonCarouselIndicator: {
@@ -62,8 +61,8 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
   buttonCarouselIndicatorActive: {
-    width: 10,
-    backgroundColor: '#ED474B',
+    width: 59,
+    backgroundColor: '#4015B9',
   },
   // end carousel
   userInformation: {
@@ -134,7 +133,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    top: -80
+    marginTop: -80
   },
   navigationHubTouchable: {
     margin: 6,
@@ -198,18 +197,68 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-ExtraBold',
     fontSize: 18,
   },
-  buttonProfile: {
-    position: 'absolute',
-    right: 0,
-    margin: 25
-  },
   fakeContainer: {
     backgroundColor: 'transparent',
     height: 110
   },
   headerArea: {
-    top: -50,
-    left: -13,
-    marginBottom: -80
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    justifyContent: 'space-between'
+  },
+  userInformationAvatar: {
+    width: 47,
+    height: 47,
+    borderRadius: 99,
+    borderColor: '#fff',
+    borderWidth: 2
+  },
+  notificationButton: {
+    paddingRight: 2,
+    paddingTop: 4,
+    height: 40,
+    width: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#630FCC',
+    borderRadius: 20,
+    borderBottomColor: '#480898',
+
+    borderLeftWidth: 0.1,
+    borderRightWidth: 0.1,
+    borderBottomWidth: 4,
+  },
+  userArea: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  nameText: {
+    fontSize: 16,
+    fontFamily: 'Nunito-ExtraBold',
+    color: '#FFF'
+  },
+  typeUserText: {
+    color: '#fff', 
+    fontFamily: 'Nunito-Medium'
+  },
+  livroText: {
+    color: '#545454',
+    fontSize: 16,
+    fontFamily: 'Nunito-ExtraBold', 
+    paddingHorizontal: 19, 
+    marginTop: 30
+  },
+  livroImage: {
+    backgroundColor: 'red',
+    width: 117,
+    height: 159,
+    borderRadius: 8,
+    marginLeft: 9
+  },
+  livroScroll: {
+    marginTop: 10, 
+    paddingHorizontal: 10
   }
 })

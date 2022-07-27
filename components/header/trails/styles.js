@@ -34,9 +34,9 @@ export default StyleSheet.create({
     width: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ED484B',
+    backgroundColor: '#4B089F',
     borderRadius: 20,
-    borderBottomColor: '#EE3737',
+    borderBottomColor: '#36007A',
 
     borderLeftWidth: 0.1,
     borderRightWidth: 0.1,

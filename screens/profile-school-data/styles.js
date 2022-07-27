@@ -92,12 +92,12 @@ export default StyleSheet.create({
     padding: 16,
     fontFamily: 'Nunito',
     borderWidth: 1,
-    borderColor: '#EC494A',
+    borderColor: '#480898',
     borderBottomWidth: 6,
     borderRadius: 6,
   },
   inputActive: {
-    borderColor: '#EC494A'
+    borderColor: '#480898'
   },
   inputLabel: {
     fontFamily: 'Nunito-Bold',

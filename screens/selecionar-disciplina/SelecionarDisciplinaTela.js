@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, View, Text, TouchableHighlight, Image } from 'react-native'
 import TurmasIcon from '../../assets/icons/TurmasIcon.js'
 import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowIcon.js'
@@ -10,34 +10,17 @@ import LinearGradient from 'react-native-linear-gradient'
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles.js'
+import Service from './services/service';
 
 const SelecionarDisciplinaTela = ({ route, navigation }) => {
+  const [disciplines, setDisciplines] = useState([]);
+
   const tabBarHeight = useBottomTabBarHeight();
 
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
-
-  const disciplinas = [
-    {
-      title: 'Matemática',
-      image: require('../../assets/onboarding-carousel.png'),
-      route: 'DisciplinaSelecionada',
-      professor: 'Prof. Carlos Lima',
-      slug: 'matematica',
-      notificacoes: 0
-    },
-    {
-      title: 'Português',
-      image: require('../../assets/onboarding-carousel.png'),
-      route: 'DisciplinaSelecionada',
-      professor: 'Profa. Kassandra Maria',
-      slug: 'portugues',
-      notificacoes: 1,
-    },
-  ]
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
-  const { menu, pronoum } = route.params
   const tratarNofiticacoes = (notificacoes) => {
     return !!notificacoes ? (
       <View style={styles.notificacoes}>
@@ -49,11 +32,25 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
       null
   }
 
+  useEffect(() => {
+    async function begin () {
+      try {
+        const response = await Service.getDisciplinas();
+        setDisciplines(response.disciplinas)
+        console.log(disciplines)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    begin();
+  },[])
+
   return (
     <>
       <LinearGradient 
         style={{ flex: 1, paddingBottom: tabBarHeight }}
-        colors={['#E53952', '#EE4949', '#E17C1E']}
+        colors={['#3C368C', '#D02F60']}
         start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
       >
         <ScrollView contentContainerStyle={styles.pageWrapper}>
@@ -63,7 +60,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
             <View style={styles.headerInfo}>
               <Text style={styles.headerTitle}>Disciplinas</Text>
               <Text style={styles.headerText}>
-                Selecione a disciplina para ver {`${pronoum} ${menu.toLowerCase()}`}
+                Selecione a disciplina para ver
               </Text>
             </View>
           </View>
@@ -73,26 +70,26 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
             {/* main hub */}
             <View style={styles.disciplinasHubContainer}>
               {
-                disciplinas.map(disciplina => (
+                disciplines.map(disciplina => (
                   <TouchableHighlight
-                    onPress={() => navigation.navigate('DisciplinaSelecionadaStack', { menu, disciplina: disciplina.title, professor: disciplina.professor })}
+                    onPress={() => navigation.navigate('DisciplinaSelecionadaStack', { disciplina: disciplina })}
                     underlayColor='#fff'
                     style={styles.disciplinasTouchable}
-                    key={disciplina.title}
+                    key={disciplina.nome}
                   >
                     <View style={styles.disciplinasButton}>
                       <Image
-                        source={disciplina.image}
+                        source={{ uri: `https://admin.plataformaevoluir.com.br/${disciplina.imagem_card}` }}
                         style={styles.disciplinasImagem}
                       />
                       <View style={styles.disciplinasBody}>
                         <Text style={styles.disciplinasNome}>
-                          {disciplina.title}
+                          {disciplina.nome}
                         </Text>
                         <Text style={styles.disciplinasProfessor}>
-                          {disciplina.professor}
+                          Prof. Carlos Lima
                         </Text>
-                        <MuralPublicationArrowIcon style={styles.arrow} />
+                        <MuralPublicationArrowIcon color="#4B089F" style={styles.arrow} />
 
                         {tratarNofiticacoes(disciplina.notificacoes)}
                       </View>

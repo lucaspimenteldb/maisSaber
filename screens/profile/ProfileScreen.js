@@ -39,9 +39,9 @@ const ProfileScreen = ({ navigation }) => {
     },
   ]
 
-  const signOutModal = showSignOutModal ? 
-    <SignOutModal 
-      bottom 
+  const signOutModal = showSignOutModal ?
+    <SignOutModal
+      bottom
       close={() => setShowSignOutModal(false)}
       signOut={() => dispatch(setIsLoggedIn(false))}
     /> :
@@ -49,10 +49,10 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <>
-      <LinearGradient 
-        style={{ flex: 1 }}
-        colors={['#E53952', '#EE4949', '#E17C1E']}
-        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+      <LinearGradient
+        style={[styles.tabButton, { borderColor: '#480898', backgroundColor: '#480898' }]}
+        colors={['#3C368C', '#D02F60']}
+        start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
       >
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.userInformation}>
@@ -82,7 +82,7 @@ const ProfileScreen = ({ navigation }) => {
                     <Text style={styles.profileHubButtonText}>
                       {option.title}
                     </Text>
-                    <ChevronIcon style={styles.profileHubIcon} color="#EC494A" />
+                    <ChevronIcon style={styles.profileHubIcon} color="#4B089F" />
                   </View>
                 </TouchableHighlight>
               ))

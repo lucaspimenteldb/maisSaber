@@ -99,7 +99,7 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-Bold'
   },
   tabBarIndicator: {
-    backgroundColor: '#ED4B49', 
+    backgroundColor: '#3B368C', 
     height: 3
   }
 })

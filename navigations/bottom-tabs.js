@@ -38,9 +38,9 @@ export default BottomTabNavigator = () => {
             backgroundColor: '#fff',
           },
           tabBarIcon: (tabInfo) => {
-            return <HomeTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+            return <HomeTabIcon color={tabInfo.focused ? '#3B368C' : '#6B6B6B'} />
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={HomeScreen}
       />
@@ -81,7 +81,7 @@ export default BottomTabNavigator = () => {
             position: 'absolute',
             backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={MomentosNavigator}
       />
@@ -121,7 +121,7 @@ export default BottomTabNavigator = () => {
             position: 'absolute',
             backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={MuralNavigator}
       />
@@ -141,7 +141,7 @@ export default BottomTabNavigator = () => {
             position: 'absolute',
             backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={NotificacoesTela}
       />
@@ -161,7 +161,7 @@ export default BottomTabNavigator = () => {
             position: 'absolute',
             backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={Calendario}
       />
@@ -181,7 +181,7 @@ export default BottomTabNavigator = () => {
             position: 'absolute',
             backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={HelpNavigator}
       />
@@ -198,11 +198,11 @@ export default BottomTabNavigator = () => {
             fontFamily: 'Nunito-Bold'
           },
           tabBarIcon: (tabInfo) => {
-            return <VideoTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+            return <VideoTabIcon color={tabInfo.focused ? '#3B368C' : '#6B6B6B'} />
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
-        component={VideosNavigator}
+        component={SelecionarDisciplinaNavigator}
       />
 
       <Tab.Screen
@@ -223,9 +223,9 @@ export default BottomTabNavigator = () => {
             backgroundColor: '#fff',
           },
           tabBarIcon: (tabInfo) => {
-            return <MensagensTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+            return <MensagensTabIcon color={tabInfo.focused ? '#3B368C' : '#6B6B6B'} />
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={MensagensNavigator}
       />
@@ -239,7 +239,7 @@ export default BottomTabNavigator = () => {
             position: 'absolute',
             backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={TrailsNavigator}
       />
@@ -254,7 +254,7 @@ export default BottomTabNavigator = () => {
             position: 'absolute',
             backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={ProfileNavigator}
       />
@@ -267,7 +267,7 @@ export default BottomTabNavigator = () => {
             position: 'absolute',
             backgroundColor: '#fff',
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
         component={LevelNavigator}
       />
@@ -283,11 +283,11 @@ export default BottomTabNavigator = () => {
             fontFamily: 'Nunito-Bold'
           },
           tabBarIcon: (tabInfo) => {
-            return <AgendaTabIcon color={tabInfo.focused ? '#EA414F' : '#6B6B6B'} />
+            return <AgendaTabIcon color={tabInfo.focused ? '#3B368C' : '#6B6B6B'} />
           },
-          tabBarActiveTintColor: '#ED484B',
+          tabBarActiveTintColor: '#3B368C',
         }}
-        component={AgendaNavigator}
+        component={Calendario}
       />
     </Tab.Navigator>
   );

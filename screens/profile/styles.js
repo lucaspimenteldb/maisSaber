@@ -94,7 +94,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomColor: '#EC494A',
+    borderBottomColor: '#4B089F',
     borderColor: '#CDCDCD',
     borderBottomWidth: 4,
     borderTopWidth: 1,

@@ -14,7 +14,7 @@ const Button = ({ navigation, icon, title, onPress, width, height }) => {
             >
                 <LinearGradient 
                     style={[styles.navigationHubBack, { width: width, height: height }]}
-                    colors={['#E9404F', '#ED5E30' ]}
+                    colors={['#3C368C', '#D02F60' ]}
                 >
                     {icon}
                     <Text style={styles.navigationHubButtonText}>

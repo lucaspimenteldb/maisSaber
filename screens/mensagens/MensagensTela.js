@@ -25,7 +25,7 @@ const MensagensTela = ({ navigation }) => {
     <>
       <LinearGradient 
         style={{ flex: 1, paddingBottom: tabBarHeight }}
-        colors={['#E53952', '#EE4949', '#E17C1E']}
+        colors={['#3C368C', '#D02F60']}
         start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
       >
         <ScrollView contentContainerStyle={styles.pageWrapper}>

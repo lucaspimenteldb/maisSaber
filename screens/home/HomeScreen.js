@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { ScrollView, View, Text, Image, TouchableHighlight } from 'react-native'
 
 import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
@@ -17,21 +17,26 @@ import CalendarioHomeIcon from '../../assets/icons/CalendarioHomeIcon.js'
 import MuralHomeIcon from '../../assets/icons/MuralHomeIcon.js'
 import UsuarioIcon from '../../assets/icons/UsuarioIcon.js'
 import LogoGrande from '../../assets/LogoGrande.js'
-import BackgroundHeader from '../../assets/background-header.js'
-import LivroHomeIcon from '../../assets/icons/LivroHomeIcon.js'
+import Logo from '../../assets/Logo'
+import Notification from '../../assets/icons/SinoNotificacao.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setShowShareModal } from '../../redux/actions.js'
+import { setShowShareModal, setShowBookModal } from '../../redux/actions.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import LinearGradient from 'react-native-linear-gradient'
 
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import WelcomeModal from '../../components/modals/welcome-modal/Modal.js'
 import ShareModal from '../../components/modals/share-modal/Modal.js'
+import BookModal from '../../components/modals/book-modal/Modal.js'
 import Button from '../../components/button/Button'
 
 import styles from './styles.js'
+import Service from './services/service'
 
 const HomeScreen = ({ navigation }) => {
+  const [livros, setLivros] = useState([])
+  const [bookSelectedModal, setBookSelectedModal] = useState();
   const [indicators, setIndicators] = useState([
     {
       active: true,
@@ -105,7 +110,7 @@ const HomeScreen = ({ navigation }) => {
     {
       icon: <VideosHomeIcon />,
       title: 'VÍDEOS',
-      route: 'Videos'
+      route: 'SelecionarDisciplina'
     },
     {
       icon: <AvaliacoesHomeIcon />,
@@ -130,7 +135,7 @@ const HomeScreen = ({ navigation }) => {
     },
     {
       icon: <CalendarioHomeIcon />,
-      title: 'CALENDARIO',
+      title: 'AGENDA',
       route: 'Calendario'
     },
     {
@@ -138,60 +143,73 @@ const HomeScreen = ({ navigation }) => {
       title: 'MURAL',
       route: 'Mural'
     },
-    {
-      icon: <LivroHomeIcon />,
-      title: 'LIVRO',
-      route: 'LivrosDigitais'
-    },
   ]
   // const [showMissionsModal, setShowMissionsModal] = useState(false)
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const { showWelcomeModal } = useSelector(state => state.showWelcomeModalReducer)
   const { showShareModal } = useSelector(state => state.showShareModalReducer)
+  const { showBookModal } = useSelector(state => state.showBookModalReducer)
   // const { user } = useSelector(state => state.userReducer)
   // const userLogger = user.user;
 
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
   const welcomeModal = showWelcomeModal ? <WelcomeModal bottom data={{ nome: 'lucas' }} /> : null
   const shareModal = showShareModal ? <ShareModal bottom /> : null
+  const bookModal = showBookModal ? <BookModal book={bookSelectedModal} /> : null
+
+  const handleSelectBook = (livro) => {
+    setBookSelectedModal(livro)
+    dispatch(setShowBookModal(true))
+  }
+
+  useEffect(() => {
+    async function begin() {
+      const response = await Service.getBooks();
+      setLivros(response.livro)
+    }
+
+    begin()
+  }, [])
 
   return (
     <>
-      <View style={styles.container}>
+      <LinearGradient 
+        style={{ flex: 1, paddingBottom: tabBarHeight }}
+        colors={['#3C368C', '#D02F60']}
+        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+      >
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.headerArea}>
-            <BackgroundHeader />
+            <Logo />
+            <TouchableHighlight 
+              style={styles.buttonProfile} 
+              onPress={() => navigation.navigate('Profile')}
+            >
+              <UsuarioIcon color="#fff" />
+            </TouchableHighlight>
           </View>
-          <TouchableHighlight 
-            style={styles.buttonProfile} 
-            onPress={() => navigation.navigate('Profile')}
-          >
-            <UsuarioIcon color="#fff" />
-          </TouchableHighlight>
-          {/* <View style={styles.userInformation}>
-            <Image
-              source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
-              style={styles.userInformationAvatar}
-            />
-
-            <View style={styles.nameProgressWrapper}>
-              <Text style={styles.userInformationName}>{userLogger.nome}</Text>
-
-              <View style={styles.userInformationLevel}>
-                <Text style={styles.userInformationLevelText}>Nível 1</Text>
-                <DiamanteIcon />
-              </View>
-
-              <View style={styles.progressBar}>
-                <View style={styles.progressNumber}>
-                  <Text style={styles.progressNumberText}>6/20</Text>
-                  <CoroaJoiasIcon />
-                </View>
-                <View style={styles.progressInner} />
+          <View style={[styles.headerArea, { marginBottom: -30 }]}>
+            <View style={styles.userArea}>
+              <Image
+                source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+                style={styles.userInformationAvatar}
+              />
+              <View style={{marginLeft: 12}}>
+                <Text style={styles.nameText}>Anderson Moura</Text>
+                <Text style={styles.typeUserText}>Aluno</Text>
               </View>
             </View>
-          </View> */}
+            <TouchableHighlight
+              underlayColor='transparent'
+              onPress={() => 'oi'}
+              style={styles.backButtonWrapper}
+            >
+              <View style={styles.notificationButton}>
+                <Notification />
+              </View>
+            </TouchableHighlight>
+          </View>
 
           <View style={styles.fakeContainer} />
 
@@ -260,41 +278,22 @@ const HomeScreen = ({ navigation }) => {
               }
             </View>
 
-            {/* secondary hub */}
-            {/* <Text style={styles.seeTooTitle}>Veja também</Text>
-            <ScrollView horizontal>
-              <TouchableHighlight
-                onPress={() => navigation.navigate('Ajuda')}
-                underlayColor="#fff"
-                style={styles.navigationHubTouchableHelp}
-              >
-                <View style={styles.navigationHubButtonHelp}>
-                  <NotebookMensagemIcon />
-                  <Text style={styles.navigationHubButtonTextSecondary}>
-                    Preciso de ajuda
-                  </Text>
-                </View>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={() => dispatch(setShowShareModal(true))}
-                underlayColor="#fff"
-                style={styles.navigationHubTouchableShare}
-              >
-                <View style={styles.navigationHubButtonShare}>
-                  <PessoasConexaoIcon />
-                  <Text style={styles.navigationHubButtonTextSecondary}>
-                    Compartilhar com amigos
-                  </Text>
-                </View>
-              </TouchableHighlight>
-            </ScrollView> */}
+            <Text style={styles.livroText}>Livros</Text>
+            <ScrollView horizontal style={styles.livroScroll}>
+              {livros.map(livro => (
+                <TouchableHighlight key={livro.id} onPress={() => handleSelectBook(livro)} underlayColor="transparent">
+                  <Image source={{ uri: `https://admin.sistemamaissaber.com.br/${livro.imagem}` }} style={styles.livroImage} />
+                </TouchableHighlight>
+              ))}
+            </ScrollView>
           </View>
         </ScrollView>
 
         {missionsModal}
         {welcomeModal}
         {shareModal}
-      </View>
+        {bookModal}
+      </LinearGradient>
     </>
   )
 }

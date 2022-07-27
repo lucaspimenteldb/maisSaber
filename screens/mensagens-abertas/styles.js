@@ -35,10 +35,10 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     borderBottomWidth: 2,
-    borderBottomColor: '#E14319'
+    borderBottomColor: '#4B089F'
   },
   buttonText: {
-    color: '#ED4A48',
+    color: '#4B089F',
     fontFamily: 'Nunito-Bold',
   },
   title: {
@@ -51,9 +51,11 @@ export default StyleSheet.create({
     margin: 12,
     marginBottom: 0,
     padding: 12,
-    backgroundColor: '#E14319',
-    borderBottomWidth: 4,
-    borderBottomColor: '#E14319',
+    borderBottomWidth: 5,
+    backgroundColor: '#4B089F',
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: '#4B089F',
     borderRadius: 20,
   },
   messageText: {

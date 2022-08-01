@@ -6,7 +6,8 @@ export default StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginRight: 16
   },
   menuItems: {
     flexDirection: 'row',
@@ -26,4 +27,11 @@ export default StyleSheet.create({
     color: '#F6970D',
     fontSize: 16,
   },
+  backButton: {
+    width: 34,
+    height: 34,
+    borderRadius: 99,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 })

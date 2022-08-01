@@ -146,12 +146,4 @@ export default StyleSheet.create({
     marginTop: 8,
     fontSize: 12
   },
-
-  titleDisciplina: {
-    paddingHorizontal: 14,
-    marginBottom: 10,
-    fontSize: 16,
-    fontFamily: 'Nunito-Bold',
-    color: '#000'
-  }
 })

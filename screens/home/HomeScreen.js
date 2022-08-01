@@ -112,37 +112,37 @@ const HomeScreen = ({ navigation }) => {
       title: 'VÍDEOS',
       route: 'SelecionarDisciplina'
     },
-    {
-      icon: <AvaliacoesHomeIcon />,
-      title: 'AVALIAÇÕES',
-      route: 'Trilhas'
-    },
-    {
-      icon: <AtividadesHomeIcon />,
-      title: 'ATIVIDADES',
-      route: 'SelecionarDisciplina',
-      pronoum: 'suas'
-    },
-    {
-      icon: <MensagensHomeIcon />,
-      title: 'MENSAGENS',
-      route: 'Mensagens'
-    },
-    {
-      icon: <MomentosHomeIcon />,
-      title: 'MOMENTOS',
-      route: 'Momentos'
-    },
-    {
-      icon: <CalendarioHomeIcon />,
-      title: 'AGENDA',
-      route: 'Calendario'
-    },
-    {
-      icon: <MuralHomeIcon />,
-      title: 'MURAL',
-      route: 'Mural'
-    },
+    // {
+    //   icon: <AvaliacoesHomeIcon />,
+    //   title: 'AVALIAÇÕES',
+    //   route: 'Trilhas'
+    // },
+    // {
+    //   icon: <AtividadesHomeIcon />,
+    //   title: 'ATIVIDADES',
+    //   route: 'SelecionarDisciplina',
+    //   pronoum: 'suas'
+    // },
+    // {
+    //   icon: <MensagensHomeIcon />,
+    //   title: 'MENSAGENS',
+    //   route: 'Mensagens'
+    // },
+    // {
+    //   icon: <MomentosHomeIcon />,
+    //   title: 'MOMENTOS',
+    //   route: 'Momentos'
+    // },
+    // {
+    //   icon: <CalendarioHomeIcon />,
+    //   title: 'AGENDA',
+    //   route: 'Calendario'
+    // },
+    // {
+    //   icon: <MuralHomeIcon />,
+    //   title: 'MURAL',
+    //   route: 'Mural'
+    // },
   ]
   // const [showMissionsModal, setShowMissionsModal] = useState(false)
   const dispatch = useDispatch()
@@ -150,8 +150,8 @@ const HomeScreen = ({ navigation }) => {
   const { showWelcomeModal } = useSelector(state => state.showWelcomeModalReducer)
   const { showShareModal } = useSelector(state => state.showShareModalReducer)
   const { showBookModal } = useSelector(state => state.showBookModalReducer)
-  // const { user } = useSelector(state => state.userReducer)
-  // const userLogger = user.user;
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
 
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
   const welcomeModal = showWelcomeModal ? <WelcomeModal bottom data={{ nome: 'lucas' }} /> : null
@@ -185,6 +185,7 @@ const HomeScreen = ({ navigation }) => {
             <TouchableHighlight 
               style={styles.buttonProfile} 
               onPress={() => navigation.navigate('Profile')}
+              underlayColor="transparent"
             >
               <UsuarioIcon color="#fff" />
             </TouchableHighlight>
@@ -196,19 +197,10 @@ const HomeScreen = ({ navigation }) => {
                 style={styles.userInformationAvatar}
               />
               <View style={{marginLeft: 12}}>
-                <Text style={styles.nameText}>Anderson Moura</Text>
-                <Text style={styles.typeUserText}>Aluno</Text>
+                <Text style={styles.nameText}>{userLogger.nome}</Text>
+                <Text style={styles.typeUserText}>{userLogger.id_privilegio === 3 ? 'Aluno' : 'Professor'}</Text>
               </View>
             </View>
-            <TouchableHighlight
-              underlayColor='transparent'
-              onPress={() => 'oi'}
-              style={styles.backButtonWrapper}
-            >
-              <View style={styles.notificationButton}>
-                <Notification />
-              </View>
-            </TouchableHighlight>
           </View>
 
           <View style={styles.fakeContainer} />
@@ -290,7 +282,6 @@ const HomeScreen = ({ navigation }) => {
         </ScrollView>
 
         {missionsModal}
-        {welcomeModal}
         {shareModal}
         {bookModal}
       </LinearGradient>

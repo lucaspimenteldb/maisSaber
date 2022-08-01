@@ -31,6 +31,8 @@ import MensagensAbertasTela from '../screens/mensagens-abertas/MensagensAbertasT
 import SelecionarDisciplinaTela from '../screens/selecionar-disciplina/SelecionarDisciplinaTela.js';
 import DisciplinaSelecionadaTela from '../screens/disciplina-selecionada/DisciplinaSelecionadaTela.js';
 import FazerAtividadeTela from '../screens/fazer-atividade/FazerAtividadeTela.js';
+import Videoaula from '../screens/disciplina-selecionada/Videos/Videos'
+import HomeHeader from '../components/header/home/HomeHeader.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,47 +41,14 @@ export const VideosNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="VideosStack"
-        options={{
-          headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
-          ),
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
-          headerBackVisible: false,
-          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-          tabBarActiveTintColor: '#fff',
-        }}
         component={VideosScreen}
       />
       <Stack.Screen
         name="Subjects"
-        options={{
-          headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
-          ),
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
-          headerBackVisible: false,
-          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-          tabBarActiveTintColor: '#fff',
-        }}
         component={SubjectsScreen}
       />
       <Stack.Screen
         name="WatchVideos"
-        options={{
-          headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
-          ),
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
-          headerBackVisible: false,
-          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-          tabBarActiveTintColor: '#fff',
-        }}
         component={WatchVideosScreen}
       />
     </Stack.Navigator>
@@ -92,52 +61,44 @@ export const ProfileNavigator = () => {
       <Stack.Screen
         name="ProfileStack"
         options={{
-          headerShown: false,
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
           headerBackVisible: false,
-          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-          tabBarActiveTintColor: '#fff',
+          headerBackTitle: '',
+          headerTitle: () => (
+            <HomeHeader stacks navigation={useNavigation()} />
+          ),
         }}
         component={ProfileScreen}
       />
       <Stack.Screen
         name="PersonalData"
         options={{
-          headerShown: false,
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
           headerBackVisible: false,
-          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-          tabBarActiveTintColor: '#fff',
+          headerBackTitle: '',
+          headerTitle: () => (
+            <HomeHeader stacks navigation={useNavigation()} />
+          ),
         }}
         component={PersonalDataScreen}
       />
       <Stack.Screen
         name="SchoolData"
         options={{
-          headerShown: false,
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
           headerBackVisible: false,
-          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-          tabBarActiveTintColor: '#fff',
+          headerBackTitle: '',
+          headerTitle: () => (
+            <HomeHeader stacks navigation={useNavigation()} />
+          ),
         }}
         component={SchoolDataScreen}
       />
       <Stack.Screen
         name="ChangePassword"
         options={{
-          headerShown: false,
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
           headerBackVisible: false,
-          tabBarStyle: { backgroundColor: '#630FCC', borderTopLeftRadius: 20, borderTopRightRadius: 20 },
-          tabBarActiveTintColor: '#fff',
+          headerBackTitle: '',
+          headerTitle: () => (
+            <HomeHeader stacks navigation={useNavigation()} />
+          ),
         }}
         component={ChangePasswordScreen}
       />
@@ -152,7 +113,7 @@ export const TrailsNavigator = () => {
         name="TrailsStack"
         options={{
           headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
+            <TrailsHeader stacks navigation={useNavigation()} />
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -167,7 +128,7 @@ export const TrailsNavigator = () => {
         name="TrailLevels"
         options={{
           headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
+            <TrailsHeader stacks navigation={useNavigation()} />
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -202,7 +163,7 @@ export const AgendaNavigator = () => {
         name="AgendaStacks"
         options={{
           headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
+            <TrailsHeader stacks navigation={useNavigation()} />
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -217,7 +178,7 @@ export const AgendaNavigator = () => {
         name="AgendaNotification"
         options={{
           headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
+            <TrailsHeader stacks navigation={useNavigation()} />
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -239,7 +200,7 @@ export const LevelNavigator = () => {
         name="UserLevelScreen"
         options={{
           headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
+            <TrailsHeader stacks navigation={useNavigation()} />
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -254,7 +215,7 @@ export const LevelNavigator = () => {
         name="UserRewards"
         options={{
           headerTitle: () => (
-            <TrailsHeader stacks navigation={useNavigation()}/>
+            <TrailsHeader stacks navigation={useNavigation()} />
           ),
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: false,
@@ -311,7 +272,7 @@ export const MuralNavigator = () => {
         options={{
           headerShown: false,
         }}
-        component={MuralScreen}        
+        component={MuralScreen}
       />
       <Stack.Screen
         name="MuralPublication"
@@ -332,16 +293,16 @@ export const MomentosNavigator = () => {
         options={{
           headerShown: false,
         }}
-        component={MomentosTela}        
+        component={MomentosTela}
       />
       <Stack.Screen
         name="MomentosPublicacao"
         options={{
           headerShown: false,
         }}
-        component={MomentosPublicacaoTela}        
+        component={MomentosPublicacaoTela}
       />
-      
+
     </Stack.Navigator>
   )
 }
@@ -354,16 +315,16 @@ export const MensagensNavigator = () => {
         options={{
           headerShown: false,
         }}
-        component={MensagensTela}        
+        component={MensagensTela}
       />
       <Stack.Screen
         name="MensagensAbertas"
         options={{
           headerShown: false,
         }}
-        component={MensagensAbertasTela}        
+        component={MensagensAbertasTela}
       />
-      
+
     </Stack.Navigator>
   )
 }
@@ -374,34 +335,47 @@ export const SelecionarDisciplinaNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="SelecionarDisciplinaStack"
+        component={SelecionarDisciplinaTela}
         options={{
-          headerShown: false,
-          headerTitle: () => (
-            <TrailsHeader navigation={useNavigation()} />
-          ),
-          headerStyle: { backgroundColor: '#fff' },
-          tabBarLabelStyle: {
-            fontFamily: 'Nunito-Bold'
-          },
-          headerShadowVisible: false,
-          headerBackTitle: '',
           headerBackVisible: false,
+          headerBackTitle: '',
+          headerTitle: () => (
+            <HomeHeader stacks navigation={useNavigation()} />
+          ),
         }}
-        component={SelecionarDisciplinaTela}        
       />
       <Stack.Screen
-        name="DisciplinaSelecionadaStack"
         options={{
-          headerShown: false,
+          headerBackVisible: false,
+          headerBackTitle: '',
+          headerTitle: () => (
+            <HomeHeader stacks navigation={useNavigation()} />
+          ),
         }}
+        name="DisciplinaSelecionadaStack"
         component={DisciplinaSelecionadaTela}
       />
       <Stack.Screen
-        name="FazerAtividade"
         options={{
-          headerShown: false,
+          headerBackVisible: false,
+          headerBackTitle: '',
+          headerTitle: () => (
+            <HomeHeader stacks navigation={useNavigation()} />
+          ),
         }}
+        name="FazerAtividade"
         component={FazerAtividadeTela}
+      />
+      <Stack.Screen
+        options={{
+          headerBackVisible: false,
+          headerBackTitle: '',
+          headerTitle: () => (
+            <HomeHeader stacks navigation={useNavigation()} />
+          ),
+        }}
+        name="VideoaulaSelecionada"
+        component={Videoaula}
       />
     </Stack.Navigator>
   )
@@ -416,8 +390,8 @@ export const LivrosDigitais = () => {
         options={{
           headerShown: false,
         }}
-        component={LivrosDigitais}        
-      />      
+        component={LivrosDigitais}
+      />
     </Stack.Navigator>
   )
 }

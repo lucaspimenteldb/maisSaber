@@ -6,6 +6,7 @@ import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowI
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
@@ -14,6 +15,7 @@ import Service from './services/service';
 
 const SelecionarDisciplinaTela = ({ route, navigation }) => {
   const [disciplines, setDisciplines] = useState([]);
+  const [spinner, setSpinner] = useState(false);
 
   const tabBarHeight = useBottomTabBarHeight();
 
@@ -33,25 +35,27 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
   }
 
   useEffect(() => {
-    async function begin () {
+    async function begin() {
       try {
+        setSpinner(true)
         const response = await Service.getDisciplinas();
         setDisciplines(response.disciplinas)
-        console.log(disciplines)
+        setSpinner(false)
       } catch (err) {
         console.log(err)
       }
     }
 
     begin();
-  },[])
+  }, [])
 
   return (
     <>
-      <LinearGradient 
+      <Spinner visible={spinner} />
+      <LinearGradient
         style={{ flex: 1, paddingBottom: tabBarHeight }}
         colors={['#3C368C', '#D02F60']}
-        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+        start={{ x: 0, y: 0 }} end={{ x: 1.0, y: 0 }}
       >
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.header}>
@@ -60,7 +64,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
             <View style={styles.headerInfo}>
               <Text style={styles.headerTitle}>Disciplinas</Text>
               <Text style={styles.headerText}>
-                Selecione a disciplina para ver
+                Selecione uma disciplina para assistir as videoaulas
               </Text>
             </View>
           </View>

@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { ScrollView, View, Text, TouchableHighlight, Image, TextInput, Alert, ActivityIndicator } from 'react-native'
 import { useDispatch } from 'react-redux'
+import LinearGradient from 'react-native-linear-gradient'
 
 import CadeadoIcon from '../../assets/icons/CadeadoIcon.js'
-import ChevronIcon from '../../assets/icons/ChevronIcon.js'
+import ChevronIconLeft from '../../assets/icons/ChevronIconLeft'
 import ContaIcon from '../../assets/icons/ContaIcon.js'
+import CircleBackgroundRight from '../../assets/icons/CircleBackgroundRight.js'
+import LogoOnboarding from '../../assets/LogoOnboarding'
 
 import { setIsLoggedIn, setUserReduce } from '../../redux/actions.js'
 import Service from './services/service';
@@ -26,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
     if (registration !== '' && password !== '') {
       try {
         await Service.login(registration, password)
-        .then(response => {
+          .then(response => {
             if (response.token) {
               dispatch(setUserReduce(response))
               dispatch(setIsLoggedIn(true))
@@ -48,71 +51,108 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <>
-      <ScrollView style={styles.pageWrapper} contentContainerStyle={styles.pageContentContainer}>
-        <View>
-          <View style={styles.header}>
+      <LinearGradient
+        colors={['#3C368C', '#D02F60']}
+        start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+        style={styles.pageWrapper}
+      >
+        <View style={{ marginLeft: 22, marginTop: 30, marginBottom: 32 }}>
+          <LogoOnboarding style={styles.logo} />
+
+        </View>
+        <ScrollView contentContainerStyle={styles.pageContentContainer}>
+          <View>
             <TouchableHighlight
-              underlayColor='#fff'
               onPress={() => navigation.goBack()}
-              style={styles.backButtonWrapper}
+              underlayColor="transparent"
+              style={{
+                borderBottomWidth: 4,
+                borderWidth: 1,
+                borderColor: '#44378B',
+                borderRadius: 5,
+                width: 81,
+                height: 30,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
             >
-              <View style={styles.backButton}>
-                <ChevronIcon />
+              <View style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+              }}>
+                <ChevronIconLeft />
+                <Text style={{
+                  color: '#44378B',
+                  fontFamily: 'Nunito-Bold',
+                  fontSize: 12,
+                  marginLeft: 8
+                }}>Voltar</Text>
               </View>
             </TouchableHighlight>
-            <Image source={require('../../assets/logo.png')} />
-          </View>
 
-          <Text style={styles.text}>Oi, bb</Text>
-          <Text style={styles.title}>Entrar no Mais Saber</Text>
+            <View style={{
+              marginTop: 30
+            }}>
+
+              <Text style={styles.text}>Olá! 👋</Text>
+              <Text style={styles.title}>Seja bem vindo ao aplicativo Evoluir</Text>
+            </View>
+
+            <View>
+              <Text style={styles.titleInput}>Matrícula</Text>
+              <TextInput
+                placeholder="Digite aqui sua matrícula"
+                onChangeText={setRegistration}
+                value={registration}
+                style={[styles.input, registrationActive ? styles.inputActive : '']}
+                onPressIn={() => setRegistrationActive(true)}
+                onBlur={() => registration ? null : setRegistrationActive(false)}
+              />
+              <ContaIcon style={styles.icon} />
+            </View>
+
+            <View>
+              <Text style={styles.titleInput}>Senha</Text>
+              <TextInput
+                placeholder="Digite aqui sua senha"
+                onChangeText={setPassword}
+                value={password}
+                style={[styles.input, passwordActive ? styles.inputActive : '']}
+                onPressIn={() => setPasswordActive(true)}
+                onBlur={() => password ? null : setPasswordActive(false)}
+                secureTextEntry
+              />
+              <CadeadoIcon style={styles.icon} />
+            </View>
+            <Text style={styles.esqueciSenha}>Esqueceu a senha ?</Text>
+
+          </View>
 
           <View>
-            <TextInput
-              placeholder="Digite sua matrícula"
-              onChangeText={setRegistration}
-              value={registration}
-              style={[styles.input, registrationActive ? styles.inputActive : '']}
-              onPressIn={() => setRegistrationActive(true)}
-              onBlur={() => registration ? null : setRegistrationActive(false)}
-            />
-            <ContaIcon style={styles.icon}/>
+            <LinearGradient
+              colors={['#3C368C', '#D02F60']}
+              start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+              style={styles.buttonSignIn}
+            >
+              <TouchableHighlight
+                onPress={handleLogin}
+                underlayColor="transparent"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                { spinner ? loading : <Text style={styles.buttonText}>Entrar no aplicativo</Text>}
+              </TouchableHighlight>
+            </LinearGradient>
           </View>
+        </ScrollView>
+      </LinearGradient>
 
-          <View>
-            <TextInput
-              placeholder="Digite sua senha"
-              onChangeText={setPassword}
-              value={password}
-              style={[styles.input, passwordActive ? styles.inputActive : '']}
-              onPressIn={() => setPasswordActive(true)}
-              onBlur={() => password ? null : setPasswordActive(false)}
-              secureTextEntry
-            />
-            <CadeadoIcon style={styles.icon}/>
-          </View>
-
-        </View>
-
-        <View>
-          <TouchableHighlight
-            onPress={handleLogin}
-            underlayColor="#fff"
-          >
-            <View style={styles.buttonSignIn}>
-              {spinner ? loading : <Text style={styles.buttonText}>Entrar</Text>}
-            </View>
-          </TouchableHighlight>
-
-          <TouchableHighlight
-            onPress={() => 'oi'}
-            underlayColor="#fff"
-          >
-            <View style={styles.buttonSignUp}>
-              <Text style={styles.buttonText}>Cadastre-se</Text>
-            </View>
-          </TouchableHighlight>
-        </View>
-      </ScrollView>
+      <CircleBackgroundRight style={{ position: 'absolute', top: 0, right: 0 }} />
     </>
   )
 }

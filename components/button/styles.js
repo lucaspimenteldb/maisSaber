@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         borderRadius: 15,
         borderLeftWidth: 1,
         borderRightWidth: 1,
-        borderBottomWidth: 7,
+        borderBottomWidth: 4,
         borderColor: '#3C368C',
     },
     navigationHubButtonText: {

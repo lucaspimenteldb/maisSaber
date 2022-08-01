@@ -1,134 +1,102 @@
 import React, { useState } from 'react'
-import { ScrollView, View, Text, TouchableHighlight, ImageBackground } from 'react-native'
+import { ScrollView, View, Text, TouchableHighlight, TouchableOpacity, ImageBackground } from 'react-native'
 import TurmasIcon from '../../assets/icons/TurmasIcon.js'
 import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowIcon.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useFocusEffect } from "@react-navigation/native"
 import LinearGradient from 'react-native-linear-gradient'
+import Spinner from 'react-native-loading-spinner-overlay'
 
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import Atividades from './Atividades/Atividades'
 import Videos from './Videos/Videos'
+import HeaderDisciplina from './HeaderDisciplina/HeaderDisciplina'
 
 import styles from './styles.js'
+import Service from './services/service'
+
 import PlayIcon from '../../assets/icons/PlayIcon.js'
 import MuralIcon from '../../assets/icons/MuralIcon.js'
 
 const DisciplinaSelecionadaTela = ({ route, navigation }) => {
-  
-  const [atividades, setAtividades] = useState(false)
-  const [videos, setVideos] = useState(true)
 
-  const tabBarHeight = useBottomTabBarHeight();
+  const [showAssuntos, setShowAssuntos] = useState(true)
+  const [assuntos, setAssuntos] = useState([])
+  const [spinner, setSpinner] = useState(false)
+  const [finalizado, setFinalizado] = useState(false)
 
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
+  const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
 
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
 
   const { disciplina } = route.params
 
-  const [tabs, setTabs] = useState([
-    {
-      title: 'Vídeos',
-      component: 'a',
-      iconAtivo: <PlayIcon />,
-      icon: <PlayIcon color='#000'/>,
-      route: () => setVideos(!videos),
-      ativa: true,
-    },
-    {
-      title: 'Mural',
-      component: 'a',
-      iconAtivo: <PlayIcon />,
-      icon: <PlayIcon color='#000'/>,
-      route: () => 'oi',
-      ativa: false,
-    },
-    {
-      title: 'Atividades',
-      component: 'a',
-      iconAtivo: <PlayIcon />,
-      icon: <PlayIcon color='#000'/>,
-      route: () => setAtividades(true),
-      ativa: false,
-    },
-    {
-      title: 'Avaliações',
-      component: 'a',
-      iconAtivo: <PlayIcon />,
-      icon: <PlayIcon color='#000'/>,
-      route: () => 'oi',
-      ativa: false,
-    },
-  ]) 
-  const ativarTab = (tabAtiva) => {
-    setTabs(tabs => {
-      const newTabs = [...tabs]
-      newTabs.map(tab => {
-        tab.route()
-        tab.title === tabAtiva ? tab.ativa = true : tab.ativa = false;
-      })
-      return newTabs;
-    })
-  }
+  useFocusEffect(
+    React.useCallback(() => {
+      try {
+        async function begin() {
+          try {
+            setSpinner(true);
+            const response = await Service.getSubjects(disciplina.id);
+            setAssuntos(response.videos)
 
-  const renderTabs = tabs.map(tab => {
-    return (
-      <TouchableHighlight 
-        underlayColor='transparent'
-        onPress={() => ativarTab(tab.title)} 
-        style={[styles.tabTouchable, tab.ativa ? styles.tabTouchableAtiva : null]}
-        key={tab.title}
-      >
-        {tab.ativa ? 
-          <LinearGradient 
-            style={[styles.tabButton, { borderColor: '#480898', backgroundColor: '#480898' }]}
-            colors={['#3C368C', '#D02F60']}
-            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-          >
-            {tab.ativa ? tab.iconAtivo : tab.icon}
-            <Text style={[styles.tabText, tab.ativa ? styles.tabTextAtiva : null]}>
-              {tab.title}
-            </Text>
-          </LinearGradient>
-          :
-          <View style={[styles.tabButton, { backgroundColor: '#fff', borderColor: '#480898' }]}>
-            {tab.ativa ? tab.iconAtivo : tab.icon}
-            <Text style={[styles.tabText, tab.ativa ? styles.tabTextAtiva : null]}>
-              {tab.title}
-            </Text>
-          </View>
+            setSpinner(false)
+          }
+          catch (e) {
+            setSpinner(false)
+            console.log(e)
+          }
         }
-      </TouchableHighlight>
-    )
-  })
+
+        assuntos ? begin() : null
+
+        begin()
+      } catch (error) {
+        setSpinner(false);
+        console.log(error)
+      }
+    }, []),
+  );
 
   return (
     <>
+      <Spinner
+        visible={spinner}
+      />
       <ScrollView style={{ flex: 1 }}>
         <View contentContainerStyle={styles.pageWrapper}>
-          <ImageBackground resizeMode='cover' source={{ uri: `https://admin.plataformaevoluir.com.br/${disciplina.imagem}` }} style={styles.header}>
-            <View style={styles.opacityContainer} />
-            <View style={styles.headerInfo}>
-              <Text style={styles.headerTitle}>{disciplina.nome}</Text>
-              <Text style={styles.headerText}>Professor Carlos Lima</Text>
-            </View>
-          </ImageBackground>
+          <HeaderDisciplina disciplina={disciplina} />
 
-          {/* navigation hub */}
-          <View style={[styles.disciplinasHub, { paddingBottom: tabBarHeight, }]}>
-            {/* tabs */}
-            <ScrollView horizontal>
-              {renderTabs}
-            </ScrollView>
-            {/* main hub */}
-            {atividades && <Atividades />}
-            {videos && <Videos disciplina={disciplina} />}
+          <View style={{ marginTop: -50 }}>
+            {showAssuntos && <Text style={styles.titleDisciplina}>Vídeos de {disciplina.nome}</Text>}
+            {/* navigation hub */}
+            {showAssuntos &&
+              <>
+                {assuntos.map(assunto => (
+                  <TouchableOpacity
+                    key={assunto.id}
+                    style={[styles.cardContent, { borderColor: assunto.situacao === 'finalizado' ? '#167B26' : '#480898' }]}
+                    onPress={() => navigation.navigate('VideoaulaSelecionada', { disciplina, assunto })}
+                  >
+                    <View>
+                      <Text style={styles.titleAula}>{assunto.titulo}</Text>
+                      <Text style={[styles.statusAula, { color: assunto.situacao === 'finalizado' ? '#167B26' : '#480898' }]}>
+                        {assunto.situacao === 'finalizado' ? 'Aula assistida' : 'Aula não assistida'}
+                      </Text>
+                    </View>
+                    <PlayIcon color={assunto.situacao === 'finalizado' ? '#167B26' : "#480898"} />
+                  </TouchableOpacity>
+                ))}
+              </>
+            }
           </View>
         </View>
-
+        <View style={{ height: 80 }} />
         {missionsModal}
       </ScrollView>
     </>

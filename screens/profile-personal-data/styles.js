@@ -98,7 +98,7 @@ export default StyleSheet.create({
     borderRadius: 6,
   },
   inputActive: {
-    borderColor: '#EC494A'
+    borderColor: '#4B089F'
   },
   inputLabel: {
     fontFamily: 'Nunito-Bold',
@@ -108,8 +108,8 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4B089F',
-    borderBottomColor: '#8C4EDA',
+    backgroundColor: '#36007A',
+    borderBottomColor: '#36007A',
     borderRadius: 8,
     borderLeftWidth: 0.1,
     borderRightWidth: 0.1,

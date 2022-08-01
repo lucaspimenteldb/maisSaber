@@ -2,9 +2,8 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   pageWrapper: {
-    paddingTop: 60,
+    paddingTop: 40,
     minHeight: '100%',
-    backgroundColor: '#711DBC'
   },
   logo: {
     marginLeft: 16,
@@ -16,9 +15,9 @@ export default StyleSheet.create({
     marginRight: 16,
   },
   carouselImage: {
-    marginVertical: 16,
-    marginLeft: 16,
-    width: 340,
+    marginVertical: 22,
+    marginLeft: 22,
+    width: 330,
     height: 240,
     borderRadius: 10,
   },
@@ -28,19 +27,23 @@ export default StyleSheet.create({
     marginBottom: 4,
     width: 340,
     fontFamily: 'Nunito-ExtraBold',
-    fontSize: 24,
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#1C1C1C'
   },
   carouselDescription: {
     marginLeft: 16,
     width: 340,
     fontFamily: 'Nunito',
-    fontSize: 16,
-    color: '#222'
+    color: '#000',
+    opacity: 0.4,
+    textAlign: 'center'
   },
   carouselIndicatorsWrapper: {
     marginTop: 16,
     marginLeft: 12,
     flexDirection: 'row',
+    alignSelf: 'center'
   },
   buttonCarouselIndicator: {
     margin: 4,
@@ -50,39 +53,43 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
   buttonCarouselIndicatorActive: {
-    width: 50,
+    width: 10,
     backgroundColor: '#630FCC',
   },
   buttonSignUp: {
-    margin: 16,
-    marginTop: 48,
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 33,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#630FCC',
     borderBottomColor: '#54199F',
-    borderRadius: 25,
+    borderRadius: 10,
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    borderBottomWidth: 4,
   },
   buttonSignIn: {
-    margin: 16,
-    marginTop: 8,
+    width: '90%',
+    alignSelf: 'center',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
+    borderRadius: 10,
+    backgroundColor: '#6344FF',
+    borderColor: '#47378A',
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    borderBottomWidth: 4,
-    backgroundColor: '#6344FF',
-    borderBottomColor: '#54199F'
+    borderBottomWidth: 4
   },
   buttonText: {
     color: '#fff',
     fontFamily: 'Nunito-Bold',
-    fontSize: 18,
+  },
+  buttonTextSignUp: {
+    color: '#8C3475',
+    fontFamily: 'Nunito-Bold',
   },
   whiteBackground: {
     width: '100%',

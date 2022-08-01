@@ -89,14 +89,8 @@ export default BottomTabNavigator = () => {
       <Tab.Screen
         name="SelecionarDisciplina"
         options={{
+          headerShown: false,
           tabBarButton: () => null,
-          headerTitle: () => (
-            <HomeHeader navigation={useNavigation()} />
-          ),
-          headerStyle: { backgroundColor: '#fff' },
-          headerShadowVisible: false,
-          headerBackTitle: '',
-          headerBackVisible: false,
           tabBarStyle: {
             position: 'absolute',
             backgroundColor: '#fff',
@@ -208,6 +202,7 @@ export default BottomTabNavigator = () => {
       <Tab.Screen
         name="Mensagens"
         options={{
+          tabBarButton: () => null,
           headerTitle: () => (
             <HomeHeader navigation={useNavigation()} />
           ),
@@ -246,10 +241,11 @@ export default BottomTabNavigator = () => {
       <Tab.Screen
         name="Profile"
         options={{
-          tabBarButton: () => null,
           headerTitle: () => (
-            <TrailsHeader navigation={useNavigation()} />
+            <HomeHeader navigation={useNavigation()} />
           ),
+          headerShown: false,
+          tabBarButton: () => null,
           tabBarStyle: {
             position: 'absolute',
             backgroundColor: '#fff',
@@ -274,6 +270,7 @@ export default BottomTabNavigator = () => {
       <Tab.Screen
         name="Agenda"
         options={{
+          tabBarButton: () => null,
           headerShown: false,
           tabBarStyle: {
             position: 'absolute',

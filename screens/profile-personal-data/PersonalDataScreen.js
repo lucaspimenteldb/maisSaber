@@ -92,9 +92,13 @@ const PersonalDataScreen = ({ navigation }) => {
               onPress={handleUpdate}
               underlayColor="#fff"
             >
-              <View style={styles.buttonSave}>
+              <LinearGradient
+                style={styles.buttonSave}
+                colors={['#3C368C', '#D02F60']}
+                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+              >
                 <Text style={styles.buttonText}>Salvar alterações</Text>
-              </View>
+              </LinearGradient>
             </TouchableHighlight>
           </View>
         </ScrollView>

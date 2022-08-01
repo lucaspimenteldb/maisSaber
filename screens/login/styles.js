@@ -2,12 +2,16 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   pageWrapper: {
-    paddingHorizontal: 16,
-    paddingVertical: 60,
+    flex: 1,
   },
   pageContentContainer: {
-    flex: 1, 
-    justifyContent: 'space-between'
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingVertical: 20,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   },
   backButton: {
     paddingRight: 2,
@@ -30,59 +34,64 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
   text: {
-    marginTop: 48,
-    fontFamily: 'Nunito',
-    color: '#520BAC',
+    fontFamily: 'Nunito-Black',
+    color: '#000',
+    fontSize: 24
   },
   title: {
     marginBottom: 32,
-    color: '#520BAC',
-    fontSize: 20,
-    fontFamily: 'Nunito-ExtraBold'
+    color: '#000',
+    opacity: 0.4,
+    fontSize: 15,
+    fontFamily: 'Nunito-SemiBold'
   },
   input: {
     marginBottom: 12,
     padding: 16,
     fontFamily: 'Nunito',
     borderWidth: 1,
-    borderColor: '#aaa',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
     borderBottomWidth: 6,
-    borderRadius: 6,
+    borderRadius: 10,
   },
   inputActive: {
-    borderColor: '#630FCC'
-  },
-  buttonSignUp: {
-    marginTop: 16,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#630FCC',
-    borderBottomColor: '#54199F',
-    borderRadius: 25,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderBottomWidth: 4,
+    borderColor: '#480898'
   },
   buttonSignIn: {
+    width: '100%',
+    alignSelf: 'center',
     height: 50,
+    top: -30,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
+    borderRadius: 10,
+    backgroundColor: '#6344FF',
+    borderColor: '#47378A',
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    borderBottomWidth: 4,
-    backgroundColor: '#6344FF',
-    borderBottomColor: '#54199F'
+    borderBottomWidth: 4
   },
   buttonText: {
     color: '#fff',
     fontFamily: 'Nunito-Bold',
-    fontSize: 18,
   },
   icon: {
     position: 'absolute',
     right: 16,
-    top: 14,
+    top: 50,
+  },
+  titleInput: {
+    fontFamily: 'Nunito-SemiBold',
+    color: '#000',
+    opacity: 0.6,
+    marginBottom: 12
+  },
+  esqueciSenha: {
+    color: '#44378B',
+    fontFamily: 'Nunito-SemiBold',
+    borderBottomWidth: 0.5,
+    borderColor: '#44378B',
+    width: 130,
+    alignSelf: 'flex-end'
   }
 })

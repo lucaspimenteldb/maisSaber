@@ -1,8 +1,8 @@
 import api from '../../../api/api';
 
 export default {
-  getSubjects: async (id) => {
-    let dados = await api.get('/get-videos/' + id);
+  getSubjects: async (id, id_ano) => {
+    let dados = await api.get(`/get-videos/${id}/${id_ano}`);
     return dados.data;
   },
   
@@ -13,6 +13,15 @@ export default {
 
   finishVideoaula: async (id_user, id_video) => {
     let dados = await api.post('/finalizar-aula', {
+      id_user: id_user,
+      id_video: id_video
+    });
+    return dados.data;
+  },
+
+  curtirVideoaula: async (id_user, id_video) => {
+    console.log(id_user, id_video);
+    let dados = await api.post('/curtir-aula', {
       id_user: id_user,
       id_video: id_video
     });

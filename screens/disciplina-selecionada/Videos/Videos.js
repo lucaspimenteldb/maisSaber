@@ -19,20 +19,21 @@ import { styles } from './styles'
 import Service from '../services/service'
 
 const Videos = ({ route, navigation }) => {
-    const { disciplina, assunto } = route.params
+    const { disciplina, assunto, data } = route.params
     const [assuntos, setAssuntos] = useState([])
     const [spinner, setSpinner] = useState(false)
-    const [showVideo, setShowVideo] = useState(false)
     const [showAssuntos, setShowAssuntos] = useState(true)
+    const [semQuestao, setSemQuestoes] = useState(true)
 
-    const [id, setId] = useState();
-
+    const [videoSelecionado, setVideoSelecionado] = useState(assunto)
+    const [idVideo, setIdVideo] = useState();
     const [tituloAssunto, setTituloAssunto] = useState(assunto.titulo)
     const [descricaoAssunto, setDescricaoAssunto] = useState(assunto.descricao)
     const [urlVideo, setUrlVideo] = useState(assunto.url)
     const [playing, setPlaying] = useState(false)
     const [playButton, setPlayButton] = useState(true)
     const [finalizado, setFinalizado] = useState(false)
+    const [curtido, setCurtido] = useState(false)
 
     const [selectedAlternative, setSelectedAlternative] = useState('');
     const [questionDescription, setQuestionDescription] = useState('')
@@ -86,7 +87,7 @@ const Videos = ({ route, navigation }) => {
 
     const handleFinishVideo = async () => {
         try {
-            const response = await Service.finishVideoaula(userLogger.id, assunto.id)
+            const response = await Service.finishVideoaula(userLogger.id, idVideo)
             if (response.success) {
                 Alert.alert('Concluído!', 'Aula finalizada com sucesso.');
                 setFinalizado(true);
@@ -104,6 +105,59 @@ const Videos = ({ route, navigation }) => {
         selectedAlternative === gabarito ? Alert.alert('Você acertou!', 'Continue dessa forma, que cada vez mais você evolua!', [{ text: 'Ok', onPress: ()=> console.log('pressionou') }]) : Alert.alert('Oops!', 'Você errou. Mas não desista, tente novemtente.')
     }
 
+    const handleVideoAnterior = () => {
+        let indice = data.indexOf(videoSelecionado, 0)
+        
+        if (indice >= 1) {
+            let videoAnterior = data[indice - 1]
+            
+            setDescricaoAssunto(videoAnterior.descricao)
+            setTituloAssunto(videoAnterior.titulo)
+            setUrlVideo(videoAnterior.url)
+            setIdVideo(videoAnterior.id)
+            setVideoSelecionado(videoAnterior)
+        } else {
+            Alert.alert('Aviso', 'Não há mais aulas anteriores.')
+        }
+    }
+
+    const handleProximoVideo = () => {
+        let indice = data.indexOf(videoSelecionado, 0)
+        let ultimoIndice = data.length - 1
+
+        if (ultimoIndice === indice) {
+            Alert.alert('Aviso', 'Você chegou ao final das aulas.')
+            return
+        }
+        
+        if (ultimoIndice) {
+            let videoAnterior = data[indice + 1]
+            
+            setDescricaoAssunto(videoAnterior.descricao)
+            setTituloAssunto(videoAnterior.titulo)
+            setUrlVideo(videoAnterior.url)
+            setIdVideo(videoAnterior.id)
+            setVideoSelecionado(videoAnterior)
+        } else {
+            Alert.alert('Aviso', 'Não há mais aulas anteriores.')
+        }
+    }
+
+    const handleCurtir = async () => {
+        try {
+            const response = await Service.curtirVideoaula(userLogger.id, idVideo ? idVideo : assunto.id)
+            if (response.success) {
+                setCurtido(true);
+            } else {
+                setCurtido(true);
+                Alert.alert('Aviso!', 'Você já curtiu esta aula.')
+            }
+        } catch (err) {
+            Alert.alert('Aviso!', 'Você já curtiu esta aula.')
+            console.log(err.message)
+        }
+    }
+
     useFocusEffect(
         React.useCallback(() => {
             try {
@@ -113,22 +167,23 @@ const Videos = ({ route, navigation }) => {
                         const response = await Service.getSubjects(disciplina.id);
                         setAssuntos(response.videos)
 
-                        const responseQuestion = await Service.getQuestion(assunto.id)
+                        const responseQuestion = await Service.getQuestion(idVideo ? idVideo : assunto.id)
                         const { questoes } = responseQuestion
-                        questoes.map(questao => {
+                        questoes.length ? questoes.map(questao => {
+                            setSemQuestoes(true)
                             setQuestionDescription(questao.descricao)
                             setRa(questao.ra)
                             setRb(questao.rb)
                             setRc(questao.rc)
                             setRd(questao.rd)
                             setGabarito(questao.rgabarito)
-                        })
-
-                        const videoData = await Service.getDataVideo(userLogger.id, assunto.id)
-                        const { dados } = videoData
-                        dados?.map(item => {
-                            item.situacao === 'finalizado' ? setFinalizado(true) : setFinalizado(false)
-                        })
+                        }) : setSemQuestoes(false)
+                        
+                        const videoData = await Service.getDataVideo(userLogger.id, idVideo ? idVideo : assunto.id)
+                        const { curtiu, finalizado } = videoData;
+                        console.log(curtiu)
+                        curtiu?.map(curtir => curtir.curtiu === "1" ? setCurtido(true) : setCurtido(false))
+                        finalizado?.map(finalizar => finalizar.situacao ? setFinalizado(true) : setFinalizado(false))
 
                         setSpinner(false)
                     }
@@ -145,7 +200,7 @@ const Videos = ({ route, navigation }) => {
                 setSpinner(false);
                 console.log(error)
             }
-        }, []),
+        }, [idVideo])
     );
 
     return (
@@ -196,126 +251,128 @@ const Videos = ({ route, navigation }) => {
                         </LinearGradient>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.actionButtonTouch}>
+                    <TouchableOpacity style={styles.actionButtonTouch} onPress={handleCurtir}>
                         <LinearGradient
-                            colors={['#3C368C', '#D02F60']}
+                            colors={curtido ? ['#3C368C', '#D02F60'] : ['#fff', '#fff']}
                             start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
                             style={styles.actionButton}
                         >
-                            <Text style={styles.actionButtonText}>Curtir</Text>
-                            <CurtirIconPequeno style={{ marginLeft: 10 }} />
+                            <Text style={[styles.actionButtonText, { color: !curtido ? '#470897' : '#fff'}]}>{curtido ? 'Aula curtida!' : 'Curtir'}</Text>
+                            {!curtido && <CurtirIconPequeno color={"#470897"} style={{ marginLeft: 10 }} />}
                         </LinearGradient>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.areaProximoVideo}>
-                    <TouchableOpacity style={styles.buttonProximo}>
+                    <TouchableOpacity style={styles.buttonProximo} onPress={handleVideoAnterior}>
                         <ChevronIconLeft />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonProximo}>
+                    <TouchableOpacity style={styles.buttonProximo} onPress={handleProximoVideo}>
                         <ChevronIconRight />
                     </TouchableOpacity>
                 </View>
+                
+                {semQuestao &&
+                    <View style={styles.containerQuestion}>
+                        <Text style={styles.titleQuestion}>QUESTÕES</Text>
+                        <RenderHtml
+                            contentWidth={300}
+                            classesStyles={classStyle}
+                            tagsStyles={tagStyle}
+                            ignoredDomTags={ignoreTags}
+                            ignoredStyles={ignoreStyles}
+                            source={{
+                                html: `<span style="padding-right: 7px" class="descricao-questao">${questionDescription}</span>`,
+                            }}
+                        />
 
-                <View style={styles.containerQuestion}>
-                    <Text style={styles.titleQuestion}>QUESTÕES</Text>
-                    <RenderHtml
-                        contentWidth={300}
-                        classesStyles={classStyle}
-                        tagsStyles={tagStyle}
-                        ignoredDomTags={ignoreTags}
-                        ignoredStyles={ignoreStyles}
-                        source={{
-                            html: `<span style="padding-right: 7px" class="descricao-questao">${questionDescription}</span>`,
-                        }}
-                    />
-
-                    <View style={styles.containerAlternatives}>
-                        <TouchableHighlight
-                            underlayColor="transparent"
-                            onPress={() => setSelectedAlternative('A')}
-                            style={[styles.alternativesButton, selectedAlternative === 'A' ? styles.alternativeSelected : '']}
-                        >
-                            <RenderHtml
-                                contentWidth={300}
-                                classesStyles={classStyle}
-                                tagsStyles={tagStyle}
-                                ignoredDomTags={ignoreTags}
-                                ignoredStyles={ignoreStyles}
-                                source={{
-                                    html: `<span style="padding-right: 7px" class="alternativa-questao">A - ${ra}</span>`,
-                                }}
-                            />
-                        </TouchableHighlight>
-                        <TouchableHighlight
-                            underlayColor="transparent"
-                            onPress={() => setSelectedAlternative('B')}
-                            style={[styles.alternativesButton, selectedAlternative === 'B' ? styles.alternativeSelected : '']}
-                        >
-                            <RenderHtml
-                                contentWidth={300}
-                                classesStyles={classStyle}
-                                tagsStyles={tagStyle}
-                                ignoredDomTags={ignoreTags}
-                                ignoredStyles={ignoreStyles}
-                                source={{
-                                    html: `<span style="padding-right: 7px" class="alternativa-questao">B - ${rb}</span>`,
-                                }}
-                            />
-                        </TouchableHighlight>
-                        <TouchableHighlight
-                            underlayColor="transparent"
-                            onPress={() => setSelectedAlternative('C')}
-                            style={[styles.alternativesButton, selectedAlternative === 'C' ? styles.alternativeSelected : '']}
-                        >
-                            <RenderHtml
-                                contentWidth={300}
-                                classesStyles={classStyle}
-                                tagsStyles={tagStyle}
-                                ignoredDomTags={ignoreTags}
-                                ignoredStyles={ignoreStyles}
-                                source={{
-                                    html: `<span style="padding-right: 7px" class="alternativa-questao">C - ${rc}</span>`,
-                                }}
-                            />
-                        </TouchableHighlight>
-                        <TouchableHighlight
-                            underlayColor="transparent"
-                            onPress={() => setSelectedAlternative('D')}
-                            style={[styles.alternativesButton, selectedAlternative === 'D' ? styles.alternativeSelected : '']}
-                        >
-                            <RenderHtml
-                                contentWidth={300}
-                                classesStyles={classStyle}
-                                tagsStyles={tagStyle}
-                                ignoredDomTags={ignoreTags}
-                                ignoredStyles={ignoreStyles}
-                                source={{
-                                    html: `<span style="padding-right: 7px" class="alternativa-questao">D - ${rd}</span>`,
-                                }}
-                            />
-                        </TouchableHighlight>
-
-                        <LinearGradient
-                            colors={['#3C368C', '#D02F60']}
-                            start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-                            style={styles.buttonSendQuestion}
-                        >
+                        <View style={styles.containerAlternatives}>
                             <TouchableHighlight
-                                onPress={handleAnswerQuestion}
                                 underlayColor="transparent"
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}
+                                onPress={() => setSelectedAlternative('A')}
+                                style={[styles.alternativesButton, selectedAlternative === 'A' ? styles.alternativeSelected : '']}
                             >
-                                <Text style={styles.buttonSendQuestionText}>Responder</Text>
+                                <RenderHtml
+                                    contentWidth={300}
+                                    classesStyles={classStyle}
+                                    tagsStyles={tagStyle}
+                                    ignoredDomTags={ignoreTags}
+                                    ignoredStyles={ignoreStyles}
+                                    source={{
+                                        html: `<span style="padding-right: 7px" class="alternativa-questao">A - ${ra}</span>`,
+                                    }}
+                                />
                             </TouchableHighlight>
-                        </LinearGradient>
+                            <TouchableHighlight
+                                underlayColor="transparent"
+                                onPress={() => setSelectedAlternative('B')}
+                                style={[styles.alternativesButton, selectedAlternative === 'B' ? styles.alternativeSelected : '']}
+                            >
+                                <RenderHtml
+                                    contentWidth={300}
+                                    classesStyles={classStyle}
+                                    tagsStyles={tagStyle}
+                                    ignoredDomTags={ignoreTags}
+                                    ignoredStyles={ignoreStyles}
+                                    source={{
+                                        html: `<span style="padding-right: 7px" class="alternativa-questao">B - ${rb}</span>`,
+                                    }}
+                                />
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                underlayColor="transparent"
+                                onPress={() => setSelectedAlternative('C')}
+                                style={[styles.alternativesButton, selectedAlternative === 'C' ? styles.alternativeSelected : '']}
+                            >
+                                <RenderHtml
+                                    contentWidth={300}
+                                    classesStyles={classStyle}
+                                    tagsStyles={tagStyle}
+                                    ignoredDomTags={ignoreTags}
+                                    ignoredStyles={ignoreStyles}
+                                    source={{
+                                        html: `<span style="padding-right: 7px" class="alternativa-questao">C - ${rc}</span>`,
+                                    }}
+                                />
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                underlayColor="transparent"
+                                onPress={() => setSelectedAlternative('D')}
+                                style={[styles.alternativesButton, selectedAlternative === 'D' ? styles.alternativeSelected : '']}
+                            >
+                                <RenderHtml
+                                    contentWidth={300}
+                                    classesStyles={classStyle}
+                                    tagsStyles={tagStyle}
+                                    ignoredDomTags={ignoreTags}
+                                    ignoredStyles={ignoreStyles}
+                                    source={{
+                                        html: `<span style="padding-right: 7px" class="alternativa-questao">D - ${rd}</span>`,
+                                    }}
+                                />
+                            </TouchableHighlight>
+
+                            <LinearGradient
+                                colors={['#3C368C', '#D02F60']}
+                                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                                style={styles.buttonSendQuestion}
+                            >
+                                <TouchableHighlight
+                                    onPress={handleAnswerQuestion}
+                                    underlayColor="transparent"
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <Text style={styles.buttonSendQuestionText}>Responder</Text>
+                                </TouchableHighlight>
+                            </LinearGradient>
+                        </View>
                     </View>
-                </View>
+                }
             </View>
             <View style={{ height: 40 }} />
         </ScrollView>

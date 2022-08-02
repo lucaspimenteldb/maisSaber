@@ -193,7 +193,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={[styles.headerArea, { marginBottom: -30 }]}>
             <View style={styles.userArea}>
               <Image
-                source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+                source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
                 style={styles.userInformationAvatar}
               />
               <View style={{marginLeft: 12}}>

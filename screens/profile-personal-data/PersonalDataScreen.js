@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ScrollView, Text, Image, View, TouchableHighlight, TextInput } from 'react-native'
+import { ScrollView, Text, Image, View, TouchableHighlight, TextInput, Alert } from 'react-native'
 
 import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
 import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
@@ -30,7 +30,11 @@ const PersonalDataScreen = ({ navigation }) => {
     try {
       await Service.update(name, email, userLogger.id)
         .then(item => {
+          console.log(item)
           setShowChangesModal(true)
+        }).catch(err => {
+          console.log(err)
+          Alert.alert('Falha na conexão', 'Houve um erro ao conectar-se com o servidor, tente novamente mais tarde.')
         })
     } catch (err) {
       console.log(err)
@@ -48,7 +52,7 @@ const PersonalDataScreen = ({ navigation }) => {
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.userInformation}>
             <Image
-              source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+              source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
               style={styles.userInformationAvatar}
             />
 

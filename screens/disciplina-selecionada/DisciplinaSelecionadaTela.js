@@ -42,7 +42,7 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
         async function begin() {
           try {
             setSpinner(true);
-            const response = await Service.getSubjects(disciplina.id);
+            const response = await Service.getSubjects(disciplina.id, userLogger.id_ano);
             setAssuntos(response.videos)
 
             setSpinner(false)
@@ -81,7 +81,7 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
                   <TouchableOpacity
                     key={assunto.id}
                     style={[styles.cardContent, { borderColor: assunto.situacao === 'finalizado' ? '#167B26' : '#480898' }]}
-                    onPress={() => navigation.navigate('VideoaulaSelecionada', { disciplina, assunto })}
+                    onPress={() => navigation.navigate('VideoaulaSelecionada', { disciplina, assunto, data: assuntos })}
                   >
                     <View>
                       <Text style={styles.titleAula}>{assunto.titulo}</Text>

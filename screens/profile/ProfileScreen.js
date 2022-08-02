@@ -57,7 +57,7 @@ const ProfileScreen = ({ navigation }) => {
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.userInformation}>
             <Image
-              source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+              source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
               style={styles.userInformationAvatar}
             />
 

@@ -19,14 +19,14 @@ const HeaderDisciplina = ({ disciplina }) => {
     const navigation = useNavigation() 
 
     const [tabs, setTabs] = useState([
-        {
-            title: 'Vídeos',
-            component: 'a',
-            iconAtivo: <PlayIcon />,
-            icon: <PlayIcon color='#000' />,
-            route: () => navigation.navigate('DisciplinaSelecionada'),
-            ativa: true,
-        },
+        // {
+        //     title: 'Vídeos',
+        //     component: 'a',
+        //     iconAtivo: <PlayIcon />,
+        //     icon: <PlayIcon color='#000' />,
+        //     route: () => navigation.navigate('DisciplinaSelecionada'),
+        //     ativa: true,
+        // },
         // {
         //   title: 'Mural',
         //   component: 'a',

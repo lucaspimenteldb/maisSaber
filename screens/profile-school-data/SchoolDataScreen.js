@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient'
 const SchoolDataScreen = ({navigation}) => {
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const { user } = useSelector(state => state.userReducer)
+  const userLogger = user.user;
 
   const [name, setName] = useState(user.escola[0].nome)
   const [email, setEmail] = useState(user.turma[0].descricao)
@@ -31,7 +32,7 @@ const SchoolDataScreen = ({navigation}) => {
         <ScrollView contentContainerStyle={styles.pageWrapper}>
           <View style={styles.userInformation}>
             <Image
-              source={{ uri: 'https://pbs.twimg.com/profile_images/1484604685671493632/nifvTODz_400x400.png' }}
+              source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
               style={styles.userInformationAvatar}
             />
 

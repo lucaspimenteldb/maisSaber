@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 14,
         marginTop: -40,
         fontSize: 16,
-        fontFamily: 'Nunito-Bold',
+        fontFamily: 'Nunito-Black',
         color: '#000'
     },
     cardContainer: {
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     },
     tituloVideoSelecionado: {
         color: '#000',
-        fontFamily: 'Nunito-Black',
+        fontFamily: 'Nunito-ExtraBold',
         fontSize: 16
     },
     descricaoVideoSelecionado: {

@@ -30,6 +30,7 @@ const HomeScreen = ({ navigation }) => {
       try {
         await Service.login(registration, password)
           .then(response => {
+            console.log(response)
             if (response.token) {
               dispatch(setUserReduce(response))
               dispatch(setIsLoggedIn(true))

@@ -165,7 +165,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     async function begin() {
-      const response = await Service.getBooks();
+      const response = await Service.getBooks(userLogger.id_ano);
       setLivros(response.livro)
     }
 

@@ -87,7 +87,7 @@ const Videos = ({ route, navigation }) => {
 
     const handleFinishVideo = async () => {
         try {
-            const response = await Service.finishVideoaula(userLogger.id, idVideo)
+            const response = await Service.finishVideoaula(userLogger.id, idVideo ? idVideo : assunto.id)
             if (response.success) {
                 Alert.alert('Concluído!', 'Aula finalizada com sucesso.');
                 setFinalizado(true);
@@ -180,10 +180,9 @@ const Videos = ({ route, navigation }) => {
                         }) : setSemQuestoes(false)
                         
                         const videoData = await Service.getDataVideo(userLogger.id, idVideo ? idVideo : assunto.id)
-                        const { curtiu, finalizado } = videoData;
-                        console.log(curtiu)
+                        const { finalizado, curtiu } = videoData;
                         curtiu?.map(curtir => curtir.curtiu === "1" ? setCurtido(true) : setCurtido(false))
-                        finalizado?.map(finalizar => finalizar.situacao ? setFinalizado(true) : setFinalizado(false))
+                        finalizado?.map(finalizar => finalizar.situacao === 'finalizado' ? setFinalizado(true) : setFinalizado(false))
 
                         setSpinner(false)
                     }

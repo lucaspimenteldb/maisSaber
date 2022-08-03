@@ -1,8 +1,8 @@
 import api from '../../../api/api';
 
 export default {
-  getSubjects: async (id, id_ano) => {
-    let dados = await api.get(`/get-videos/${id}/${id_ano}`);
+  getSubjects: async (id, id_ano, id_user) => {
+    let dados = await api.get(`/get-videos/${id}/${id_ano}/${id_user}`);
     return dados.data;
   },
   
@@ -20,7 +20,6 @@ export default {
   },
 
   curtirVideoaula: async (id_user, id_video) => {
-    console.log(id_user, id_video);
     let dados = await api.post('/curtir-aula', {
       id_user: id_user,
       id_video: id_video

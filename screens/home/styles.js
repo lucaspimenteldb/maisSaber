@@ -251,7 +251,6 @@ export default StyleSheet.create({
     marginTop: 30
   },
   livroImage: {
-    backgroundColor: 'red',
     width: 117,
     height: 159,
     borderRadius: 8,

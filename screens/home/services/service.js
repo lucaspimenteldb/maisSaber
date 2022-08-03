@@ -2,7 +2,12 @@ import api from '../../../api/api';
 
 export default {
   getBooks: async (id) => {
-    let dados = id ? await api.get('/get-livros', { params: {todos: 0, id_disciplina: id}}) : await api.get('/get-livros', { params: {todos: 1 }});
+    let dados = await api.get('/get-livros', {
+      params: { 
+        id_ano: id,
+        todos: 0
+      }
+    })
     return dados.data;
   }
 }

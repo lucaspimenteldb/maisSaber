@@ -42,7 +42,8 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
         async function begin() {
           try {
             setSpinner(true);
-            const response = await Service.getSubjects(disciplina.id, userLogger.id_ano);
+
+            const response = await Service.getSubjects(disciplina.id, userLogger.id_ano, userLogger.id);
             setAssuntos(response.videos)
 
             setSpinner(false)
@@ -80,16 +81,16 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
                 {assuntos.map(assunto => (
                   <TouchableOpacity
                     key={assunto.id}
-                    style={[styles.cardContent, { borderColor: assunto.situacao === 'finalizado' ? '#167B26' : '#480898' }]}
+                    style={[styles.cardContent, { borderColor: assunto.finalizado ? '#167B26' : '#480898' }]}
                     onPress={() => navigation.navigate('VideoaulaSelecionada', { disciplina, assunto, data: assuntos })}
                   >
                     <View>
                       <Text style={styles.titleAula}>{assunto.titulo}</Text>
-                      <Text style={[styles.statusAula, { color: assunto.situacao === 'finalizado' ? '#167B26' : '#480898' }]}>
-                        {assunto.situacao === 'finalizado' ? 'Aula assistida' : 'Aula não assistida'}
+                      <Text style={[styles.statusAula, { color: assunto.finalizado ? '#167B26' : '#480898' }]}>
+                        {assunto.finalizado ? 'Aula assistida' : 'Aula não assistida'}
                       </Text>
                     </View>
-                    <PlayIcon color={assunto.situacao === 'finalizado' ? '#167B26' : "#480898"} />
+                    <PlayIcon color={assunto.finalizado ? '#167B26' : "#480898"} />
                   </TouchableOpacity>
                 ))}
               </>

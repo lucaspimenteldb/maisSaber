@@ -2,7 +2,7 @@ import axios from 'axios';
 import {API_URL} from '@env';
 
 const object = axios.create({
-  baseURL: 'https://api.plataformaevoluir.com.br/api',
+  baseURL: 'https://homologacaoapi.plataformaevoluir.com.br/api',
 });
 
 const requestHandler = async request => {

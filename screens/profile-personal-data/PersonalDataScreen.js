@@ -9,13 +9,15 @@ import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
 import styles from './styles';
 import Service from './services/service'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setUserReduce } from '../../redux/actions.js'
 import LinearGradient from 'react-native-linear-gradient'
 
 const PersonalDataScreen = ({ navigation }) => {
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const { user } = useSelector(state => state.userReducer)
   const userLogger = user.user;
+  const dispatch = useDispatch()
 
   const [name, setName] = useState(userLogger.nome)
   const [email, setEmail] = useState(userLogger.email)
@@ -30,7 +32,9 @@ const PersonalDataScreen = ({ navigation }) => {
     try {
       await Service.update(name, email, userLogger.id)
         .then(item => {
-          console.log(item)
+          user.user.nome = name;
+          user.user.email = email;
+          dispatch(setUserReduce(user))
           setShowChangesModal(true)
         }).catch(err => {
           console.log(err)

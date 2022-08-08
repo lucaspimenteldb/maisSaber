@@ -121,7 +121,7 @@ export const styles = StyleSheet.create({
     containerQuestion: {
         width: '100%',
         flex: 1,
-        marginTop: 30,
+        marginTop: 20,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         backgroundColor: '#fff',

@@ -7,12 +7,7 @@ export const styles = StyleSheet.create({
     navigationHubBack: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#3C368C',
-        borderRadius: 15,
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
-        borderBottomWidth: 4,
-        borderColor: '#3C368C',
+        borderRadius: 15
     },
     navigationHubButtonText: {
         marginTop: 12,

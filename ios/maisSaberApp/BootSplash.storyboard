@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,34 +12,56 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="BootSplashLogo" translatesAutoresizingMaskIntoConstraints="NO" id="3lX-Ut-9ad">
-                                <rect key="frame" x="137.5" y="311.5" width="100" height="44"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                </accessibility>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="4XR-ex-ceJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="187.5" id="Isq-5E-O4i"/>
+                                    <constraint firstAttribute="height" constant="667" id="tMB-DU-dZB"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconEvoluir" translatesAutoresizingMaskIntoConstraints="NO" id="3lL-Dr-Ybf">
+                                <rect key="frame" x="110" y="283.5" width="155" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="2Sr-ST-Fbj"/>
+                                    <constraint firstAttribute="width" constant="155" id="7G9-di-5Sk"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" red="1.00000000000000" green="1.00000000000000" blue="1.00000000000000" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="3lX-Ut-9ad" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Fh9-Fy-1nT"/>
-                            <constraint firstItem="3lX-Ut-9ad" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nvB-Ic-PnI"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="4XR-ex-ceJ" secondAttribute="trailing" id="0qM-hD-Vvy"/>
+                            <constraint firstItem="3lL-Dr-Ybf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4kW-lv-iNb"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="8YD-4G-Sel"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="NwG-LP-qcr"/>
+                            <constraint firstAttribute="bottom" secondItem="4XR-ex-ceJ" secondAttribute="bottom" id="P8E-al-bHU"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" constant="-50" id="R92-G7-6Rt"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="4XR-ex-ceJ" secondAttribute="bottom" id="R9h-La-KA4"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="-10" id="TXh-I6-Hrc"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="W6h-YG-0h9"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="YRM-bn-v6n"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" constant="-50" id="d05-jE-WsG"/>
+                            <constraint firstItem="3lL-Dr-Ybf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jMo-Il-FQL"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" constant="-10" id="kKi-Pf-bqW"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="lak-EZ-mr7"/>
+                            <constraint firstItem="4XR-ex-ceJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="-50" id="rc5-6v-Xfg"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-0.80000000000000004" y="-0.44977511244377816"/>
         </scene>
     </scenes>
     <resources>
-        <image name="BootSplashLogo" width="100" height="44"/>
+        <image name="Background" width="187.5" height="406"/>
+        <image name="IconEvoluir" width="91" height="52.5"/>
     </resources>
 </document>

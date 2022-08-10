@@ -15,7 +15,7 @@ import AvaliacoesHomeIcon from '../../assets/icons/AvaliacoesHomeIcon.js'
 import MomentosHomeIcon from '../../assets/icons/MomentosHomeIcon.js'
 import CalendarioHomeIcon from '../../assets/icons/CalendarioHomeIcon.js'
 import MuralHomeIcon from '../../assets/icons/MuralHomeIcon.js'
-import UsuarioIcon from '../../assets/icons/UsuarioIcon.js'
+import UsuarioIconHome from '../../assets/icons/UserIconHome'
 import LogoGrande from '../../assets/LogoGrande.js'
 import Logo from '../../assets/Logo'
 import Notification from '../../assets/icons/SinoNotificacao.js'
@@ -24,6 +24,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setShowShareModal, setShowBookModal } from '../../redux/actions.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient'
+import Spinner from 'react-native-loading-spinner-overlay';
+import { useFocusEffect } from "@react-navigation/native"
 
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import WelcomeModal from '../../components/modals/welcome-modal/Modal.js'
@@ -36,6 +38,8 @@ import Service from './services/service'
 
 const HomeScreen = ({ navigation }) => {
   const [livros, setLivros] = useState([])
+  const [banners, setBanners] = useState([])
+  const [spinner, setSpinner] = useState(false)
   const [bookSelectedModal, setBookSelectedModal] = useState();
   const [indicators, setIndicators] = useState([
     {
@@ -163,17 +167,34 @@ const HomeScreen = ({ navigation }) => {
     dispatch(setShowBookModal(true))
   }
 
-  useEffect(() => {
-    async function begin() {
-      const response = await Service.getBooks(userLogger.id_ano);
-      setLivros(response.livro)
-    }
+  useFocusEffect(
+    React.useCallback(() => {
+      try {
+        async function begin() {
+          setSpinner(true)
+          
+          const response = await Service.getBooks(userLogger.id_ano, userLogger.id_privilegio);
+          setLivros(response.livro)
+    
+          const banner = await Service.getBanners(userLogger.id_privilegio);
+          setBanners(banner.banners)
 
-    begin()
-  }, [])
+          setSpinner(false)
+        }
+  
+        begin()
+      } catch (error) {
+        setSpinner(false);
+        console.log(error)
+      }
+    }, []),
+  );
 
   return (
     <>
+      <Spinner
+        visible={spinner}
+      />
       <LinearGradient 
         style={{ flex: 1, paddingBottom: tabBarHeight }}
         colors={['#3C368C', '#D02F60']}
@@ -187,7 +208,7 @@ const HomeScreen = ({ navigation }) => {
               onPress={() => navigation.navigate('Profile')}
               underlayColor="transparent"
             >
-              <UsuarioIcon color="#fff" />
+              <UsuarioIconHome color="#fff" />
             </TouchableHighlight>
           </View>
           <View style={[styles.headerArea, { marginBottom: -30 }]}>
@@ -215,20 +236,17 @@ const HomeScreen = ({ navigation }) => {
               style={{ top: -100 }}
             >
               {
-                carouselContent.map((content, currentIndex) =>
+                banners.map((content, currentIndex) =>
                   <View
-                    key={content.title}
+                    key={content.id}
                     style={currentIndex === (carouselContent.length - 1) ? styles.lastCarousel : ''}
                   >
                     <Image
-                      source={content.image}
+                      source={{ uri: `https://admin.plataformaevoluir.com.br/${content.imagem}` }}
                       style={styles.carouselImage}
+                      resizeMode="contain"
                     />
                     <View style={styles.carouselImageFilter}></View>
-                    <Text style={styles.carouselTitle}>{content.title}</Text>
-                    <Text style={styles.carouselDescription}>
-                      {content.description}
-                    </Text>
                   </View>
                 )
               }
@@ -257,8 +275,11 @@ const HomeScreen = ({ navigation }) => {
                 hub.map(button => (
                   <Button
                     key={button.title}
-                    width={106}
+                    width={330}
                     height={97}
+                    fontSize={14}
+                    oneButton
+                    borderRadius={15}
                     title={button.title}
                     icon={button.icon}
                     onPress={() => navigation.navigate(button.route, {
@@ -273,7 +294,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.livroText}>Livros</Text>
             <ScrollView horizontal style={styles.livroScroll}>
               {livros.map(livro => (
-                <TouchableHighlight key={livro.id} onPress={() => handleSelectBook(livro)} underlayColor="transparent">
+                <TouchableHighlight key={livro.id} onPress={() => handleSelectBook(livro)} underlayColor="transparent" style={styles.containerBooks}>
                   <Image source={{ uri: `https://admin.sistemamaissaber.com.br/${livro.imagem}` }} style={styles.livroImage} />
                 </TouchableHighlight>
               ))}

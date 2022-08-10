@@ -7,10 +7,11 @@ import CadeadoIcon from '../../assets/icons/CadeadoIcon.js'
 import ChevronIconLeft from '../../assets/icons/ChevronIconLeft'
 import ContaIcon from '../../assets/icons/ContaIcon.js'
 import CircleBackgroundRight from '../../assets/icons/CircleBackgroundRight.js'
-import LogoOnboarding from '../../assets/LogoOnboarding'
+import Logo from '../../assets/Logo'
 
 import { setIsLoggedIn, setUserReduce } from '../../redux/actions.js'
 import Service from './services/service';
+import Button from '../../components/button/Button'
 import styles from './styles.js'
 
 const HomeScreen = ({ navigation }) => {
@@ -58,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
         style={styles.pageWrapper}
       >
         <View style={{ marginLeft: 22, marginTop: 30, marginBottom: 32 }}>
-          <LogoOnboarding style={styles.logo} />
+          <Logo style={styles.logo} />
 
         </View>
         <ScrollView contentContainerStyle={styles.pageContentContainer}>
@@ -130,25 +131,15 @@ const HomeScreen = ({ navigation }) => {
 
           </View>
 
-          <View>
-            <LinearGradient
-              colors={['#3C368C', '#D02F60']}
-              start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-              style={styles.buttonSignIn}
-            >
-              <TouchableHighlight
-                onPress={handleLogin}
-                underlayColor="transparent"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                { spinner ? loading : <Text style={styles.buttonText}>Entrar no aplicativo</Text>}
-              </TouchableHighlight>
-            </LinearGradient>
+          <View style={{ alignSelf: 'center' }}>
+            <Button
+              width={330}
+              height={50}
+              fontSize={14}
+              borderRadius={10}
+              title={'Entrar no aplicativo'}
+              onPress={handleLogin}
+            />
           </View>
         </ScrollView>
       </LinearGradient>

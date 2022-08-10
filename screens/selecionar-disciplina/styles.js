@@ -91,4 +91,33 @@ export default StyleSheet.create({
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
   },
+  input: {
+    width: '95%',
+    padding: 10,
+    marginTop: 15,
+    marginBottom: 15,
+    right: -10,
+    alignSelf: 'center',
+    borderColor: '#E6E6E6',
+    borderBottomWidth: 4,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderTopWidth: 1,
+    borderRadius: 8
+  },
+  iconInput: {
+    position: 'absolute',
+    right: 30,
+    top: 32
+  },
+  searchArea: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  selectDisciplineText: {
+    color: '#1C1C1C',
+    fontFamily: 'Nunito-ExtraBold',
+    fontSize: 16,
+    paddingHorizontal: 20
+  }
 })

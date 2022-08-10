@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
     title: {
         paddingHorizontal: 14,
-        marginTop: -40,
-        fontSize: 16,
+        marginTop: -50,
+        fontSize: 18,
         fontFamily: 'Nunito-Black',
         color: '#000'
     },
@@ -147,6 +147,7 @@ export const styles = StyleSheet.create({
         borderRadius: 22,
         borderWidth: 2,
         borderBottomWidth: 4,
+        borderColor: '#8D8D8DCC'
     },
     alternativeNotSelected: {
         backgroundColor: '#fff',

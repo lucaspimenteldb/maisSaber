@@ -18,7 +18,7 @@ export default StyleSheet.create({
     marginVertical: 16,
     marginLeft: 16,
     width: 340,
-    height: 240,
+    height: 180,
     borderRadius: 10,
   },
   carouselImageFilter: {
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     bottom: 16,
     right: 0,
     borderRadius: 10,
-    backgroundColor: 'rgba(0, 0, 0, .4)'
+    backgroundColor: 'rgba(0, 0, 0, .2)'
   },
   carouselTitle: {
     position: 'absolute',
@@ -243,6 +243,9 @@ export default StyleSheet.create({
     color: '#fff', 
     fontFamily: 'Nunito-Medium'
   },
+  containerBooks: {
+    paddingHorizontal: 6
+  },
   livroText: {
     color: '#545454',
     fontSize: 16,
@@ -253,11 +256,9 @@ export default StyleSheet.create({
   livroImage: {
     width: 117,
     height: 159,
-    borderRadius: 8,
-    marginLeft: 9
+    borderRadius: 8
   },
   livroScroll: {
-    marginTop: 10, 
-    paddingHorizontal: 10
+    marginTop: 10
   }
 })

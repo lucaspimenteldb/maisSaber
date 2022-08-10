@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, View, Text, TouchableHighlight, Image } from 'react-native'
+import { ScrollView, View, Text, TouchableHighlight, Image, TextInput } from 'react-native'
 import TurmasIcon from '../../assets/icons/TurmasIcon.js'
 import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowIcon.js'
+import LupaIcon from '../../assets/icons/LupaIcon.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
@@ -16,6 +17,8 @@ import Service from './services/service';
 const SelecionarDisciplinaTela = ({ route, navigation }) => {
   const [disciplines, setDisciplines] = useState([]);
   const [spinner, setSpinner] = useState(false);
+
+  const [searchDiscipline, setSearchDiscipline] = useState('')
 
   const tabBarHeight = useBottomTabBarHeight();
 
@@ -32,6 +35,10 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
       </View>
     ) :
       null
+  }
+
+  const handleSearch = () => {
+    // TODO: Função para filtrar disciplina pelo titulo da disciplina
   }
 
   useEffect(() => {
@@ -71,6 +78,19 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
 
           {/* navigation hub */}
           <View style={[styles.disciplinasHub, { paddingBottom: tabBarHeight, }]}>
+            <Text style={styles.selectDisciplineText}>Selecione uma disciplina:</Text>
+
+            <View style={styles.searchArea}>
+              <TextInput 
+                placeholder={"Buscar disciplina"}
+                style={styles.input}
+                value={searchDiscipline}
+                onChangeText={(e) => setSearchDiscipline(e)}
+                onSubmitEditing={handleSearch}
+              />
+              <LupaIcon style={styles.iconInput} onPress={handleSearch} />
+            </View>
+
             {/* main hub */}
             <View style={styles.disciplinasHubContainer}>
               {

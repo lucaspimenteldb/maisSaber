@@ -4,8 +4,9 @@ import { ScrollView, Text, View, Image, TouchableHighlight } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
 import styles from './styles.js'
-import LogoOnboarding from '../../assets/LogoOnboarding'
+import Logo from '../../assets/Logo'
 import CircleBackgroundRight from '../../assets/icons/CircleBackgroundRight.js'
+import Button from '../../components/button/Button.js'
 
 const OnboardingScreen = ({ navigation }) => {
   const [indicators, setIndicators] = useState([
@@ -84,7 +85,7 @@ const OnboardingScreen = ({ navigation }) => {
       >
 
         <ScrollView contentContainerStyle={styles.pageWrapper}>
-          <LogoOnboarding style={styles.logo} />
+          <Logo style={styles.logo} />
 
           <ScrollView
             horizontal
@@ -134,24 +135,16 @@ const OnboardingScreen = ({ navigation }) => {
 
           </ScrollView>
 
-          <LinearGradient
-            colors={['#3C368C', '#D02F60']}
-            start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-            style={styles.buttonSignIn}
-          >
-            <TouchableHighlight
+          <View style={{ alignSelf: 'center' }}>
+            <Button
+              width={330}
+              height={50}
+              fontSize={14}
+              borderRadius={10}
+              title={'Entrar no aplicativo'}
               onPress={() => navigation.navigate('Login')}
-              underlayColor="transparent"
-              style={{
-                width: '100%',
-                height: '100%',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              <Text style={styles.buttonText}>Entrar no aplicativo</Text>
-            </TouchableHighlight>
-          </LinearGradient>
+            />
+          </View>
 
           <LinearGradient
             colors={['#3C368C', '#D02F60']}
@@ -164,7 +157,7 @@ const OnboardingScreen = ({ navigation }) => {
               style={{
                 backgroundColor: '#fff',
                 borderRadius: 10,
-                width: '100%',
+                width: 330,
                 height: '88%',
                 marginTop: -3.5,
                 alignItems: 'center',

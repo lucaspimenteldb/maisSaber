@@ -57,9 +57,9 @@ export default StyleSheet.create({
     backgroundColor: '#630FCC',
   },
   buttonSignUp: {
-    width: '90%',
+    width: 331,
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: 15,
     marginBottom: 33,
     height: 50,
     justifyContent: 'center',

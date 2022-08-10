@@ -100,5 +100,23 @@ export default StyleSheet.create({
   },
   modalActions: {
     marginVertical: 12,
-  }
+    alignSelf: 'center'
+  },
+  buttonSignUp: {
+    width: 350,
+    alignSelf: 'center',
+    marginTop: 15,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#630FCC',
+    borderBottomColor: '#54199F',
+    borderRadius: 10,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+  },
+  buttonTextSignUp: {
+    color: '#8C3475',
+    fontFamily: 'Nunito-Bold',
+  },
 })

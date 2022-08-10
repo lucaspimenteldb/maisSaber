@@ -298,7 +298,7 @@ const Videos = ({ route, navigation }) => {
                                     ignoredDomTags={ignoreTags}
                                     ignoredStyles={ignoreStyles}
                                     source={{
-                                        html: `<span style="padding-right: 7px" class="alternativa-questao">A - ${ra}</span>`,
+                                        html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'A' ? 'white' : '#1C1C1C'}" class="alternativa-questao">A - ${ra}</span>`,
                                     }}
                                 />
                             </TouchableHighlight>
@@ -314,7 +314,7 @@ const Videos = ({ route, navigation }) => {
                                     ignoredDomTags={ignoreTags}
                                     ignoredStyles={ignoreStyles}
                                     source={{
-                                        html: `<span style="padding-right: 7px" class="alternativa-questao">B - ${rb}</span>`,
+                                        html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'B' ? 'white' : '#1C1C1C'}" class="alternativa-questao">B - ${rb}</span>`,
                                     }}
                                 />
                             </TouchableHighlight>
@@ -330,7 +330,7 @@ const Videos = ({ route, navigation }) => {
                                     ignoredDomTags={ignoreTags}
                                     ignoredStyles={ignoreStyles}
                                     source={{
-                                        html: `<span style="padding-right: 7px" class="alternativa-questao">C - ${rc}</span>`,
+                                        html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'C' ? 'white' : '#1C1C1C'}" class="alternativa-questao">C - ${rc}</span>`,
                                     }}
                                 />
                             </TouchableHighlight>
@@ -346,7 +346,7 @@ const Videos = ({ route, navigation }) => {
                                     ignoredDomTags={ignoreTags}
                                     ignoredStyles={ignoreStyles}
                                     source={{
-                                        html: `<span style="padding-right: 7px" class="alternativa-questao">D - ${rd}</span>`,
+                                        html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'D' ? 'white' : '#1C1C1C'}" class="alternativa-questao">D - ${rd}</span>`,
                                     }}
                                 />
                             </TouchableHighlight>

@@ -7,12 +7,11 @@ export const styles = StyleSheet.create({
     navigationHubBack: {
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 15
+        borderRadius: 15,
+        flexDirection: 'row',
     },
     navigationHubButtonText: {
-        marginTop: 12,
         color: '#fff',
-        fontSize: 12,
         fontFamily: 'Nunito-ExtraBold'
     },
 })

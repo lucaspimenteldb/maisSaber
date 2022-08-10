@@ -4,8 +4,10 @@ import { View, Text, TouchableHighlight, Animated } from 'react-native'
 import AlunoTristeIcon from '../../../assets/icons/AlunoTristeIcon.js'
 import FecharIcon from '../../../assets/icons/FecharIcon.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import LinearGradient from 'react-native-linear-gradient'
 
 import styles from './styles.js'
+import Button from '../../button/Button'
 
 const Modal = (props) => {
   const tabBarHeight = useBottomTabBarHeight();
@@ -75,28 +77,35 @@ const Modal = (props) => {
             </Text>
           </View>
           <View style={styles.modalActions}>
-            <TouchableHighlight 
-              underlayColor="#fff" 
-              onPress={closeWelcomeModal}
-              style={styles.buttonWrapper}
+            <LinearGradient
+              colors={['#3C368C', '#D02F60']}
+              start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+              style={styles.buttonSignUp}
             >
-              <View style={styles.modalActionButton}>
-                <Text style={styles.modalActionButtonText}>
-                  Não
-                </Text>
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight 
-              underlayColor="#fff" 
+              <TouchableHighlight
+                onPress={closeWelcomeModal}
+                underlayColor="#fff"
+                style={{
+                  backgroundColor: '#fff',
+                  borderRadius: 10,
+                  width: 349,
+                  height: '88%',
+                  marginTop: -3.5,
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <Text style={styles.buttonTextSignUp}>Não</Text>
+              </TouchableHighlight>
+            </LinearGradient>
+
+            <Button 
+              title={"Sim"}
+              borderRadius={10}
+              height={40}
+              width={350}
               onPress={props.signOut}
-              style={styles.buttonWrapperSecondary}
-            >
-              <View style={styles.modalActionButtonSecondary}>
-                <Text style={styles.modalActionButtonTextSecondary}>
-                  Sim
-                </Text>
-              </View>
-            </TouchableHighlight>
+            />
           </View>
         </Animated.View>
       </Animated.View>

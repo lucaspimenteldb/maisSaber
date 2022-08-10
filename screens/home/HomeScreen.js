@@ -244,7 +244,6 @@ const HomeScreen = ({ navigation }) => {
                     <Image
                       source={{ uri: `https://admin.plataformaevoluir.com.br/${content.imagem}` }}
                       style={styles.carouselImage}
-                      resizeMode="contain"
                     />
                     <View style={styles.carouselImageFilter}></View>
                   </View>
@@ -295,7 +294,7 @@ const HomeScreen = ({ navigation }) => {
             <ScrollView horizontal style={styles.livroScroll}>
               {livros.map(livro => (
                 <TouchableHighlight key={livro.id} onPress={() => handleSelectBook(livro)} underlayColor="transparent" style={styles.containerBooks}>
-                  <Image source={{ uri: `https://admin.sistemamaissaber.com.br/${livro.imagem}` }} style={styles.livroImage} />
+                  <Image source={{ uri: `https://admin.plataformaevoluir.com.br/${livro.imagem}` }} style={styles.livroImage} />
                 </TouchableHighlight>
               ))}
             </ScrollView>

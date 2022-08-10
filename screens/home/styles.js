@@ -25,7 +25,7 @@ export default StyleSheet.create({
     position: 'absolute',
     top: 16,
     left: 16,
-    bottom: 16,
+    bottom: 25,
     right: 0,
     borderRadius: 10,
     backgroundColor: 'rgba(0, 0, 0, .2)'

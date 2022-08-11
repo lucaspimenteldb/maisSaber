@@ -60,18 +60,18 @@ const OnboardingScreen = ({ navigation }) => {
   const carouselContent = [
     {
       image: require('../../assets/onboarding-carousel.png'),
-      title: 'GAMIFICAÇÃO NA ESCOLA',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et faucibus sed massa in et proin pellentesque Aenean et faucibus sed massa in et proin pellentesque.',
+      title: 'Recursos Educacionais Digitais',
+      description: 'Através de Vídeos, Animações e Videoaulas, você poderá fixar seus conhecimentos para aplicar nas atividades e avaliações.',
     },
     {
       image: require('../../assets/onboarding-carousel-2.png'),
-      title: 'Teste',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et faucibus sed massa in et proin pellentesque Aenean et faucibus sed massa in et proin pellentesque.',
+      title: 'Livros Digitais',
+      description: 'Visualize os livros didáticos atualizados referentes ao seu ano letivo.',
     },
     {
       image: require('../../assets/onboarding-carousel.png'),
-      title: 'ACOMPANHAMENTO ESCOLAR.',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et faucibus sed massa in et proin pellentesque Aenean et faucibus sed massa in et proin pellentesque.',
+      title: 'Avaliações e Atividades',
+      description: 'Responda às avaliações e atividades propostas pelos professores e acompanhe o seu desempenho.',
     },
   ]
 
@@ -135,7 +135,7 @@ const OnboardingScreen = ({ navigation }) => {
 
           </ScrollView>
 
-          <View style={{ alignSelf: 'center' }}>
+          <View style={{ alignSelf: 'center', bottom: 30 }}>
             <Button
               width={330}
               height={50}
@@ -146,7 +146,8 @@ const OnboardingScreen = ({ navigation }) => {
             />
           </View>
 
-          <LinearGradient
+          {/* Retirado para V1 */}
+          {/* <LinearGradient
             colors={['#3C368C', '#D02F60']}
             start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             style={styles.buttonSignUp}
@@ -166,7 +167,7 @@ const OnboardingScreen = ({ navigation }) => {
             >
               <Text style={styles.buttonTextSignUp}>Meu primeiro acesso</Text>
             </TouchableHighlight>
-          </LinearGradient>
+          </LinearGradient> */}
 
           <View style={styles.whiteBackground}></View>
           

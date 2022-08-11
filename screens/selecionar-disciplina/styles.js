@@ -50,7 +50,8 @@ export default StyleSheet.create({
     marginTop: 12,
     marginBottom: 6,
     fontFamily: 'Nunito-Bold',
-    fontSize: 16
+    fontSize: 16,
+    color: '#000'
   },
   disciplinasBody: {
     width: '90%'
@@ -110,9 +111,18 @@ export default StyleSheet.create({
     right: 30,
     top: 32
   },
-  searchArea: {
-    flexDirection: 'row',
-    alignItems: 'center'
+  pickerArea: {
+    backgroundColor: '#fff',
+    width: '95%',
+    alignSelf: 'center',
+    borderRadius: 8,
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderBottomWidth: 6,
+    borderColor: '#E6E6E6',
+    marginTop: 20,
+    marginBottom: 10
   },
   selectDisciplineText: {
     color: '#1C1C1C',

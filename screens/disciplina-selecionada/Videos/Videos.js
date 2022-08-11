@@ -102,7 +102,7 @@ const Videos = ({ route, navigation }) => {
     }
 
     const handleAnswerQuestion = () => {
-        selectedAlternative === gabarito ? Alert.alert('Você acertou!', 'Continue dessa forma, que cada vez mais você evolua!', [{ text: 'Ok', onPress: ()=> console.log('pressionou') }]) : Alert.alert('Oops!', 'Você errou. Mas não desista, tente novemtente.')
+        selectedAlternative === gabarito ? Alert.alert('Você acertou!', 'Continue dessa forma, que cada vez mais você evolua!') : Alert.alert('Oops!', 'Você errou. Mas não desista, tente novemtente.')
     }
 
     const handleVideoAnterior = () => {

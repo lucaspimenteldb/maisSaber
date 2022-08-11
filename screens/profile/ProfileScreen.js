@@ -10,6 +10,7 @@ import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
 import { setIsLoggedIn } from '../../redux/actions.js'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch()
@@ -43,7 +44,12 @@ const ProfileScreen = ({ navigation }) => {
     <SignOutModal
       bottom
       close={() => setShowSignOutModal(false)}
-      signOut={() => dispatch(setIsLoggedIn(false))}
+      signOut={async () => {
+        await AsyncStorage.removeItem('token')
+        await AsyncStorage.removeItem('matricula')
+        await AsyncStorage.removeItem('senha')
+        dispatch(setIsLoggedIn(false))
+      }}
     /> :
     null
 

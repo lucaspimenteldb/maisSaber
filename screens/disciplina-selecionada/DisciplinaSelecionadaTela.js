@@ -78,7 +78,7 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
             {/* navigation hub */}
             {showAssuntos &&
               <>
-                {assuntos.map(assunto => (
+                {assuntos.length ? assuntos.map(assunto => (
                   <TouchableOpacity
                     key={assunto.id}
                     style={[styles.cardContent, { borderColor: assunto.finalizado ? '#167B26' : '#480898' }]}
@@ -92,7 +92,20 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
                     </View>
                     <PlayIcon color={assunto.finalizado ? '#167B26' : "#480898"} />
                   </TouchableOpacity>
-                ))}
+                )) : (
+                  <View style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: 50
+                  }}>
+                    <Text style={{
+                      textAlign: 'center',
+                      fontFamily: 'Nunito-Bold'
+                    }}>
+                      Olá, os conteúdos dessa disciplina ainda estão sendo adiconado, aguarde!
+                    </Text>
+                  </View>
+                )}
               </>
             }
           </View>

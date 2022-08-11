@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient'
 import Spinner from 'react-native-loading-spinner-overlay';
+import { Picker } from '@react-native-picker/picker'
 
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
@@ -17,6 +18,7 @@ import Service from './services/service';
 const SelecionarDisciplinaTela = ({ route, navigation }) => {
   const [disciplines, setDisciplines] = useState([]);
   const [spinner, setSpinner] = useState(false);
+  const [selectPickerVolume, setSelectOptionOne] = useState(0)
 
   const [searchDiscipline, setSearchDiscipline] = useState('')
 
@@ -35,10 +37,6 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
       </View>
     ) :
       null
-  }
-
-  const handleSearch = () => {
-    // TODO: Função para filtrar disciplina pelo titulo da disciplina
   }
 
   useEffect(() => {
@@ -71,7 +69,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
             <View style={styles.headerInfo}>
               <Text style={styles.headerTitle}>Disciplinas</Text>
               <Text style={styles.headerText}>
-                Selecione uma disciplina para assistir as videoaulas
+                Selecione uma disciplina para visualizar os conteúdos
               </Text>
             </View>
           </View>
@@ -80,15 +78,44 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
           <View style={[styles.disciplinasHub, { paddingBottom: tabBarHeight, }]}>
             <Text style={styles.selectDisciplineText}>Selecione uma disciplina:</Text>
 
-            <View style={styles.searchArea}>
-              <TextInput 
-                placeholder={"Buscar disciplina"}
-                style={styles.input}
-                value={searchDiscipline}
-                onChangeText={(e) => setSearchDiscipline(e)}
-                onSubmitEditing={handleSearch}
-              />
-              <LupaIcon style={styles.iconInput} onPress={handleSearch} />
+            <View style={styles.pickerArea}>
+              <Picker
+                dropdownIconColor="#E6E6E6"
+                selectedValue={selectPickerVolume}
+                onValueChange={async (itemValue, itemIndex) => {
+                    if (itemValue == 99) {
+                      const response = await Service.getDisciplinas();
+                      setDisciplines(response.disciplinas)
+                      console.log('entrou no if')
+                    } else {
+                      let arr = []
+                      arr = [...disciplines]
+                      arr.filter((item, i) => i == itemValue).map(disciplina => {
+                        console.log('aqui')
+                        let newArr = []
+                        newArr.push(disciplina)
+                        setDisciplines(newArr)
+                        return newArr
+                      })
+                    }
+                  }
+                }
+              >
+                <Picker.Item key={99} value={'99'} label={'Todas'} color={"#E6E6E6"} />
+                <Picker.Item key={0} value={'0'} label={'Língua Portugues'}/>
+                <Picker.Item key={1} value={'1'} label={'Matemática'}/>
+                <Picker.Item key={2} value={'2'} label={'Arte'}/>
+                <Picker.Item key={3} value={'3'} label={'Educação Física'}/>
+                <Picker.Item key={4} value={'4'} label={'Língua Inglesa'}/>
+                <Picker.Item key={5} value={'5'} label={'Ciências'}/>
+                <Picker.Item key={6} value={'6'} label={'Geografia'}/>
+                <Picker.Item key={7} value={'7'} label={'História'}/>
+                <Picker.Item key={8} value={'8'} label={'Ensino Religioso'}/>
+
+                {/* {disciplines.map((disciplina, i) => (
+                  <Picker.Item key={i} value={i} label={disciplina.nome} />
+                ))} */}
+              </Picker>
             </View>
 
             {/* main hub */}
@@ -111,7 +138,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
                           {disciplina.nome}
                         </Text>
                         <Text style={styles.disciplinasProfessor}>
-                          Prof. Carlos Lima
+                          {disciplina.professor ? disciplina.professor : '--'}
                         </Text>
                         <MuralPublicationArrowIcon color="#4B089F" style={styles.arrow} />
 

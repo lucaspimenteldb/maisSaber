@@ -26,6 +26,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient'
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useFocusEffect } from "@react-navigation/native"
+import ProfilePicture from 'react-native-profile-picture'
 
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 import WelcomeModal from '../../components/modals/welcome-modal/Modal.js'
@@ -49,11 +50,7 @@ const HomeScreen = ({ navigation }) => {
     {
       active: false,
       carousel: 1,
-    },
-    {
-      active: false,
-      carousel: 2,
-    },
+    }
   ])
   const handleActiveIndicator = (indicatorIndex) => {
     const newIndicators = [...indicators]
@@ -89,31 +86,13 @@ const HomeScreen = ({ navigation }) => {
     }
   }
 
-  const carouselContent = [
-    {
-      image: require('../../assets/onboarding-carousel.png'),
-      title: 'GAMIFICAÇÃO NA ESCOLA',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-    },
-    {
-      image: require('../../assets/onboarding-carousel.png'),
-      title: 'GAMIFICAÇÃO NAS ESCOLAS',
-      description: 'Aenean et faucibus sed massa in et proin.',
-    },
-    {
-      image: require('../../assets/onboarding-carousel.png'),
-      title: 'GAMIFICAÇÃO NA ESCOLA.',
-      description: 'Aed massa in et proin pellentesque in pellentesque.',
-    },
-  ]
-
   const carouselScroll = useRef()
   const tabBarHeight = useBottomTabBarHeight();
 
   const hub = [
     {
       icon: <VideosHomeIcon />,
-      title: 'VÍDEOS',
+      title: 'DISCIPLINAS',
       route: 'SelecionarDisciplina'
     },
     // {
@@ -213,13 +192,24 @@ const HomeScreen = ({ navigation }) => {
           </View>
           <View style={[styles.headerArea, { marginBottom: -30 }]}>
             <View style={styles.userArea}>
-              <Image
-                source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
-                style={styles.userInformationAvatar}
-              />
+              {userLogger.foto ? 
+                <Image
+                  source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
+                  style={styles.userInformationAvatar}
+                /> 
+                :
+                <ProfilePicture 
+                  isPicture={false}
+                  user={userLogger.nome}
+                  shape={"circle"}
+                  width={60}
+                  height={60}
+                />
+              }
+
               <View style={{marginLeft: 12}}>
                 <Text style={styles.nameText}>{userLogger.nome}</Text>
-                <Text style={styles.typeUserText}>{userLogger.id_privilegio === 3 ? 'Aluno' : 'Professor'}</Text>
+                <Text style={styles.typeUserText}>{userLogger.id_privilegio === 3 ? 'Estudante' : 'Professor'}</Text>
               </View>
             </View>
           </View>
@@ -239,10 +229,10 @@ const HomeScreen = ({ navigation }) => {
                 banners.map((content, currentIndex) =>
                   <View
                     key={content.id}
-                    style={currentIndex === (carouselContent.length - 1) ? styles.lastCarousel : ''}
+                    style={currentIndex === (banners.length - 1) ? styles.lastCarousel : ''}
                   >
                     <Image
-                      source={{ uri: `https://admin.plataformaevoluir.com.br/${content.imagem}` }}
+                      source={{ uri: content.imagem }}
                       style={styles.carouselImage}
                     />
                     <View style={styles.carouselImageFilter}></View>
@@ -268,6 +258,7 @@ const HomeScreen = ({ navigation }) => {
                 ))
               }
             </View>
+
             {/* main hub */}
             <View style={styles.navigationHubContainer}>
               {
@@ -281,6 +272,7 @@ const HomeScreen = ({ navigation }) => {
                     borderRadius={15}
                     title={button.title}
                     icon={button.icon}
+                    buttonHome
                     onPress={() => navigation.navigate(button.route, {
                         screen: 'SelecionarDisciplinaStack',
                         params: { menu: button.title, pronoum: button.pronoum }
@@ -290,14 +282,30 @@ const HomeScreen = ({ navigation }) => {
               }
             </View>
 
-            <Text style={styles.livroText}>Livros</Text>
-            <ScrollView horizontal style={styles.livroScroll}>
-              {livros.map(livro => (
-                <TouchableHighlight key={livro.id} onPress={() => handleSelectBook(livro)} underlayColor="transparent" style={styles.containerBooks}>
-                  <Image source={{ uri: `https://admin.plataformaevoluir.com.br/${livro.imagem}` }} style={styles.livroImage} />
-                </TouchableHighlight>
-              ))}
-            </ScrollView>
+            {livros.length ? 
+              <>
+                <Text style={styles.livroText}>Livros Digitais</Text>
+                <ScrollView horizontal style={styles.livroScroll}>
+                  {livros.map(livro => (
+                    <TouchableHighlight key={livro.id} onPress={() => handleSelectBook(livro)} underlayColor="transparent" style={styles.containerBooks}>
+                      <>
+                        <Image source={{ uri: `https://admin.plataformaevoluir.com.br/${livro.imagem}` }} style={styles.livroImage} />
+                        <View 
+                          style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                            alignSelf: 'center',
+                            borderRadius: 8,
+                            backgroundColor: 'rgba(0, 0, 0, 0.18)'
+                          }}
+                        />
+                      </>
+                    </TouchableHighlight>
+                  ))}
+                </ScrollView>
+              </> : <View style={{height: 300}}/>
+            }
           </View>
         </ScrollView>
 

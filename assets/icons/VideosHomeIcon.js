@@ -10,55 +10,54 @@ import Svg, {
 
 const SvgComponent = (props) => (
   <Svg
-    width={38}
-    height={38}
+    width={46}
+    height={46}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <G clipPath="url(#a)">
-      <Path fill={props.color ? props.color : "transparent"} d="M0 0h38v38H0z" />
-      <Path d="M32.656 7.125H5.344v20.188h27.312V7.125Z" fill="#D7F1FF" />
+      <Path d="M39.531 8.625H6.47v24.438H39.53V8.625Z" fill="#D7F1FF" />
       <Path
-        d="M33.25 27.906H4.75V7.72A1.188 1.188 0 0 1 5.938 6.53h26.125A1.188 1.188 0 0 1 33.25 7.72v20.187ZM5.937 26.72h26.125v-19H5.939v19Z"
+        d="M40.25 33.781H5.75V9.344a1.438 1.438 0 0 1 1.438-1.438h31.625a1.438 1.438 0 0 1 1.437 1.438V33.78ZM7.187 32.344h31.625v-23H7.189v23Z"
         fill="#2779DC"
       />
-      <Path d="M4.75 27.906 0 35.625h38l-4.75-7.719H4.75Z" fill="url(#b)" />
+      <Path d="M5.75 33.781 0 43.125h46l-5.75-9.344H5.75Z" fill="url(#b)" />
       <Path
-        d="M35.625 38H2.375A2.375 2.375 0 0 1 0 35.625c0-.06-.962 0 38 0A2.375 2.375 0 0 1 35.625 38Z"
+        d="M43.125 46H2.875A2.875 2.875 0 0 1 0 43.125c0-.072-1.164 0 46 0A2.875 2.875 0 0 1 43.125 46Z"
         fill="#2779DC"
       />
       <Path
-        d="M22.563 33.844h-7.125l-1.188 1.781h9.5l-1.188-1.781Z"
+        d="M27.313 40.969h-8.625l-1.438 2.156h11.5l-1.438-2.156Z"
         fill="url(#c)"
       />
-      <Path d="M32.063 25.531H5.936v1.188h26.125V25.53Z" fill="#5B8DC9" />
+      <Path d="M38.813 30.906H7.186v1.438h31.625v-1.438Z" fill="#5B8DC9" />
       <Path
-        d="M33.844 32.656H4.75l1.781-3.562H31.47l2.375 3.562Z"
+        d="M40.969 39.531H5.75l2.156-4.312h30.188l2.875 4.312Z"
         fill="url(#d)"
       />
       <Path
-        d="M7.719 26.719h2.375a.594.594 0 0 1 .594.593v.594H7.124v-.593a.594.594 0 0 1 .594-.594Z"
+        d="M9.344 32.344h2.875a.719.719 0 0 1 .719.718v.72H8.625v-.72a.719.719 0 0 1 .719-.718Z"
         fill="url(#e)"
       />
       <Path
-        d="M27.906 26.719h2.375a.594.594 0 0 1 .594.593v.594h-3.563v-.593a.594.594 0 0 1 .594-.594Z"
+        d="M33.781 32.344h2.875a.719.719 0 0 1 .719.718v.72h-4.313v-.72a.719.719 0 0 1 .72-.718Z"
         fill="url(#f)"
       />
       <Path
-        d="M11.281 4.156v5.938L19 12.469l7.719-2.375V4.156H11.28Z"
+        d="M13.656 5.031v7.188L23 15.094l9.344-2.875V5.03H13.656Z"
         fill="#42455E"
       />
       <Path
-        d="M31.469 3.563 19 7.124 6.531 3.562 19 0l12.469 3.563Z"
+        d="M38.094 4.313 23 8.625 7.906 4.312 23 0l15.094 4.313Z"
         fill="url(#g)"
       />
       <Path
-        d="M24.344 15.438a.594.594 0 0 1-.594-.594V5.73l-4.993-2.22a.593.593 0 0 1 .486-1.081l5.344 2.375a.594.594 0 0 1 .35.54v9.5a.594.594 0 0 1-.593.594Z"
+        d="M29.469 18.688a.719.719 0 0 1-.719-.72V6.937l-6.045-2.688a.719.719 0 0 1 .59-1.308l6.468 2.875a.718.718 0 0 1 .424.654v11.5a.719.719 0 0 1-.718.719Z"
         fill="url(#h)"
       />
       <Path
-        d="M25.4 17.813h-2.113a.594.594 0 0 1-.594-.713l.356-1.781a.594.594 0 0 1 .594-.475h1.401a.594.594 0 0 1 .594.475l.356 1.781a.593.593 0 0 1-.593.713Z"
+        d="M30.748 21.562H28.19a.718.718 0 0 1-.718-.862l.43-2.156a.719.719 0 0 1 .72-.575h1.696a.718.718 0 0 1 .719.575l.43 2.156a.72.72 0 0 1-.718.862Z"
         fill="url(#i)"
       />
     </G>
@@ -66,9 +65,9 @@ const SvgComponent = (props) => (
       <LinearGradient
         id="b"
         x1={0}
-        y1={31.766}
-        x2={38}
-        y2={31.766}
+        y1={38.453}
+        x2={46}
+        y2={38.453}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#44A0FF" />
@@ -76,10 +75,10 @@ const SvgComponent = (props) => (
       </LinearGradient>
       <LinearGradient
         id="c"
-        x1={14.25}
-        y1={34.734}
-        x2={23.75}
-        y2={34.734}
+        x1={17.25}
+        y1={42.047}
+        x2={28.75}
+        y2={42.047}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#D4D8E1" />
@@ -87,10 +86,10 @@ const SvgComponent = (props) => (
       </LinearGradient>
       <LinearGradient
         id="d"
-        x1={237.5}
-        y1={214.344}
-        x2={1663.09}
-        y2={214.344}
+        x1={287.5}
+        y1={259.469}
+        x2={2013.22}
+        y2={259.469}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#D4D8E1" />
@@ -98,10 +97,10 @@ const SvgComponent = (props) => (
       </LinearGradient>
       <LinearGradient
         id="e"
-        x1={49.875}
-        y1={81.344}
-        x2={71.25}
-        y2={81.344}
+        x1={60.375}
+        y1={98.469}
+        x2={86.25}
+        y2={98.469}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#D4D8E1" />
@@ -109,10 +108,10 @@ const SvgComponent = (props) => (
       </LinearGradient>
       <LinearGradient
         id="f"
-        x1={191.187}
-        y1={81.344}
-        x2={212.562}
-        y2={81.344}
+        x1={231.437}
+        y1={98.469}
+        x2={257.312}
+        y2={98.469}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#D4D8E1" />
@@ -120,10 +119,10 @@ const SvgComponent = (props) => (
       </LinearGradient>
       <LinearGradient
         id="g"
-        x1={6.531}
-        y1={3.563}
-        x2={31.469}
-        y2={3.563}
+        x1={7.906}
+        y1={4.313}
+        x2={38.094}
+        y2={4.313}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#474F72" />
@@ -131,10 +130,10 @@ const SvgComponent = (props) => (
       </LinearGradient>
       <LinearGradient
         id="h"
-        x1={18.406}
-        y1={8.906}
-        x2={24.938}
-        y2={8.906}
+        x1={22.281}
+        y1={10.781}
+        x2={30.188}
+        y2={10.781}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#FBCC88" />
@@ -142,17 +141,17 @@ const SvgComponent = (props) => (
       </LinearGradient>
       <LinearGradient
         id="i"
-        x1={149.774}
-        y1={96.491}
-        x2={168.262}
-        y2={96.491}
+        x1={181.305}
+        y1={116.805}
+        x2={203.686}
+        y2={116.805}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#FBCC88" />
         <Stop offset={1} stopColor="#FFE5C3" />
       </LinearGradient>
       <ClipPath id="a">
-        <Path fill="#fff" d="M0 0h38v38H0z" />
+        <Path fill="#fff" d="M0 0h46v46H0z" />
       </ClipPath>
     </Defs>
   </Svg>

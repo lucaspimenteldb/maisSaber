@@ -88,7 +88,7 @@ const Modal = (props) => {
                 style={{
                   backgroundColor: '#fff',
                   borderRadius: 10,
-                  width: 349,
+                  width: 347,
                   height: '88%',
                   marginTop: -3.5,
                   alignItems: 'center',

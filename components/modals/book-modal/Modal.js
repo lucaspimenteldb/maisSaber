@@ -97,7 +97,7 @@ const Modal = (props) => {
         >
           {contentBook &&
             <View style={styles.modalHeader}>
-              <Image source={{ uri: `https://admin.sistemamaissaber.com.br/${props.book.imagem}` }} style={styles.modalImageBook} />
+              <Image source={{ uri: `https://admin.plataformaevoluir.com.br/${props.book.imagem}` }} style={styles.modalImageBook} />
               <View style={styles.modalInfoBookArea}>
                 <Text style={styles.modalTitleBook}>{props.book.titulo}</Text>
                 <Text style={styles.modalSubtitleBook}>Descricao</Text>

@@ -181,7 +181,7 @@ export default BottomTabNavigator = () => {
       />
 
       <Tab.Screen
-        name="Videos"
+        name="Disciplinas"
         options={{
           headerShown: false,
           tabBarStyle: {

@@ -13,18 +13,6 @@ export default StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20
   },
-  backButton: {
-    paddingRight: 2,
-    paddingTop: 4,
-    height: 44,
-    width: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#630FCC',
-    borderRadius: 22,
-    borderBottomWidth: 4,
-    borderBottomColor: '#54199F'
-  },
   backButtonText: {
     color: '#fff',
     fontFamily: 'Nunito-Bold'
@@ -93,5 +81,36 @@ export default StyleSheet.create({
     borderColor: '#44378B',
     width: 130,
     alignSelf: 'flex-end'
+  },
+  accessApp: {
+    color: '#44378B',
+    fontFamily: 'Nunito-SemiBold',
+    borderBottomWidth: 0.5,
+    borderColor: '#44378B',
+    width: 180,
+    alignSelf: 'flex-start',
+    marginTop: -20,
+    marginBottom: 30
+  },
+  containerBackButton: {
+    borderBottomWidth: 4,
+    borderWidth: 1,
+    borderColor: '#44378B',
+    borderRadius: 5,
+    width: 81,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  backButtonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  textBackButton: {
+    color: '#44378B',
+    fontFamily: 'Nunito-Bold',
+    fontSize: 12,
+    marginLeft: 8
   }
 })

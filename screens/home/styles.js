@@ -25,7 +25,7 @@ export default StyleSheet.create({
     position: 'absolute',
     top: 16,
     left: 16,
-    bottom: 25,
+    bottom: 16,
     right: 0,
     borderRadius: 10,
     backgroundColor: 'rgba(0, 0, 0, .2)'
@@ -55,8 +55,8 @@ export default StyleSheet.create({
   },
   buttonCarouselIndicator: {
     margin: 4,
-    width: 10,
-    height: 10,
+    width: 15,
+    height: 6,
     backgroundColor: '#bbb',
     borderRadius: 5,
   },
@@ -121,7 +121,6 @@ export default StyleSheet.create({
   },
   // navigation hub styles
   navigationHub: {
-    marginTop: 16,
     paddingTop: 16,
     paddingBottom: 16,
     flex: 1,
@@ -209,8 +208,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
   userInformationAvatar: {
-    width: 47,
-    height: 47,
+    width: 60,
+    height: 60,
     borderRadius: 99,
     borderColor: '#fff',
     borderWidth: 2
@@ -235,7 +234,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   nameText: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'Nunito-ExtraBold',
     color: '#FFF'
   },
@@ -247,9 +246,9 @@ export default StyleSheet.create({
     paddingHorizontal: 6
   },
   livroText: {
-    color: '#545454',
+    color: '#1C1C1C',
     fontSize: 16,
-    fontFamily: 'Nunito-ExtraBold', 
+    fontFamily: 'Nunito-Bold', 
     paddingHorizontal: 19, 
     marginTop: 30
   },

@@ -19,8 +19,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
   const [disciplines, setDisciplines] = useState([]);
   const [spinner, setSpinner] = useState(false);
   const [selectPickerVolume, setSelectOptionOne] = useState(0)
-
-  const [searchDiscipline, setSearchDiscipline] = useState('')
+  const [pickerName, setPickerName] = useState('')
 
   const tabBarHeight = useBottomTabBarHeight();
 
@@ -84,6 +83,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
                 selectedValue={selectPickerVolume}
                 onValueChange={async (itemValue, itemIndex) => {
                   console.log(itemValue)
+                    itemValue == 98 ? setPickerName('Todas') : null
                     if (itemValue == 98) {
                       const response = await Service.getDisciplinas();
                       setDisciplines(response.disciplinas)
@@ -95,6 +95,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
                       arr.filter((item, i) => i == itemValue).map(disciplina => {
                         let newArr = []
                         newArr.push(disciplina)
+                        setPickerName(newArr.map(item => item.nome))
                         setDisciplines(newArr)
                         return newArr
                       })
@@ -102,21 +103,17 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
                   }
                 }
               >
-                <Picker.Item key={99} value={'99'} label={'Selecione uma disciplina'} color={"#E6E6E6"} />
-                <Picker.Item key={98} value={'98'} label={'Todas'} />
-                <Picker.Item key={0} value={'0'} label={'Língua Portuguesa'}/>
-                <Picker.Item key={1} value={'1'} label={'Matemática'}/>
-                <Picker.Item key={2} value={'2'} label={'Arte'}/>
-                <Picker.Item key={3} value={'3'} label={'Educação Física'}/>
-                <Picker.Item key={4} value={'4'} label={'Língua Inglesa'}/>
-                <Picker.Item key={5} value={'5'} label={'Ciências'}/>
-                <Picker.Item key={6} value={'6'} label={'Geografia'}/>
-                <Picker.Item key={7} value={'7'} label={'História'}/>
-                <Picker.Item key={8} value={'8'} label={'Ensino Religioso'}/>
-
-                {/* {disciplines.map((disciplina, i) => (
-                  <Picker.Item key={i} value={i} label={disciplina.nome} />
-                ))} */}
+                <Picker.Item key={99} value={'99'} label={pickerName === 'Todas' || pickerName === '' ? 'Todas' : pickerName[0]} color={"#E6E6E6"} />
+                <Picker.Item key={98} value={'98'} label={'Todas'} color={pickerName === 'Todas' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={0} value={'0'} label={'Língua Portuguesa'} color={pickerName[0] === 'Língua Portuguesa' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={1} value={'1'} label={'Matemática'} color={pickerName[0] === 'Matemática' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={2} value={'2'} label={'Arte'} color={pickerName[0] === 'Arte' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={3} value={'3'} label={'Educação Física'} color={pickerName[0] === 'Educação Física' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={4} value={'4'} label={'Língua Inglesa'} color={pickerName[0] === 'Língua Inglesa' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={5} value={'5'} label={'Ciências'} color={pickerName[0] === 'Ciências' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={6} value={'6'} label={'Geografia'} color={pickerName[0] === 'Geografia' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={7} value={'7'} label={'História'} color={pickerName[0] === 'História' ? '#E6E6E6' : '#000'} />
+                <Picker.Item key={8} value={'8'} label={'Ensino Religioso'} color={pickerName[0] === 'Ensino Religioso' ? '#E6E6E6' : '#000'} />
               </Picker>
             </View>
 

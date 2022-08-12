@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, TouchableHighlight, Alert, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Alert, ScrollView, useWindowDimensions } from 'react-native'
 
 import { useFocusEffect } from "@react-navigation/native"
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -12,8 +12,11 @@ import PlayIcon from '../../../assets/icons/PlayIcon'
 import ChevronIconRight from '../../../assets/icons/ChevronPlayRight'
 import ChevronIconLeft from '../../../assets/icons/ChevronPlayLeft'
 import CurtirIconPequeno from '../../../assets/icons/CurtidaIconPequeno'
+import QuestaoAcertou from '../../../assets/icons/QuestaoAcertou'
+import QuestaoErrou from '../../../assets/icons/QuestaoErrou'
 
 import HeaderDisciplina from '../HeaderDisciplina/HeaderDisciplina'
+import ModalInfo from '../../../components/modals/info-modal/Modal'
 
 import { styles } from './styles'
 import Service from '../services/service'
@@ -23,7 +26,9 @@ const Videos = ({ route, navigation }) => {
     const [assuntos, setAssuntos] = useState([])
     const [spinner, setSpinner] = useState(false)
     const [showAssuntos, setShowAssuntos] = useState(true)
-    const [semQuestao, setSemQuestoes] = useState(true)
+    const [semQuestao, setSemQuestoes] = useState(false)
+    const [acertou, setModalAcertou] = useState(false)
+    const [errou, setModalErrou] = useState(false)
 
     const [videoSelecionado, setVideoSelecionado] = useState(assunto)
     const [idVideo, setIdVideo] = useState();
@@ -35,7 +40,7 @@ const Videos = ({ route, navigation }) => {
     const [finalizado, setFinalizado] = useState(false)
     const [curtido, setCurtido] = useState(false)
 
-    const [selectedAlternative, setSelectedAlternative] = useState('');
+    const [selectedAlternative, setSelectedAlternative] = useState('')
     const [questionDescription, setQuestionDescription] = useState('')
     const [ra, setRa] = useState('')
     const [rb, setRb] = useState('')
@@ -45,6 +50,7 @@ const Videos = ({ route, navigation }) => {
 
     const { user } = useSelector(state => state.userReducer)
     const userLogger = user.user;
+    const { width } = useWindowDimensions();
 
     const [fontSize, setFontSize] = useState(16);
     const whiteColor = '#fff';
@@ -58,6 +64,7 @@ const Videos = ({ route, navigation }) => {
         'alternativa-questao': {
             fontSize,
             margin: 0,
+            alignItems: 'center',
             fontFamily: 'Nunito-Bold',
             flexDirection: 'row',
         }
@@ -83,7 +90,7 @@ const Videos = ({ route, navigation }) => {
     const ignoreTags = ['font', 'v:shape', 'o:p'];
     const ignoreClass = ['MsoNormal'];
     const ignoreStyles = ['fontSize', 'fontFamily', 'margin', 'marginTop', 'marginBottom', 'textAlign', 'maxWidth',
-        'width', 'padding', 'marginRight', 'marginLeft'];
+        'width', 'padding', 'marginRight', 'marginLeft', 'alignItems'];
 
     const handleFinishVideo = async () => {
         try {
@@ -102,7 +109,11 @@ const Videos = ({ route, navigation }) => {
     }
 
     const handleAnswerQuestion = () => {
-        selectedAlternative === gabarito ? Alert.alert('Você acertou!', 'Continue dessa forma, que cada vez mais você evolua!') : Alert.alert('Oops!', 'Você errou. Mas não desista, tente novemtente.')
+        selectedAlternative === gabarito ? setModalAcertou(true) : setModalErrou(true)
+    }
+
+    const handleAlternativa = (alternativa) => {
+        setSelectedAlternative(alternativa);
     }
 
     const handleVideoAnterior = () => {
@@ -167,16 +178,16 @@ const Videos = ({ route, navigation }) => {
                         const response = await Service.getSubjects(disciplina.id);
                         setAssuntos(response.videos)
 
-                        const responseQuestion = await Service.getQuestion(idVideo ? idVideo : assunto.id)
+                        const responseQuestion = await Service.getQuestion(idVideo ? idVideo : assunto.id).catch(e => console.log(e))
                         const { questoes } = responseQuestion
                         questoes.length ? questoes.map(questao => {
-                            setSemQuestoes(true)
                             setQuestionDescription(questao.descricao)
                             setRa(questao.ra)
                             setRb(questao.rb)
                             setRc(questao.rc)
                             setRd(questao.rd)
                             setGabarito(questao.rgabarito)
+                            setSemQuestoes(true)
                         }) : setSemQuestoes(false)
                         
                         const videoData = await Service.getDataVideo(userLogger.id, idVideo ? idVideo : assunto.id)
@@ -203,178 +214,194 @@ const Videos = ({ route, navigation }) => {
     );
 
     return (
-        <ScrollView>
-            <Spinner
-                visible={spinner}
-            />
-            <HeaderDisciplina disciplina={disciplina} />
-            {showAssuntos && <Text style={styles.title}>Vídeos de {disciplina.nome}</Text>}
+        <>
+            <ScrollView>
+                <Spinner
+                    visible={spinner}
+                />
+                <HeaderDisciplina disciplina={disciplina} />
+                {showAssuntos && <Text style={styles.title}>Vídeos de {disciplina.nome}</Text>}
 
-            <View style={styles.cardContainer}>
-                <View style={styles.boxVideo}>
-                    <YoutubePlayer
-                        play={playing}
-                        height={230}
-                        width={"100%"}
-                        videoId={urlVideo.slice(32, 43)}
-                    />
-                    {playButton &&
-                        <TouchableOpacity
-                            style={{ alignSelf: 'center', position: 'absolute', bottom: '40%' }}
-                            onPress={() => (setPlaying(true), setPlayButton(false))}
-                        >
-                            <LinearGradient
-                                colors={['#3C368C', '#D02F60']}
-                                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-                                style={styles.playButton}
+                <View style={styles.cardContainer}>
+                    <View style={styles.boxVideo}>
+                        <YoutubePlayer
+                            play={playing}
+                            height={230}
+                            width={"100%"}
+                            videoId={urlVideo.slice(32, 43)}
+                        />
+                        {playButton &&
+                            <TouchableOpacity
+                                style={{ alignSelf: 'center', position: 'absolute', bottom: '40%' }}
+                                onPress={() => (setPlaying(true), setPlayButton(false))}
                             >
-                                <PlayIcon />
+                                <LinearGradient
+                                    colors={['#3C368C', '#D02F60']}
+                                    start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                                    style={styles.playButton}
+                                >
+                                    <PlayIcon />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                        }
+                    </View>
+
+                    <View style={styles.textsVideoArea}>
+                        <Text style={styles.tituloVideoSelecionado}>{tituloAssunto}</Text>
+                        <Text style={styles.descricaoVideoSelecionado}>{descricaoAssunto}</Text>
+                    </View>
+
+                    <View style={styles.areaActionButtons}>
+                        <TouchableOpacity style={styles.actionButtonTouch} onPress={handleFinishVideo}>
+                            <LinearGradient
+                                colors={finalizado ? ['#0D961B', '#2CAE39'] : ['#3C368C', '#D02F60']}
+                                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                                style={[styles.actionButton, { borderColor: finalizado ? '#11991F' : '#200542'}]}
+                            >
+                                <Text style={styles.actionButtonText}>{finalizado ? 'Vídeo finalizado!' : 'Finalizar vídeo'}</Text>
                             </LinearGradient>
                         </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.actionButtonTouch} onPress={handleCurtir}>
+                            <LinearGradient
+                                colors={curtido ? ['#3C368C', '#D02F60'] : ['#fff', '#fff']}
+                                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                                style={styles.actionButton}
+                            >
+                                <Text style={[styles.actionButtonText, { color: !curtido ? '#470897' : '#fff'}]}>{curtido ? 'Aula curtida!' : 'Curtir'}</Text>
+                                {!curtido && <CurtirIconPequeno color={"#470897"} style={{ marginLeft: 10 }} />}
+                            </LinearGradient>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.areaProximoVideo}>
+                        <TouchableOpacity style={styles.buttonProximo} onPress={handleVideoAnterior}>
+                            <ChevronIconLeft />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonProximo} onPress={handleProximoVideo}>
+                            <ChevronIconRight />
+                        </TouchableOpacity>
+                    </View>
+                    
+                    {semQuestao &&
+                        <View style={styles.containerQuestion}>
+                            <Text style={styles.titleQuestion}>QUESTÕES</Text>
+                            <RenderHtml
+                                contentWidth={width}
+                                classesStyles={classStyle}
+                                tagsStyles={tagStyle}
+                                ignoredDomTags={ignoreTags}
+                                ignoredStyles={ignoreStyles}
+                                source={{
+                                    html: `<span style="padding-right: 7px" class="descricao-questao">${questionDescription}</span>`,
+                                }}
+                            />
+
+                            <View style={styles.containerAlternatives}>
+                                <TouchableOpacity
+                                    onPress={() => handleAlternativa('A')}
+                                    style={[styles.alternativesButton, selectedAlternative === 'A' ? styles.alternativeSelected : '']}
+                                    enableExperimentalBRCollapsing={true}
+                                >
+                                    <RenderHtml
+                                        contentWidth={width}
+                                        classesStyles={classStyle}
+                                        tagsStyles={tagStyle}
+                                        ignoredDomTags={ignoreTags}
+                                        ignoredStyles={ignoreStyles}
+                                        source={{
+                                            html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'A' ? 'white' : '#1C1C1C'}" class="alternativa-questao">A )${ra}</span>`
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={() => handleAlternativa('B')}
+                                    style={[styles.alternativesButton, selectedAlternative === 'B' ? styles.alternativeSelected : '']}
+                                >
+                                    <RenderHtml
+                                        contentWidth={width}
+                                        classesStyles={classStyle}
+                                        tagsStyles={tagStyle}
+                                        ignoredDomTags={ignoreTags}
+                                        ignoredStyles={ignoreStyles}
+                                        source={{
+                                            html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'B' ? 'white' : '#1C1C1C'}" class="alternativa-questao">B )${rb}</span>`
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={() => handleAlternativa('C')}
+                                    style={[styles.alternativesButton, selectedAlternative === 'C' ? styles.alternativeSelected : '']}
+                                >
+                                    <RenderHtml
+                                        contentWidth={width}
+                                        classesStyles={classStyle}
+                                        tagsStyles={tagStyle}
+                                        ignoredDomTags={ignoreTags}
+                                        ignoredStyles={ignoreStyles}
+                                        source={{
+                                            html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'C' ? 'white' : '#1C1C1C'}" class="alternativa-questao">C )${rc}</span>`
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={() => handleAlternativa('D')}
+                                    style={[styles.alternativesButton, selectedAlternative === 'D' ? styles.alternativeSelected : '']}
+                                >
+                                    <RenderHtml
+                                        contentWidth={width}
+                                        classesStyles={classStyle}
+                                        tagsStyles={tagStyle}
+                                        ignoredDomTags={ignoreTags}
+                                        ignoredStyles={ignoreStyles}
+                                        source={{
+                                            html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'D' ? 'white' : '#1C1C1C'}" class="alternativa-questao">D )${rd}</span>`
+                                        }}
+                                    />
+                                </TouchableOpacity>
+
+                                <LinearGradient
+                                    colors={['#3C368C', '#D02F60']}
+                                    start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                                    style={styles.buttonSendQuestion}
+                                >
+                                    <TouchableOpacity
+                                        onPress={handleAnswerQuestion}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            alignItems: 'center',
+                                            justifyContent: 'center'
+                                        }}
+                                    >
+                                        <Text style={styles.buttonSendQuestionText}>Responder</Text>
+                                    </TouchableOpacity>
+                                </LinearGradient>
+                            </View>
+                        </View>
                     }
                 </View>
-
-                <View style={styles.textsVideoArea}>
-                    <Text style={styles.tituloVideoSelecionado}>{tituloAssunto}</Text>
-                    <Text style={styles.descricaoVideoSelecionado}>{descricaoAssunto}</Text>
-                </View>
-
-                <View style={styles.areaActionButtons}>
-                    <TouchableOpacity style={styles.actionButtonTouch} onPress={handleFinishVideo}>
-                        <LinearGradient
-                            colors={finalizado ? ['#0D961B', '#2CAE39'] : ['#3C368C', '#D02F60']}
-                            start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-                            style={[styles.actionButton, { borderColor: finalizado ? '#11991F' : '#200542'}]}
-                        >
-                            <Text style={styles.actionButtonText}>{finalizado ? 'Vídeo finalizado!' : 'Finalizar vídeo'}</Text>
-                        </LinearGradient>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.actionButtonTouch} onPress={handleCurtir}>
-                        <LinearGradient
-                            colors={curtido ? ['#3C368C', '#D02F60'] : ['#fff', '#fff']}
-                            start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-                            style={styles.actionButton}
-                        >
-                            <Text style={[styles.actionButtonText, { color: !curtido ? '#470897' : '#fff'}]}>{curtido ? 'Aula curtida!' : 'Curtir'}</Text>
-                            {!curtido && <CurtirIconPequeno color={"#470897"} style={{ marginLeft: 10 }} />}
-                        </LinearGradient>
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.areaProximoVideo}>
-                    <TouchableOpacity style={styles.buttonProximo} onPress={handleVideoAnterior}>
-                        <ChevronIconLeft />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonProximo} onPress={handleProximoVideo}>
-                        <ChevronIconRight />
-                    </TouchableOpacity>
-                </View>
-                
-                {semQuestao &&
-                    <View style={styles.containerQuestion}>
-                        <Text style={styles.titleQuestion}>QUESTÕES</Text>
-                        <RenderHtml
-                            contentWidth={300}
-                            classesStyles={classStyle}
-                            tagsStyles={tagStyle}
-                            ignoredDomTags={ignoreTags}
-                            ignoredStyles={ignoreStyles}
-                            source={{
-                                html: `<span style="padding-right: 7px" class="descricao-questao">${questionDescription}</span>`,
-                            }}
-                        />
-
-                        <View style={styles.containerAlternatives}>
-                            <TouchableHighlight
-                                underlayColor="transparent"
-                                onPress={() => setSelectedAlternative('A')}
-                                style={[styles.alternativesButton, selectedAlternative === 'A' ? styles.alternativeSelected : '']}
-                            >
-                                <RenderHtml
-                                    contentWidth={300}
-                                    classesStyles={classStyle}
-                                    tagsStyles={tagStyle}
-                                    ignoredDomTags={ignoreTags}
-                                    ignoredStyles={ignoreStyles}
-                                    source={{
-                                        html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'A' ? 'white' : '#1C1C1C'}" class="alternativa-questao">A - ${ra}</span>`,
-                                    }}
-                                />
-                            </TouchableHighlight>
-                            <TouchableHighlight
-                                underlayColor="transparent"
-                                onPress={() => setSelectedAlternative('B')}
-                                style={[styles.alternativesButton, selectedAlternative === 'B' ? styles.alternativeSelected : '']}
-                            >
-                                <RenderHtml
-                                    contentWidth={300}
-                                    classesStyles={classStyle}
-                                    tagsStyles={tagStyle}
-                                    ignoredDomTags={ignoreTags}
-                                    ignoredStyles={ignoreStyles}
-                                    source={{
-                                        html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'B' ? 'white' : '#1C1C1C'}" class="alternativa-questao">B - ${rb}</span>`,
-                                    }}
-                                />
-                            </TouchableHighlight>
-                            <TouchableHighlight
-                                underlayColor="transparent"
-                                onPress={() => setSelectedAlternative('C')}
-                                style={[styles.alternativesButton, selectedAlternative === 'C' ? styles.alternativeSelected : '']}
-                            >
-                                <RenderHtml
-                                    contentWidth={300}
-                                    classesStyles={classStyle}
-                                    tagsStyles={tagStyle}
-                                    ignoredDomTags={ignoreTags}
-                                    ignoredStyles={ignoreStyles}
-                                    source={{
-                                        html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'C' ? 'white' : '#1C1C1C'}" class="alternativa-questao">C - ${rc}</span>`,
-                                    }}
-                                />
-                            </TouchableHighlight>
-                            <TouchableHighlight
-                                underlayColor="transparent"
-                                onPress={() => setSelectedAlternative('D')}
-                                style={[styles.alternativesButton, selectedAlternative === 'D' ? styles.alternativeSelected : '']}
-                            >
-                                <RenderHtml
-                                    contentWidth={300}
-                                    classesStyles={classStyle}
-                                    tagsStyles={tagStyle}
-                                    ignoredDomTags={ignoreTags}
-                                    ignoredStyles={ignoreStyles}
-                                    source={{
-                                        html: `<span style="padding-right: 7px; color: ${selectedAlternative === 'D' ? 'white' : '#1C1C1C'}" class="alternativa-questao">D - ${rd}</span>`,
-                                    }}
-                                />
-                            </TouchableHighlight>
-
-                            <LinearGradient
-                                colors={['#3C368C', '#D02F60']}
-                                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-                                style={styles.buttonSendQuestion}
-                            >
-                                <TouchableHighlight
-                                    onPress={handleAnswerQuestion}
-                                    underlayColor="transparent"
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        alignItems: 'center',
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    <Text style={styles.buttonSendQuestionText}>Responder</Text>
-                                </TouchableHighlight>
-                            </LinearGradient>
-                        </View>
-                    </View>
-                }
-            </View>
-            <View style={{ height: 40 }} />
-        </ScrollView>
+                <View style={{ height: 40 }} />
+            </ScrollView>
+            {acertou &&
+                <ModalInfo
+                    image={<QuestaoAcertou style={{alignSelf: 'center'}} />}
+                    titleBody='Questão Correta'
+                    body='Parabéns você acertou a questão continue estudando e você chegará a lugares que jamais imaginou!'
+                    textButton='Certo'
+                    onPress={() => setModalAcertou(false)}
+                />
+            }
+            {errou &&
+                <ModalInfo
+                    image={<QuestaoErrou style={{alignSelf: 'center'}} />}
+                    titleBody='Questão Incorreta'
+                    body='Não foi dessa vez, mas continue tentando que você vai conseguir!'
+                    textButton='Certo'
+                    onPress={() => setModalErrou(false)}
+                />
+            }
+        </>
     )
 }
 

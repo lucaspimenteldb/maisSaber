@@ -11,7 +11,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import styles from './styles.js'
 import Button from '../../button/Button.js'
 
-const Modal = ({ title, body, textButton, onPress }) => {
+const Modal = ({ title, body, textButton, onPress, titleBody, image }) => {
   const dispatch = useDispatch();
 
   const fadeOverlay = useRef(new Animated.Value(0)).current;
@@ -70,7 +70,19 @@ const Modal = ({ title, body, textButton, onPress }) => {
                     <FecharIcon />
                 </TouchableHighlight>
             </View>
-            <View style={{ flex: 1, justifyContent: 'space-around' }}>
+            <View style={{ flex: 1, justifyContent: 'space-around', marginBottom: 10 }}>
+              <View style={{
+                alignSelf: 'center',
+                justifyContent: 'center',
+                top: -20
+              }}>
+                {image}
+                <Text style={{
+                  color: '#000',
+                  fontFamily: 'Nunito-Bold',
+                  marginTop: 18
+                }}>{titleBody}</Text>
+              </View>
                 <Text style={{
                     textAlign: 'center',
                     color: '#000',

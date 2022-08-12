@@ -140,10 +140,8 @@ export const styles = StyleSheet.create({
     },
     alternativesButton: {
         width: '100%',
-        alignSelf: 'center',
-        marginBottom: 12,
+        marginBottom: 8,
         padding: 12,
-        flex: 1,
         borderRadius: 22,
         borderWidth: 2,
         borderBottomWidth: 4,

@@ -83,15 +83,16 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
                 dropdownIconColor="#E6E6E6"
                 selectedValue={selectPickerVolume}
                 onValueChange={async (itemValue, itemIndex) => {
-                    if (itemValue == 99) {
+                  console.log(itemValue)
+                    if (itemValue == 98) {
                       const response = await Service.getDisciplinas();
                       setDisciplines(response.disciplinas)
-                      console.log('entrou no if')
                     } else {
+                      const disciplinas = await Service.getDisciplinas();
+
                       let arr = []
-                      arr = [...disciplines]
+                      arr = [...disciplinas.disciplinas]
                       arr.filter((item, i) => i == itemValue).map(disciplina => {
-                        console.log('aqui')
                         let newArr = []
                         newArr.push(disciplina)
                         setDisciplines(newArr)
@@ -101,7 +102,8 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
                   }
                 }
               >
-                <Picker.Item key={99} value={'99'} label={'Todas'} color={"#E6E6E6"} />
+                <Picker.Item key={99} value={'99'} label={'Selecione uma disciplina'} color={"#E6E6E6"} />
+                <Picker.Item key={98} value={'98'} label={'Todas'} />
                 <Picker.Item key={0} value={'0'} label={'Língua Portugues'}/>
                 <Picker.Item key={1} value={'1'} label={'Matemática'}/>
                 <Picker.Item key={2} value={'2'} label={'Arte'}/>

@@ -55,8 +55,8 @@ export default StyleSheet.create({
     fontSize: 16
   },
   modalContentText: {
-    paddingHorizontal: 30,
-    color: '#333',
+    color: '#1C1C1C',
+    fontFamily: 'Nunito-Bold',
     textAlign: 'center'
   },
   buttonWrapper: {
@@ -99,24 +99,21 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-Bold'
   },
   modalActions: {
-    marginVertical: 12,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    flexDirection: 'row',
+    marginBottom: 12
   },
   buttonSignUp: {
-    width: 350,
+    width: 130,
     alignSelf: 'center',
-    marginTop: 15,
-    height: 50,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#630FCC',
-    borderBottomColor: '#54199F',
-    borderRadius: 10,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
+    borderRadius: 27,
+    margin: 10
   },
   buttonTextSignUp: {
-    color: '#8C3475',
-    fontFamily: 'Nunito-Bold',
+    color: '#fff',
+    fontFamily: 'Nunito-ExtraBold',
   },
 })

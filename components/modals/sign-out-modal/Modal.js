@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react'
-import { View, Text, TouchableHighlight, Animated } from 'react-native'
+import { View, Text, TouchableHighlight, Animated, Image } from 'react-native'
 
 import AlunoTristeIcon from '../../../assets/icons/AlunoTristeIcon.js'
 import FecharIcon from '../../../assets/icons/FecharIcon.js'
+import SairAplicativo from '../../../assets/sair-aplicativo.png'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -67,45 +68,39 @@ const Modal = (props) => {
           </View>
 
           <View style={styles.modalContent}>
-            <AlunoTristeIcon />
+            <Image source={SairAplicativo} />
 
-            <Text style={styles.modalContentTitle}>
-              Sair
-            </Text>
             <Text style={styles.modalContentText}>
-              Você realmente quer sair do aplicativo?
+              Deseja realmente sair ?
             </Text>
           </View>
           <View style={styles.modalActions}>
-            <LinearGradient
-              colors={['#3C368C', '#D02F60']}
-              start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-              style={styles.buttonSignUp}
-            >
-              <TouchableHighlight
-                onPress={closeWelcomeModal}
-                underlayColor="#fff"
-                style={{
-                  backgroundColor: '#fff',
-                  borderRadius: 10,
-                  width: 347,
-                  height: '88%',
-                  marginTop: -3.5,
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                <Text style={styles.buttonTextSignUp}>Não</Text>
-              </TouchableHighlight>
-            </LinearGradient>
-
-            <Button 
-              title={"Sim"}
-              borderRadius={10}
-              height={40}
-              width={350}
+            <TouchableHighlight
               onPress={props.signOut}
-            />
+              underlayColor="transparent"
+            >
+              <LinearGradient
+                colors={['#3C368C', '#D02F60']}
+                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                style={styles.buttonSignUp}
+              >
+                  <Text style={styles.buttonTextSignUp}>Sim</Text>
+              </LinearGradient>
+            </TouchableHighlight>
+
+            <TouchableHighlight
+              onPress={closeWelcomeModal}
+              underlayColor="transparent"
+            >
+              <LinearGradient
+                colors={['#3C368C', '#D02F60']}
+                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                style={styles.buttonSignUp}
+              >
+                  <Text style={styles.buttonTextSignUp}>Não</Text>
+              </LinearGradient>
+            </TouchableHighlight>
+
           </View>
         </Animated.View>
       </Animated.View>

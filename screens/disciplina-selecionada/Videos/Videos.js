@@ -234,9 +234,6 @@ const Videos = ({ route, navigation }) => {
                             videoId={urlVideo.slice(32, 43)}
                             // Resolve erro de conflito com render html (temporariamente)
                             webViewStyle={{ opacity: 0.99 }}
-                            webViewProps={{
-                                androidHardwareAccelerationDisabled: true,
-                            }}
                         />
                         {playButton &&
                             <TouchableOpacity

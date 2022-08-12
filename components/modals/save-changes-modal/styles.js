@@ -45,15 +45,13 @@ export default StyleSheet.create({
     borderRadius: 17,
   },
   modalContent: {
-    marginBottom: 16,
-    paddingBottom: 12,
     alignItems: 'center'
   },
   modalContentTitle: {
     marginTop: 16,
     marginBottom: 4,
     fontFamily: 'Nunito-Bold',
-    fontSize: 16
+    fontSize: 14
   },
   modalContentText: {
     paddingHorizontal: 30,
@@ -99,5 +97,6 @@ export default StyleSheet.create({
   },
   modalActions: {
     marginVertical: 12,
+    alignItems: 'center',
   }
 })

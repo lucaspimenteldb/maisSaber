@@ -6,6 +6,7 @@ import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
 import CadeadoIcon from '../../assets/icons/CadeadoIcon.js'
 import ChangesModal from '../../components/modals/save-changes-modal/Modal.js'
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
+import Button from '../../components/button/Button'
 
 import styles from './styles';
 import Service from './services/service'
@@ -94,14 +95,14 @@ const ChangePasswordScreen = ({ navigation }) => {
               <CadeadoIcon style={styles.icon} />
             </View>
 
-            <TouchableHighlight
+            <Button
+              width={330}
+              height={47}
+              fontSize={14}
+              borderRadius={10}
+              title={'Salvar alterações'}
               onPress={handleChangePassword}
-              underlayColor="#fff"
-            >
-              <View style={styles.buttonSave}>
-                <Text style={styles.buttonText}>Salvar alterações</Text>
-              </View>
-            </TouchableHighlight>
+            />
           </View>
 
         </ScrollView>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { ScrollView, View, Text, Image, TouchableHighlight } from 'react-native'
+import { ScrollView, View, Text, Image, TouchableHighlight, SafeAreaView } from 'react-native'
 
 import DiamanteIcon from '../../assets/icons/DiamanteIcon.js'
 import CoroaJoiasIcon from '../../assets/icons/CoroaJoiasIcon.js'
@@ -174,145 +174,147 @@ const HomeScreen = ({ navigation }) => {
       <Spinner
         visible={spinner}
       />
-      <LinearGradient 
-        style={{ flex: 1, paddingBottom: tabBarHeight }}
-        colors={['#3C368C', '#D02F60']}
-        start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
-      >
-        <ScrollView contentContainerStyle={styles.pageWrapper}>
-          <View style={styles.headerArea}>
-            <Logo />
-            <TouchableHighlight 
-              style={styles.buttonProfile} 
-              onPress={() => navigation.navigate('Profile')}
-              underlayColor="transparent"
-            >
-              <UsuarioIconHome color="#fff" />
-            </TouchableHighlight>
-          </View>
-          <View style={[styles.headerArea, { marginBottom: -30 }]}>
-            <View style={styles.userArea}>
-              {userLogger.foto ? 
-                <Image
-                  source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
-                  style={styles.userInformationAvatar}
-                /> 
-                :
-                <ProfilePicture 
-                  isPicture={false}
-                  user={userLogger.nome}
-                  shape={"circle"}
-                  width={60}
-                  height={60}
-                />
-              }
+      <SafeAreaView style={{ flex: 1 }}>
+        <LinearGradient 
+          style={{ flex: 1, paddingBottom: tabBarHeight }}
+          colors={['#3C368C', '#D02F60']}
+          start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
+        >
+          <ScrollView contentContainerStyle={styles.pageWrapper}>
+            <View style={styles.headerArea}>
+              <Logo />
+              <TouchableHighlight 
+                style={styles.buttonProfile} 
+                onPress={() => navigation.navigate('Profile')}
+                underlayColor="transparent"
+              >
+                <UsuarioIconHome color="#fff" />
+              </TouchableHighlight>
+            </View>
+            <View style={[styles.headerArea, { marginBottom: -30 }]}>
+              <View style={styles.userArea}>
+                {userLogger.foto ? 
+                  <Image
+                    source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
+                    style={styles.userInformationAvatar}
+                  /> 
+                  :
+                  <ProfilePicture 
+                    isPicture={false}
+                    user={userLogger.nome}
+                    shape={"circle"}
+                    width={60}
+                    height={60}
+                  />
+                }
 
-              <View style={{marginLeft: 12}}>
-                <Text style={styles.nameText}>{userLogger.nome}</Text>
-                <Text style={styles.typeUserText}>{userLogger.id_privilegio === 3 ? 'Estudante' : 'Professor'}</Text>
+                <View style={{marginLeft: 12}}>
+                  <Text style={styles.nameText}>{userLogger.nome}</Text>
+                  <Text style={styles.typeUserText}>{userLogger.id_privilegio === 3 ? 'Estudante' : 'Professor'}</Text>
+                </View>
               </View>
             </View>
-          </View>
 
-          <View style={styles.fakeContainer} />
+            <View style={styles.fakeContainer} />
 
-          {/* navigation hub */}
-          <View style={styles.navigationHub}>
-            <ScrollView
-              horizontal
-              onScroll={handleCarouselScroll}
-              scrollEventThrottle={100}
-              ref={carouselScroll}
-              style={{ top: -100 }}
-            >
-              {
-                banners.map((content, currentIndex) =>
-                  <View
-                    key={content.id}
-                    style={currentIndex === (banners.length - 1) ? styles.lastCarousel : ''}
-                  >
-                    <Image
-                      source={{ uri: content.imagem }}
-                      style={styles.carouselImage}
-                    />
-                    <View style={styles.carouselImageFilter}></View>
-                  </View>
-                )
-              }
-            </ScrollView>
+            {/* navigation hub */}
+            <View style={styles.navigationHub}>
+              <ScrollView
+                horizontal
+                onScroll={handleCarouselScroll}
+                scrollEventThrottle={100}
+                ref={carouselScroll}
+                style={{ top: -100 }}
+              >
+                {
+                  banners.map((content, currentIndex) =>
+                    <View
+                      key={content.id}
+                      style={currentIndex === (banners.length - 1) ? styles.lastCarousel : ''}
+                    >
+                      <Image
+                        source={{ uri: content.imagem }}
+                        style={styles.carouselImage}
+                      />
+                      <View style={styles.carouselImageFilter}></View>
+                    </View>
+                  )
+                }
+              </ScrollView>
 
-            <View style={styles.carouselIndicatorsWrapper}>
-              {
-                indicators.map((indicator, currentIndex) => (
-                  <TouchableHighlight
-                    key={indicator.carousel + '-indicator'}
-                    onPress={() => carouselSlideTo(currentIndex)}
-                    underlayColor="#fff"
-                  >
-                    <View style={[
-                      styles.buttonCarouselIndicator,
-                      indicator.active ? styles.buttonCarouselIndicatorActive : ''
-                    ]}
-                    />
-                  </TouchableHighlight>
-                ))
-              }
-            </View>
-
-            {/* main hub */}
-            <View style={styles.navigationHubContainer}>
-              {
-                hub.map(button => (
-                  <Button
-                    key={button.title}
-                    width={330}
-                    height={97}
-                    fontSize={14}
-                    oneButton
-                    borderRadius={15}
-                    title={button.title}
-                    icon={button.icon}
-                    buttonHome
-                    onPress={() => navigation.navigate(button.route, {
-                        screen: 'SelecionarDisciplinaStack',
-                        params: { menu: button.title, pronoum: button.pronoum }
-                      })}
-                    />
-                ))
-              }
-            </View>
-
-            {livros.length ? 
-              <>
-                <Text style={styles.livroText}>Livros Digitais</Text>
-                <ScrollView horizontal style={styles.livroScroll}>
-                  {livros.map(livro => (
-                    <TouchableHighlight key={livro.id} onPress={() => handleSelectBook(livro)} underlayColor="transparent" style={styles.containerBooks}>
-                      <>
-                        <Image source={{ uri: `https://admin.plataformaevoluir.com.br/${livro.imagem}` }} style={styles.livroImage} />
-                        <View 
-                          style={{
-                            position: 'absolute',
-                            width: '100%',
-                            height: '100%',
-                            alignSelf: 'center',
-                            borderRadius: 8,
-                            backgroundColor: 'rgba(0, 0, 0, 0.18)'
-                          }}
-                        />
-                      </>
+              <View style={styles.carouselIndicatorsWrapper}>
+                {
+                  indicators.map((indicator, currentIndex) => (
+                    <TouchableHighlight
+                      key={indicator.carousel + '-indicator'}
+                      onPress={() => carouselSlideTo(currentIndex)}
+                      underlayColor="#fff"
+                    >
+                      <View style={[
+                        styles.buttonCarouselIndicator,
+                        indicator.active ? styles.buttonCarouselIndicatorActive : ''
+                      ]}
+                      />
                     </TouchableHighlight>
-                  ))}
-                </ScrollView>
-              </> : <View style={{height: 300}}/>
-            }
-          </View>
-        </ScrollView>
+                  ))
+                }
+              </View>
 
-        {missionsModal}
-        {shareModal}
-        {bookModal}
-      </LinearGradient>
+              {/* main hub */}
+              <View style={styles.navigationHubContainer}>
+                {
+                  hub.map(button => (
+                    <Button
+                      key={button.title}
+                      width={330}
+                      height={97}
+                      fontSize={14}
+                      oneButton
+                      borderRadius={15}
+                      title={button.title}
+                      icon={button.icon}
+                      buttonHome
+                      onPress={() => navigation.navigate(button.route, {
+                          screen: 'SelecionarDisciplinaStack',
+                          params: { menu: button.title, pronoum: button.pronoum }
+                        })}
+                      />
+                  ))
+                }
+              </View>
+
+              {livros.length ? 
+                <>
+                  <Text style={styles.livroText}>Livros Digitais</Text>
+                  <ScrollView horizontal style={styles.livroScroll}>
+                    {livros.map(livro => (
+                      <TouchableHighlight key={livro.id} onPress={() => handleSelectBook(livro)} underlayColor="transparent" style={styles.containerBooks}>
+                        <>
+                          <Image source={{ uri: `https://admin.plataformaevoluir.com.br/${livro.imagem}` }} style={styles.livroImage} />
+                          <View 
+                            style={{
+                              position: 'absolute',
+                              width: '100%',
+                              height: '100%',
+                              alignSelf: 'center',
+                              borderRadius: 8,
+                              backgroundColor: 'rgba(0, 0, 0, 0.18)'
+                            }}
+                          />
+                        </>
+                      </TouchableHighlight>
+                    ))}
+                  </ScrollView>
+                </> : <View style={{height: 300}}/>
+              }
+            </View>
+          </ScrollView>
+
+          {missionsModal}
+          {shareModal}
+          {bookModal}
+        </LinearGradient>
+      </SafeAreaView>
     </>
   )
 }

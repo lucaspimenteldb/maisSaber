@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react'
-import { View, Text, TouchableHighlight, Animated } from 'react-native'
+import { View, Text, TouchableHighlight, Animated, Image } from 'react-native'
 
 import CheckSalvarIcon from '../../../assets/icons/CheckSalvarIcon.js'
 import FecharIcon from '../../../assets/icons/FecharIcon.js'
+import Button from '../../button/Button.js'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import DadosAlterados from '../../../assets/dados-alterados.png'
 
 import styles from './styles.js'
 
@@ -50,7 +52,7 @@ const Modal = (props) => {
       <Animated.View style={[styles.overlay, { opacity: fadeOverlay }]}>
         <Animated.View style={[
           styles.modalWrapper,
-          props.bottom ? [{paddingBottom: tabBarHeight}, styles.modalWrapperBottom] : styles.modalWrapperTop,
+          props.bottom ? [{ paddingBottom: tabBarHeight }, styles.modalWrapperBottom] : styles.modalWrapperTop,
           { transform: [{ translateY: translateModal }] }
         ]}
         >
@@ -65,24 +67,27 @@ const Modal = (props) => {
           </View>
 
           <View style={styles.modalContent}>
-            <CheckSalvarIcon />
+            <Image source={DadosAlterados} />
+
+            <Text style={{
+              color: '#1C1C1C',
+              fontFamily: 'Nunito-ExtraBold',
+              marginTop: 14
+            }}>Sucesso!</Text>
 
             <Text style={styles.modalContentTitle}>
-              {props.title ? props.title : 'Suas alterações foram salvas com sucesso!'}
+              {props.title ? props.title : 'Dados alterados com sucesso!'}
             </Text>
           </View>
           <View style={styles.modalActions}>
-            <TouchableHighlight 
-              underlayColor="#fff" 
+            <Button
+              width={330}
+              height={40}
+              fontSize={14}
+              borderRadius={10}
+              title={'OK'}
               onPress={closeWelcomeModal}
-              style={styles.buttonWrapper}
-            >
-              <View style={styles.modalActionButton}>
-                <Text style={styles.modalActionButtonText}>
-                  Voltar
-                </Text>
-              </View>
-            </TouchableHighlight>
+            />
           </View>
         </Animated.View>
       </Animated.View>

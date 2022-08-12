@@ -70,6 +70,9 @@ const Videos = ({ route, navigation }) => {
         }
     };
     const tagStyle = {
+        iframe: {
+            opacity: 0.99
+        },
         img: {
             maxWidth: '100',
         },
@@ -229,6 +232,11 @@ const Videos = ({ route, navigation }) => {
                             height={230}
                             width={"100%"}
                             videoId={urlVideo.slice(32, 43)}
+                            // Resolve erro de conflito com render html (temporariamente)
+                            webViewStyle={{ opacity: 0.99 }}
+                            webViewProps={{
+                                androidHardwareAccelerationDisabled: true,
+                            }}
                         />
                         {playButton &&
                             <TouchableOpacity

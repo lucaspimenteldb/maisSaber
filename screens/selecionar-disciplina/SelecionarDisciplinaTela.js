@@ -104,7 +104,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
               >
                 <Picker.Item key={99} value={'99'} label={'Selecione uma disciplina'} color={"#E6E6E6"} />
                 <Picker.Item key={98} value={'98'} label={'Todas'} />
-                <Picker.Item key={0} value={'0'} label={'Língua Portugues'}/>
+                <Picker.Item key={0} value={'0'} label={'Língua Portuguesa'}/>
                 <Picker.Item key={1} value={'1'} label={'Matemática'}/>
                 <Picker.Item key={2} value={'2'} label={'Arte'}/>
                 <Picker.Item key={3} value={'3'} label={'Educação Física'}/>

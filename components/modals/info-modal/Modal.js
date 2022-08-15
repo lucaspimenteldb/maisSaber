@@ -71,24 +71,11 @@ const Modal = ({ title, body, textButton, onPress, titleBody, image }) => {
                 </TouchableHighlight>
             </View>
             <View style={{ flex: 1, justifyContent: 'space-around', marginBottom: 10 }}>
-              <View style={{
-                alignSelf: 'center',
-                justifyContent: 'center',
-                top: -20
-              }}>
+              <View style={styles.modalImageContainer}>
                 {image}
-                <Text style={{
-                  color: '#000',
-                  fontFamily: 'Nunito-Bold',
-                  marginTop: 18
-                }}>{titleBody}</Text>
+                <Text style={styles.modalTitleBody}>{titleBody}</Text>
               </View>
-                <Text style={{
-                    textAlign: 'center',
-                    color: '#000',
-                    opacity: 0.6,
-                    fontFamily: 'Nunito-SemiBold'
-                }}>{body}</Text>
+                <Text style={styles.modalTextBody}>{body}</Text>
 
                 <Button
                     width={330}

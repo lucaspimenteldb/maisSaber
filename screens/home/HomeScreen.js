@@ -292,20 +292,13 @@ const HomeScreen = ({ navigation }) => {
                         <>
                           <Image source={{ uri: `https://admin.plataformaevoluir.com.br/${livro.imagem}` }} style={styles.livroImage} />
                           <View 
-                            style={{
-                              position: 'absolute',
-                              width: '100%',
-                              height: '100%',
-                              alignSelf: 'center',
-                              borderRadius: 8,
-                              backgroundColor: 'rgba(0, 0, 0, 0.18)'
-                            }}
+                            style={styles.livroOpacity}
                           />
                         </>
                       </TouchableHighlight>
                     ))}
                   </ScrollView>
-                </> : <View style={{height: 300}}/>
+                </> : <View style={styles.fakeBox}/>
               }
             </View>
           </ScrollView>

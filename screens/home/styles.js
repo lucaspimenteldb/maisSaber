@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   container: {
@@ -239,7 +239,7 @@ export default StyleSheet.create({
     color: '#FFF'
   },
   typeUserText: {
-    color: '#fff', 
+    color: '#fff',
     fontFamily: 'Nunito-Medium'
   },
   containerBooks: {
@@ -248,8 +248,8 @@ export default StyleSheet.create({
   livroText: {
     color: '#1C1C1C',
     fontSize: 16,
-    fontFamily: 'Nunito-Bold', 
-    paddingHorizontal: 19, 
+    fontFamily: 'Nunito-Bold',
+    paddingHorizontal: 19,
     marginTop: 30
   },
   livroImage: {
@@ -259,5 +259,16 @@ export default StyleSheet.create({
   },
   livroScroll: {
     marginTop: 10
+  },
+  livroOpacity: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    alignSelf: 'center',
+    borderRadius: 8,
+    backgroundColor: 'rgba(0, 0, 0, 0.18)'
+  },
+  fakeBox: {
+    height: 300
   }
 })

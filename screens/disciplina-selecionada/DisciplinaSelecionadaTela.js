@@ -69,11 +69,11 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
       <Spinner
         visible={spinner}
       />
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={styles.container}>
         <View contentContainerStyle={styles.pageWrapper}>
           <HeaderDisciplina disciplina={disciplina} />
 
-          <View style={{ marginTop: -50 }}>
+          <View style={styles.content}>
             {showAssuntos && <Text style={styles.titleDisciplina}>Vídeos de {disciplina.nome}</Text>}
             {/* navigation hub */}
             {showAssuntos &&
@@ -93,15 +93,8 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
                     <PlayIcon color={assunto.finalizado ? '#167B26' : "#480898"} />
                   </TouchableOpacity>
                 )) : (
-                  <View style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginTop: 50
-                  }}>
-                    <Text style={{
-                      textAlign: 'center',
-                      fontFamily: 'Nunito-Bold'
-                    }}>
+                  <View style={styles.containerSemAulas}>
+                    <Text style={styles.semAulasText}>
                       Olá, os conteúdos dessa disciplina ainda estão sendo adiconado, aguarde!
                     </Text>
                   </View>

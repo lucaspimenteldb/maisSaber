@@ -237,7 +237,7 @@ const Videos = ({ route, navigation }) => {
                         />
                         {playButton &&
                             <TouchableOpacity
-                                style={{ alignSelf: 'center', position: 'absolute', bottom: '40%' }}
+                                style={styles.buttonPlayerVideo}
                                 onPress={() => (setPlaying(true), setPlayButton(false))}
                             >
                                 <LinearGradient
@@ -372,12 +372,7 @@ const Videos = ({ route, navigation }) => {
                                 >
                                     <TouchableOpacity
                                         onPress={handleAnswerQuestion}
-                                        style={{
-                                            width: '100%',
-                                            height: '100%',
-                                            alignItems: 'center',
-                                            justifyContent: 'center'
-                                        }}
+                                        style={styles.buttonSendQuestionTouchable}
                                     >
                                         <Text style={styles.buttonSendQuestionText}>Responder</Text>
                                     </TouchableOpacity>

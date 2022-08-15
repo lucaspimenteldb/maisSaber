@@ -4,11 +4,17 @@ export default StyleSheet.create({
   pageWrapper: {
     minHeight: '100%',
   },
+  container: {
+    flex: 1
+  },
   header: {
     padding: 20,
     height: 100,
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  content: {
+    marginTop: -50
   },
   headerInfo: {
     marginLeft: 12,
@@ -153,5 +159,14 @@ export default StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Nunito-Bold',
     color: '#000'
+  },
+  containerSemAulas: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50
+  },
+  semAulasText: {
+    textAlign: 'center',
+    fontFamily: 'Nunito-Bold'
   }
 })

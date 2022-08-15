@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   overlay: {
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     borderTopRightRadius: 8
   },
   modalHeader: {
-    marginBottom: 16, 
+    marginBottom: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
@@ -90,5 +90,22 @@ export default StyleSheet.create({
   },
   modalInfoBookArea: {
     justifyContent: 'center'
+  },
+
+  modalImageContainer: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    top: -20
+  },
+  modalTitleBody: {
+    color: '#000',
+    fontFamily: 'Nunito-Bold',
+    marginTop: 18
+  },
+  modalTextBody: {
+    textAlign: 'center',
+    color: '#000',
+    opacity: 0.6,
+    fontFamily: 'Nunito-SemiBold'
   }
 })

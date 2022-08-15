@@ -152,15 +152,15 @@ export const styles = StyleSheet.create({
         borderColor: '#8D8D8DCC'
     },
     alternativeCorrect: {
-        backgroundColor: '#0C9F0E', 
+        backgroundColor: '#0C9F0E',
         borderColor: '#0D7411CC'
     },
     alternativeIncorrect: {
-        backgroundColor: '#AA1313', 
+        backgroundColor: '#AA1313',
         borderColor: '#5A0000CC'
     },
     alternativeSelected: {
-        backgroundColor: '#5C0DC0', 
+        backgroundColor: '#5C0DC0',
         borderColor: '#470897'
     },
     alternativeText: {
@@ -187,5 +187,16 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         color: '#fff',
         fontFamily: 'Nunito-Bold'
+    },
+    buttonSendQuestionTouchable: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    buttonPlayerVideo: {
+        alignSelf: 'center',
+        position: 'absolute',
+        bottom: '40%'
     }
 })

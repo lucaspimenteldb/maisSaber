@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, View, Text, TouchableHighlight, Image } from 'react-native'
+import { ScrollView, View, Text, TouchableHighlight, Image, Platform } from 'react-native'
 import TurmasIcon from '../../assets/icons/TurmasIcon.js'
 import MuralPublicationArrowIcon from '../../assets/icons/MuralPublicationArrowIcon.js'
 
@@ -8,6 +8,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient'
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Picker } from '@react-native-picker/picker'
+import { DropdownList } from 'react-native-ultimate-modal-picker'
 
 import MissionsModal from '../../components/modals/missions-modal/Modal.js'
 
@@ -19,6 +20,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
   const [spinner, setSpinner] = useState(false);
   const [selectPickerVolume, setSelectOptionOne] = useState(0)
   const [pickerName, setPickerName] = useState('')
+  const [listValue, setListValue] = useState('')
 
   const colorHighlight = '#E6E6E6'
   const colorBlack = '#000'
@@ -28,6 +30,19 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
   const dispatch = useDispatch()
   const { showMissionsModal } = useSelector(state => state.showMissionsModalReducer)
   const missionsModal = showMissionsModal ? <MissionsModal /> : null
+
+  const items = [
+    { label: 'Todas', value: 'Todas' },
+    { label: 'Língua Portuguesa', value: 'Língua Portuguesa' },
+    { label: 'Matemática', value: 'Matemática' },
+    { label: 'Arte', value: 'Arte' },
+    { label: 'Educação Física', value: 'Educação Física' },
+    { label: 'Língua Inglesa', value: 'Língua Inglesa' },
+    { label: 'Ciências', value: 'Ciências' },
+    { label: 'Geografia', value: 'Geografia' },
+    { label: 'História', value: 'História' },
+    { label: 'Ensino Religioso', value: 'Ensino Religioso' }
+  ];
 
   const tratarNofiticacoes = (notificacoes) => {
     return !!notificacoes ? (
@@ -42,7 +57,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
 
   const handlePicker = async (itemValue, itemIndex) => {
     itemValue == 98 ? setPickerName('Todas') : null
-    if (itemValue == 98) {
+    if (itemValue == 'Todas' || itemValue == 98) {
       const response = await Service.getDisciplinas();
       setDisciplines(response.disciplinas)
     } else {
@@ -50,7 +65,13 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
 
       let arr = []
       arr = [...disciplinas.disciplinas]
-      arr.filter((item, i) => i == itemValue).map(disciplina => {
+      arr.filter((item, i) => {
+        if (Platform.OS === 'android') {
+          return i == itemValue
+        } else {
+          return item.nome = itemValue
+        }
+      }).map(disciplina => {
         let newArr = []
         newArr.push(disciplina)
         setPickerName(newArr.map(item => item.nome))
@@ -100,24 +121,46 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
             <Text style={styles.selectDisciplineText}>Selecione uma disciplina:</Text>
 
             <View style={styles.pickerArea}>
-              <Picker
-                dropdownIconColor={colorHighlight}
-                mode="dialog"
-                selectedValue={selectPickerVolume}
-                onValueChange={handlePicker}
-              >
-                <Picker.Item key={99} value={'99'} label={pickerName === 'Todas' || pickerName === '' ? 'Todas' : pickerName[0]} color={colorHighlight} />
-                <Picker.Item key={98} value={'98'} label={'Todas'} color={pickerName === 'Todas' ? colorHighlight : colorBlack} />
-                <Picker.Item key={0} value={'0'} label={'Língua Portuguesa'} color={pickerName[0] === 'Língua Portuguesa' ? colorHighlight : colorBlack} />
-                <Picker.Item key={1} value={'1'} label={'Matemática'} color={pickerName[0] === 'Matemática' ? colorHighlight : colorBlack} />
-                <Picker.Item key={2} value={'2'} label={'Arte'} color={pickerName[0] === 'Arte' ? colorHighlight : colorBlack} />
-                <Picker.Item key={3} value={'3'} label={'Educação Física'} color={pickerName[0] === 'Educação Física' ? colorHighlight : colorBlack} />
-                <Picker.Item key={4} value={'4'} label={'Língua Inglesa'} color={pickerName[0] === 'Língua Inglesa' ? colorHighlight : colorBlack} />
-                <Picker.Item key={5} value={'5'} label={'Ciências'} color={pickerName[0] === 'Ciências' ? colorHighlight : colorBlack} />
-                <Picker.Item key={6} value={'6'} label={'Geografia'} color={pickerName[0] === 'Geografia' ? colorHighlight : colorBlack} />
-                <Picker.Item key={7} value={'7'} label={'História'} color={pickerName[0] === 'História' ? colorHighlight : colorBlack} />
-                <Picker.Item key={8} value={'8'} label={'Ensino Religioso'} color={pickerName[0] === 'Ensino Religioso' ? colorHighlight : colorBlack} />
-              </Picker>
+              {Platform.OS === 'android' ?
+                ( <Picker
+                  dropdownIconColor={colorHighlight}
+                  mode="dialog"
+                  selectedValue={selectPickerVolume}
+                  onValueChange={handlePicker}
+                >
+                  <Picker.Item key={99} value={'99'} label={pickerName === 'Todas' || pickerName === '' ? 'Todas' : pickerName[0]} color={colorHighlight} />
+                  <Picker.Item key={98} value={'98'} label={'Todas'} color={pickerName === 'Todas' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={0} value={'0'} label={'Língua Portuguesa'} color={pickerName[0] === 'Língua Portuguesa' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={1} value={'1'} label={'Matemática'} color={pickerName[0] === 'Matemática' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={2} value={'2'} label={'Arte'} color={pickerName[0] === 'Arte' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={3} value={'3'} label={'Educação Física'} color={pickerName[0] === 'Educação Física' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={4} value={'4'} label={'Língua Inglesa'} color={pickerName[0] === 'Língua Inglesa' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={5} value={'5'} label={'Ciências'} color={pickerName[0] === 'Ciências' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={6} value={'6'} label={'Geografia'} color={pickerName[0] === 'Geografia' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={7} value={'7'} label={'História'} color={pickerName[0] === 'História' ? colorHighlight : colorBlack} />
+                  <Picker.Item key={8} value={'8'} label={'Ensino Religioso'} color={pickerName[0] === 'Ensino Religioso' ? colorHighlight : colorBlack} />
+                </Picker> ) :
+                (
+                  <DropdownList
+                    title=" "
+                    defaultValue='Selecione uma disciplina'
+                    items={items}
+                    onChange={(value) => handlePicker(value)}
+                    customStyleContainer={{
+                      containerLight: {
+                        borderColor: 'transparent'
+                      }
+                    }}
+                    customStyleFieldText={{
+                      fieldTextLight: {
+                        fontSize: 14,
+                        fontFamily: 'Nunito-Bold',
+                        color: colorHighlight
+                      }
+                    }}
+                  />
+                )
+              }
             </View>
 
             {/* main hub */}

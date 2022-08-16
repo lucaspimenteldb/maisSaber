@@ -22,7 +22,7 @@ const SelecionarDisciplinaTela = ({ route, navigation }) => {
   const [pickerName, setPickerName] = useState('')
   const [listValue, setListValue] = useState('')
 
-  const colorHighlight = '#E6E6E6'
+  const colorHighlight = 'gray'
   const colorBlack = '#000'
 
   const tabBarHeight = useBottomTabBarHeight();

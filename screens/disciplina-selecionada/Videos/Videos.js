@@ -40,6 +40,7 @@ const Videos = ({ route, navigation }) => {
     const [finalizado, setFinalizado] = useState(false)
     const [curtido, setCurtido] = useState(false)
 
+    const [idQuestao, setIdQuestao] = useState('')
     const [selectedAlternative, setSelectedAlternative] = useState('')
     const [questionDescription, setQuestionDescription] = useState('')
     const [ra, setRa] = useState('')
@@ -111,8 +112,16 @@ const Videos = ({ route, navigation }) => {
         }
     }
 
-    const handleAnswerQuestion = () => {
-        selectedAlternative === gabarito ? setModalAcertou(true) : setModalErrou(true)
+    const handleAnswerQuestion = async () => {
+        await Service.sendReponse(userLogger.id, idQuestao, selectedAlternative)
+            .then(response => {
+                console.log(response)
+                const { acertou } = response.data
+                acertou ? setModalAcertou(true) : setModalErrou(true)
+            }).catch(error => {
+                console.log(error.message);
+                Alert.alert('Aviso', 'Você já respondeu essa questão.')
+            })
     }
 
     const handleAlternativa = (alternativa) => {
@@ -184,6 +193,7 @@ const Videos = ({ route, navigation }) => {
                         const responseQuestion = await Service.getQuestion(idVideo ? idVideo : assunto.id).catch(e => console.log(e))
                         const { questoes } = responseQuestion
                         questoes.length ? questoes.map(questao => {
+                            setIdQuestao(questao.id)
                             setQuestionDescription(questao.descricao)
                             setRa(questao.ra)
                             setRb(questao.rb)

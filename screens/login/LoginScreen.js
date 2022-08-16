@@ -100,6 +100,7 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.titleInput}>Matrícula</Text>
               <TextInput
                 placeholder="Digite aqui sua matrícula"
+                placeholderTextColor={"gray"}
                 onChangeText={setRegistration}
                 keyboardType="number-pad"
                 value={registration}
@@ -114,6 +115,7 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.titleInput}>Senha</Text>
               <TextInput
                 placeholder="Digite aqui sua senha"
+                placeholderTextColor={"gray"}
                 onChangeText={setPassword}
                 value={password}
                 style={[styles.input, passwordActive ? styles.inputActive : '']}

@@ -30,5 +30,14 @@ export default {
   getDataVideo: async (id_user, id_video) => {
     let dados = await api.get('/get-video-dados/' + id_video + '/' + id_user);
     return dados.data;
+  },
+
+  sendReponse: async (idUser, idQuestao, selectedAlternative) => {
+    let dados = await api.post('/enviar-resposta-video', {
+      id_user: idUser,
+      id_questao: idQuestao,
+      resposta: selectedAlternative
+    });
+    return dados.data;
   }
 }

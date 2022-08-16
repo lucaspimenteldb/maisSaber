@@ -176,7 +176,7 @@ const HomeScreen = ({ navigation }) => {
       />
       <SafeAreaView style={{ flex: 1 }}>
         <LinearGradient 
-          style={{ flex: 1, paddingBottom: tabBarHeight }}
+          style={{ flex: 1, paddingBottom: 40 }}
           colors={['#3C368C', '#D02F60']}
           start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
         >

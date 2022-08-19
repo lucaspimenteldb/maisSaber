@@ -123,7 +123,8 @@ const OnboardingScreen = ({ navigation }) => {
                 <TouchableHighlight
                   key={indicator.carousel + '-indicator'}
                   onPress={() => carouselSlideTo(currentIndex)}
-                  underlayColor="#fff"
+                  underlayColor="#630FCC"
+                  style={{borderRadius: 20}}
                 >
                   <View style={[
                     styles.buttonCarouselIndicator,

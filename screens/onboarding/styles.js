@@ -41,21 +41,22 @@ export default StyleSheet.create({
   },
   carouselIndicatorsWrapper: {
     position: 'absolute',
-    top: 370,
+    top: 80,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    zIndex: 1000
   },
   buttonCarouselIndicator: {
     margin: 4,
     width: 10,
     height: 10,
-    backgroundColor: '#bbb',
+    backgroundColor: '#aaa',
     borderRadius: 5,
   },
   buttonCarouselIndicatorActive: {
     width: 10,
-    backgroundColor: '#630FCC',
+    backgroundColor: '#fff',
   },
   buttonSignUp: {
     width: 331,

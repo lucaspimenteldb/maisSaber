@@ -166,7 +166,8 @@ export default StyleSheet.create({
     marginTop: 50
   },
   semAulasText: {
+    marginHorizontal: 12,
     textAlign: 'center',
-    fontFamily: 'Nunito-Bold'
+    fontFamily: 'Nunito',
   }
 })

@@ -95,7 +95,7 @@ const DisciplinaSelecionadaTela = ({ route, navigation }) => {
                 )) : (
                   <View style={styles.containerSemAulas}>
                     <Text style={styles.semAulasText}>
-                      Olá, os conteúdos dessa disciplina ainda estão sendo adiconado, aguarde!
+                      Olá! Os conteúdos da disciplina ainda não estão disponíveis, mas em breve você poderá acessá-los. 
                     </Text>
                   </View>
                 )}

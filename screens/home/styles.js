@@ -22,11 +22,11 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   carouselImageFilter: {
+    marginVertical: 16,
+    marginLeft: 16,
     position: 'absolute',
-    top: 16,
-    left: 16,
-    bottom: 16,
-    right: 0,
+    width: 340,
+    height: 180,
     borderRadius: 10,
     backgroundColor: 'rgba(0, 0, 0, .2)'
   },
@@ -121,8 +121,6 @@ export default StyleSheet.create({
   },
   // navigation hub styles
   navigationHub: {
-    paddingTop: 16,
-    paddingBottom: 16,
     flex: 1,
     backgroundColor: '#fff',
     borderTopLeftRadius: 24,
@@ -210,7 +208,6 @@ export default StyleSheet.create({
     borderBottomWidth: 1
   },
   avatarNameArea: {
-    marginBottom: -30,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 15,
@@ -268,12 +265,13 @@ export default StyleSheet.create({
     borderRadius: 8
   },
   livroScroll: {
+    paddingLeft: 12,
     marginTop: 10
   },
   livroOpacity: {
     position: 'absolute',
-    width: '100%',
-    height: '100%',
+    width: 117,
+    height: 159,
     alignSelf: 'center',
     borderRadius: 8,
     backgroundColor: 'rgba(0, 0, 0, 0.18)'

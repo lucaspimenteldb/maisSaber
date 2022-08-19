@@ -180,40 +180,41 @@ const HomeScreen = ({ navigation }) => {
           colors={['#3C368C', '#D02F60']}
           start={{x: 0, y: 0}} end={{x: 1.2, y: 0}}
         >
-          <ScrollView contentContainerStyle={styles.pageWrapper}>
-            <View style={styles.headerArea}>
-              <Logo />
-              <TouchableHighlight 
-                style={styles.buttonProfile} 
-                onPress={() => navigation.navigate('Profile')}
-                underlayColor="transparent"
-              >
-                <UsuarioIconHome color="#fff" />
-              </TouchableHighlight>
-            </View>
-            <View style={[styles.headerArea, { marginBottom: -30 }]}>
-              <View style={styles.userArea}>
-                {userLogger.foto ? 
-                  <Image
-                    source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
-                    style={styles.userInformationAvatar}
-                  /> 
-                  :
-                  <ProfilePicture 
-                    isPicture={false}
-                    user={userLogger.nome}
-                    shape={"circle"}
-                    width={60}
-                    height={60}
-                  />
-                }
+          <View style={styles.headerArea}>
+            <Logo />
+            <TouchableHighlight 
+              style={styles.buttonProfile} 
+              onPress={() => navigation.navigate('Profile')}
+              underlayColor="transparent"
+            >
+              <UsuarioIconHome color="#fff" />
+            </TouchableHighlight>
+          </View>
 
-                <View style={{marginLeft: 12}}>
-                  <Text style={styles.nameText}>{userLogger.nome}</Text>
-                  <Text style={styles.typeUserText}>{userLogger.id_privilegio === 3 ? 'Estudante' : 'Professor'}</Text>
-                </View>
+          <ScrollView contentContainerStyle={styles.pageWrapper}>
+          <View style={styles.avatarNameArea}>
+            <View style={styles.userArea}>
+              {userLogger.foto ? 
+                <Image
+                  source={{ uri: `https://admin.plataformaevoluir.com.br/${userLogger.foto}` }}
+                  style={styles.userInformationAvatar}
+                /> 
+                :
+                <ProfilePicture 
+                  isPicture={false}
+                  user={userLogger.nome}
+                  shape={"circle"}
+                  width={60}
+                  height={60}
+                />
+              }
+
+              <View style={{marginLeft: 12}}>
+                <Text style={styles.nameText}>{userLogger.nome}</Text>
+                <Text style={styles.typeUserText}>{userLogger.id_privilegio === 3 ? 'Estudante' : 'Professor'}</Text>
               </View>
             </View>
+          </View>
 
             <View style={styles.fakeContainer} />
 

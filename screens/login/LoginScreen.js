@@ -66,23 +66,12 @@ const HomeScreen = ({ navigation }) => {
         start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
         style={styles.pageWrapper}
       >
-        <View style={{ marginTop: 30, marginBottom: 32, alignSelf: 'center' }}>
+        <View style={{ marginTop: 40, marginBottom: 32, alignSelf: 'center' }}>
           <LogoOnboarding style={styles.logo} />
         </View>
 
         <ScrollView contentContainerStyle={styles.pageContentContainer}>
           <View>
-            <TouchableHighlight
-              onPress={() => navigation.goBack()}
-              underlayColor="transparent"
-              style={styles.containerBackButton}
-            >
-              <View style={styles.backButtonContainer}>
-                <ChevronIconLeft />
-                <Text style={styles.textBackButton}>Voltar</Text>
-              </View>
-            </TouchableHighlight>
-
             <View style={{
               marginTop: 30
             }}>

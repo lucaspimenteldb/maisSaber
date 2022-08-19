@@ -66,7 +66,7 @@ export default StyleSheet.create({
   icon: {
     position: 'absolute',
     right: 16,
-    top: 50,
+    top: 46,
   },
   titleInput: {
     fontFamily: 'Nunito-SemiBold',

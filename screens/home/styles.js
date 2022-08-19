@@ -205,7 +205,17 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 15,
     paddingVertical: 10,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderBottomColor: '#aaa',
+    borderBottomWidth: 1
+  },
+  avatarNameArea: {
+    marginBottom: -30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    justifyContent: 'space-between',
   },
   userInformationAvatar: {
     width: 60,

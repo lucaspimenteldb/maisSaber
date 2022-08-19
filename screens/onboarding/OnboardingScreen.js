@@ -59,7 +59,7 @@ const OnboardingScreen = ({ navigation }) => {
 
   const carouselContent = [
     {
-      image: require('../../assets/onboarding-carousel.png'),
+      image: require('../../assets/onboarding-carousel-1.png'),
       title: 'Recursos Educacionais Digitais',
       description: 'Através de Vídeos, Animações e Videoaulas, você poderá fixar seus conhecimentos para aplicar nas atividades e avaliações.',
     },
@@ -104,27 +104,10 @@ const OnboardingScreen = ({ navigation }) => {
                   key={content.title}
                   style={currentIndex === (carouselContent.length - 1) ? styles.lastCarousel : ''}
                 >
-                  <Image 
+                  <Image
                     source={content.image}
                     style={styles.carouselImage}
                   />
-                  <View style={styles.carouselIndicatorsWrapper}>
-                    {
-                      indicators.map((indicator, currentIndex) => (
-                        <TouchableHighlight
-                          key={indicator.carousel + '-indicator'}
-                          onPress={() => carouselSlideTo(currentIndex)}
-                          underlayColor="#fff"
-                        >
-                          <View style={[
-                            styles.buttonCarouselIndicator,
-                            indicator.active ? styles.buttonCarouselIndicatorActive : ''
-                          ]}
-                          />
-                        </TouchableHighlight>
-                      ))
-                    }
-                  </View>
                   <Text style={styles.carouselTitle}>{content.title}</Text>
                   <Text style={styles.carouselDescription}>
                     {content.description}
@@ -134,6 +117,23 @@ const OnboardingScreen = ({ navigation }) => {
             }
 
           </ScrollView>
+          <View style={styles.carouselIndicatorsWrapper}>
+            {
+              indicators.map((indicator, currentIndex) => (
+                <TouchableHighlight
+                  key={indicator.carousel + '-indicator'}
+                  onPress={() => carouselSlideTo(currentIndex)}
+                  underlayColor="#fff"
+                >
+                  <View style={[
+                    styles.buttonCarouselIndicator,
+                    indicator.active ? styles.buttonCarouselIndicatorActive : ''
+                  ]}
+                  />
+                </TouchableHighlight>
+              ))
+            }
+          </View>
 
           <View style={{ alignSelf: 'center', bottom: 30 }}>
             <Button
@@ -170,7 +170,7 @@ const OnboardingScreen = ({ navigation }) => {
           </LinearGradient> */}
 
           <View style={styles.whiteBackground}></View>
-          
+
           <CircleBackgroundRight style={{ position: 'absolute', top: 0, right: 0 }} />
           <CircleBackgroundRight style={{ position: 'absolute', zIndex: 0, elevation: 0, top: 130, left: 0 }} />
         </ScrollView>

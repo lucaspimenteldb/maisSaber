@@ -22,7 +22,7 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   carouselTitle: {
-    marginTop: 12,
+    marginTop: 24,
     marginLeft: 16,
     marginBottom: 4,
     width: 340,
@@ -40,10 +40,11 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   carouselIndicatorsWrapper: {
-    marginTop: 16,
-    marginLeft: 12,
+    position: 'absolute',
+    top: 370,
+    width: '100%',
     flexDirection: 'row',
-    alignSelf: 'center'
+    justifyContent: 'center'
   },
   buttonCarouselIndicator: {
     margin: 4,
